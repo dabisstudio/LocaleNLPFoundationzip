@@ -153,10 +153,14 @@ export default function HeroCanvas({ className }: Props) {
       };
     };
 
+    let mounted = true;
     let cleanup: (() => void) | undefined;
-    setup().then((fn) => { cleanup = fn; });
+    setup().then((fn) => { if (mounted) cleanup = fn; });
 
-    return () => { cleanup?.(); };
+    return () => {
+      mounted = false;
+      cleanup?.();
+    };
   }, []);
 
   return (

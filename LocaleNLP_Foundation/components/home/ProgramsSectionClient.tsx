@@ -38,9 +38,13 @@ export function ProgramsSectionStagger({ children }: { children: React.ReactNode
       return () => ctx.revert();
     };
 
+    let mounted = true;
     let cleanup: (() => void) | undefined;
-    setup().then((fn) => { cleanup = fn; });
-    return () => { cleanup?.(); };
+    setup().then((fn) => { if (mounted) cleanup = fn; });
+    return () => {
+      mounted = false;
+      cleanup?.();
+    };
   }, []);
 
   return (

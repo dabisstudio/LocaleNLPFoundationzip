@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { cn } from '@/lib/utils';
 
@@ -70,6 +70,10 @@ const AFRICA_OUTLINE =
 
 export function AfricaMap() {
   const [open, setOpen] = useState<string | null>(null);
+  const [focused, setFocused] = useState<string | null>(null);
+
+  const handleFocus = useCallback((id: string) => setFocused(id), []);
+  const handleBlur = useCallback(() => setFocused(null), []);
 
   return (
     <svg
@@ -115,6 +119,8 @@ export function AfricaMap() {
               role="button"
               aria-label={`${node.name}: ${node.languages} languages, ${node.programs} active programs`}
               tabIndex={0}
+              onFocus={() => handleFocus(node.id)}
+              onBlur={handleBlur}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -122,7 +128,7 @@ export function AfricaMap() {
                 }
               }}
             >
-              {/* Keyboard focus ring — always visible on focus */}
+              {/* Focus ring — visible on keyboard focus or popover open */}
               <circle
                 cx={node.x}
                 cy={node.y}
@@ -131,14 +137,13 @@ export function AfricaMap() {
                 stroke="#F5A623"
                 strokeWidth="1.5"
                 strokeDasharray="2.5 2"
-                className={cn(
-                  'opacity-0 transition-opacity duration-150',
-                  open === node.id && 'opacity-100'
-                )}
-                style={{ outline: 'none' }}
                 aria-hidden="true"
+                style={{
+                  opacity: (focused === node.id || open === node.id) ? 0.9 : 0,
+                  transition: 'opacity 0.15s',
+                }}
               />
-              {/* Hover glow */}
+              {/* Hover glow pulse */}
               {node.active && (
                 <circle
                   cx={node.x}
@@ -148,12 +153,18 @@ export function AfricaMap() {
                   className="am-pulse"
                 />
               )}
-              {/* Core dot: cyan → ochre on hover/focus */}
+              {/* Core dot: cyan/50 default → ochre on hover/open */}
               <circle
                 cx={node.x}
                 cy={node.y}
                 r={node.active ? 3.5 : 2}
-                fill={open === node.id ? '#F5A623' : node.active ? '#00E5FF' : '#52525B'}
+                fill={
+                  open === node.id
+                    ? '#F5A623'
+                    : node.active
+                    ? '#00E5FF80'
+                    : '#52525B'
+                }
                 className={cn(
                   'transition-colors duration-200',
                   node.active && 'group-hover:fill-[#F5A623]'
