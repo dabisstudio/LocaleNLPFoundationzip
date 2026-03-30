@@ -1,6 +1,8 @@
-import { supabase, Partner } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
-const FALLBACK_PARTNERS = [
+type PartnerDisplay = { id: string; name: string; logo_url: string | null };
+
+const FALLBACK_PARTNERS: PartnerDisplay[] = [
   { id: 'p1', name: 'Google AI', logo_url: null },
   { id: 'p2', name: 'Mozilla Foundation', logo_url: null },
   { id: 'p3', name: 'Masakhane NLP', logo_url: null },
@@ -11,22 +13,17 @@ const FALLBACK_PARTNERS = [
   { id: 'p8', name: 'Microsoft Research', logo_url: null },
 ];
 
-async function getPartners(): Promise<Partner[]> {
-  try {
-    const { data, error } = await supabase
-      .from('partners')
-      .select('*')
-      .eq('is_featured', true)
-      .order('order_index');
-
-    if (error || !data?.length) return FALLBACK_PARTNERS as Partner[];
-    return data;
-  } catch {
-    return FALLBACK_PARTNERS as Partner[];
-  }
+async function getPartners(): Promise<PartnerDisplay[]> {
+  const { data, error } = await supabase
+    .from('partners')
+    .select('id, name, logo_url')
+    .eq('is_featured', true)
+    .order('order_index');
+  if (error || !data?.length) return FALLBACK_PARTNERS;
+  return data;
 }
 
-function PartnerItem({ partner }: { partner: Pick<Partner, 'id' | 'name' | 'logo_url'> }) {
+function PartnerItem({ partner }: { partner: PartnerDisplay }) {
   return (
     <div className="inline-flex items-center justify-center mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 shrink-0">
       {partner.logo_url ? (
@@ -54,9 +51,7 @@ export default async function PartnersSection() {
         Trusted by leading organizations
       </p>
 
-      {/* Animated marquee — hidden when prefers-reduced-motion is set */}
       <div className="relative overflow-hidden motion-safe:block motion-reduce:hidden">
-        {/* Fade edges */}
         <div
           className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(90deg, #04040A 0%, transparent 100%)' }}
@@ -74,7 +69,6 @@ export default async function PartnersSection() {
         </div>
       </div>
 
-      {/* Static row — shown only when prefers-reduced-motion is set */}
       <div
         className="hidden motion-reduce:flex flex-wrap justify-center gap-x-10 gap-y-4 px-8"
         aria-hidden="true"
@@ -84,7 +78,6 @@ export default async function PartnersSection() {
         ))}
       </div>
 
-      {/* Accessible list for screen readers */}
       <ul className="sr-only">
         {partners.map((p) => (
           <li key={p.id}>{p.name}</li>

@@ -1,19 +1,6 @@
 import { MonoLabel } from '@/components/ui/mono-label';
 import { cn } from '@/lib/utils';
 
-/**
- * Full-bleed page hero used on every interior page.
- *
- * Prop contract:
- * - `label` / `number` / `status` — forwarded to MonoLabel as the eyebrow tag.
- * - `title` — plain white headline text (line 1).
- * - `titleGradient` — optional gradient text (line 2); rendered via `.text-gradient` class.
- * - `subtitle` — body copy below the headline.
- * - `cta` — alias for `children`; either prop accepts CTA button nodes (e.g. GlowButton).
- *   Both are rendered in a centred flex row. `cta` takes precedence if both are provided.
- * - `children` — alternative to `cta` (backward-compatible).
- * - `accentColor` — controls the radial glow colour behind the headline.
- */
 interface PageHeaderProps {
   label: string;
   number?: string;
@@ -21,9 +8,7 @@ interface PageHeaderProps {
   title: string;
   titleGradient?: string;
   subtitle: string;
-  /** Explicit CTA prop — accepts GlowButton nodes rendered below the subtitle. */
   cta?: React.ReactNode;
-  /** Backward-compatible alias for `cta`. */
   children?: React.ReactNode;
   accentColor?: 'ochre' | 'cyan' | 'clay';
   className?: string;
