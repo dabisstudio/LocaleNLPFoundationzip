@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
@@ -31,7 +32,7 @@ export function GlowButton({
     variant === 'primary' && [
       'bg-white text-[#04040A]',
       'ring-1 ring-transparent',
-      'hover:ring-accent-ochre/50 hover:shadow-glow-ochre hover:-translate-y-0.5',
+      'hover:ring-accent-ochre/50 hover:animate-glow-pulse hover:-translate-y-0.5',
       'focus-visible:ring-accent-ochre',
     ],
     variant === 'ghost' && [
@@ -57,8 +58,18 @@ export function GlowButton({
 
   if ('href' in props && props.href) {
     const { href, ...anchorProps } = props as AsAnchor;
+    const isInternal = href.startsWith('/') || href.startsWith('#');
+
+    if (isInternal) {
+      return (
+        <Link href={href} className={classes} onClick={(anchorProps as { onClick?: React.MouseEventHandler }).onClick}>
+          {content}
+        </Link>
+      );
+    }
+
     return (
-      <a href={href} className={classes} {...anchorProps}>
+      <a href={href} className={classes} target="_blank" rel="noopener noreferrer" {...anchorProps}>
         {content}
       </a>
     );

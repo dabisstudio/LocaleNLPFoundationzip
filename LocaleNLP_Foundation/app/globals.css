@@ -98,7 +98,7 @@
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#04040A] font-medium rounded-lg
            ring-1 ring-transparent
            transition-all duration-300 ease-apple-ease
-           hover:ring-accent-ochre/50 hover:shadow-glow-ochre hover:-translate-y-0.5
+           hover:ring-accent-ochre/50 hover:animate-glow-pulse hover:-translate-y-0.5
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre;
   }
 

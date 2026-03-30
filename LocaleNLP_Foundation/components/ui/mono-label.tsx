@@ -22,9 +22,9 @@ const textColors: Record<Status, string> = {
 };
 
 export function MonoLabel({ label, number, status = 'active', className }: MonoLabelProps) {
-  const bracketContent = [number && `${number}`, label, status.toUpperCase()]
-    .filter(Boolean)
-    .join(' // ');
+  // Order: label // number // STATUS — e.g. [ INITIATIVE // 01 // ACTIVE ]
+  const parts = [label, number, status.toUpperCase()].filter(Boolean);
+  const bracketContent = parts.join(' // ');
 
   return (
     <div
