@@ -19,6 +19,10 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
   }, [initialCountries.length]);
 
   async function fetchCountries() {
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
     const { data, error } = await supabase
       .from('countries')
       .select('*')

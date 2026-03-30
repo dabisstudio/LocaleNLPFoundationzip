@@ -11,6 +11,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 async function getMetrics(): Promise<ImpactMetric[]> {
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from('impact_metrics')
     .select('*')

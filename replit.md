@@ -66,12 +66,14 @@ cd LocaleNLP_Foundation && npm run dev
 
 ## Environment Variables
 
-| Key | Purpose |
-|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous public key |
+| Key | Expected format | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxx.supabase.co` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `sb_publishable_...` or `eyJ...` | Supabase anonymous public key |
 
-Both are set as shared Replit environment variables (also present in `LocaleNLP_Foundation/.env` for local reference).
+Both are stored as Replit Secrets (not in `.env`). The `LocaleNLP_Foundation/.env` file now contains only a comment pointing to the Secrets panel.
+
+> **Note:** If the Supabase client shows a warning about an invalid URL, check that the two secrets are not swapped — `NEXT_PUBLIC_SUPABASE_URL` must be the `https://` URL and `NEXT_PUBLIC_SUPABASE_ANON_KEY` must be the key value.
 
 ## Supabase Data Models
 

@@ -18,6 +18,7 @@ const colorMap: Record<string, string> = {
 };
 
 async function getPrograms(): Promise<Program[]> {
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from('programs')
     .select('*')
