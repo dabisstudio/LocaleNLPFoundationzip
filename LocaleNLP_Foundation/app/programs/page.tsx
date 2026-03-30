@@ -31,7 +31,7 @@ const SPOTLIGHT_MAP: Record<string, string> = {
 
 async function getPrograms(): Promise<Program[]> {
   const { data, error } = await supabase.from('programs').select('*').order('order_index');
-  if (error || !data || data.length === 0) return PLACEHOLDER_PROGRAMS;
+  if (error || !data || data.length === 0) return PLACEHOLDER_PROGRAMS.slice(0, 4);
   return data;
 }
 

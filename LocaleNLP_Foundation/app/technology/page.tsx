@@ -93,6 +93,7 @@ const API_ENDPOINTS = [
     auth: 'API key',
     icon: Zap,
     accent: 'text-accent-ochre',
+    border: 'border-accent-ochre',
     bg: 'bg-accent-ochre/10',
     methodColor: 'text-accent-ochre bg-accent-ochre/10',
   },
@@ -103,6 +104,7 @@ const API_ENDPOINTS = [
     auth: 'API key',
     icon: Globe,
     accent: 'text-accent-cyan',
+    border: 'border-accent-cyan',
     bg: 'bg-accent-cyan/10',
     methodColor: 'text-accent-cyan bg-accent-cyan/10',
   },
@@ -113,6 +115,7 @@ const API_ENDPOINTS = [
     auth: 'API key',
     icon: Cpu,
     accent: 'text-accent-clay',
+    border: 'border-accent-clay',
     bg: 'bg-accent-clay/10',
     methodColor: 'text-accent-clay bg-accent-clay/10',
   },
@@ -123,6 +126,7 @@ const API_ENDPOINTS = [
     auth: 'None required',
     icon: Database,
     accent: 'text-text-secondary',
+    border: 'border-white/20',
     bg: 'bg-white/5',
     methodColor: 'text-text-secondary bg-white/8',
   },
@@ -274,41 +278,148 @@ export default async function TechnologyPage() {
           </div>
         </section>
 
-        <section id="api" className="py-20 bg-brand-deep">
+        <section id="architecture" className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="REST API" number="02" className="mb-5" />
+              <MonoLabel label="PLATFORM ARCHITECTURE" number="02" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Three Pillars of Our Technology
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Our stack is designed from first principles for the realities of African
+                connectivity — low bandwidth, intermittent power, and heterogeneous devices.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <SpotlightCard spotlightColor="rgba(245,166,35,0.1)" className="p-8">
+                <div className="w-12 h-12 rounded-xl bg-accent-ochre/10 flex items-center justify-center mb-5">
+                  <Zap className="w-6 h-6 text-accent-ochre" aria-hidden="true" />
+                </div>
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-3">
+                  Edge-Optimised Runtime
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  Quantised models run entirely on-device using ONNX Runtime and WebAssembly.
+                  Inference works offline, preserving privacy and eliminating round-trip latency on
+                  sub-5 Mbps connections.
+                </p>
+              </SpotlightCard>
+
+              <SpotlightCard spotlightColor="rgba(0,229,255,0.08)" className="p-8">
+                <div className="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-5">
+                  <Users className="w-6 h-6 text-accent-cyan" aria-hidden="true" />
+                </div>
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-3">
+                  Community Data Pipeline
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  A contributor-first collection stack with differential privacy, consent
+                  management, and on-chain provenance. Communities retain full ownership of
+                  contributions and receive equitable compensation.
+                </p>
+              </SpotlightCard>
+
+              <SpotlightCard spotlightColor="rgba(224,122,95,0.1)" className="p-8">
+                <div className="w-12 h-12 rounded-xl bg-accent-clay/10 flex items-center justify-center mb-5">
+                  <Code className="w-6 h-6 text-accent-clay" aria-hidden="true" />
+                </div>
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-3">
+                  Open Inference API
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  A developer-first REST and gRPC surface — versioned, rate-limited, and free for
+                  non-commercial use. All endpoints are self-hostable under our permissive licence.
+                </p>
+              </SpotlightCard>
+            </div>
+          </div>
+        </section>
+
+        <section id="api" className="py-20 bg-brand-surface">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="REST API" number="03" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 API Endpoint Reference
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 Integrate African language AI directly into your applications. All endpoints accept
-                JSON, require an API key, and return structured responses.
+                JSON and return structured responses.
               </p>
             </div>
 
-            <div className="space-y-4 mb-12">
-              {API_ENDPOINTS.map((ep) => (
-                <div key={ep.path} className="glass-card p-5 flex flex-col sm:flex-row sm:items-center gap-5">
-                  <div className="flex items-center gap-4 min-w-0 flex-1">
-                    <span
-                      className={`font-mono text-xs font-bold px-2.5 py-1 rounded shrink-0 ${ep.methodColor}`}
-                    >
-                      {ep.method}
-                    </span>
-                    <code className="font-mono text-sm text-text-primary truncate">
-                      {ep.path}
-                    </code>
+            <div className="grid lg:grid-cols-2 gap-6 mb-12">
+              <div className="space-y-3">
+                {API_ENDPOINTS.map((ep) => (
+                  <div
+                    key={ep.path}
+                    className={`glass-card p-4 border-l-2 ${ep.border}`}
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className={`font-mono text-xs font-bold px-2 py-0.5 rounded ${ep.methodColor}`}>
+                        {ep.method}
+                      </span>
+                      <code className={`font-mono text-sm ${ep.accent}`}>{ep.path}</code>
+                    </div>
+                    <p className="text-text-secondary text-xs leading-relaxed mb-2">
+                      {ep.description}
+                    </p>
+                    <div className="flex items-center gap-1.5">
+                      <Lock className="w-3 h-3 text-text-tertiary" aria-hidden="true" />
+                      <span className="font-mono text-[10px] text-text-tertiary">{ep.auth}</span>
+                    </div>
                   </div>
-                  <p className="text-text-secondary text-sm flex-1 hidden md:block">
-                    {ep.description}
-                  </p>
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <Lock className="w-3 h-3 text-text-tertiary" aria-hidden="true" />
-                    <span className="font-mono text-[11px] text-text-tertiary">{ep.auth}</span>
+                ))}
+              </div>
+
+              <div
+                className="rounded-xl overflow-hidden border border-white/8 bg-[#0A0A0F]"
+                aria-label="Example curl request and JSON response"
+              >
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/8 bg-white/3">
+                  <div className="flex gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
+                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
+                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
                   </div>
+                  <span className="font-mono text-[11px] text-text-tertiary ml-2">
+                    example_request.sh
+                  </span>
                 </div>
-              ))}
+                <pre className="p-5 text-xs leading-6 overflow-x-auto">
+                  <code>
+                    <span className="text-text-tertiary">{`# Transcribe Yoruba audio`}</span>{'\n'}
+                    <span className="text-accent-cyan">curl</span>
+                    <span className="text-text-secondary">{` -X POST \\`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  https://api.localenlp.org/v1/asr/transcribe \\`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  -H `}</span>
+                    <span className="text-accent-ochre">{`"Authorization: Bearer $API_KEY"`}</span>
+                    <span className="text-text-secondary">{` \\`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  -H `}</span>
+                    <span className="text-accent-ochre">{`"Content-Type: application/json"`}</span>
+                    <span className="text-text-secondary">{` \\`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  -d '`}</span>
+                    <span className="text-accent-clay">{`{`}</span>{'\n'}
+                    <span className="text-accent-clay">{`    "language": "yo",`}</span>{'\n'}
+                    <span className="text-accent-clay">{`    "audio_url": "https://cdn.example.com/clip.wav",`}</span>{'\n'}
+                    <span className="text-accent-clay">{`    "model": "afrispeech-asr-v2"`}</span>{'\n'}
+                    <span className="text-accent-clay">{`  }`}</span>
+                    <span className="text-text-secondary">{`'`}</span>{'\n\n'}
+                    <span className="text-text-tertiary">{`# Response`}</span>{'\n'}
+                    <span className="text-accent-cyan">{`{`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  "transcript": `}</span>
+                    <span className="text-accent-ochre">{`"Bawo ni o se ri agbara ede wa?",`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  "confidence": `}</span>
+                    <span className="text-accent-clay">{`0.94,`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  "language": `}</span>
+                    <span className="text-accent-ochre">{`"yo",`}</span>{'\n'}
+                    <span className="text-text-secondary">{`  "duration_ms": `}</span>
+                    <span className="text-accent-clay">{`3200`}</span>{'\n'}
+                    <span className="text-accent-cyan">{`}`}</span>
+                  </code>
+                </pre>
+              </div>
             </div>
 
             <div className="text-center">
@@ -324,7 +435,7 @@ export default async function TechnologyPage() {
         <section id="datasets" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="OPEN DATASETS" number="03" className="mb-5" />
+              <MonoLabel label="OPEN DATASETS" number="04" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Training Data for African NLP
               </h2>
@@ -362,7 +473,7 @@ export default async function TechnologyPage() {
           <section className="py-20 bg-brand-deep">
             <div className="container-wide section-padding">
               <div className="text-center mb-14">
-                <MonoLabel label="LANGUAGE COVERAGE" number="04" className="mb-5" />
+                <MonoLabel label="LANGUAGE COVERAGE" number="05" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   Languages We Support
                 </h2>
@@ -409,7 +520,7 @@ export default async function TechnologyPage() {
         <section id="research" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="RESEARCH PAPERS" number="05" className="mb-5" />
+              <MonoLabel label="RESEARCH PAPERS" number="06" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Peer-Reviewed Publications
               </h2>
@@ -466,7 +577,7 @@ export default async function TechnologyPage() {
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="ETHICAL AI" number="06" className="mb-5" />
+              <MonoLabel label="ETHICAL AI" number="07" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Building Responsibly
               </h2>

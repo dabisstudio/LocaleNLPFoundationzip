@@ -87,47 +87,53 @@ export default async function AboutPage() {
 
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
-            <div className="grid lg:grid-cols-3 gap-6">
-              <SpotlightCard className="p-8" spotlightColor="rgba(245,166,35,0.1)">
+            <div className="grid lg:grid-cols-2 gap-6 mb-6">
+              <SpotlightCard className="p-10" spotlightColor="rgba(245,166,35,0.1)">
                 <div className="w-12 h-12 rounded-xl bg-accent-ochre/10 flex items-center justify-center mb-5">
                   <Target className="w-6 h-6 text-accent-ochre" aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
+                <h3 className="font-display text-2xl font-semibold text-text-primary mb-4">
                   Mission
                 </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
+                <p className="text-text-secondary leading-relaxed">
                   To ensure African languages are not left behind in the AI revolution — by building
                   open, ethical, and community-centered language technology at scale.
                 </p>
               </SpotlightCard>
 
-              <SpotlightCard className="p-8" spotlightColor="rgba(0,229,255,0.08)">
+              <SpotlightCard className="p-10" spotlightColor="rgba(0,229,255,0.08)">
                 <div className="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-5">
                   <Eye className="w-6 h-6 text-accent-cyan" aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
+                <h3 className="font-display text-2xl font-semibold text-text-primary mb-4">
                   Vision
                 </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
+                <p className="text-text-secondary leading-relaxed">
                   A world where every African accesses healthcare information, education, and civic
                   participation in their mother tongue — and where African expertise leads global AI
                   development.
                 </p>
               </SpotlightCard>
+            </div>
 
-              <SpotlightCard className="p-8" spotlightColor="rgba(224,122,95,0.1)">
-                <div className="w-12 h-12 rounded-xl bg-accent-clay/10 flex items-center justify-center mb-5">
+            <SpotlightCard className="p-10" spotlightColor="rgba(224,122,95,0.08)">
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-xl bg-accent-clay/10 flex items-center justify-center shrink-0">
                   <Globe className="w-6 h-6 text-accent-clay" aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
-                  Approach
-                </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
-                  Open-source models. Ethical data collection. Community co-ownership. We measure
-                  success not in papers published, but in communities empowered and barriers broken.
-                </p>
-              </SpotlightCard>
-            </div>
+                <div>
+                  <h3 className="font-display text-2xl font-semibold text-text-primary mb-4">
+                    Our Approach
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed max-w-3xl">
+                    Open-source models. Ethical data collection. Community co-ownership. We measure
+                    success not in papers published, but in communities empowered and barriers broken.
+                    Every decision is guided by the principle that the people most affected by
+                    language technology should be its primary beneficiaries — and its builders.
+                  </p>
+                </div>
+              </div>
+            </SpotlightCard>
           </div>
         </section>
 

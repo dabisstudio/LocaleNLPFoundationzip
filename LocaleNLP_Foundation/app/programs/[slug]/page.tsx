@@ -154,21 +154,23 @@ export default async function ProgramDetailPage({ params }: { params: { slug: st
           </div>
         </section>
 
-        {program.full_description && (
-          <section className="py-20 bg-brand-deep">
-            <div className="container-wide section-padding">
-              <div className="max-w-3xl mx-auto">
-                <MonoLabel label="IN DEPTH" className="mb-5" />
-                <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
-                  Program Details
-                </h2>
-                <div className="text-text-secondary leading-relaxed space-y-4">
-                  <p>{program.full_description}</p>
-                </div>
+        <section className="py-20 bg-brand-deep">
+          <div className="container-wide section-padding">
+            <div className="max-w-3xl mx-auto">
+              <MonoLabel label="IN DEPTH" className="mb-5" />
+              <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
+                Program Details
+              </h2>
+              <div className="text-text-secondary leading-relaxed space-y-4">
+                <p>
+                  {program.full_description ||
+                    program.short_description ||
+                    `${program.title} is part of LocaleNLP Foundation's commitment to building open, ethical language technology for African communities. This program advances our mission of digital sovereignty and linguistic inclusion — ensuring that speakers of all African languages can participate fully in the digital future.`}
+                </p>
               </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
