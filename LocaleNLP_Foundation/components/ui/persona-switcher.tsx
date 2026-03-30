@@ -7,22 +7,6 @@ import { GlowButton } from '@/components/ui/glow-button';
 
 const PERSONAS = [
   {
-    id: 'community',
-    label: 'As a Community Member',
-    icon: Mic,
-    audience: 'Community Members',
-    title: 'Community Data Contributor',
-    description:
-      'Help preserve your language by contributing speech and text data. No technical skills required — just your voice and knowledge. Contributors are compensated fairly and retain moral rights over their linguistic heritage.',
-    benefits: [
-      'Fair compensation per recording session',
-      'Fully remote and flexible scheduling',
-      'Preserve your language for future generations',
-      'No technical background required',
-    ],
-    cta: { label: 'Start Contributing', href: '#contact' },
-  },
-  {
     id: 'researcher',
     label: 'As a Researcher',
     icon: GraduationCap,
@@ -53,6 +37,22 @@ const PERSONAS = [
       'Join a global contributor community',
     ],
     cta: { label: 'View Open Issues', href: 'https://github.com/localenlp' },
+  },
+  {
+    id: 'community',
+    label: 'As a Community Member',
+    icon: Mic,
+    audience: 'Community Members',
+    title: 'Community Data Contributor',
+    description:
+      'Help preserve your language by contributing speech and text data. No technical skills required — just your voice and knowledge. Contributors are compensated fairly and retain moral rights over their linguistic heritage.',
+    benefits: [
+      'Fair compensation per recording session',
+      'Fully remote and flexible scheduling',
+      'Preserve your language for future generations',
+      'No technical background required',
+    ],
+    cta: { label: 'Start Contributing', href: '#contact' },
   },
   {
     id: 'partner',

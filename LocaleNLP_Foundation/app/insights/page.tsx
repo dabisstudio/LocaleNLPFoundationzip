@@ -251,6 +251,7 @@ export default async function InsightsPage() {
               <form
                 className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
                 aria-label="Newsletter signup"
+                onSubmit={(e) => e.preventDefault()}
               >
                 <label htmlFor="insights-email" className="sr-only">
                   Email address
