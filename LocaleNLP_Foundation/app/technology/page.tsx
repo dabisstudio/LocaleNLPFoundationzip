@@ -91,10 +91,8 @@ const API_ENDPOINTS = [
     path: '/v1/asr/transcribe',
     description: 'Transcribe audio to text for a given African language.',
     auth: 'API key',
-    icon: Zap,
     accent: 'text-accent-ochre',
     border: 'border-accent-ochre',
-    bg: 'bg-accent-ochre/10',
     methodColor: 'text-accent-ochre bg-accent-ochre/10',
   },
   {
@@ -102,10 +100,8 @@ const API_ENDPOINTS = [
     path: '/v1/mt/translate',
     description: 'Translate text between African languages and English.',
     auth: 'API key',
-    icon: Globe,
     accent: 'text-accent-cyan',
     border: 'border-accent-cyan',
-    bg: 'bg-accent-cyan/10',
     methodColor: 'text-accent-cyan bg-accent-cyan/10',
   },
   {
@@ -113,10 +109,8 @@ const API_ENDPOINTS = [
     path: '/v1/tts/synthesise',
     description: 'Convert text to natural-sounding speech in African languages.',
     auth: 'API key',
-    icon: Cpu,
     accent: 'text-accent-clay',
     border: 'border-accent-clay',
-    bg: 'bg-accent-clay/10',
     methodColor: 'text-accent-clay bg-accent-clay/10',
   },
   {
@@ -124,10 +118,8 @@ const API_ENDPOINTS = [
     path: '/v1/languages',
     description: 'List all supported languages with metadata and model coverage.',
     auth: 'None required',
-    icon: Database,
     accent: 'text-text-secondary',
     border: 'border-white/20',
-    bg: 'bg-white/5',
     methodColor: 'text-text-secondary bg-white/8',
   },
 ];

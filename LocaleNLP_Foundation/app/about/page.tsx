@@ -208,32 +208,32 @@ export default async function AboutPage() {
 
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
-            <div className="max-w-3xl mx-auto">
+            <div className="mb-12">
               <MonoLabel label="OUR STORY" number="03" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-10">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary">
                 How We Got Here
               </h2>
+            </div>
 
-              <div className="space-y-0">
-                {MILESTONES.map((m, i) => (
-                  <div key={m.year} className="flex gap-6 group">
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-accent-ochre/10 border border-accent-ochre/30 flex items-center justify-center shrink-0">
-                        <span className="font-mono text-xs text-accent-ochre font-bold">
-                          {m.year.slice(2)}
-                        </span>
-                      </div>
-                      {i < MILESTONES.length - 1 && (
-                        <div className="w-px flex-1 bg-white/8 my-2" aria-hidden="true" />
-                      )}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
+              {MILESTONES.map((m, i) => (
+                <div key={m.year} className="flex gap-5 group">
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 rounded-full bg-accent-ochre/10 border border-accent-ochre/30 flex items-center justify-center shrink-0">
+                      <span className="font-mono text-xs text-accent-ochre font-bold">
+                        {m.year.slice(2)}
+                      </span>
                     </div>
-                    <div className="pb-8">
-                      <p className="font-mono text-xs text-accent-ochre mb-1">{m.year}</p>
-                      <p className="text-text-secondary leading-relaxed">{m.event}</p>
-                    </div>
+                    {i < MILESTONES.length - 1 && (
+                      <div className="w-px flex-1 bg-white/8 my-2 md:hidden" aria-hidden="true" />
+                    )}
                   </div>
-                ))}
-              </div>
+                  <div className="pb-10">
+                    <p className="font-mono text-xs text-accent-ochre mb-1">{m.year}</p>
+                    <p className="text-text-secondary leading-relaxed">{m.event}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
