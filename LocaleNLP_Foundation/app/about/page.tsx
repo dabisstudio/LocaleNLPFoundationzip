@@ -215,25 +215,31 @@ export default async function AboutPage() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
-              {MILESTONES.map((m, i) => (
-                <div key={m.year} className="flex gap-5 group">
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-accent-ochre/10 border border-accent-ochre/30 flex items-center justify-center shrink-0">
-                      <span className="font-mono text-xs text-accent-ochre font-bold">
-                        {m.year.slice(2)}
-                      </span>
+            <div className="relative">
+              <div
+                className="hidden md:block absolute top-5 left-0 right-0 h-px bg-white/8"
+                aria-hidden="true"
+              />
+              <div className="grid md:grid-cols-6 gap-y-8 md:gap-y-0">
+                {MILESTONES.map((m, i) => (
+                  <div key={m.year} className="relative flex md:flex-col gap-5 md:gap-0 md:pr-4">
+                    <div className="flex md:flex-col items-center md:items-start gap-3 md:gap-0">
+                      <div className="w-10 h-10 rounded-full bg-accent-ochre/10 border border-accent-ochre/30 flex items-center justify-center shrink-0 relative z-10">
+                        <span className="font-mono text-xs text-accent-ochre font-bold">
+                          {m.year.slice(2)}
+                        </span>
+                      </div>
+                      {i < MILESTONES.length - 1 && (
+                        <div className="w-px flex-1 bg-white/8 md:hidden" aria-hidden="true" />
+                      )}
                     </div>
-                    {i < MILESTONES.length - 1 && (
-                      <div className="w-px flex-1 bg-white/8 my-2 md:hidden" aria-hidden="true" />
-                    )}
+                    <div className="md:mt-6">
+                      <p className="font-mono text-xs text-accent-ochre mb-2">{m.year}</p>
+                      <p className="text-text-secondary text-sm leading-relaxed">{m.event}</p>
+                    </div>
                   </div>
-                  <div className="pb-10">
-                    <p className="font-mono text-xs text-accent-ochre mb-1">{m.year}</p>
-                    <p className="text-text-secondary leading-relaxed">{m.event}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>

@@ -7,20 +7,20 @@ import { GlowButton } from '@/components/ui/glow-button';
 
 const PERSONAS = [
   {
-    id: 'partner',
-    label: 'As a Partner',
-    icon: Building,
-    audience: 'Organizations & NGOs',
-    title: 'Partner With Us',
+    id: 'community',
+    label: 'As a Community Member',
+    icon: Mic,
+    audience: 'Community Members',
+    title: 'Community Data Contributor',
     description:
-      'Join our network of research institutions, governments, and civil-society organizations building language technology across Africa. Access our open APIs, co-publish research, and deliver measurable impact in your target communities.',
+      'Help preserve your language by contributing speech and text data. No technical skills required — just your voice and knowledge. Contributors are compensated fairly and retain moral rights over their linguistic heritage.',
     benefits: [
-      'Full access to open models and APIs',
-      'Joint research and publication opportunities',
-      'Impact reporting and co-branding',
-      'Technical support and onboarding',
+      'Fair compensation per recording session',
+      'Fully remote and flexible scheduling',
+      'Preserve your language for future generations',
+      'No technical background required',
     ],
-    cta: { label: 'Apply for Partnership', href: '#contact' },
+    cta: { label: 'Start Contributing', href: '#contact' },
   },
   {
     id: 'researcher',
@@ -55,20 +55,20 @@ const PERSONAS = [
     cta: { label: 'View Open Issues', href: 'https://github.com/localenlp' },
   },
   {
-    id: 'community',
-    label: 'As a Community Member',
-    icon: Mic,
-    audience: 'Community Members',
-    title: 'Community Data Contributor',
+    id: 'partner',
+    label: 'As a Partner',
+    icon: Building,
+    audience: 'Organizations & NGOs',
+    title: 'Partner With Us',
     description:
-      'Help preserve your language by contributing speech and text data. No technical skills required — just your voice and knowledge. Contributors are compensated fairly and retain moral rights over their linguistic heritage.',
+      'Join our network of research institutions, governments, and civil-society organizations building language technology across Africa. Access our open APIs, co-publish research, and deliver measurable impact in your target communities.',
     benefits: [
-      'Fair compensation per recording session',
-      'Fully remote and flexible scheduling',
-      'Preserve your language for future generations',
-      'No technical background required',
+      'Full access to open models and APIs',
+      'Joint research and publication opportunities',
+      'Impact reporting and co-branding',
+      'Technical support and onboarding',
     ],
-    cta: { label: 'Start Contributing', href: '#contact' },
+    cta: { label: 'Apply for Partnership', href: '#contact' },
   },
 ];
 
