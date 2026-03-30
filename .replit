@@ -1,5 +1,40 @@
+modules = ["nodejs-20"]
 [nix]
 channel = "stable-25_05"
 
 [agent]
 expertMode = true
+
+[userenv]
+
+[userenv.shared]
+NEXT_PUBLIC_SUPABASE_URL = "https://qifrtitbgiqxmqjdwphf.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZnJ0aXRiZ2lxeG1xamR3cGhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYxNzY3MjMsImV4cCI6MjA4MTc1MjcyM30.TsPBeMmKtaKxDhY1PajnRIdMxjn8K2oZZGs-gFFWKv8"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd LocaleNLP_Foundation && npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
