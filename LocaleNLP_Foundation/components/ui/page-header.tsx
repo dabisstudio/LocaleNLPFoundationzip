@@ -9,8 +9,9 @@ import { cn } from '@/lib/utils';
  * - `title` — plain white headline text (line 1).
  * - `titleGradient` — optional gradient text (line 2); rendered via `.text-gradient` class.
  * - `subtitle` — body copy below the headline.
- * - `children` — CTA buttons. Wrapped in a centred flex row. Pass GlowButton components here.
- *   (There is no separate `cta` prop; `children` is the accepted CTA contract.)
+ * - `cta` — alias for `children`; either prop accepts CTA button nodes (e.g. GlowButton).
+ *   Both are rendered in a centred flex row. `cta` takes precedence if both are provided.
+ * - `children` — alternative to `cta` (backward-compatible).
  * - `accentColor` — controls the radial glow colour behind the headline.
  */
 interface PageHeaderProps {
@@ -20,6 +21,9 @@ interface PageHeaderProps {
   title: string;
   titleGradient?: string;
   subtitle: string;
+  /** Explicit CTA prop — accepts GlowButton nodes rendered below the subtitle. */
+  cta?: React.ReactNode;
+  /** Backward-compatible alias for `cta`. */
   children?: React.ReactNode;
   accentColor?: 'ochre' | 'cyan' | 'clay';
   className?: string;
@@ -32,10 +36,12 @@ export function PageHeader({
   title,
   titleGradient,
   subtitle,
+  cta,
   children,
   accentColor = 'ochre',
   className,
 }: PageHeaderProps) {
+  const ctaContent = cta ?? children;
   const glowMap = {
     ochre: 'rgba(245,166,35,0.06)',
     cyan: 'rgba(0,229,255,0.06)',
@@ -76,9 +82,9 @@ export function PageHeader({
             {subtitle}
           </p>
 
-          {children && (
+          {ctaContent && (
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              {children}
+              {ctaContent}
             </div>
           )}
         </div>
