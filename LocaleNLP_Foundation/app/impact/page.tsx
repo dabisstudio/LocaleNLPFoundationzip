@@ -25,8 +25,6 @@ const STATIC_METRICS = [
   { label: 'Audio Hours Archived', value: '2,400', unit: 'hrs' },
   { label: 'Researchers Supported', value: '120+', unit: null },
   { label: 'Countries Active', value: '18', unit: null },
-  { label: 'People Reached', value: '500K+', unit: null },
-  { label: 'Papers Published', value: '60+', unit: null },
 ];
 
 const USE_CASES = [

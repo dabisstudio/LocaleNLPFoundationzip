@@ -118,16 +118,23 @@ export default async function ProgramsPage() {
                   <MonoLabel label="ALL PROGRAMS" status="active" />
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {rest.map((program) => {
+                  {rest.map((program, i) => {
                     const Icon = ICON_MAP[program.icon || 'Microscope'] || Microscope;
                     const accent = ACCENT_MAP[program.color] || 'text-accent-ochre';
+                    const spotlight = SPOTLIGHT_MAP[program.color] || 'rgba(245,166,35,0.08)';
                     return (
                       <SpotlightCard
                         key={program.id}
-                        spotlightColor="rgba(255,255,255,0.04)"
+                        spotlightColor={spotlight}
                         className="p-6"
                       >
-                        <Icon className={`w-6 h-6 ${accent} mb-4`} aria-hidden="true" />
+                        <div className="flex items-start justify-between mb-4">
+                          <Icon className={`w-6 h-6 ${accent}`} aria-hidden="true" />
+                          <MonoLabel
+                            label="INITIATIVE"
+                            number={String(i + 1).padStart(2, '0')}
+                          />
+                        </div>
                         <h3 className="font-display text-base font-semibold text-text-primary mb-2">
                           {program.title}
                         </h3>
