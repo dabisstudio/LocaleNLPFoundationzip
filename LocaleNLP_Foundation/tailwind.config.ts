@@ -10,14 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Primary display/heading font — Space Grotesk
+        // Space Grotesk for all display/heading use
         display: ['var(--font-space-grotesk)', 'sans-serif'],
-        // Backward-compat alias: existing font-sora classes now render Space Grotesk
+        // sora alias retained for backward compatibility with existing components
         sora: ['var(--font-space-grotesk)', 'sans-serif'],
-        // Body font
         inter: ['var(--font-inter)', 'sans-serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
-        // Metadata / numbers / code
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       backgroundImage: {
@@ -38,22 +36,20 @@ const config: Config = {
         'smooth': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       },
       colors: {
-        // ─── NEW BRAND TOKENS ────────────────────────────────────────────────────
+        // New brand tokens
         brand: {
-          deep: '#04040A',      // Deep Midnight Indigo — primary background
-          surface: '#09090E',   // Elevated cards
-          elevated: '#12121A',  // Card hover / active
+          deep: '#04040A',
+          surface: '#09090E',
+          elevated: '#12121A',
         },
-        // Bioluminescent accent triad
         'accent-ochre': '#F5A623',
         'accent-clay': '#E07A5F',
         'accent-cyan': '#00E5FF',
-        // Typography hierarchy
         'text-primary': '#FAFAFA',
         'text-secondary': '#8F8F9D',
         'text-tertiary': '#52525B',
 
-        // ─── LEGACY PALETTE (backward-compat — keep these exact keys) ────────────
+        // Legacy palette kept for backward compat; midnight-900 and midnight-800 updated
         midnight: {
           DEFAULT: '#1a1a2e',
           50: '#f5f5f7',
@@ -64,8 +60,8 @@ const config: Config = {
           500: '#1a1a2e',
           600: '#171729',
           700: '#131322',
-          800: '#09090E',  // updated: brand.surface
-          900: '#04040A',  // updated: brand.deep (key change for bg-midnight-900)
+          800: '#09090E',
+          900: '#04040A',
           950: '#020205',
         },
         royal: {
@@ -82,7 +78,7 @@ const config: Config = {
           900: '#340f3b',
         },
         ochre: {
-          DEFAULT: '#F5A623',  // updated to bioluminescent value
+          DEFAULT: '#F5A623',
           50: '#fffbf0',
           100: '#fef3d0',
           200: '#fde69f',
@@ -108,7 +104,7 @@ const config: Config = {
           900: '#163427',
         },
 
-        // ─── SHADCN CSS-VAR TOKENS ────────────────────────────────────────────────
+        // Shadcn CSS-var tokens
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -177,10 +173,6 @@ const config: Config = {
           '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
           '50%': { opacity: '1', transform: 'scale(1.15)' },
         },
-        'wave': {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
@@ -204,7 +196,6 @@ const config: Config = {
         'fade-up': 'fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-in': 'fade-in 0.4s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
-        'wave': 'wave 2s ease-in-out infinite',
         'float': 'float 4s ease-in-out infinite',
         'marquee': 'marquee 28s linear infinite',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',

@@ -26,15 +26,8 @@ const navItems = [
 ];
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 16);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleResize = () => { if (window.innerWidth >= 1024) setIsMobileOpen(false); };
@@ -48,14 +41,7 @@ export default function Navigation() {
   }, [isMobileOpen]);
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'glass-panel border-b border-white/8'
-          : 'bg-transparent border-b border-transparent'
-      )}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/8">
       <nav className="container-wide section-padding">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" className="flex items-center gap-2.5 group shrink-0" aria-label="LocaleNLP home">

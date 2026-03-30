@@ -6,18 +6,20 @@ import React from 'react';
 
 type GlowButtonVariant = 'primary' | 'ghost';
 
-interface GlowButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseProps = {
   variant?: GlowButtonVariant;
   showArrow?: boolean;
-  href?: string;
-}
+};
+
+type AsButton = BaseProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never };
+type AsAnchor = BaseProps & React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+type GlowButtonProps = AsButton | AsAnchor;
 
 export function GlowButton({
   variant = 'primary',
   showArrow = true,
   className,
   children,
-  href,
   ...props
 }: GlowButtonProps) {
   const classes = cn(
@@ -33,8 +35,9 @@ export function GlowButton({
       'focus-visible:ring-accent-ochre',
     ],
     variant === 'ghost' && [
-      'glass-panel text-white',
-      'hover:border-accent-ochre/40 hover:shadow-[0_0_16px_rgba(245,166,35,0.15)]',
+      'bg-transparent text-white border border-white/15',
+      'hover:border-accent-ochre/40 hover:bg-white/5',
+      'hover:shadow-[0_0_16px_rgba(245,166,35,0.15)]',
       'focus-visible:ring-accent-ochre',
     ],
     className
@@ -52,16 +55,17 @@ export function GlowButton({
     </>
   );
 
-  if (href) {
+  if ('href' in props && props.href) {
+    const { href, ...anchorProps } = props as AsAnchor;
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} {...anchorProps}>
         {content}
       </a>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} {...(props as AsButton)}>
       {content}
     </button>
   );

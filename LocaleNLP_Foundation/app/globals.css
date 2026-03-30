@@ -4,19 +4,18 @@
 
 @layer base {
   :root {
-    /* ── Brand Background ──────────────────────────────── */
-    --background: 240 43% 3%;        /* #04040A  Deep Midnight Indigo */
-    --foreground: 0 0% 98%;          /* #FAFAFA */
-    --card: 240 22% 4.5%;            /* #09090E  brand.surface */
+    --background: 240 43% 3%;
+    --foreground: 0 0% 98%;
+    --card: 240 22% 4.5%;
     --card-foreground: 0 0% 98%;
     --popover: 240 22% 4.5%;
     --popover-foreground: 0 0% 98%;
-    --primary: 37 91% 55%;           /* #F5A623  accent-ochre */
+    --primary: 37 91% 55%;
     --primary-foreground: 0 0% 4%;
-    --secondary: 240 12% 9%;         /* #12121A  brand.elevated */
+    --secondary: 240 12% 9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 12% 9%;
-    --muted-foreground: 240 3% 56%;  /* #8F8F9D  text-secondary */
+    --muted-foreground: 240 3% 56%;
     --accent: 37 91% 55%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 62.8% 30.6%;
@@ -53,29 +52,15 @@
     @apply tracking-tight;
   }
 
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1];
-  }
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1]; }
+  h2 { @apply text-3xl md:text-4xl font-bold leading-[1.2]; }
+  h3 { @apply text-2xl md:text-3xl font-semibold leading-[1.2]; }
+  h4 { @apply text-xl md:text-2xl font-semibold leading-[1.3]; }
 
-  h2 {
-    @apply text-3xl md:text-4xl font-bold leading-[1.2];
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl font-semibold leading-[1.2];
-  }
-
-  h4 {
-    @apply text-xl md:text-2xl font-semibold leading-[1.3];
-  }
-
-  p {
-    @apply leading-relaxed;
-  }
+  p { @apply leading-relaxed; }
 }
 
 @layer components {
-  /* ── Layout ──────────────────────────────────────────── */
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
@@ -88,7 +73,6 @@
     @apply max-w-4xl mx-auto;
   }
 
-  /* ── Glass Panel — the definitive AUI.io card style ──── */
   .glass-panel {
     background: #09090E;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -97,7 +81,6 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  /* Legacy alias used in existing page components */
   .glass-card {
     background: rgba(9, 9, 14, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -107,16 +90,15 @@
     @apply rounded-xl;
   }
 
-  /* ── Typography ──────────────────────────────────────── */
   .text-gradient {
     @apply bg-gradient-to-r from-accent-ochre via-accent-clay to-accent-cyan bg-clip-text text-transparent;
   }
 
-  /* ── Buttons ─────────────────────────────────────────── */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#04040A] font-medium rounded-lg
+           ring-1 ring-transparent
            transition-all duration-300 ease-apple-ease
-           hover:shadow-glow-ochre hover:-translate-y-0.5
+           hover:ring-accent-ochre/50 hover:shadow-glow-ochre hover:-translate-y-0.5
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre;
   }
 
@@ -141,7 +123,6 @@
            after:bg-accent-ochre hover:after:w-full after:transition-all after:duration-300;
   }
 
-  /* ── Stats ───────────────────────────────────────────── */
   .stat-card {
     @apply glass-card p-6 text-center;
   }
@@ -155,7 +136,6 @@
     @apply text-sm md:text-base text-text-secondary mt-2;
   }
 
-  /* ── Section helpers ─────────────────────────────────── */
   .section-title {
     @apply text-center mb-4;
   }
@@ -164,7 +144,6 @@
     @apply text-center text-text-secondary max-w-2xl mx-auto mb-12;
   }
 
-  /* ── Scroll-reveal (CSS fallback) ────────────────────── */
   .animate-on-scroll {
     @apply opacity-0 translate-y-5;
   }
@@ -174,7 +153,6 @@
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* ── Marquee container ───────────────────────────────── */
   .marquee-track {
     display: flex;
     width: max-content;
@@ -191,7 +169,6 @@
     text-wrap: balance;
   }
 
-  /* Grid-line texture overlay */
   .grid-lines {
     background-image:
       linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
@@ -200,7 +177,6 @@
   }
 }
 
-/* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -216,7 +192,6 @@
   }
 }
 
-/* ── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -235,7 +210,6 @@
   background: rgba(245, 166, 35, 0.4);
 }
 
-/* ── Text selection ─────────────────────────────────────── */
 ::selection {
   background: rgba(245, 166, 35, 0.25);
   color: #FAFAFA;
