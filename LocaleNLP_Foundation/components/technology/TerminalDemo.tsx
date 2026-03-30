@@ -67,6 +67,7 @@ export function TerminalDemo() {
   }, [playing, totalChars]);
 
   const replay = useCallback(() => {
+    if (reducedRef.current) return;
     setRevealedChars(0);
     lastTimeRef.current = null;
     setPlaying(true);

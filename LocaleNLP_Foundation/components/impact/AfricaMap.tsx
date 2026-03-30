@@ -111,7 +111,7 @@ export function AfricaMap() {
         >
           <Popover.Trigger asChild>
             <g
-              className="cursor-pointer"
+              className="cursor-pointer group"
               role="button"
               aria-label={`${node.name}: ${node.languages} languages, ${node.programs} active programs`}
               tabIndex={0}
@@ -122,18 +122,23 @@ export function AfricaMap() {
                 }
               }}
             >
-              {open === node.id && (
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r="7"
-                  fill="none"
-                  stroke="#F5A623"
-                  strokeWidth="1.5"
-                  strokeDasharray="2 1.5"
-                  opacity="0.9"
-                />
-              )}
+              {/* Keyboard focus ring — always visible on focus */}
+              <circle
+                cx={node.x}
+                cy={node.y}
+                r="8"
+                fill="none"
+                stroke="#F5A623"
+                strokeWidth="1.5"
+                strokeDasharray="2.5 2"
+                className={cn(
+                  'opacity-0 transition-opacity duration-150',
+                  open === node.id && 'opacity-100'
+                )}
+                style={{ outline: 'none' }}
+                aria-hidden="true"
+              />
+              {/* Hover glow */}
               {node.active && (
                 <circle
                   cx={node.x}
@@ -143,12 +148,16 @@ export function AfricaMap() {
                   className="am-pulse"
                 />
               )}
+              {/* Core dot: cyan → ochre on hover/focus */}
               <circle
                 cx={node.x}
                 cy={node.y}
                 r={node.active ? 3.5 : 2}
                 fill={open === node.id ? '#F5A623' : node.active ? '#00E5FF' : '#52525B'}
-                className={cn('transition-colors duration-200')}
+                className={cn(
+                  'transition-colors duration-200',
+                  node.active && 'group-hover:fill-[#F5A623]'
+                )}
               />
             </g>
           </Popover.Trigger>

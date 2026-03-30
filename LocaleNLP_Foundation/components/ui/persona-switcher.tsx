@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Building, GraduationCap, Code, Mic, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -78,6 +78,7 @@ const APPLE_EASE = [0.16, 1, 0.3, 1] as const;
 export function PersonaSwitcher() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
+  const shouldReduceMotion = useReducedMotion();
   const persona = PERSONAS[active];
   const Icon = persona.icon;
 
@@ -114,7 +115,7 @@ export function PersonaSwitcher() {
                 layoutId="persona-tab-bg"
                 className="absolute inset-0 rounded-lg bg-accent-ochre/10"
                 style={{ zIndex: -1 }}
-                transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', damping: 28, stiffness: 320 }}
               />
             )}
             {p.label}
@@ -131,10 +132,10 @@ export function PersonaSwitcher() {
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={persona.id}
-            initial={{ opacity: 0, x: direction * 20 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: direction * 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction * -20 }}
-            transition={{ duration: 0.28, ease: APPLE_EASE }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: direction * -20 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.28, ease: APPLE_EASE }}
             className="grid md:grid-cols-2 gap-8 items-start"
           >
             <div>
