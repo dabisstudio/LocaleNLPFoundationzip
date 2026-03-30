@@ -19,18 +19,6 @@ async function getData() {
   };
 }
 
-const TYPE_ICONS: Record<string, React.ElementType> = {
-  paper: FileText,
-  brief: BookOpen,
-  report: Newspaper,
-};
-
-const TYPE_COLORS: Record<string, { text: string; bg: string }> = {
-  paper: { text: 'text-accent-ochre', bg: 'bg-accent-ochre/10' },
-  brief: { text: 'text-accent-cyan', bg: 'bg-accent-cyan/10' },
-  report: { text: 'text-accent-clay', bg: 'bg-accent-clay/10' },
-};
-
 const TYPE_SPOTS: Record<string, string> = {
   paper: 'rgba(245,166,35,0.1)',
   brief: 'rgba(0,229,255,0.08)',
@@ -83,8 +71,6 @@ export default async function InsightsPage() {
                 style={{ columnGap: '1.5rem' }}
               >
                 {publications.map((pub) => {
-                  const Icon = TYPE_ICONS[pub.publication_type] || FileText;
-                  const colors = TYPE_COLORS[pub.publication_type] || TYPE_COLORS.paper;
                   const spot = TYPE_SPOTS[pub.publication_type] || 'rgba(245,166,35,0.1)';
                   const readTime = READ_TIME[pub.publication_type] || '5 min';
                   const typeLabel =
