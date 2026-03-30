@@ -52,7 +52,7 @@ LocaleNLP_Foundation/       ← root of the Next.js project
 ├── package.json
 ├── next.config.js          ← eslint ignored on build, images unoptimized
 ├── tailwind.config.ts
-└── .env                    ← Supabase keys (also wired as Replit env vars)
+└── .env                    ← Comment/template only; no raw keys (credentials are in Replit Secrets)
 ```
 
 ## Running the App
