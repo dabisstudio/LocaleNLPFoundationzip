@@ -8,8 +8,6 @@ expertMode = true
 [userenv]
 
 [userenv.shared]
-NEXT_PUBLIC_SUPABASE_URL = "https://qifrtitbgiqxmqjdwphf.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZnJ0aXRiZ2lxeG1xamR3cGhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYxNzY3MjMsImV4cCI6MjA4MTc1MjcyM30.TsPBeMmKtaKxDhY1PajnRIdMxjn8K2oZZGs-gFFWKv8"
 
 [workflows]
 runButton = "Project"
