@@ -94,12 +94,7 @@ export default async function InsightsPage() {
                     <div key={pub.id} className="break-inside-avoid mb-6">
                       <SpotlightCard spotlightColor={spot} className="p-6 group">
                         <div className="flex items-center gap-3 mb-4 flex-wrap">
-                          <span
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium ${colors.text} ${colors.bg}`}
-                          >
-                            <Icon className="w-3 h-3" aria-hidden="true" />
-                            {typeLabel}
-                          </span>
+                          <MonoLabel label={typeLabel.toUpperCase()} />
                           {pub.publication_date && (
                             <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
                               <Calendar className="w-3 h-3" aria-hidden="true" />

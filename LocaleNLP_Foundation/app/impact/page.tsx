@@ -93,7 +93,7 @@ const AFRICA_OUTLINE =
 
 export default async function ImpactPage() {
   const { metrics, caseStudies } = await getData();
-  const displayMetrics = metrics.length > 0 ? metrics : STATIC_METRICS;
+  const displayMetrics = (metrics.length > 0 ? metrics : STATIC_METRICS).slice(0, 4);
 
   return (
     <>
@@ -117,7 +117,7 @@ export default async function ImpactPage() {
 
         <section id="metrics" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {displayMetrics.map((metric) => (
                 <AnimatedCounter
                   key={metric.label}

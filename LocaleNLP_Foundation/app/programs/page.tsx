@@ -29,14 +29,16 @@ const SPOTLIGHT_MAP: Record<string, string> = {
   clay: 'rgba(224,122,95,0.1)',
 };
 
-async function getPrograms(): Promise<Program[]> {
+async function getPrograms(): Promise<{ programs: Program[]; isPlaceholder: boolean }> {
   const { data, error } = await supabase.from('programs').select('*').order('order_index');
-  if (error || !data || data.length === 0) return PLACEHOLDER_PROGRAMS.slice(0, 4);
-  return data;
+  if (error || !data || data.length === 0) {
+    return { programs: PLACEHOLDER_PROGRAMS.slice(0, 4), isPlaceholder: true };
+  }
+  return { programs: data, isPlaceholder: false };
 }
 
 export default async function ProgramsPage() {
-  const programs = await getPrograms();
+  const { programs, isPlaceholder } = await getPrograms();
   const featured = programs.filter((p) => p.is_featured);
   const rest = programs.filter((p) => !p.is_featured);
 
@@ -62,6 +64,14 @@ export default async function ProgramsPage() {
 
         <section id="programs" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
+            {isPlaceholder && (
+              <div className="mb-10 glass-card px-5 py-3 flex items-center gap-3 max-w-xl">
+                <span className="w-2 h-2 rounded-full bg-accent-ochre/60 shrink-0" aria-hidden="true" />
+                <p className="font-mono text-xs text-text-tertiary">
+                  Showing sample programs — live program data will appear once the database is seeded.
+                </p>
+              </div>
+            )}
             {featured.length > 0 && (
               <div className="mb-16">
                 <div className="flex items-center gap-3 mb-10">
