@@ -10,9 +10,8 @@ export function ProgramsSectionStagger({ children }: { children: React.ReactNode
     if (prefersReduced) return;
 
     const setup = async () => {
-      const gsapModule = await import('gsap');
+      const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      const gsap = gsapModule.default ?? gsapModule.gsap ?? gsapModule;
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {

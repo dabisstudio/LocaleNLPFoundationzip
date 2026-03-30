@@ -14,32 +14,55 @@ interface CountryNode {
   active: boolean;
 }
 
+// 47 supported countries with approximate SVG positions within the viewBox
 const NODES: CountryNode[] = [
-  { id: 'sn', x: 220, y: 120, name: 'Senegal', languages: 36, programs: 2, active: true },
-  { id: 'gn', x: 240, y: 150, name: 'Guinea', languages: 40, programs: 1, active: true },
-  { id: 'sl', x: 200, y: 175, name: 'Sierra Leone', languages: 23, programs: 0, active: false },
-  { id: 'ci', x: 255, y: 165, name: 'Ivory Coast', languages: 78, programs: 2, active: true },
-  { id: 'gh', x: 285, y: 140, name: 'Ghana', languages: 79, programs: 3, active: true },
-  { id: 'ng', x: 310, y: 150, name: 'Nigeria', languages: 524, programs: 4, active: true },
-  { id: 'ne', x: 345, y: 120, name: 'Niger', languages: 20, programs: 0, active: false },
-  { id: 'td', x: 360, y: 160, name: 'Chad', languages: 130, programs: 0, active: false },
-  { id: 'et', x: 375, y: 200, name: 'Ethiopia', languages: 90, programs: 3, active: true },
-  { id: 'ke', x: 390, y: 250, name: 'Kenya', languages: 68, programs: 3, active: true },
-  { id: 'tz', x: 370, y: 290, name: 'Tanzania', languages: 126, programs: 2, active: true },
-  { id: 'mz', x: 355, y: 340, name: 'Mozambique', languages: 43, programs: 0, active: false },
-  { id: 'za', x: 330, y: 380, name: 'South Africa', languages: 24, programs: 3, active: true },
-  { id: 'zw', x: 295, y: 340, name: 'Zimbabwe', languages: 16, programs: 0, active: false },
-  { id: 'zm', x: 275, y: 290, name: 'Zambia', languages: 72, programs: 0, active: false },
-  { id: 'cd', x: 285, y: 230, name: 'DRC', languages: 215, programs: 2, active: true },
-  { id: 'cm', x: 260, y: 220, name: 'Cameroon', languages: 274, programs: 2, active: true },
-  { id: 'ga', x: 250, y: 200, name: 'Gabon', languages: 41, programs: 0, active: false },
-  { id: 'ug', x: 305, y: 195, name: 'Uganda', languages: 43, programs: 2, active: true },
-  { id: 'ss', x: 295, y: 170, name: 'South Sudan', languages: 80, programs: 0, active: false },
-  { id: 'eg', x: 340, y: 85, name: 'Egypt', languages: 10, programs: 0, active: false },
-  { id: 'sd', x: 305, y: 95, name: 'Sudan', languages: 70, programs: 0, active: false },
-  { id: 'dz', x: 250, y: 75, name: 'Algeria', languages: 18, programs: 0, active: false },
-  { id: 'ma', x: 215, y: 70, name: 'Morocco', languages: 8, programs: 0, active: false },
-  { id: 'mw', x: 310, y: 340, name: 'Malawi', languages: 14, programs: 0, active: false },
+  { id: 'sn', x: 218, y: 118, name: 'Senegal', languages: 36, programs: 2, active: true },
+  { id: 'gm', x: 220, y: 126, name: 'Gambia', languages: 10, programs: 0, active: false },
+  { id: 'gn', x: 232, y: 144, name: 'Guinea', languages: 40, programs: 1, active: true },
+  { id: 'gw', x: 222, y: 140, name: 'Guinea-Bissau', languages: 21, programs: 0, active: false },
+  { id: 'sl', x: 228, y: 158, name: 'Sierra Leone', languages: 23, programs: 0, active: false },
+  { id: 'lr', x: 238, y: 168, name: 'Liberia', languages: 31, programs: 0, active: false },
+  { id: 'ci', x: 252, y: 162, name: 'Ivory Coast', languages: 78, programs: 2, active: true },
+  { id: 'gh', x: 270, y: 154, name: 'Ghana', languages: 79, programs: 3, active: true },
+  { id: 'tg', x: 282, y: 154, name: 'Togo', languages: 44, programs: 0, active: false },
+  { id: 'bj', x: 290, y: 148, name: 'Benin', languages: 54, programs: 0, active: false },
+  { id: 'ng', x: 308, y: 148, name: 'Nigeria', languages: 524, programs: 4, active: true },
+  { id: 'ml', x: 248, y: 112, name: 'Mali', languages: 61, programs: 1, active: true },
+  { id: 'bf', x: 268, y: 128, name: 'Burkina Faso', languages: 68, programs: 0, active: false },
+  { id: 'ne', x: 305, y: 115, name: 'Niger', languages: 20, programs: 0, active: false },
+  { id: 'mr', x: 222, y: 96, name: 'Mauritania', languages: 6, programs: 0, active: false },
+  { id: 'ma', x: 218, y: 76, name: 'Morocco', languages: 8, programs: 0, active: false },
+  { id: 'dz', x: 252, y: 76, name: 'Algeria', languages: 18, programs: 0, active: false },
+  { id: 'tn', x: 272, y: 72, name: 'Tunisia', languages: 5, programs: 0, active: false },
+  { id: 'ly', x: 295, y: 82, name: 'Libya', languages: 7, programs: 0, active: false },
+  { id: 'eg', x: 340, y: 84, name: 'Egypt', languages: 10, programs: 0, active: false },
+  { id: 'sd', x: 322, y: 104, name: 'Sudan', languages: 70, programs: 0, active: false },
+  { id: 'er', x: 355, y: 120, name: 'Eritrea', languages: 9, programs: 0, active: false },
+  { id: 'dj', x: 366, y: 138, name: 'Djibouti', languages: 4, programs: 0, active: false },
+  { id: 'so', x: 375, y: 168, name: 'Somalia', languages: 13, programs: 0, active: false },
+  { id: 'et', x: 355, y: 152, name: 'Ethiopia', languages: 90, programs: 3, active: true },
+  { id: 'ss', x: 320, y: 148, name: 'South Sudan', languages: 80, programs: 0, active: false },
+  { id: 'td', x: 310, y: 128, name: 'Chad', languages: 130, programs: 0, active: false },
+  { id: 'cf', x: 315, y: 165, name: 'Central African Republic', languages: 74, programs: 0, active: false },
+  { id: 'cm', x: 294, y: 170, name: 'Cameroon', languages: 274, programs: 2, active: true },
+  { id: 'gq', x: 278, y: 185, name: 'Equatorial Guinea', languages: 11, programs: 0, active: false },
+  { id: 'ga', x: 278, y: 195, name: 'Gabon', languages: 41, programs: 0, active: false },
+  { id: 'cg', x: 292, y: 202, name: 'Republic of Congo', languages: 62, programs: 0, active: false },
+  { id: 'cd', x: 308, y: 218, name: 'DRC', languages: 215, programs: 2, active: true },
+  { id: 'ug', x: 335, y: 188, name: 'Uganda', languages: 43, programs: 2, active: true },
+  { id: 'ke', x: 352, y: 208, name: 'Kenya', languages: 68, programs: 3, active: true },
+  { id: 'rw', x: 330, y: 210, name: 'Rwanda', languages: 4, programs: 1, active: true },
+  { id: 'bi', x: 328, y: 220, name: 'Burundi', languages: 4, programs: 0, active: false },
+  { id: 'tz', x: 345, y: 248, name: 'Tanzania', languages: 126, programs: 2, active: true },
+  { id: 'ao', x: 288, y: 248, name: 'Angola', languages: 46, programs: 1, active: true },
+  { id: 'zm', x: 318, y: 268, name: 'Zambia', languages: 72, programs: 0, active: false },
+  { id: 'mw', x: 338, y: 278, name: 'Malawi', languages: 14, programs: 0, active: false },
+  { id: 'mz', x: 348, y: 308, name: 'Mozambique', languages: 43, programs: 0, active: false },
+  { id: 'zw', x: 322, y: 298, name: 'Zimbabwe', languages: 16, programs: 0, active: false },
+  { id: 'bw', x: 306, y: 318, name: 'Botswana', languages: 28, programs: 0, active: false },
+  { id: 'na', x: 288, y: 318, name: 'Namibia', languages: 28, programs: 0, active: false },
+  { id: 'za', x: 312, y: 356, name: 'South Africa', languages: 24, programs: 3, active: true },
+  { id: 'mg', x: 382, y: 278, name: 'Madagascar', languages: 16, programs: 0, active: false },
 ];
 
 const AFRICA_OUTLINE =
@@ -50,7 +73,7 @@ export function AfricaMap() {
 
   return (
     <svg
-      viewBox="150 60 280 360"
+      viewBox="150 60 290 370"
       className="w-full max-w-sm"
       role="img"
       aria-label="Interactive map of Africa showing active countries"
@@ -60,14 +83,10 @@ export function AfricaMap() {
           <stop offset="0%" stopColor="#F5A623" stopOpacity="0.8" />
           <stop offset="100%" stopColor="#F5A623" stopOpacity="0" />
         </radialGradient>
-        <radialGradient id="am-glow-inactive" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#52525B" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#52525B" stopOpacity="0" />
-        </radialGradient>
         <style>{`
           @keyframes am-pulse {
-            0%, 100% { opacity: 0.35; r: 10; }
-            50% { opacity: 0.55; r: 13; }
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 0.6; }
           }
           .am-pulse { animation: am-pulse 2.4s ease-in-out infinite; }
           @media (prefers-reduced-motion: reduce) {
@@ -92,9 +111,9 @@ export function AfricaMap() {
         >
           <Popover.Trigger asChild>
             <g
-              className="cursor-pointer focus:outline-none"
+              className="cursor-pointer"
               role="button"
-              aria-label={`${node.name}: ${node.languages} languages, ${node.programs} programs`}
+              aria-label={`${node.name}: ${node.languages} languages, ${node.programs} active programs`}
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -103,11 +122,23 @@ export function AfricaMap() {
                 }
               }}
             >
+              {open === node.id && (
+                <circle
+                  cx={node.x}
+                  cy={node.y}
+                  r="7"
+                  fill="none"
+                  stroke="#F5A623"
+                  strokeWidth="1.5"
+                  strokeDasharray="2 1.5"
+                  opacity="0.9"
+                />
+              )}
               {node.active && (
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r="10"
+                  r="9"
                   fill="url(#am-glow-active)"
                   className="am-pulse"
                 />
@@ -115,16 +146,9 @@ export function AfricaMap() {
               <circle
                 cx={node.x}
                 cy={node.y}
-                r={node.active ? 4 : 2.5}
+                r={node.active ? 3.5 : 2}
                 fill={open === node.id ? '#F5A623' : node.active ? '#00E5FF' : '#52525B'}
-                className={cn(
-                  'transition-colors duration-200',
-                  node.active && 'hover:fill-[#F5A623]'
-                )}
-                style={{
-                  outline: 'none',
-                  filter: open === node.id ? 'drop-shadow(0 0 4px #F5A623)' : 'none',
-                }}
+                className={cn('transition-colors duration-200')}
               />
             </g>
           </Popover.Trigger>
