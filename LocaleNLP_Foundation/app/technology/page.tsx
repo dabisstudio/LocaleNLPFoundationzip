@@ -4,7 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
-import { TerminalTypewriter } from '@/components/ui/terminal-typewriter';
+import { TerminalDemo } from '@/components/technology/TerminalDemo';
 import { supabase, Language } from '@/lib/supabase';
 import {
   Code,
@@ -70,20 +70,6 @@ const DATASETS = [
   { name: 'AfriSent', size: '200K samples', languages: 10, description: 'Sentiment with cultural context' },
 ];
 
-const TERMINAL_LINES = [
-  { type: 'comment', text: '# LocaleNLP AfriSpeech-ASR — quick start' },
-  { type: 'blank', text: '' },
-  { type: 'import', text: 'from localenlp import AfriSpeechASR' },
-  { type: 'blank', text: '' },
-  { type: 'code', text: 'model = AfriSpeechASR.from_pretrained(' },
-  { type: 'string', text: '    language="yo",  # Yoruba' },
-  { type: 'string', text: '    model_version="v2.1.0",' },
-  { type: 'code', text: ')' },
-  { type: 'blank', text: '' },
-  { type: 'code', text: 'transcript = model.transcribe("audio.wav")' },
-  { type: 'output', text: '>>> transcript' },
-  { type: 'result', text: '"Bawo ni o se ri agbara ede wa?"' },
-];
 
 const API_ENDPOINTS = [
   {
@@ -261,12 +247,7 @@ export default async function TechnologyPage() {
               ))}
             </div>
 
-            <TerminalTypewriter
-              lines={TERMINAL_LINES}
-              filename="localenlp_demo.py"
-              ariaLabel="Python code example for AfriSpeech-ASR"
-              minHeight="300px"
-            />
+            <TerminalDemo />
           </div>
         </section>
 

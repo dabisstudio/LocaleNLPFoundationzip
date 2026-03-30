@@ -1,7 +1,7 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
-import ProblemSection from '@/components/home/ProblemSection';
+import ProblemSectionGSAP from '@/components/home/ProblemSectionGSAP';
 import ProgramsSection from '@/components/home/ProgramsSection';
 import MetricsSection from '@/components/home/MetricsSection';
 import PartnersSection from '@/components/home/PartnersSection';
@@ -13,7 +13,7 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <ProblemSection />
+        <ProblemSectionGSAP />
         <ProgramsSection />
         <MetricsSection />
         <PartnersSection />

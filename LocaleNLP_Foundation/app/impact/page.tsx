@@ -5,6 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
+import { AfricaMap } from '@/components/impact/AfricaMap';
 import { supabase, ImpactMetric, CaseStudy } from '@/lib/supabase';
 import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper, Download } from 'lucide-react';
 import Link from 'next/link';
@@ -60,36 +61,6 @@ const USE_CASES = [
   },
 ];
 
-const COUNTRY_NODES = [
-  { x: 220, y: 120, name: 'Senegal', active: true },
-  { x: 240, y: 150, name: 'Guinea', active: true },
-  { x: 200, y: 175, name: 'Sierra Leone', active: false },
-  { x: 255, y: 165, name: 'Ivory Coast', active: true },
-  { x: 285, y: 140, name: 'Ghana', active: true },
-  { x: 310, y: 150, name: 'Nigeria', active: true },
-  { x: 345, y: 120, name: 'Niger', active: false },
-  { x: 360, y: 160, name: 'Chad', active: false },
-  { x: 375, y: 200, name: 'Ethiopia', active: true },
-  { x: 390, y: 250, name: 'Kenya', active: true },
-  { x: 370, y: 290, name: 'Tanzania', active: true },
-  { x: 355, y: 340, name: 'Mozambique', active: false },
-  { x: 330, y: 380, name: 'South Africa', active: true },
-  { x: 295, y: 340, name: 'Zimbabwe', active: false },
-  { x: 275, y: 290, name: 'Zambia', active: false },
-  { x: 285, y: 230, name: 'DRC', active: true },
-  { x: 260, y: 220, name: 'Cameroon', active: true },
-  { x: 250, y: 200, name: 'Gabon', active: false },
-  { x: 305, y: 195, name: 'Uganda', active: true },
-  { x: 295, y: 170, name: 'South Sudan', active: false },
-  { x: 340, y: 85, name: 'Egypt', active: false },
-  { x: 305, y: 95, name: 'Sudan', active: false },
-  { x: 250, y: 75, name: 'Algeria', active: false },
-  { x: 215, y: 70, name: 'Morocco', active: false },
-  { x: 310, y: 340, name: 'Malawi', active: false },
-];
-
-const AFRICA_OUTLINE =
-  'M 202,72 L 218,68 L 250,65 L 285,68 L 345,80 L 360,90 L 370,115 L 385,148 L 408,178 L 415,205 L 395,252 L 385,295 L 370,352 L 355,390 L 338,408 L 312,412 L 290,408 L 260,392 L 232,348 L 228,282 L 248,238 L 258,215 L 278,180 L 252,177 L 230,183 L 205,185 L 198,165 L 208,132 L 200,100 Z';
 
 export default async function ImpactPage() {
   const { metrics, caseStudies } = await getData();
@@ -143,12 +114,16 @@ export default async function ImpactPage() {
                   Africa.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {COUNTRY_NODES.filter((c) => c.active).map((c) => (
+                  {[
+                    'Senegal', 'Guinea', 'Ivory Coast', 'Ghana', 'Nigeria',
+                    'Ethiopia', 'Kenya', 'Tanzania', 'South Africa', 'DRC',
+                    'Cameroon', 'Uganda',
+                  ].map((name) => (
                     <span
-                      key={c.name}
+                      key={name}
                       className="font-mono text-xs uppercase tracking-wide px-2.5 py-1 rounded bg-accent-ochre/10 text-accent-ochre border border-accent-ochre/20"
                     >
-                      {c.name}
+                      {name}
                     </span>
                   ))}
                 </div>
@@ -156,54 +131,9 @@ export default async function ImpactPage() {
 
               <div
                 className="relative flex items-center justify-center"
-                aria-label="Map showing active countries across Africa"
+                aria-label="Interactive map showing active countries across Africa"
               >
-                <svg
-                  viewBox="150 60 280 360"
-                  className="w-full max-w-sm"
-                  role="img"
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <radialGradient id="glow-active" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#F5A623" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#F5A623" stopOpacity="0" />
-                    </radialGradient>
-                    <radialGradient id="glow-inactive" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#52525B" stopOpacity="0.5" />
-                      <stop offset="100%" stopColor="#52525B" stopOpacity="0" />
-                    </radialGradient>
-                  </defs>
-
-                  <path
-                    d={AFRICA_OUTLINE}
-                    fill="rgba(255,255,255,0.025)"
-                    stroke="rgba(255,255,255,0.08)"
-                    strokeWidth="1"
-                    strokeLinejoin="round"
-                  />
-
-                  {COUNTRY_NODES.map((node) => (
-                    <g key={node.name}>
-                      {node.active && (
-                        <circle
-                          cx={node.x}
-                          cy={node.y}
-                          r="12"
-                          fill="url(#glow-active)"
-                          opacity="0.4"
-                        />
-                      )}
-                      <circle
-                        cx={node.x}
-                        cy={node.y}
-                        r={node.active ? 4 : 2.5}
-                        fill={node.active ? '#F5A623' : '#52525B'}
-                        className={node.active ? 'animate-pulse' : ''}
-                      />
-                    </g>
-                  ))}
-                </svg>
+                <AfricaMap />
               </div>
             </div>
           </div>

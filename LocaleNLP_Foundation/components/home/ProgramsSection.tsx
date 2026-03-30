@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
+import { ProgramsSectionStagger } from '@/components/home/ProgramsSectionClient';
 
 interface ProgramCard {
   id: string;
@@ -97,8 +98,8 @@ export default async function ProgramsSection() {
           of a complete language infrastructure for Africa.
         </p>
 
-        {/* Asymmetric bento grid — CSS Grid only, no Flexbox */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Asymmetric bento grid — GSAP stagger on scroll */}
+        <ProgramsSectionStagger>
           {/* Large card — spans 2 rows on md+ */}
           {p0 && (
             <div className="md:row-span-2">
@@ -204,7 +205,7 @@ export default async function ProgramsSection() {
               </SpotlightCard>
             </div>
           )}
-        </div>
+        </ProgramsSectionStagger>
 
         <div className="text-center mt-10">
           <Link

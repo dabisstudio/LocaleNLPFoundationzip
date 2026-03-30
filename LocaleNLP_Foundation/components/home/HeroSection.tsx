@@ -1,9 +1,12 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { Play } from 'lucide-react';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+
+const HeroCanvas = dynamic(() => import('./HeroCanvas'), { ssr: false });
 
 const LINE1 = ['Every', 'African', 'Language'];
 const LINE2 = ['Deserves', 'a', 'Digital', 'Future'];
@@ -22,8 +25,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Placeholder slot for Three.js particle background (Task #5) */}
-      <div id="hero-canvas" className="absolute inset-0 pointer-events-none" aria-hidden="true" />
+      {!shouldReduceMotion && (
+        <HeroCanvas className="pointer-events-none opacity-70" />
+      )}
 
       {/* Ochre radial glow behind headline */}
       <div
