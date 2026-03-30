@@ -5,6 +5,7 @@ import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { supabase, Program } from '@/lib/supabase';
+import { PLACEHOLDER_PROGRAMS } from '@/lib/placeholder-programs';
 import { Microscope, Mic, Heart, GraduationCap, Scale, ArrowLeft, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,8 +35,8 @@ async function getProgram(slug: string): Promise<Program | null> {
     .select('*')
     .eq('slug', slug)
     .maybeSingle();
-  if (error || !data) return null;
-  return data;
+  if (!error && data) return data;
+  return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
 }
 
 const HIGHLIGHTS = [

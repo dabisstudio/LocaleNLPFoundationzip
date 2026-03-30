@@ -232,19 +232,37 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {(teamStaff.length > 0 || boardMembers.length > 0 || advisors.length > 0) && (
-          <section id="team" className="py-20 bg-brand-surface">
-            <div className="container-wide section-padding">
-              <div className="text-center mb-14">
-                <MonoLabel label="OUR PEOPLE" number="04" className="mb-5" />
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                  Leadership Team
-                </h2>
-                <p className="text-text-secondary max-w-2xl mx-auto">
-                  Experts in AI, linguistics, and community development working together to build a
-                  more inclusive digital future.
+        <section id="team" className="py-20 bg-brand-surface">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="OUR PEOPLE" number="04" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Leadership Team
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Experts in AI, linguistics, and community development working together to build a
+                more inclusive digital future.
+              </p>
+            </div>
+
+            {teamStaff.length === 0 && boardMembers.length === 0 && advisors.length === 0 && (
+              <div className="glass-card p-12 text-center max-w-lg mx-auto">
+                <Users className="w-10 h-10 text-text-tertiary mx-auto mb-4" aria-hidden="true" />
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
+                  Team Profiles Coming Soon
+                </h3>
+                <p className="text-text-secondary text-sm mb-6">
+                  We are updating our team profiles. In the meantime, reach out to learn more about
+                  the people behind LocaleNLP Foundation.
                 </p>
+                <GlowButton href="/get-involved#contact" variant="ghost" showArrow={false}>
+                  Get in Touch
+                </GlowButton>
               </div>
+            )}
+
+            {(teamStaff.length > 0 || boardMembers.length > 0 || advisors.length > 0) && (
+              <div>
 
               {teamStaff.length > 0 && (
                 <div className="mb-16">
@@ -348,8 +366,9 @@ export default async function AboutPage() {
                 </div>
               )}
             </div>
-          </section>
-        )}
+            )}
+          </div>
+        </section>
 
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">

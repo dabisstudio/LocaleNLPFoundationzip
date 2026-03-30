@@ -56,9 +56,9 @@ const PERSONAS = [
   },
   {
     id: 'community',
-    label: 'As a Speaker',
+    label: 'As a Community Member',
     icon: Mic,
-    audience: 'Native Speakers',
+    audience: 'Community Members',
     title: 'Community Data Contributor',
     description:
       'Help preserve your language by contributing speech and text data. No technical skills required — just your voice and knowledge. Contributors are compensated fairly and retain moral rights over their linguistic heritage.',
