@@ -1,19 +1,27 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
+function createSupabaseClient() {
+  let url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+  let key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
 
-function createSupabaseClient(): SupabaseClient | null {
-  if (!supabaseUrl.startsWith('http') || !supabaseAnonKey) {
+  // Auto-correct if the two values appear to have been entered in reverse order
+  if (!url.startsWith('http') && key.startsWith('http')) {
     if (typeof window === 'undefined') {
-      console.warn(
-        '[Supabase] NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing or invalid. ' +
-        'Check that both secrets are correctly set in the Replit Secrets panel.'
-      );
+      console.warn('[Supabase] NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY appear swapped — auto-correcting. Please fix the values in the Replit Secrets panel.');
     }
-    return null;
+    [url, key] = [key, url];
   }
-  return createClient(supabaseUrl, supabaseAnonKey);
+
+  // Fall back to safe placeholder values so the build never throws
+  if (!url.startsWith('http') || !key) {
+    if (typeof window === 'undefined') {
+      console.warn('[Supabase] NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is missing or invalid. Check Replit Secrets.');
+    }
+    url = url.startsWith('http') ? url : 'https://placeholder.supabase.co';
+    key = key || 'placeholder-anon-key';
+  }
+
+  return createClient(url, key);
 }
 
 export const supabase = createSupabaseClient();

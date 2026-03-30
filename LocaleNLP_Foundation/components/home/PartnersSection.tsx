@@ -2,7 +2,6 @@ import { supabase, Partner } from '@/lib/supabase';
 import { Building2 } from 'lucide-react';
 
 async function getPartners(): Promise<Partner[]> {
-  if (!supabase) return [];
   const { data, error } = await supabase
     .from('partners')
     .select('*')
