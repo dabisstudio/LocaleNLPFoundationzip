@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -29,7 +29,6 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 16);
@@ -37,16 +36,12 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) setIsMobileOpen(false);
-    };
+    const handleResize = () => { if (window.innerWidth >= 1024) setIsMobileOpen(false); };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -63,18 +58,15 @@ export default function Navigation() {
     >
       <nav className="container-wide section-padding">
         <div className="flex items-center justify-between h-16 md:h-20">
-
-          {/* ── Logo ────────────────────────────────────── */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0" aria-label="LocaleNLP home">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-ochre/80 to-accent-clay/80 flex items-center justify-center shadow-glow-ochre/30 transition-all duration-300 group-hover:shadow-glow-ochre">
-              <Globe className="w-4.5 h-4.5 text-white" />
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-ochre/80 to-accent-clay/80 flex items-center justify-center transition-shadow duration-300 group-hover:shadow-glow-ochre">
+              <Globe className="w-4 h-4 text-white" />
             </div>
             <span className="font-display font-bold text-lg text-white group-hover:text-accent-ochre transition-colors duration-300">
               LocaleNLP
             </span>
           </Link>
 
-          {/* ── Desktop nav ─────────────────────────────── */}
           <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <div
@@ -117,34 +109,25 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* ── Desktop CTA ─────────────────────────────── */}
           <div className="hidden lg:block">
             <GlowButton href="/donate" variant="primary" className="text-sm">
               Donate
             </GlowButton>
           </div>
 
-          {/* ── Mobile hamburger ────────────────────────── */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className="lg:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors"
             aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileOpen}
           >
-            {isMobileOpen
-              ? <X className="w-5 h-5" />
-              : <Menu className="w-5 h-5" />
-            }
+            {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* ── Mobile overlay menu ─────────────────────────── */}
       {isMobileOpen && (
-        <div
-          className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 glass-panel border-t border-white/8 overflow-y-auto"
-          style={{ animationDuration: '0.25s' }}
-        >
+        <div className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 glass-panel border-t border-white/8 overflow-y-auto animate-slide-down">
           <nav className="container-wide section-padding py-6 flex flex-col gap-1">
             {navItems.map((item) => (
               <div key={item.label}>
@@ -171,7 +154,6 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-
             <div className="mt-4 pt-4 border-t border-white/8">
               <GlowButton
                 href="/donate"
