@@ -37,14 +37,14 @@ async function getProgram(slug: string): Promise<Program | null> {
     .eq('slug', slug)
     .maybeSingle();
   if (!error && data) return data;
-  // Only fall back to placeholders when the table is globally empty/unavailable.
-  // If the table has rows but this slug is absent, return null to trigger notFound().
+  // DB unavailable (table not yet created): serve placeholder directly.
+  if (error) return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
+  // Slug not found but table exists: check whether the table is empty.
+  // If empty (not yet seeded), serve placeholder; otherwise strict 404.
   const { count } = await supabase
     .from('programs')
     .select('id', { count: 'exact', head: true });
-  if (!count || count === 0) {
-    return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
-  }
+  if (!count || count === 0) return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
   return null;
 }
 
