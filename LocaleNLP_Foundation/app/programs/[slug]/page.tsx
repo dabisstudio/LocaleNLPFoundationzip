@@ -30,9 +30,6 @@ const BG_MAP: Record<string, string> = {
   clay: 'bg-accent-clay/10',
 };
 
-// Falls back to PLACEHOLDER_PROGRAMS when the database is empty or unavailable.
-// Once programs are seeded, Supabase data takes precedence and placeholder slugs
-// that are not in the DB will correctly resolve to notFound().
 async function getProgram(slug: string): Promise<Program | null> {
   const { data, error } = await supabase
     .from('programs')
@@ -40,7 +37,15 @@ async function getProgram(slug: string): Promise<Program | null> {
     .eq('slug', slug)
     .maybeSingle();
   if (!error && data) return data;
-  return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
+  // Only fall back to placeholders when the table is globally empty/unavailable.
+  // If the table has rows but this slug is absent, return null to trigger notFound().
+  const { count } = await supabase
+    .from('programs')
+    .select('id', { count: 'exact', head: true });
+  if (!count || count === 0) {
+    return PLACEHOLDER_PROGRAMS.find((p) => p.slug === slug) ?? null;
+  }
+  return null;
 }
 
 const HIGHLIGHTS = [
