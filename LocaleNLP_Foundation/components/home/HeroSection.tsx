@@ -64,19 +64,30 @@ export default function HeroSection() {
             ))}
           </span>
 
-          {/* Line 2 — gradient applied directly to motion element to avoid bg-clip-text + stacking context issue */}
-          <motion.span
-            className="block text-gradient"
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : wordSpring(0.2 + LINE1.length * 0.07)
-            }
-          >
-            {LINE2.join(' ')}
-          </motion.span>
+          {/* Line 2 — gradient per-word: inline styles bypass bg-clip-text + stacking-context conflict */}
+          <span className="block">
+            {LINE2.map((word, i) => (
+              <motion.span
+                key={word + i}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : wordSpring(0.2 + (LINE1.length + i) * 0.07)
+                }
+                className="inline-block mr-[0.28em] last:mr-0"
+                style={{
+                  background: 'linear-gradient(90deg, #F5A623, #E07A5F, #00E5FF)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </span>
         </h1>
 
         <motion.p

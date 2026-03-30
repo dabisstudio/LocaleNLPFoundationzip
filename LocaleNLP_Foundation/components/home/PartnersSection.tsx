@@ -26,9 +26,26 @@ async function getPartners(): Promise<Partner[]> {
   }
 }
 
+function PartnerItem({ partner }: { partner: Pick<Partner, 'id' | 'name' | 'logo_url'> }) {
+  return (
+    <div className="inline-flex items-center justify-center mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 shrink-0">
+      {partner.logo_url ? (
+        <img
+          src={partner.logo_url}
+          alt={partner.name}
+          className="h-7 w-auto object-contain brightness-0 invert"
+        />
+      ) : (
+        <span className="font-display font-semibold text-white text-sm whitespace-nowrap">
+          {partner.name}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default async function PartnersSection() {
   const partners = await getPartners();
-  const doubled = [...partners, ...partners];
 
   return (
     <section className="py-16 border-y border-white/6 overflow-hidden" aria-label="Our partners">
@@ -36,8 +53,8 @@ export default async function PartnersSection() {
         Trusted by leading organizations
       </p>
 
-      {/* Infinite scroll marquee — CSS-only, pauses on hover */}
-      <div className="relative overflow-hidden">
+      {/* Animated marquee — hidden when prefers-reduced-motion is set */}
+      <div className="relative overflow-hidden motion-safe:block motion-reduce:hidden">
         {/* Fade edges */}
         <div
           className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
@@ -49,30 +66,24 @@ export default async function PartnersSection() {
           style={{ background: 'linear-gradient(270deg, #04040A 0%, transparent 100%)' }}
           aria-hidden="true"
         />
-
         <div className="marquee-track" aria-hidden="true">
-          {doubled.map((partner, i) => (
-            <div
-              key={`${partner.id}-${i}`}
-              className="inline-flex items-center justify-center mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 shrink-0"
-            >
-              {partner.logo_url ? (
-                <img
-                  src={partner.logo_url}
-                  alt={partner.name}
-                  className="h-7 w-auto object-contain brightness-0 invert"
-                />
-              ) : (
-                <span className="font-display font-semibold text-white text-sm whitespace-nowrap">
-                  {partner.name}
-                </span>
-              )}
-            </div>
+          {[...partners, ...partners].map((partner, i) => (
+            <PartnerItem key={`${partner.id}-${i}`} partner={partner} />
           ))}
         </div>
       </div>
 
-      {/* Static accessible list (hidden visually, available to screen readers) */}
+      {/* Static row — shown only when prefers-reduced-motion is set */}
+      <div
+        className="hidden motion-reduce:flex flex-wrap justify-center gap-x-10 gap-y-4 px-8"
+        aria-hidden="true"
+      >
+        {partners.map((partner) => (
+          <PartnerItem key={partner.id} partner={partner} />
+        ))}
+      </div>
+
+      {/* Accessible list for screen readers */}
       <ul className="sr-only">
         {partners.map((p) => (
           <li key={p.id}>{p.name}</li>
