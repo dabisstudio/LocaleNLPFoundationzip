@@ -1,137 +1,112 @@
-# LocaleNLP Foundation
+# LocaleNLP Foundation — Project Reference
 
 ## Project Overview
+Pan-African non-profit civic web application for language equity, digital sovereignty, and inclusive AI for 2,000+ African languages. "Earth Meets Compute" redesign (AUI.io dark authority + Circula precision).
 
-LocaleNLP Foundation is a Pan-African non-profit public-facing civic web application. Its mission is language equity, digital sovereignty, and inclusive AI — building NLP technology for over 2,000 African and Indigenous languages. The site acts as a public institution interface, not a marketing site.
+**Performance targets:** LCP < 2.5s on Africa mobile baseline; WCAG 2.1 AA throughout.
 
 ## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 13.5 (App Router) |
-| Language | TypeScript 5.2 |
-| Styling | Tailwind CSS 3.3 + CSS variables / design tokens |
-| UI Primitives | Radix UI (via shadcn/ui pattern) |
-| Database / Auth | Supabase (PostgreSQL + RLS) |
-| Fonts | Space Grotesk (display/heading) + Inter (body) + JetBrains Mono (metadata/numbers) |
-| Animation (planned) | GSAP (primary), Framer Motion (micro), Lottie, Three.js |
-| Deployment | Netlify (via `netlify.toml` + `@netlify/plugin-nextjs`) |
-
-## Folder Structure
-
-```
-LocaleNLP_Foundation/       ← root of the Next.js project
-├── app/                    ← App Router pages
-│   ├── layout.tsx          ← Root layout (fonts, metadata)
-│   ├── page.tsx            ← Home page (assembles home sections)
-│   ├── about/
-│   ├── programs/[slug]/    ← Dynamic program detail pages
-│   ├── impact/
-│   ├── insights/
-│   ├── technology/
-│   ├── get-involved/
-│   └── donate/
-├── components/
-│   ├── home/               ← Section components for the home page
-│   │   ├── HeroSection.tsx
-│   │   ├── ProblemSection.tsx
-│   │   ├── ProgramsSection.tsx
-│   │   ├── ImpactMapSection.tsx
-│   │   ├── MetricsSection.tsx
-│   │   ├── PartnersSection.tsx
-│   │   └── CTASection.tsx
-│   ├── layout/             ← Navigation.tsx, Footer.tsx
-│   └── ui/                 ← Radix-based atomic components (button, card, etc.)
-├── hooks/
-│   └── use-toast.ts
-├── lib/
-│   ├── supabase.ts         ← Supabase client + all TypeScript types
-│   └── utils.ts            ← clsx/tailwind-merge utility
-├── supabase/
-│   └── migrations/         ← DB schema migrations
-├── package.json
-├── next.config.js          ← eslint ignored on build, images unoptimized
-├── tailwind.config.ts
-└── .env                    ← Comment/template only; no raw keys (credentials are in Replit Secrets)
-```
+- **Framework:** Next.js 13.5.1 (App Router)
+- **Styling:** Tailwind CSS + custom design tokens
+- **Database:** Supabase (PostgreSQL via `@supabase/supabase-js`)
+- **Animations:** Framer Motion v12
+- **Fonts:** Space Grotesk (display), JetBrains Mono (mono)
+- **Language:** TypeScript
+- **Package manager:** npm (workspace root: `LocaleNLP_Foundation/`)
 
 ## Running the App
-
-The dev server runs on **port 5000** via the "Start application" workflow:
-
 ```
 cd LocaleNLP_Foundation && npm run dev
-# script: next dev -p 5000
+```
+Serves on port 5000.
+
+## Design System
+
+### Color Tokens
+| Token | Value | Usage |
+|-------|-------|-------|
+| `brand-deep` | `#04040A` | Page backgrounds |
+| `brand-surface` | `#09090E` | Card surfaces |
+| `brand-elevated` | `#12121A` | Elevated elements |
+| `accent-ochre` | `#F5A623` | Primary accent |
+| `accent-clay` | `#E07A5F` | Secondary accent |
+| `accent-cyan` | `#00E5FF` | Tertiary accent |
+| `text-primary` | `#FAFAFA` | Headings / primary text |
+| `text-secondary` | `#8F8F9D` | Body / secondary text |
+| `text-tertiary` | `#52525B` | Muted / metadata |
+
+### Easing
+- `ease-apple-ease`: `cubic-bezier(0.16, 1, 0.3, 1)`
+
+### Glass Spec
+```css
+.glass-panel { background: #09090E; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); }
+.glass-card  { background: rgba(9,9,14,0.7); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); border-radius: 12px; }
 ```
 
-## Environment Variables
+### Key CSS Utilities
+- `.text-gradient` — ochre → clay → cyan gradient text
+- `.btn-primary`, `.btn-outline`, `.btn-secondary`
+- `.stat-card`, `.stat-number`, `.stat-label`
+- `.container-wide`, `.section-padding`
+- `.glass-panel`, `.glass-card`
 
-| Key | Expected format | Purpose |
-|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxx.supabase.co` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `sb_publishable_...` or `eyJ...` | Supabase anonymous public key |
+## Component Architecture
 
-Both are stored as Replit Secrets (not in `.env`). The `LocaleNLP_Foundation/.env` file now contains only a comment pointing to the Secrets panel.
+### Shared UI Components (`components/ui/`)
+| Component | Type | Description |
+|-----------|------|-------------|
+| `GlowButton` | Client | Polymorphic CTA button (Link/a/button), `showArrow` prop |
+| `MonoLabel` | Server | `[ LABEL // NUMBER // STATUS ]` format metadata label |
+| `SpotlightCard` | Client | Mouse-follow radial spotlight card |
+| `PageHeader` | Server | Shared page hero with MonoLabel, gradient title, subtitle, CTAs |
+| `PersonaSwitcher` | Client | 4-tab persona toggle (Partner/Researcher/Developer/Speaker) |
+| `ContactForm` | Client | Supabase contact submission form with success/error state |
 
-> **Note:** If the Supabase client shows a warning about an invalid URL, check that the two secrets are not swapped — `NEXT_PUBLIC_SUPABASE_URL` must be the `https://` URL and `NEXT_PUBLIC_SUPABASE_ANON_KEY` must be the key value.
+### Layout (`components/layout/`)
+- `Navigation.tsx` — Frosted glass-panel fixed nav
+- `Footer.tsx`
 
-## Supabase Data Models
+### Homepage Sections (`components/home/`)
+- `HeroSection.tsx` — Spring-stagger word animation, `#hero-canvas` slot
+- `ProblemSection.tsx` — Scale-reveal + 3 glass callout cards
+- `ProgramsSection.tsx` — CSS Grid bento with SpotlightCard
+- `MetricsSection.tsx` — IntersectionObserver animated counters
+- `PartnersSection.tsx` — CSS marquee partner logos
+- `CTASection.tsx` — Glass panel + grid lines CTA
 
-Defined in `lib/supabase.ts`:
-- `Country` — African countries with lat/lng for the impact globe
-- `Language` — African languages with speaker count, audio sample
-- `Program` — Foundation programs (with slug for dynamic routing)
-- `ImpactMetric` — Stats shown on the metrics section
-- `CaseStudy` — Stories / case studies linked to countries and programs
-- `TeamMember` — Team/advisor profiles
-- `Partner` — Partner organizations with logos
-- `Publication` — Research papers and publications
-- `ContactSubmission` — Contact form submissions
+## Pages
 
-## Design System — "Earth Meets Compute" (AUI.io × Circula)
+| Route | Server/Client | Key Features |
+|-------|---------------|--------------|
+| `/` | Server | 6 homepage sections |
+| `/about` | Server | Mission/Vision, values SpotlightCards, milestone timeline, team |
+| `/programs` | Server | SpotlightCard program grid, PLACEHOLDER_PROGRAMS fallback |
+| `/programs/[slug]` | Server | Program detail, problem/solution cards, CTA |
+| `/technology` | Server | Model cards, static mock terminal, dataset grid, ethical AI pillars |
+| `/impact` | Server | Impact metrics (static fallback), SVG Africa node map, use cases |
+| `/get-involved` | Server | PersonaSwitcher (client), ContactForm (client), contact channels |
+| `/insights` | Server | Publications grid, case studies grid, newsletter signup |
+| `/donate` | Server | Giving tiers (SpotlightCard), monthly giving, fund allocation bars |
 
-### Brand Palette
-| Token | Value | Usage |
-|---|---|---|
-| `brand.deep` / `midnight-900` | `#04040A` | Primary page background |
-| `brand.surface` / `midnight-800` | `#09090E` | Elevated card backgrounds |
-| `brand.elevated` | `#12121A` | Card hover/active state |
-| `accent-ochre` | `#F5A623` | Primary actions, CTA, glows |
-| `accent-clay` | `#E07A5F` | Human/community accent |
-| `accent-cyan` | `#00E5FF` | Data/API/technology accent |
-| `text-secondary` | `#8F8F9D` | Body copy, descriptions |
-| `text-tertiary` | `#52525B` | Metadata, timestamps |
+## Supabase
+- **URL:** Configured via `NEXT_PUBLIC_SUPABASE_URL` env secret
+- **Client:** `lib/supabase.ts` — strict `createClient(url, key)`, fails fast
+- **Tables:** `programs`, `team_members`, `impact_metrics`, `case_studies`, `countries`, `languages`, `publications`, `contact_submissions`, `partners`
+- **Status:** Schema/seed data pending (Task #6). All pages have graceful empty states.
 
-### Typography
-- **`font-display` / `font-sora`** → Space Grotesk — all headings
-- **`font-sans` / `font-inter`** → Inter — body copy
-- **`font-mono`** → JetBrains Mono — numbers, labels, metadata
+## Patterns & Conventions
+- **Server components by default** — only interactive tabs/switchers/forms use `'use client'`
+- **`<main>` with `pt-24`** on all interior pages (nav is fixed, 96px height)
+- **MonoLabel format:** `[ LABEL // NUMBER // STATUS ]`
+- **bg-clip-text + Framer Motion fix:** Apply gradient inline styles directly to `motion.span` when `will-change: opacity` creates stacking context
+- **Counter animation:** IntersectionObserver → `started` flag → RAF step with `1 - Math.pow(1 - progress, 3)` ease-out cubic
+- **Supabase empty states:** All data-fetching pages show graceful empty state UI when DB returns empty
 
-### Key Component Classes
-- `.glass-panel` — `bg #09090E`, `border rgba(255,255,255,0.08)`, `backdrop-blur-12`, `shadow rgba(0,0,0,0.5)`
-- `.glass-card` — same recipe with `border-radius: 0.75rem`
-- `.btn-primary` — white bg, dark text, ochre glow shadow on hover
-- `.btn-secondary` — glass-panel style
-- `.stat-number` — JetBrains Mono, `text-accent-ochre`
-- `.text-gradient` — ochre → clay → cyan gradient across text
-- `.grid-lines` — subtle 60px grid texture overlay
-
-### New UI Components
-- `SpotlightCard` — radial ochre cursor-spotlight overlay on hover
-- `MonoLabel` — bracket-format status tag: `[ LABEL // STATUS ]`
-- `GlowButton` — primary (white/ochre-glow) or ghost (glass-panel) variant with ArrowRight
-
-### Design & Motion Principles (from PRDs)
-
-- **Calm Motion**: No bouncing, no aggressive easing. `ease-apple-ease` = `cubic-bezier(0.16, 1, 0.3, 1)`.
-- **Performance Budget**: LCP < 2.5s (Africa mobile baseline), total page JS < 500kb.
-- **Accessibility**: WCAG 2.1 AA, `prefers-reduced-motion` supported everywhere.
-- **Rendering**: Server Components by default; Client Components only for GSAP, Lottie, Three.js.
-- **Three.js Globe**: One instance per page, lazy-loaded, no zoom/drag, static fallback.
-
-## Key Conventions
-
-- All motion tokens live in CSS variables (`--motion-fast: 0.15s`, etc.)
-- Components must have all five interaction states: default, hover, focus, active, disabled
-- No hardcoded colors — always use design token variables
-- GSAP timelines are canonical (defined in Frontend PRD §12); deviations need design review
+## Task History
+- ✅ Task #1 — Dev environment setup
+- ✅ Task #2 — Design system & component library overhaul
+- ✅ Task #3 — Homepage sections rebuild (6 sections)
+- ✅ Task #4 — Interior pages rebuild (8 pages + 3 shared components)
+- ⏳ Task #5 — (TBD)
+- ⏳ Task #6 — Database schema & seed data

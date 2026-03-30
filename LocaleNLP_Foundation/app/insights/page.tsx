@@ -1,31 +1,40 @@
-import Link from 'next/link';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
+import { PageHeader } from '@/components/ui/page-header';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { MonoLabel } from '@/components/ui/mono-label';
+import { GlowButton } from '@/components/ui/glow-button';
 import { supabase, Publication, CaseStudy } from '@/lib/supabase';
 import { ArrowRight, FileText, BookOpen, Newspaper, Calendar } from 'lucide-react';
+import Link from 'next/link';
 
 async function getData() {
   const [publicationsRes, caseStudiesRes] = await Promise.all([
     supabase.from('publications').select('*').order('publication_date', { ascending: false }),
     supabase.from('case_studies').select('*').order('created_at', { ascending: false }),
   ]);
-
   return {
     publications: (publicationsRes.data || []) as Publication[],
     caseStudies: (caseStudiesRes.data || []) as CaseStudy[],
   };
 }
 
-const typeIcons: Record<string, React.ElementType> = {
+const TYPE_ICONS: Record<string, React.ElementType> = {
   paper: FileText,
   brief: BookOpen,
   report: Newspaper,
 };
 
-const typeColors: Record<string, string> = {
-  paper: 'bg-royal-500/10 text-royal-400',
-  brief: 'bg-ochre-500/10 text-ochre-400',
-  report: 'bg-forest-500/10 text-forest-400',
+const TYPE_COLORS: Record<string, { text: string; bg: string }> = {
+  paper: { text: 'text-accent-ochre', bg: 'bg-accent-ochre/10' },
+  brief: { text: 'text-accent-cyan', bg: 'bg-accent-cyan/10' },
+  report: { text: 'text-accent-clay', bg: 'bg-accent-clay/10' },
+};
+
+const TYPE_SPOTS: Record<string, string> = {
+  paper: 'rgba(245,166,35,0.1)',
+  brief: 'rgba(0,229,255,0.08)',
+  report: 'rgba(224,122,95,0.1)',
 };
 
 export default async function InsightsPage() {
@@ -34,58 +43,59 @@ export default async function InsightsPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-20">
-        <section className="py-24 bg-hero-gradient relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-ochre-500/10 rounded-full blur-3xl" />
-          </div>
+      <main className="pt-24">
+        <PageHeader
+          label="INSIGHTS"
+          number="00"
+          title="Research, Stories &"
+          titleGradient="Policy Perspectives"
+          subtitle="Explore our publications, field stories, and policy briefs shaping the future of African language technology — from lab to community."
+          accentColor="ochre"
+        >
+          <GlowButton href="#publications" variant="primary" showArrow={false}>
+            Browse Publications
+          </GlowButton>
+          <GlowButton href="#stories" variant="ghost" showArrow={false}>
+            Field Stories
+          </GlowButton>
+        </PageHeader>
 
-          <div className="container-wide section-padding relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-royal-500/10 text-royal-400 text-sm font-medium mb-6">
-                Insights
-              </span>
-              <h1 className="text-white mb-6">
-                Research, Stories &
-                <br />
-                <span className="text-gradient">Policy Perspectives</span>
-              </h1>
-              <p className="text-lg text-midnight-200">
-                Explore our publications, field stories, and policy briefs shaping the future of
-                African language technology.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-midnight-900">
+        <section id="publications" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
-            <div className="flex items-center justify-between mb-12">
+            <div className="flex items-start justify-between mb-12 flex-wrap gap-4">
               <div>
-                <h2 className="text-white mb-2">Research & Publications</h2>
-                <p className="text-midnight-300">Our latest papers, briefs, and reports</p>
+                <MonoLabel label="RESEARCH & PUBLICATIONS" number="01" className="mb-3" />
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary">
+                  Our Latest Work
+                </h2>
               </div>
             </div>
 
             {publications.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {publications.map((pub) => {
-                  const Icon = typeIcons[pub.publication_type] || FileText;
-                  const colorClass = typeColors[pub.publication_type] || typeColors.paper;
+                  const Icon = TYPE_ICONS[pub.publication_type] || FileText;
+                  const colors = TYPE_COLORS[pub.publication_type] || TYPE_COLORS.paper;
+                  const spot = TYPE_SPOTS[pub.publication_type] || 'rgba(245,166,35,0.1)';
+                  const typeLabel =
+                    pub.publication_type.charAt(0).toUpperCase() + pub.publication_type.slice(1);
 
                   return (
-                    <article
+                    <SpotlightCard
                       key={pub.id}
-                      className="glass-card p-6 hover:border-midnight-500 transition-all group"
+                      spotlightColor={spot}
+                      className="p-6 group"
                     >
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${colorClass}`}>
-                          {pub.publication_type.charAt(0).toUpperCase() +
-                            pub.publication_type.slice(1)}
+                      <div className="flex items-center gap-3 mb-5">
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium ${colors.text} ${colors.bg}`}
+                        >
+                          <Icon className="w-3 h-3" aria-hidden="true" />
+                          {typeLabel}
                         </span>
                         {pub.publication_date && (
-                          <span className="flex items-center gap-1 text-xs text-midnight-400">
-                            <Calendar className="w-3 h-3" />
+                          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
+                            <Calendar className="w-3 h-3" aria-hidden="true" />
                             {new Date(pub.publication_date).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'short',
@@ -94,29 +104,29 @@ export default async function InsightsPage() {
                         )}
                       </div>
 
-                      <h3 className="text-lg font-sora font-semibold text-white mb-2 group-hover:text-ochre-400 transition-colors">
+                      <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors">
                         {pub.title}
                       </h3>
 
                       {pub.authors && (
-                        <p className="text-xs text-midnight-400 mb-3">{pub.authors}</p>
+                        <p className="font-mono text-xs text-text-tertiary mb-3">{pub.authors}</p>
                       )}
 
                       {pub.abstract && (
-                        <p className="text-sm text-midnight-300 mb-4 line-clamp-3">
+                        <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3">
                           {pub.abstract}
                         </p>
                       )}
 
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-4 pt-4 border-t border-white/8">
                         {pub.pdf_url && (
                           <a
                             href={pub.pdf_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center text-sm text-royal-400 hover:text-royal-300 transition-colors"
+                            className="inline-flex items-center gap-1 text-xs text-accent-ochre hover:opacity-80 transition-opacity font-medium"
                           >
-                            <FileText className="w-4 h-4 mr-1" />
+                            <FileText className="w-3.5 h-3.5" aria-hidden="true" />
                             PDF
                           </a>
                         )}
@@ -125,51 +135,54 @@ export default async function InsightsPage() {
                             href={pub.external_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center text-sm text-ochre-400 hover:text-ochre-300 transition-colors"
+                            className="inline-flex items-center gap-1 text-xs text-accent-cyan hover:opacity-80 transition-opacity font-medium"
                           >
                             Read More
-                            <ArrowRight className="w-4 h-4 ml-1" />
+                            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                           </a>
                         )}
                       </div>
-                    </article>
+                    </SpotlightCard>
                   );
                 })}
               </div>
             ) : (
-              <div className="glass-card p-12 text-center">
-                <BookOpen className="w-12 h-12 text-midnight-500 mx-auto mb-4" />
-                <h3 className="text-lg font-sora font-semibold text-white mb-2">
+              <div className="glass-card p-12 text-center max-w-lg mx-auto">
+                <BookOpen className="w-10 h-10 text-text-tertiary mx-auto mb-4" aria-hidden="true" />
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
                   Publications Coming Soon
                 </h3>
-                <p className="text-midnight-300">
-                  We are working on exciting research. Check back soon for our latest publications.
+                <p className="text-text-secondary text-sm">
+                  We are preparing research publications for release. Check back soon for our latest
+                  papers and policy briefs.
                 </p>
               </div>
             )}
           </div>
         </section>
 
-        <section className="py-20 bg-midnight-950">
+        <section id="stories" className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
-            <div className="flex items-center justify-between mb-12">
+            <div className="flex items-start justify-between mb-12 flex-wrap gap-4">
               <div>
-                <h2 className="text-white mb-2">Stories from the Field</h2>
-                <p className="text-midnight-300">
-                  Real impact, real communities, real change
-                </p>
+                <MonoLabel label="STORIES FROM THE FIELD" number="02" className="mb-3" />
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary">
+                  Real Impact, Real Communities
+                </h2>
               </div>
             </div>
 
             {caseStudies.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {caseStudies.map((story) => (
-                  <article
+                  <SpotlightCard
                     key={story.id}
-                    className="glass-card overflow-hidden group hover:border-midnight-500 transition-all"
+                    spotlightColor="rgba(245,166,35,0.08)"
+                    className="overflow-hidden group"
                   >
-                    <div className="h-48 bg-gradient-to-br from-midnight-700 to-midnight-800 relative">
+                    <div className="h-44 bg-gradient-to-br from-brand-elevated to-brand-surface relative">
                       {story.image_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={story.image_url}
                           alt={story.title}
@@ -177,56 +190,75 @@ export default async function InsightsPage() {
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <BookOpen className="w-12 h-12 text-midnight-500" />
+                          <BookOpen className="w-10 h-10 text-white/10" aria-hidden="true" />
                         </div>
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-lg font-sora font-semibold text-white mb-2 group-hover:text-ochre-400 transition-colors">
+                      <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors">
                         {story.title}
                       </h3>
-                      <p className="text-sm text-midnight-300 mb-4 line-clamp-2">{story.summary}</p>
+                      {story.summary && (
+                        <p className="text-text-secondary text-sm leading-relaxed mb-4 line-clamp-2">
+                          {story.summary}
+                        </p>
+                      )}
                       <Link
                         href={`/insights/${story.slug}`}
-                        className="inline-flex items-center text-sm text-royal-400 font-medium"
+                        className="inline-flex items-center gap-1.5 text-sm text-accent-ochre font-medium hover:opacity-80 transition-opacity"
                       >
                         Read Full Story
-                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          aria-hidden="true"
+                        />
                       </Link>
                     </div>
-                  </article>
+                  </SpotlightCard>
                 ))}
               </div>
             ) : (
-              <div className="glass-card p-12 text-center">
-                <Newspaper className="w-12 h-12 text-midnight-500 mx-auto mb-4" />
-                <h3 className="text-lg font-sora font-semibold text-white mb-2">
+              <div className="glass-card p-12 text-center max-w-lg mx-auto">
+                <Newspaper className="w-10 h-10 text-text-tertiary mx-auto mb-4" aria-hidden="true" />
+                <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
                   Stories Coming Soon
                 </h3>
-                <p className="text-midnight-300">
-                  We are documenting impact stories from communities across Africa.
+                <p className="text-text-secondary text-sm">
+                  We are documenting impact stories from communities across Africa. Check back soon.
                 </p>
               </div>
             )}
           </div>
         </section>
 
-        <section className="py-20 bg-midnight-900">
+        <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
-            <div className="glass-card p-8 md:p-12 text-center">
-              <h2 className="text-white mb-4">Stay Updated</h2>
-              <p className="text-midnight-200 mb-6 max-w-lg mx-auto">
+            <div className="glass-card p-10 md:p-14 text-center max-w-3xl mx-auto">
+              <MonoLabel label="STAY UPDATED" status="active" className="mb-5" />
+              <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
+                Never Miss a Publication
+              </h2>
+              <p className="text-text-secondary mb-8 max-w-lg mx-auto">
                 Get our latest research, impact stories, and policy updates delivered to your inbox.
+                No spam — just important work.
               </p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form
+                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+                aria-label="Newsletter signup"
+              >
+                <label htmlFor="insights-email" className="sr-only">
+                  Email address
+                </label>
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-midnight-800 border border-midnight-600 rounded-lg text-white placeholder:text-midnight-400 focus:outline-none focus:border-royal-500 transition-colors"
+                  id="insights-email"
+                  autoComplete="email"
+                  placeholder="your@email.com"
+                  className="flex-1 px-4 py-3 rounded-lg text-text-primary placeholder:text-text-tertiary text-sm bg-brand-elevated border border-white/8 focus:outline-none focus:border-accent-ochre/50 focus:ring-1 focus:ring-accent-ochre/20 transition-colors"
                 />
-                <button type="submit" className="btn-primary whitespace-nowrap">
+                <GlowButton type="submit" variant="primary" showArrow={false}>
                   Subscribe
-                </button>
+                </GlowButton>
               </form>
             </div>
           </div>
