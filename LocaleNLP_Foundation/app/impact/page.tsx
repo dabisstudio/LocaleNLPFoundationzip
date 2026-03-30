@@ -4,8 +4,9 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
 import { supabase, ImpactMetric, CaseStudy } from '@/lib/supabase';
-import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper } from 'lucide-react';
+import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper, Download } from 'lucide-react';
 import Link from 'next/link';
 
 async function getData() {
@@ -89,6 +90,9 @@ const COUNTRY_NODES = [
   { x: 310, y: 340, name: 'Malawi', active: false },
 ];
 
+const AFRICA_OUTLINE =
+  'M 202,72 L 218,68 L 250,65 L 285,68 L 345,80 L 360,90 L 370,115 L 385,148 L 408,178 L 415,205 L 395,252 L 385,295 L 370,352 L 355,390 L 338,408 L 312,412 L 290,408 L 260,392 L 232,348 L 228,282 L 248,238 L 258,215 L 278,180 L 252,177 L 230,183 L 205,185 L 198,165 L 208,132 L 200,100 Z';
+
 export default async function ImpactPage() {
   const { metrics, caseStudies } = await getData();
   const displayMetrics = metrics.length > 0 ? metrics : STATIC_METRICS;
@@ -117,12 +121,11 @@ export default async function ImpactPage() {
           <div className="container-wide section-padding">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
               {displayMetrics.map((metric) => (
-                <div key={metric.label} className="stat-card">
-                  <div className="stat-number" aria-label={`${metric.value}${metric.unit ? ' ' + metric.unit : ''}`}>
-                    {metric.value}
-                  </div>
-                  <div className="stat-label">{metric.label}</div>
-                </div>
+                <AnimatedCounter
+                  key={metric.label}
+                  value={String(metric.value)}
+                  label={metric.label}
+                />
               ))}
             </div>
           </div>
@@ -153,10 +156,14 @@ export default async function ImpactPage() {
                 </div>
               </div>
 
-              <div className="relative flex items-center justify-center" aria-label="Map showing active countries across Africa">
+              <div
+                className="relative flex items-center justify-center"
+                aria-label="Map showing active countries across Africa"
+              >
                 <svg
                   viewBox="150 60 280 360"
                   className="w-full max-w-sm"
+                  role="img"
                   aria-hidden="true"
                 >
                   <defs>
@@ -169,6 +176,15 @@ export default async function ImpactPage() {
                       <stop offset="100%" stopColor="#52525B" stopOpacity="0" />
                     </radialGradient>
                   </defs>
+
+                  <path
+                    d={AFRICA_OUTLINE}
+                    fill="rgba(255,255,255,0.025)"
+                    stroke="rgba(255,255,255,0.08)"
+                    strokeWidth="1"
+                    strokeLinejoin="round"
+                  />
+
                   {COUNTRY_NODES.map((node) => (
                     <g key={node.name}>
                       {node.active && (
@@ -211,10 +227,7 @@ export default async function ImpactPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {USE_CASES.map((useCase) => (
                 <SpotlightCard key={useCase.sector} spotlightColor={useCase.spot} className="p-8">
-                  <useCase.icon
-                    className={`w-7 h-7 ${useCase.accent} mb-5`}
-                    aria-hidden="true"
-                  />
+                  <useCase.icon className={`w-7 h-7 ${useCase.accent} mb-5`} aria-hidden="true" />
                   <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary mb-2">
                     {useCase.sector}
                   </p>
@@ -298,10 +311,7 @@ export default async function ImpactPage() {
           <section className="py-20 bg-brand-deep">
             <div className="container-wide section-padding">
               <div className="glass-card p-12 text-center max-w-lg mx-auto">
-                <BookOpen
-                  className="w-10 h-10 text-text-tertiary mx-auto mb-4"
-                  aria-hidden="true"
-                />
+                <BookOpen className="w-10 h-10 text-text-tertiary mx-auto mb-4" aria-hidden="true" />
                 <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
                   Case Studies Coming Soon
                 </h3>
@@ -315,22 +325,46 @@ export default async function ImpactPage() {
 
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
-            <div className="glass-card p-10 md:p-14 text-center max-w-3xl mx-auto">
-              <MonoLabel label="SCALE OUR IMPACT" status="active" className="mb-5" />
-              <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
-                Help Us Reach More Communities
-              </h2>
-              <p className="text-text-secondary mb-8 max-w-lg mx-auto">
-                Every contribution helps us digitize more languages, deploy more tools, and build a
-                more inclusive future for African language communities.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <GlowButton href="/donate" variant="primary">
-                  Donate Now
-                </GlowButton>
-                <GlowButton href="/get-involved" variant="ghost">
-                  Partner With Us
-                </GlowButton>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="glass-card p-8 flex flex-col">
+                <Download className="w-8 h-8 text-accent-ochre mb-5" aria-hidden="true" />
+                <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
+                  Annual Impact Report
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1">
+                  Download our full 2023 Annual Impact Report — detailed metrics, community stories,
+                  financial transparency, and our roadmap for the years ahead.
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-text-tertiary">PDF · 2023 · 48 pages</span>
+                  <GlowButton
+                    href="/reports/localenlp-annual-impact-2023.pdf"
+                    variant="primary"
+                    showArrow={false}
+                  >
+                    <Download className="w-3.5 h-3.5" aria-hidden="true" />
+                    Download
+                  </GlowButton>
+                </div>
+              </div>
+
+              <div className="glass-card p-8 flex flex-col">
+                <Newspaper className="w-8 h-8 text-accent-cyan mb-5" aria-hidden="true" />
+                <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
+                  Scale Our Impact
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-1">
+                  Every contribution helps us digitize more languages, deploy more tools, and build
+                  a more inclusive future for African language communities.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <GlowButton href="/donate" variant="primary" showArrow={false}>
+                    Donate Now
+                  </GlowButton>
+                  <GlowButton href="/get-involved" variant="ghost" showArrow={false}>
+                    Partner With Us
+                  </GlowButton>
+                </div>
               </div>
             </div>
           </div>

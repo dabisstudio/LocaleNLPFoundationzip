@@ -45,6 +45,13 @@ const HIGHLIGHTS = [
   'Scalable infrastructure built for African network realities',
 ];
 
+const PROGRAM_STATS = [
+  { label: 'Languages Covered', value: '40+' },
+  { label: 'Research Papers', value: '18' },
+  { label: 'Communities Reached', value: '120+' },
+  { label: 'Active Countries', value: '18' },
+];
+
 export default async function ProgramDetailPage({ params }: { params: { slug: string } }) {
   const program = await getProgram(params.slug);
 
@@ -85,9 +92,7 @@ export default async function ProgramDetailPage({ params }: { params: { slug: st
 
             <div className="max-w-3xl">
               <div className="flex items-center gap-4 mb-6">
-                <div
-                  className={`w-14 h-14 rounded-xl ${iconBg} flex items-center justify-center`}
-                >
+                <div className={`w-14 h-14 rounded-xl ${iconBg} flex items-center justify-center`}>
                   <Icon className={`w-7 h-7 ${accent}`} aria-hidden="true" />
                 </div>
                 <MonoLabel label="PROGRAM" status="active" />
@@ -98,10 +103,26 @@ export default async function ProgramDetailPage({ params }: { params: { slug: st
               </h1>
 
               {program.short_description && (
-                <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+                <p className="text-lg text-text-secondary leading-relaxed max-w-2xl mb-10">
                   {program.short_description}
                 </p>
               )}
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {PROGRAM_STATS.map((stat) => (
+                  <div key={stat.label} className="glass-card p-4 text-center">
+                    <div
+                      className="font-mono text-xl font-bold text-accent-ochre mb-1"
+                      aria-label={stat.value}
+                    >
+                      {stat.value}
+                    </div>
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

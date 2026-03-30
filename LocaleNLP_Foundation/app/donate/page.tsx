@@ -4,8 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
-import { Heart, Globe, Users, CheckCircle, Shield, FileText } from 'lucide-react';
-import Link from 'next/link';
+import { Heart, Globe, Users, CheckCircle, Shield, FileText, ExternalLink } from 'lucide-react';
 
 const TIERS = [
   {
@@ -23,7 +22,7 @@ const TIERS = [
     spot: 'rgba(0,229,255,0.08)',
   },
   {
-    name: 'Champion',
+    name: 'Sustainer',
     amount: '$500',
     period: 'one-time',
     description: 'Fund a week of community data collection',
@@ -38,12 +37,12 @@ const TIERS = [
     spot: 'rgba(245,166,35,0.12)',
   },
   {
-    name: 'Patron',
+    name: 'Partner',
     amount: '$5,000',
     period: 'one-time',
     description: 'Support a language for an entire month',
     features: [
-      'Everything in Champion',
+      'Everything in Sustainer',
       'Choose a language to sponsor',
       'Quarterly detailed impact reports',
       'Direct line to our research team',
@@ -132,7 +131,7 @@ export default function DonatePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-20">
+            <div className="grid md:grid-cols-3 gap-6 mb-10">
               {TIERS.map((tier) => (
                 <SpotlightCard
                   key={tier.name}
@@ -175,18 +174,35 @@ export default function DonatePage() {
                     ))}
                   </ul>
 
-                  <button
-                    type="button"
-                    className={`w-full py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  <a
+                    href="https://donate.localenlp.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
                       tier.highlighted
                         ? 'bg-accent-ochre text-brand-deep hover:bg-accent-ochre/90'
                         : 'bg-white/5 border border-white/10 text-text-primary hover:bg-white/10 hover:border-white/20'
                     }`}
                   >
                     Donate {tier.amount}
-                  </button>
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                  </a>
                 </SpotlightCard>
               ))}
+            </div>
+
+            <div className="text-center mb-20">
+              <GlowButton
+                href="https://donate.localenlp.org"
+                variant="ghost"
+                showArrow={false}
+              >
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                Open Donation Portal
+              </GlowButton>
+              <p className="text-text-tertiary text-xs mt-3">
+                Secure payment processed via our verified non-profit donation platform
+              </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -219,12 +235,15 @@ export default function DonatePage() {
                   ))}
                 </div>
 
-                <button
-                  type="button"
-                  className="btn-primary"
+                <a
+                  href="https://donate.localenlp.org/monthly"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center gap-2"
                 >
                   Start Monthly Donation
-                </button>
+                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
               </div>
 
               <div className="glass-card p-8">

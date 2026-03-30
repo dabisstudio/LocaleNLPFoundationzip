@@ -30,6 +30,7 @@ function PartnerItem({ partner }: { partner: Pick<Partner, 'id' | 'name' | 'logo
   return (
     <div className="inline-flex items-center justify-center mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 shrink-0">
       {partner.logo_url ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={partner.logo_url}
           alt={partner.name}

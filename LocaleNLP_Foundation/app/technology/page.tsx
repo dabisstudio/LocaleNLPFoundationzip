@@ -4,8 +4,22 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { TerminalTypewriter } from '@/components/ui/terminal-typewriter';
 import { supabase, Language } from '@/lib/supabase';
-import { Code, Database, Github, ExternalLink, Cpu, Shield, Users, BookOpen } from 'lucide-react';
+import {
+  Code,
+  Database,
+  Github,
+  ExternalLink,
+  Cpu,
+  Shield,
+  Users,
+  BookOpen,
+  FileText,
+  Lock,
+  Zap,
+  Globe,
+} from 'lucide-react';
 
 async function getLanguages(): Promise<Language[]> {
   const { data, error } = await supabase
@@ -19,7 +33,8 @@ async function getLanguages(): Promise<Language[]> {
 const MODELS = [
   {
     name: 'AfriSpeech-ASR',
-    description: 'Automatic speech recognition for 15+ African languages, optimised for low-resource deployment.',
+    description:
+      'Automatic speech recognition for 15+ African languages, optimised for low-resource deployment.',
     languages: ['Yoruba', 'Swahili', 'Hausa', 'Amharic', 'Zulu'],
     github: 'https://github.com/localenlp/afrispeech-asr',
     version: 'v2.1.0',
@@ -28,7 +43,8 @@ const MODELS = [
   },
   {
     name: 'AfriMT',
-    description: 'Neural machine translation across African languages and English with direct language-pair routing.',
+    description:
+      'Neural machine translation across African languages and English with direct language-pair routing.',
     languages: ['Swahili', 'Yoruba', 'Igbo', 'Twi', 'Wolof'],
     github: 'https://github.com/localenlp/afrimt',
     version: 'v1.4.0',
@@ -37,7 +53,8 @@ const MODELS = [
   },
   {
     name: 'AfriVoice-TTS',
-    description: 'Text-to-speech synthesis with natural African language prosody and intonation patterns.',
+    description:
+      'Text-to-speech synthesis with natural African language prosody and intonation patterns.',
     languages: ['Swahili', 'Yoruba', 'Amharic', 'Hausa'],
     github: 'https://github.com/localenlp/afrivoice-tts',
     version: 'v1.2.0',
@@ -68,15 +85,81 @@ const TERMINAL_LINES = [
   { type: 'result', text: '"Bawo ni o se ri agbara ede wa?"' },
 ];
 
-const LINE_COLORS: Record<string, string> = {
-  comment: 'text-text-tertiary',
-  blank: '',
-  import: 'text-accent-cyan',
-  code: 'text-text-primary',
-  string: 'text-accent-ochre',
-  output: 'text-text-tertiary',
-  result: 'text-accent-clay',
-};
+const API_ENDPOINTS = [
+  {
+    method: 'POST',
+    path: '/v1/asr/transcribe',
+    description: 'Transcribe audio to text for a given African language.',
+    auth: 'API key',
+    icon: Zap,
+    accent: 'text-accent-ochre',
+    bg: 'bg-accent-ochre/10',
+    methodColor: 'text-accent-ochre bg-accent-ochre/10',
+  },
+  {
+    method: 'POST',
+    path: '/v1/mt/translate',
+    description: 'Translate text between African languages and English.',
+    auth: 'API key',
+    icon: Globe,
+    accent: 'text-accent-cyan',
+    bg: 'bg-accent-cyan/10',
+    methodColor: 'text-accent-cyan bg-accent-cyan/10',
+  },
+  {
+    method: 'POST',
+    path: '/v1/tts/synthesise',
+    description: 'Convert text to natural-sounding speech in African languages.',
+    auth: 'API key',
+    icon: Cpu,
+    accent: 'text-accent-clay',
+    bg: 'bg-accent-clay/10',
+    methodColor: 'text-accent-clay bg-accent-clay/10',
+  },
+  {
+    method: 'GET',
+    path: '/v1/languages',
+    description: 'List all supported languages with metadata and model coverage.',
+    auth: 'None required',
+    icon: Database,
+    accent: 'text-text-secondary',
+    bg: 'bg-white/5',
+    methodColor: 'text-text-secondary bg-white/8',
+  },
+];
+
+const RESEARCH_PAPERS = [
+  {
+    title: 'AfriSpeech: 2000+ Hours Pan-African Speech Corpus',
+    venue: 'EMNLP 2023',
+    authors: 'Olatunji et al.',
+    description:
+      'A large-scale crowdsourced speech corpus spanning 120+ African accents across 36 countries, with a focus on clinical domain ASR.',
+    tags: ['Speech Recognition', 'Low-Resource', 'Pan-African'],
+    accent: 'text-accent-ochre',
+    bg: 'bg-accent-ochre/10',
+  },
+  {
+    title: 'Masakhane MT: Machine Translation for African Languages',
+    venue: 'ACL 2022',
+    authors: 'Adelani et al.',
+    description:
+      'A community-driven project translating into and between African languages, demonstrating the power of participatory NLP research.',
+    tags: ['Machine Translation', 'Community AI', 'Low-Resource NLP'],
+    accent: 'text-accent-cyan',
+    bg: 'bg-accent-cyan/10',
+  },
+  {
+    title: 'NLP for African Languages: Challenges & Opportunities',
+    venue: 'TACL 2023',
+    authors: 'LocaleNLP Research Team',
+    description:
+      'A comprehensive survey of the current state of NLP for African languages, covering 2,000+ languages and identifying priority gaps.',
+    tags: ['Survey', 'African NLP', 'Language Technology'],
+    accent: 'text-accent-clay',
+    bg: 'bg-accent-clay/10',
+  },
+];
 
 const ETHICAL_PILLARS = [
   {
@@ -182,31 +265,66 @@ export default async function TechnologyPage() {
               ))}
             </div>
 
-            <div className="glass-card overflow-hidden">
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-white/8 bg-brand-elevated">
-                <div className="w-3 h-3 rounded-full bg-red-500/70" aria-hidden="true" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/70" aria-hidden="true" />
-                <div className="w-3 h-3 rounded-full bg-green-500/70" aria-hidden="true" />
-                <span className="ml-3 font-mono text-xs text-text-tertiary">localenlp_demo.py</span>
-              </div>
-              <pre
-                className="p-6 text-sm leading-7 overflow-x-auto"
-                aria-label="Python code example for AfriSpeech-ASR"
-              >
-                {TERMINAL_LINES.map((line, i) => (
-                  <div key={i} className={LINE_COLORS[line.type] || ''}>
-                    {line.text || '\u00A0'}
+            <TerminalTypewriter
+              lines={TERMINAL_LINES}
+              filename="localenlp_demo.py"
+              ariaLabel="Python code example for AfriSpeech-ASR"
+              minHeight="300px"
+            />
+          </div>
+        </section>
+
+        <section id="api" className="py-20 bg-brand-deep">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="REST API" number="02" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                API Endpoint Reference
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Integrate African language AI directly into your applications. All endpoints accept
+                JSON, require an API key, and return structured responses.
+              </p>
+            </div>
+
+            <div className="space-y-4 mb-12">
+              {API_ENDPOINTS.map((ep) => (
+                <div key={ep.path} className="glass-card p-5 flex flex-col sm:flex-row sm:items-center gap-5">
+                  <div className="flex items-center gap-4 min-w-0 flex-1">
+                    <span
+                      className={`font-mono text-xs font-bold px-2.5 py-1 rounded shrink-0 ${ep.methodColor}`}
+                    >
+                      {ep.method}
+                    </span>
+                    <code className="font-mono text-sm text-text-primary truncate">
+                      {ep.path}
+                    </code>
                   </div>
-                ))}
-              </pre>
+                  <p className="text-text-secondary text-sm flex-1 hidden md:block">
+                    {ep.description}
+                  </p>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <Lock className="w-3 h-3 text-text-tertiary" aria-hidden="true" />
+                    <span className="font-mono text-[11px] text-text-tertiary">{ep.auth}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <GlowButton href="https://docs.localenlp.org/api" variant="ghost">
+                <Code className="w-4 h-4" aria-hidden="true" />
+                Full API Documentation
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              </GlowButton>
             </div>
           </div>
         </section>
 
-        <section id="datasets" className="py-20 bg-brand-deep">
+        <section id="datasets" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="OPEN DATASETS" number="02" className="mb-5" />
+              <MonoLabel label="OPEN DATASETS" number="03" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Training Data for African NLP
               </h2>
@@ -224,7 +342,9 @@ export default async function TechnologyPage() {
                   className="p-6"
                 >
                   <Database className="w-5 h-5 text-accent-ochre mb-4" aria-hidden="true" />
-                  <h3 className="font-display font-semibold text-text-primary mb-1">{dataset.name}</h3>
+                  <h3 className="font-display font-semibold text-text-primary mb-1">
+                    {dataset.name}
+                  </h3>
                   <p className="text-text-tertiary text-xs mb-4">{dataset.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-sm text-accent-ochre">{dataset.size}</span>
@@ -239,16 +359,16 @@ export default async function TechnologyPage() {
         </section>
 
         {languages.length > 0 && (
-          <section className="py-20 bg-brand-surface">
+          <section className="py-20 bg-brand-deep">
             <div className="container-wide section-padding">
               <div className="text-center mb-14">
-                <MonoLabel label="LANGUAGE COVERAGE" number="03" className="mb-5" />
+                <MonoLabel label="LANGUAGE COVERAGE" number="04" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   Languages We Support
                 </h2>
                 <p className="text-text-secondary max-w-2xl mx-auto">
-                  Active development and language resources, with more being added from every African
-                  language family.
+                  Active development and language resources, with more being added from every
+                  African language family.
                 </p>
               </div>
 
@@ -286,16 +406,73 @@ export default async function TechnologyPage() {
           </section>
         )}
 
+        <section id="research" className="py-20 bg-brand-surface">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="RESEARCH PAPERS" number="05" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Peer-Reviewed Publications
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Our research is published openly in top-tier NLP venues. Every paper comes with
+                released code and datasets.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {RESEARCH_PAPERS.map((paper) => (
+                <SpotlightCard
+                  key={paper.title}
+                  spotlightColor="rgba(245,166,35,0.08)"
+                  className="p-7"
+                >
+                  <div className="flex items-center gap-2 mb-5">
+                    <span
+                      className={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded ${paper.bg} ${paper.accent}`}
+                    >
+                      {paper.venue}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-text-primary mb-2 leading-snug">
+                    {paper.title}
+                  </h3>
+                  <p className="font-mono text-xs text-text-tertiary mb-4">{paper.authors}</p>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                    {paper.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/8">
+                    {paper.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-white/5 text-text-tertiary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </SpotlightCard>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <GlowButton href="/insights" variant="ghost">
+                <FileText className="w-4 h-4" aria-hidden="true" />
+                All Publications
+              </GlowButton>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="ETHICAL AI" number="04" className="mb-5" />
+              <MonoLabel label="ETHICAL AI" number="06" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Building Responsibly
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                Our commitment to ethical AI development guides every model, dataset, and
-                deployment decision we make.
+                Our commitment to ethical AI development guides every model, dataset, and deployment
+                decision we make.
               </p>
             </div>
 
@@ -306,10 +483,7 @@ export default async function TechnologyPage() {
                   spotlightColor="rgba(245,166,35,0.08)"
                   className="p-8"
                 >
-                  <pillar.icon
-                    className="w-7 h-7 text-accent-ochre mb-5"
-                    aria-hidden="true"
-                  />
+                  <pillar.icon className="w-7 h-7 text-accent-ochre mb-5" aria-hidden="true" />
                   <h3 className="font-display text-lg font-semibold text-text-primary mb-3">
                     {pillar.title}
                   </h3>

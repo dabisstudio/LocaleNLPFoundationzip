@@ -5,7 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { supabase, Publication, CaseStudy } from '@/lib/supabase';
-import { ArrowRight, FileText, BookOpen, Newspaper, Calendar } from 'lucide-react';
+import { ArrowRight, FileText, BookOpen, Newspaper, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 
 async function getData() {
@@ -35,6 +35,12 @@ const TYPE_SPOTS: Record<string, string> = {
   paper: 'rgba(245,166,35,0.1)',
   brief: 'rgba(0,229,255,0.08)',
   report: 'rgba(224,122,95,0.1)',
+};
+
+const READ_TIME: Record<string, string> = {
+  paper: '8–12 min',
+  brief: '3–5 min',
+  report: '10–20 min',
 };
 
 export default async function InsightsPage() {
@@ -72,77 +78,83 @@ export default async function InsightsPage() {
             </div>
 
             {publications.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
+                style={{ columnGap: '1.5rem' }}
+              >
                 {publications.map((pub) => {
                   const Icon = TYPE_ICONS[pub.publication_type] || FileText;
                   const colors = TYPE_COLORS[pub.publication_type] || TYPE_COLORS.paper;
                   const spot = TYPE_SPOTS[pub.publication_type] || 'rgba(245,166,35,0.1)';
+                  const readTime = READ_TIME[pub.publication_type] || '5 min';
                   const typeLabel =
                     pub.publication_type.charAt(0).toUpperCase() + pub.publication_type.slice(1);
 
                   return (
-                    <SpotlightCard
-                      key={pub.id}
-                      spotlightColor={spot}
-                      className="p-6 group"
-                    >
-                      <div className="flex items-center gap-3 mb-5">
-                        <span
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium ${colors.text} ${colors.bg}`}
-                        >
-                          <Icon className="w-3 h-3" aria-hidden="true" />
-                          {typeLabel}
-                        </span>
-                        {pub.publication_date && (
-                          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
-                            <Calendar className="w-3 h-3" aria-hidden="true" />
-                            {new Date(pub.publication_date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'short',
-                            })}
+                    <div key={pub.id} className="break-inside-avoid mb-6">
+                      <SpotlightCard spotlightColor={spot} className="p-6 group">
+                        <div className="flex items-center gap-3 mb-4 flex-wrap">
+                          <span
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono font-medium ${colors.text} ${colors.bg}`}
+                          >
+                            <Icon className="w-3 h-3" aria-hidden="true" />
+                            {typeLabel}
                           </span>
+                          {pub.publication_date && (
+                            <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
+                              <Calendar className="w-3 h-3" aria-hidden="true" />
+                              {new Date(pub.publication_date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                              })}
+                            </span>
+                          )}
+                          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
+                            <Clock className="w-3 h-3" aria-hidden="true" />
+                            {readTime}
+                          </span>
+                        </div>
+
+                        <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors leading-snug">
+                          {pub.title}
+                        </h3>
+
+                        {pub.authors && (
+                          <p className="font-mono text-xs text-text-tertiary mb-3">{pub.authors}</p>
                         )}
-                      </div>
 
-                      <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors">
-                        {pub.title}
-                      </h3>
-
-                      {pub.authors && (
-                        <p className="font-mono text-xs text-text-tertiary mb-3">{pub.authors}</p>
-                      )}
-
-                      {pub.abstract && (
-                        <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3">
-                          {pub.abstract}
-                        </p>
-                      )}
-
-                      <div className="flex items-center gap-4 pt-4 border-t border-white/8">
-                        {pub.pdf_url && (
-                          <a
-                            href={pub.pdf_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-accent-ochre hover:opacity-80 transition-opacity font-medium"
-                          >
-                            <FileText className="w-3.5 h-3.5" aria-hidden="true" />
-                            PDF
-                          </a>
+                        {pub.abstract && (
+                          <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-4">
+                            {pub.abstract}
+                          </p>
                         )}
-                        {pub.external_url && (
-                          <a
-                            href={pub.external_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-accent-cyan hover:opacity-80 transition-opacity font-medium"
-                          >
-                            Read More
-                            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                          </a>
-                        )}
-                      </div>
-                    </SpotlightCard>
+
+                        <div className="flex items-center gap-4 pt-4 border-t border-white/8">
+                          {pub.pdf_url && (
+                            <a
+                              href={pub.pdf_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-accent-ochre hover:opacity-80 transition-opacity font-medium"
+                            >
+                              <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                              PDF
+                            </a>
+                          )}
+                          {pub.external_url && (
+                            <a
+                              href={pub.external_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-accent-cyan hover:opacity-80 transition-opacity font-medium"
+                            >
+                              Read More
+                              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                            </a>
+                          )}
+                        </div>
+                      </SpotlightCard>
+                    </div>
                   );
                 })}
               </div>
@@ -173,48 +185,61 @@ export default async function InsightsPage() {
             </div>
 
             {caseStudies.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                className="columns-1 md:columns-2 lg:columns-3 gap-6"
+                style={{ columnGap: '1.5rem' }}
+              >
                 {caseStudies.map((story) => (
-                  <SpotlightCard
-                    key={story.id}
-                    spotlightColor="rgba(245,166,35,0.08)"
-                    className="overflow-hidden group"
-                  >
-                    <div className="h-44 bg-gradient-to-br from-brand-elevated to-brand-surface relative">
-                      {story.image_url ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={story.image_url}
-                          alt={story.title}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <BookOpen className="w-10 h-10 text-white/10" aria-hidden="true" />
+                  <div key={story.id} className="break-inside-avoid mb-6">
+                    <SpotlightCard
+                      spotlightColor="rgba(245,166,35,0.08)"
+                      className="overflow-hidden group"
+                    >
+                      <div className="h-44 bg-gradient-to-br from-brand-elevated to-brand-surface relative">
+                        {story.image_url ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={story.image_url}
+                            alt={story.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <BookOpen className="w-10 h-10 text-white/10" aria-hidden="true" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary px-2 py-0.5 rounded bg-white/5">
+                            Field Story
+                          </span>
+                          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">
+                            <Clock className="w-3 h-3" aria-hidden="true" />
+                            5–8 min
+                          </span>
                         </div>
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors">
-                        {story.title}
-                      </h3>
-                      {story.summary && (
-                        <p className="text-text-secondary text-sm leading-relaxed mb-4 line-clamp-2">
-                          {story.summary}
-                        </p>
-                      )}
-                      <Link
-                        href={`/insights/${story.slug}`}
-                        className="inline-flex items-center gap-1.5 text-sm text-accent-ochre font-medium hover:opacity-80 transition-opacity"
-                      >
-                        Read Full Story
-                        <ArrowRight
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          aria-hidden="true"
-                        />
-                      </Link>
-                    </div>
-                  </SpotlightCard>
+                        <h3 className="font-display text-base font-semibold text-text-primary mb-2 group-hover:text-accent-ochre transition-colors">
+                          {story.title}
+                        </h3>
+                        {story.summary && (
+                          <p className="text-text-secondary text-sm leading-relaxed mb-4 line-clamp-3">
+                            {story.summary}
+                          </p>
+                        )}
+                        <Link
+                          href={`/insights/${story.slug}`}
+                          className="inline-flex items-center gap-1.5 text-sm text-accent-ochre font-medium hover:opacity-80 transition-opacity"
+                        >
+                          Read Full Story
+                          <ArrowRight
+                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                            aria-hidden="true"
+                          />
+                        </Link>
+                      </div>
+                    </SpotlightCard>
+                  </div>
                 ))}
               </div>
             ) : (
