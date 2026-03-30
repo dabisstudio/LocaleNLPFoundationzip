@@ -6,7 +6,7 @@ import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { supabase, Program } from '@/lib/supabase';
 import { PLACEHOLDER_PROGRAMS } from '@/lib/placeholder-programs';
-import { Microscope, Mic, Heart, GraduationCap, Scale, ArrowRight } from 'lucide-react';
+import { Microscope, Mic, Heart, GraduationCap, Scale, BookOpen, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -15,6 +15,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Heart,
   GraduationCap,
   Scale,
+  BookOpen,
 };
 
 const ACCENT_MAP: Record<string, string> = {

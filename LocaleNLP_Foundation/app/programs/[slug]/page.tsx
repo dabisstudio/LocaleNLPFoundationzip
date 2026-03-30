@@ -6,7 +6,7 @@ import { GlowButton } from '@/components/ui/glow-button';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { supabase, Program } from '@/lib/supabase';
 import { PLACEHOLDER_PROGRAMS } from '@/lib/placeholder-programs';
-import { Microscope, Mic, Heart, GraduationCap, Scale, ArrowLeft, CheckCircle } from 'lucide-react';
+import { Microscope, Mic, Heart, GraduationCap, Scale, BookOpen, ArrowLeft, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -15,6 +15,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Heart,
   GraduationCap,
   Scale,
+  BookOpen,
 };
 
 const ACCENT_MAP: Record<string, string> = {
@@ -29,6 +30,9 @@ const BG_MAP: Record<string, string> = {
   clay: 'bg-accent-clay/10',
 };
 
+// Falls back to PLACEHOLDER_PROGRAMS when the database is empty or unavailable.
+// Once programs are seeded, Supabase data takes precedence and placeholder slugs
+// that are not in the DB will correctly resolve to notFound().
 async function getProgram(slug: string): Promise<Program | null> {
   const { data, error } = await supabase
     .from('programs')
