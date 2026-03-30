@@ -5,6 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { supabase, Publication, CaseStudy } from '@/lib/supabase';
+import { NewsletterForm } from '@/components/ui/newsletter-form';
 import { ArrowRight, FileText, BookOpen, Newspaper, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 
@@ -248,25 +249,7 @@ export default async function InsightsPage() {
                 Get our latest research, impact stories, and policy updates delivered to your inbox.
                 No spam — just important work.
               </p>
-              <form
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-                aria-label="Newsletter signup"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <label htmlFor="insights-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  id="insights-email"
-                  autoComplete="email"
-                  placeholder="your@email.com"
-                  className="flex-1 px-4 py-3 rounded-lg text-text-primary placeholder:text-text-tertiary text-sm bg-brand-elevated border border-white/8 focus:outline-none focus:border-accent-ochre/50 focus:ring-1 focus:ring-accent-ochre/20 transition-colors"
-                />
-                <GlowButton type="submit" variant="primary" showArrow={false}>
-                  Subscribe
-                </GlowButton>
-              </form>
+              <NewsletterForm />
             </div>
           </div>
         </section>
