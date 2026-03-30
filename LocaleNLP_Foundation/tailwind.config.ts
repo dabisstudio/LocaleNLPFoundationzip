@@ -10,20 +10,50 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sora: ['var(--font-sora)', 'sans-serif'],
+        // Primary display/heading font — Space Grotesk
+        display: ['var(--font-space-grotesk)', 'sans-serif'],
+        // Backward-compat alias: existing font-sora classes now render Space Grotesk
+        sora: ['var(--font-space-grotesk)', 'sans-serif'],
+        // Body font
         inter: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        // Metadata / numbers / code
+        mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #0a0a14 0%, #1a1a2e 50%, #0f0f1a 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #04040A 0%, #09090E 50%, #04040A 100%)',
+        'glass-gradient': 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.0) 100%)',
+        'glow-ochre': 'radial-gradient(circle at center, rgba(245,166,35,0.15) 0%, transparent 70%)',
+        'glow-cyan': 'radial-gradient(circle at center, rgba(0,229,255,0.1) 0%, transparent 70%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      transitionTimingFunction: {
+        'apple-ease': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'smooth': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+      },
       colors: {
+        // ─── NEW BRAND TOKENS ────────────────────────────────────────────────────
+        brand: {
+          deep: '#04040A',      // Deep Midnight Indigo — primary background
+          surface: '#09090E',   // Elevated cards
+          elevated: '#12121A',  // Card hover / active
+        },
+        // Bioluminescent accent triad
+        'accent-ochre': '#F5A623',
+        'accent-clay': '#E07A5F',
+        'accent-cyan': '#00E5FF',
+        // Typography hierarchy
+        'text-primary': '#FAFAFA',
+        'text-secondary': '#8F8F9D',
+        'text-tertiary': '#52525B',
+
+        // ─── LEGACY PALETTE (backward-compat — keep these exact keys) ────────────
         midnight: {
           DEFAULT: '#1a1a2e',
           50: '#f5f5f7',
@@ -34,9 +64,9 @@ const config: Config = {
           500: '#1a1a2e',
           600: '#171729',
           700: '#131322',
-          800: '#0f0f1a',
-          900: '#0a0a14',
-          950: '#05050a',
+          800: '#09090E',  // updated: brand.surface
+          900: '#04040A',  // updated: brand.deep (key change for bg-midnight-900)
+          950: '#020205',
         },
         royal: {
           DEFAULT: '#6B1F77',
@@ -52,17 +82,17 @@ const config: Config = {
           900: '#340f3b',
         },
         ochre: {
-          DEFAULT: '#C17817',
-          50: '#fef9f3',
-          100: '#fdf2e6',
-          200: '#fae0c1',
-          300: '#f6cd9b',
-          400: '#dca34f',
-          500: '#C17817',
-          600: '#ae6c15',
-          700: '#915a11',
-          800: '#74480e',
-          900: '#5f3b0b',
+          DEFAULT: '#F5A623',  // updated to bioluminescent value
+          50: '#fffbf0',
+          100: '#fef3d0',
+          200: '#fde69f',
+          300: '#fbd362',
+          400: '#F5A623',
+          500: '#e8921a',
+          600: '#c57310',
+          700: '#9d590d',
+          800: '#7a4410',
+          900: '#643810',
         },
         forest: {
           DEFAULT: '#2D6A4F',
@@ -77,6 +107,8 @@ const config: Config = {
           800: '#1b3f2f',
           900: '#163427',
         },
+
+        // ─── SHADCN CSS-VAR TOKENS ────────────────────────────────────────────────
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -118,6 +150,12 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      boxShadow: {
+        'glow-ochre': '0 0 20px rgba(245, 166, 35, 0.35)',
+        'glow-cyan': '0 0 20px rgba(0, 229, 255, 0.25)',
+        'glass': '0 4px 30px rgba(0, 0, 0, 0.5)',
+        'float': '0 20px 40px rgba(0, 0, 0, 0.4)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
@@ -136,8 +174,8 @@ const config: Config = {
           to: { opacity: '1' },
         },
         'pulse-glow': {
-          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.2)' },
+          '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.15)' },
         },
         'wave': {
           '0%': { transform: 'translateX(-100%)' },
@@ -147,15 +185,30 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        'marquee': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 8px rgba(245,166,35,0.3)' },
+          '50%': { boxShadow: '0 0 20px rgba(245,166,35,0.6)' },
+        },
+        'slide-down': {
+          from: { opacity: '0', transform: 'translateY(-8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-up': 'fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-in': 'fade-in 0.4s ease-out forwards',
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
         'wave': 'wave 2s ease-in-out infinite',
-        'float': 'float 3s ease-in-out infinite',
+        'float': 'float 4s ease-in-out infinite',
+        'marquee': 'marquee 28s linear infinite',
+        'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+        'slide-down': 'slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       spacing: {
         '18': '4.5rem',

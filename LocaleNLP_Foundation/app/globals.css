@@ -4,30 +4,31 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 5%;
+    /* ── Brand Background ──────────────────────────────── */
+    --background: 240 43% 3%;        /* #04040A  Deep Midnight Indigo */
+    --foreground: 0 0% 98%;          /* #FAFAFA */
+    --card: 240 22% 4.5%;            /* #09090E  brand.surface */
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 5%;
+    --popover: 240 22% 4.5%;
     --popover-foreground: 0 0% 98%;
-    --primary: 280 57% 29%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 5% 15%;
+    --primary: 37 91% 55%;           /* #F5A623  accent-ochre */
+    --primary-foreground: 0 0% 4%;
+    --secondary: 240 12% 9%;         /* #12121A  brand.elevated */
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 37 79% 42%;
-    --accent-foreground: 0 0% 98%;
+    --muted: 240 12% 9%;
+    --muted-foreground: 240 3% 56%;  /* #8F8F9D  text-secondary */
+    --accent: 37 91% 55%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5% 18%;
-    --input: 240 5% 18%;
-    --ring: 280 57% 29%;
-    --chart-1: 280 57% 45%;
-    --chart-2: 160 60% 35%;
-    --chart-3: 37 79% 42%;
+    --border: 240 6% 12%;
+    --input: 240 6% 12%;
+    --ring: 37 91% 55%;
+    --chart-1: 37 91% 55%;
+    --chart-2: 186 100% 50%;
+    --chart-3: 14 73% 63%;
     --chart-4: 220 70% 50%;
-    --chart-5: 340 75% 55%;
+    --chart-5: 280 57% 45%;
     --radius: 0.625rem;
   }
 
@@ -40,11 +41,16 @@
   }
 
   body {
-    @apply bg-midnight-900 text-foreground font-inter antialiased;
+    background-color: #04040A;
+    color: #FAFAFA;
+    font-family: var(--font-inter), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sora tracking-tight;
+    font-family: var(--font-space-grotesk), sans-serif;
+    @apply tracking-tight;
   }
 
   h1 {
@@ -69,6 +75,7 @@
 }
 
 @layer components {
+  /* ── Layout ──────────────────────────────────────────── */
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
@@ -81,56 +88,101 @@
     @apply max-w-4xl mx-auto;
   }
 
+  /* ── Glass Panel — the definitive AUI.io card style ──── */
+  .glass-panel {
+    background: #09090E;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Legacy alias used in existing page components */
   .glass-card {
-    @apply bg-midnight-800/50 backdrop-blur-xl border border-midnight-600/30 rounded-xl;
+    background: rgba(9, 9, 14, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply rounded-xl;
   }
 
+  /* ── Typography ──────────────────────────────────────── */
   .text-gradient {
-    @apply bg-gradient-to-r from-ochre-400 via-royal-400 to-forest-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent-ochre via-accent-clay to-accent-cyan bg-clip-text text-transparent;
   }
 
+  /* ── Buttons ─────────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-royal-500 hover:bg-royal-600 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-royal-500/25;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#04040A] font-medium rounded-lg
+           transition-all duration-300 ease-apple-ease
+           hover:shadow-glow-ochre hover:-translate-y-0.5
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-midnight-700 hover:bg-midnight-600 text-white font-medium rounded-lg border border-midnight-500 transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 glass-panel text-white font-medium rounded-lg
+           transition-all duration-300 ease-apple-ease
+           hover:border-accent-ochre/40
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre;
+    border-radius: var(--radius);
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent hover:bg-white/5 text-white font-medium rounded-lg border border-midnight-400 transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent text-white font-medium rounded-lg
+           border border-white/10
+           transition-all duration-300
+           hover:bg-white/5 hover:border-white/20
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30;
   }
 
   .link-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-ochre-400 hover:after:w-full after:transition-all after:duration-300;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5
+           after:bg-accent-ochre hover:after:w-full after:transition-all after:duration-300;
   }
 
+  /* ── Stats ───────────────────────────────────────────── */
   .stat-card {
     @apply glass-card p-6 text-center;
   }
 
   .stat-number {
-    @apply text-4xl md:text-5xl font-sora font-bold text-ochre-400;
+    font-family: var(--font-jetbrains-mono), monospace;
+    @apply text-4xl md:text-5xl font-bold text-accent-ochre;
   }
 
   .stat-label {
-    @apply text-sm md:text-base text-midnight-200 mt-2;
+    @apply text-sm md:text-base text-text-secondary mt-2;
   }
 
+  /* ── Section helpers ─────────────────────────────────── */
   .section-title {
     @apply text-center mb-4;
   }
 
   .section-subtitle {
-    @apply text-center text-midnight-200 max-w-2xl mx-auto mb-12;
+    @apply text-center text-text-secondary max-w-2xl mx-auto mb-12;
   }
 
+  /* ── Scroll-reveal (CSS fallback) ────────────────────── */
   .animate-on-scroll {
     @apply opacity-0 translate-y-5;
   }
 
   .animate-on-scroll.is-visible {
-    @apply opacity-100 translate-y-0 transition-all duration-700 ease-out;
+    @apply opacity-100 translate-y-0 transition-all duration-700;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Marquee container ───────────────────────────────── */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 }
 
@@ -138,8 +190,17 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Grid-line texture overlay */
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
 }
 
+/* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -149,21 +210,33 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .marquee-track {
+    animation: none !important;
+  }
 }
 
+/* ── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-midnight-900;
+  background: #04040A;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-midnight-600 rounded-full hover:bg-midnight-500;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 166, 35, 0.4);
+}
+
+/* ── Text selection ─────────────────────────────────────── */
 ::selection {
-  @apply bg-royal-500/40 text-white;
+  background: rgba(245, 166, 35, 0.25);
+  color: #FAFAFA;
 }

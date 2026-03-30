@@ -7,6 +7,7 @@ const footerLinks = {
     { label: 'OpenSpeech Initiative', href: '/programs/openspeech-initiative' },
     { label: 'NLP for Public Good', href: '/programs/nlp-public-good' },
     { label: 'AIxLanguage Fellowship', href: '/programs/aixlanguage-fellowship' },
+    { label: 'Civic AI', href: '/programs/civic-ai' },
   ],
   resources: [
     { label: 'Open Models & APIs', href: '/technology' },
@@ -37,43 +38,53 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight-950 border-t border-midnight-800">
+    <footer style={{ backgroundColor: '#04040A' }} className="border-t border-white/8">
       <div className="container-wide section-padding py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+
+          {/* ── Brand column ──────────────────────────── */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-royal-500 to-ochre-500 flex items-center justify-center">
-                <Globe className="w-5 h-5 text-white" />
+            <Link href="/" className="flex items-center gap-2.5 mb-5 group">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-ochre/80 to-accent-clay/80 flex items-center justify-center">
+                <Globe className="w-4.5 h-4.5 text-white" />
               </div>
-              <span className="font-sora font-bold text-xl text-white">LocaleNLP</span>
+              <span className="font-display font-bold text-lg text-white group-hover:text-accent-ochre transition-colors duration-300">
+                LocaleNLP
+              </span>
             </Link>
-            <p className="text-midnight-300 text-sm mb-6 max-w-sm">
-              Building language technology that serves all of Africa. Every voice matters, every language counts.
+
+            <p className="text-text-secondary text-sm leading-relaxed mb-6 max-w-xs">
+              Building the open, ethical infrastructure for African and Indigenous languages.
+              Ensuring no community is left behind in the intelligence era.
             </p>
-            <div className="flex items-center gap-4">
+
+            <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-midnight-800 flex items-center justify-center text-midnight-300 hover:text-white hover:bg-midnight-700 transition-colors"
+                  className="w-9 h-9 rounded-lg glass-panel flex items-center justify-center text-text-secondary hover:text-white hover:border-accent-ochre/30 transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
+          {/* ── Programs ───────────────────────────────── */}
           <div>
-            <h4 className="font-sora font-semibold text-white text-sm mb-4">Programs</h4>
-            <ul className="space-y-2">
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">
+              Programs
+            </h4>
+            <ul className="space-y-2.5">
               {footerLinks.programs.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-midnight-300 hover:text-white transition-colors"
+                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -82,14 +93,17 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* ── Resources ──────────────────────────────── */}
           <div>
-            <h4 className="font-sora font-semibold text-white text-sm mb-4">Resources</h4>
-            <ul className="space-y-2">
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">
+              Resources
+            </h4>
+            <ul className="space-y-2.5">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-midnight-300 hover:text-white transition-colors"
+                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -98,14 +112,17 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* ── Organization ───────────────────────────── */}
           <div>
-            <h4 className="font-sora font-semibold text-white text-sm mb-4">Organization</h4>
-            <ul className="space-y-2">
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">
+              Organization
+            </h4>
+            <ul className="space-y-2.5">
               {footerLinks.organization.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-midnight-300 hover:text-white transition-colors"
+                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -114,14 +131,17 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* ── Connect ────────────────────────────────── */}
           <div>
-            <h4 className="font-sora font-semibold text-white text-sm mb-4">Connect</h4>
-            <ul className="space-y-2">
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">
+              Connect
+            </h4>
+            <ul className="space-y-2.5">
               {footerLinks.connect.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-midnight-300 hover:text-white transition-colors"
+                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -131,17 +151,27 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-midnight-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-midnight-400">
-            2024 LocaleNLP Foundation. All rights reserved.
+        {/* ── Bottom bar ─────────────────────────────── */}
+        <div className="mt-12 pt-8 border-t border-white/6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-mono text-xs text-text-tertiary tracking-wider">
+            © 2026 LocaleNLP Foundation. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm text-midnight-400">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+          <div className="flex items-center gap-6">
+            <Link
+              href="/privacy"
+              className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            <Link
+              href="/terms"
+              className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide"
+            >
               Terms of Service
             </Link>
+            <span className="font-mono text-xs text-text-tertiary tracking-wider">
+              [ BUILT FOR AFRICA ]
+            </span>
           </div>
         </div>
       </div>
