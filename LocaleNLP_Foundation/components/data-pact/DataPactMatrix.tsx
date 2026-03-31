@@ -163,6 +163,7 @@ export function DataPactMatrix() {
                 aria-selected={isActive}
                 aria-controls={`pact-panel-${p.id}`}
                 onClick={() => setActive(p.id)}
+                aria-label={t(p.labelKey)}
                 className={cn(
                   'flex-1 flex items-center justify-center gap-2 py-3 px-3 text-xs sm:text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-cyan',
                 )}
@@ -172,7 +173,7 @@ export function DataPactMatrix() {
                 }
               >
                 <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline">{t(p.labelKey)}</span>
+                <span className="sr-only sm:not-sr-only sm:inline">{t(p.labelKey)}</span>
               </button>
             );
           })}
