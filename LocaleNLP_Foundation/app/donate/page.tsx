@@ -4,6 +4,8 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { DonationCalculator } from '@/components/donate/DonationCalculator';
+import { MonthlyGiving } from '@/components/donate/MonthlyGiving';
 import { Heart, Globe, Users, CheckCircle, Shield, FileText, ExternalLink } from 'lucide-react';
 
 const TIERS = [
@@ -11,7 +13,8 @@ const TIERS = [
     name: 'Supporter',
     amount: '$50',
     period: 'one-time',
-    description: 'Help us digitize one hour of speech data',
+    description:
+      'Digitizes one full hour of endangered speech — a dialect preserved for every generation that follows.',
     features: [
       'Named in our community supporters list',
       'Quarterly impact newsletter',
@@ -25,7 +28,8 @@ const TIERS = [
     name: 'Sustainer',
     amount: '$500',
     period: 'one-time',
-    description: 'Fund a week of community data collection',
+    description:
+      'Funds a full week of community data collection — linguists paid, gear deployed, data returned to the community.',
     features: [
       'Everything in Supporter',
       'Personal thank-you from our team',
@@ -40,7 +44,8 @@ const TIERS = [
     name: 'Partner',
     amount: '$5,000',
     period: 'one-time',
-    description: 'Support a language for an entire month',
+    description:
+      'Sponsors an entire language for a month — from community mobilisation to dataset release under an open licence.',
     features: [
       'Everything in Sustainer',
       'Choose a language to sponsor',
@@ -52,20 +57,6 @@ const TIERS = [
     accent: 'text-accent-clay',
     spot: 'rgba(224,122,95,0.08)',
   },
-];
-
-const MONTHLY_OPTIONS = [
-  { amount: 10, impact: 'Supports 1 hour of transcription work' },
-  { amount: 25, impact: 'Funds audio equipment for 1 contributor' },
-  { amount: 50, impact: 'Covers 1 week of model training compute' },
-  { amount: 100, impact: 'Sponsors a community data collection session' },
-];
-
-const USE_OF_FUNDS = [
-  { label: 'Research & Development', percent: 45, color: 'bg-accent-ochre' },
-  { label: 'Community Programs', percent: 30, color: 'bg-accent-clay' },
-  { label: 'Operations', percent: 15, color: 'bg-accent-cyan' },
-  { label: 'Policy Advocacy', percent: 10, color: 'bg-text-tertiary' },
 ];
 
 const INSTITUTIONAL = [
@@ -119,6 +110,8 @@ export default function DonatePage() {
           </GlowButton>
         </PageHeader>
 
+        <DonationCalculator />
+
         <section id="give" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
@@ -127,7 +120,8 @@ export default function DonatePage() {
                 Make an Immediate Impact
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                Every dollar goes directly to language preservation and AI development.
+                A single contribution triggers real infrastructure — transcription hours, compute
+                cycles, and linguist stipends begin the moment your payment clears.
               </p>
             </div>
 
@@ -200,8 +194,8 @@ export default function DonatePage() {
                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
                 Open Donation Portal
               </GlowButton>
-              <p className="text-text-tertiary text-xs mt-3">
-                Secure payment processed via our verified non-profit donation platform
+              <p className="font-mono text-xs text-text-tertiary mt-3">
+                🔒 256-bit encrypted via Stripe · 501(c)(3) verified · No account required
               </p>
             </div>
 
@@ -212,38 +206,11 @@ export default function DonatePage() {
                   Become a Sustaining Supporter
                 </h2>
                 <p className="text-text-secondary mb-8 leading-relaxed">
-                  Monthly donors provide the stable funding we need for long-term projects and
-                  lasting commitments to communities.
+                  Monthly donors are the backbone of long-term language preservation. Select your
+                  tier and see the exact outcome your recurring contribution creates.
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {MONTHLY_OPTIONS.map((option) => (
-                    <div
-                      key={option.amount}
-                      className="flex items-center justify-between p-4 glass-card hover:border-accent-ochre/30 transition-colors cursor-pointer group"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-accent-ochre/10 flex items-center justify-center">
-                          <span className="font-mono text-base font-bold text-accent-ochre">
-                            ${option.amount}
-                          </span>
-                        </div>
-                        <p className="text-text-secondary text-sm">{option.impact}</p>
-                      </div>
-                      <div className="w-4 h-4 rounded-full border-2 border-text-tertiary group-hover:border-accent-ochre transition-colors" />
-                    </div>
-                  ))}
-                </div>
-
-                <a
-                  href="https://donate.localenlp.org/monthly"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-flex items-center gap-2"
-                >
-                  Start Monthly Donation
-                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                </a>
+                <MonthlyGiving />
               </div>
 
               <div className="glass-card p-8">
@@ -251,12 +218,17 @@ export default function DonatePage() {
                   Use of Funds
                 </h3>
                 <p className="text-text-secondary text-sm mb-8">
-                  We are committed to radical transparency. Here is how your donations are
-                  allocated.
+                  Cryptographically secure, community-owned, and globally compliant. Here is
+                  exactly how every dollar is allocated.
                 </p>
 
                 <div className="space-y-5">
-                  {USE_OF_FUNDS.map((item) => (
+                  {[
+                    { label: 'Research & Development', percent: 45, color: 'bg-accent-ochre' },
+                    { label: 'Community Programs', percent: 30, color: 'bg-accent-clay' },
+                    { label: 'Operations', percent: 15, color: 'bg-accent-cyan' },
+                    { label: 'Policy Advocacy', percent: 10, color: 'bg-text-tertiary' },
+                  ].map((item) => (
                     <div key={item.label}>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-text-secondary text-sm">{item.label}</span>
@@ -286,7 +258,7 @@ export default function DonatePage() {
                       Verified Non-Profit
                     </p>
                     <p className="text-xs text-text-tertiary mt-0.5">
-                      501(c)(3) registered. All donations are tax-deductible.
+                      501(c)(3) registered. All donations are tax-deductible in the United States.
                     </p>
                   </div>
                 </div>
