@@ -5,6 +5,7 @@ import { Mic, FileText, Headphones, Users, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlowButton } from '@/components/ui/glow-button';
 import type { LanguageBounty } from '@/lib/supabase';
+import { useTranslation } from '@/lib/i18n/TranslationContext';
 
 const MODALITY_ICON: Record<LanguageBounty['modality'], React.ComponentType<{ className?: string }>> = {
   'Speech':        Mic,
@@ -16,12 +17,6 @@ const MODALITY_COLOR: Record<LanguageBounty['modality'], string> = {
   'Speech':        'text-accent-cyan  bg-accent-cyan/10',
   'Text-Pair':     'text-accent-ochre bg-accent-ochre/10',
   'Transcription': 'text-accent-clay  bg-accent-clay/10',
-};
-
-const STATUS_LABEL: Record<LanguageBounty['bounty_status'], string> = {
-  'funding':           'Open — Fundraising',
-  'active_collection': 'Active Collection',
-  'fulfilled':         'Fulfilled',
 };
 
 const STATUS_DOT: Record<LanguageBounty['bounty_status'], string> = {
@@ -36,6 +31,7 @@ function fmt(n: number): string {
 
 export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
   const [barWidth, setBarWidth] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const pct = Math.min(100, (bounty.current_funding_usd / bounty.funding_goal_usd) * 100);
@@ -47,6 +43,12 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
   const isCritical    = bounty.urgency_level === 'critical';
   const isFulfilled   = bounty.bounty_status === 'fulfilled';
   const pct           = Math.min(100, (bounty.current_funding_usd / bounty.funding_goal_usd) * 100);
+
+  const STATUS_LABEL: Record<LanguageBounty['bounty_status'], string> = {
+    'funding':           t('bounty.status_funding', 'Open — Fundraising'),
+    'active_collection': t('bounty.status_active',  'Active Collection'),
+    'fulfilled':         t('bounty.status_fulfilled','Fulfilled'),
+  };
 
   return (
     <article
@@ -80,7 +82,9 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
             ? 'bg-accent-clay/15 text-accent-clay'
             : 'bg-accent-ochre/15 text-accent-ochre',
         )}>
-          {isCritical ? 'CRITICAL' : 'STANDARD'}
+          {isCritical
+            ? t('bounty.urgency_critical', 'CRITICAL')
+            : t('bounty.urgency_standard', 'STANDARD')}
         </span>
       </div>
 
@@ -96,11 +100,11 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
       <div className="flex items-center gap-4 text-xs text-text-secondary">
         <span className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          {bounty.target_hours} hrs target
+          {t('bounty.hrs_target', '{n} hrs target').replace('{n}', String(bounty.target_hours))}
         </span>
         <span className="flex items-center gap-1.5">
           <Users className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          {bounty.contributors_engaged} contributors
+          {t('bounty.contributors', '{n} contributors').replace('{n}', String(bounty.contributors_engaged))}
         </span>
       </div>
 
@@ -114,7 +118,14 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
           </span>
         </div>
 
-        <div className="h-1.5 rounded-full bg-white/8 overflow-hidden" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label={`${Math.round(pct)}% funded`}>
+        <div
+          className="h-1.5 rounded-full bg-white/8 overflow-hidden"
+          role="progressbar"
+          aria-valuenow={Math.round(pct)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={t('bounty.progress_label', '{pct}% funded').replace('{pct}', String(Math.round(pct)))}
+        >
           <div
             className={cn(
               'h-full rounded-full transition-[width] duration-700 ease-out',
@@ -134,7 +145,7 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
             {STATUS_LABEL[bounty.bounty_status]}
           </span>
           <span className="font-mono text-[11px] text-text-tertiary">
-            {Math.round(pct)}% funded
+            {t('bounty.pct_funded', '{pct}% funded').replace('{pct}', String(Math.round(pct)))}
           </span>
         </div>
       </div>
@@ -147,7 +158,7 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
           aria-label={`${bounty.title} is fully funded`}
           aria-disabled="true"
         >
-          Fully Funded
+          {t('bounty.fully_funded', 'Fully Funded')}
         </GlowButton>
       ) : (
         <GlowButton
@@ -156,7 +167,7 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
           className="mt-auto w-full justify-center text-sm"
           aria-label={`Fund ${bounty.title} bounty`}
         >
-          Fund this Bounty
+          {t('bounty.fund_cta', 'Fund this Bounty')}
         </GlowButton>
       )}
     </article>

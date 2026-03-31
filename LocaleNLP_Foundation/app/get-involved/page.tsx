@@ -10,12 +10,7 @@ import { GlowButton } from '@/components/ui/glow-button';
 import { ContributorStepper } from '@/components/get-involved/ContributorStepper';
 import { MicroCommitForm } from '@/components/get-involved/MicroCommitForm';
 import { Users, GraduationCap, Heart } from 'lucide-react';
-
-const CONTACT_CHANNELS = [
-  { icon: Users,          label: 'Partnerships',          email: 'partnerships@localenlp.org' },
-  { icon: GraduationCap, label: 'Fellowship Applications', email: 'fellowship@localenlp.org' },
-  { icon: Heart,         label: 'General Inquiries',       email: 'hello@localenlp.org' },
-];
+import { useTranslation } from '@/lib/i18n/TranslationContext';
 
 function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -55,6 +50,26 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 }
 
 export default function GetInvolvedPage() {
+  const { t } = useTranslation();
+
+  const CONTACT_CHANNELS = [
+    { icon: Users,          labelKey: 'involved.contact_partnerships',  labelFallback: 'Partnerships',           email: 'partnerships@localenlp.org' },
+    { icon: GraduationCap, labelKey: 'involved.contact_fellowship',     labelFallback: 'Fellowship Applications', email: 'fellowship@localenlp.org' },
+    { icon: Heart,         labelKey: 'involved.contact_general',        labelFallback: 'General Inquiries',       email: 'hello@localenlp.org' },
+  ];
+
+  const FEATURES = [
+    { color: '#F5A623', titleKey: 'involved.feature_flexible_title', bodyKey: 'involved.feature_flexible_body', titleFallback: 'Flexible hours', bodyFallback: 'Contribute whenever suits you — no shifts, no minimums.' },
+    { color: '#00E5FF', titleKey: 'involved.feature_payment_title',  bodyKey: 'involved.feature_payment_body',  titleFallback: 'Instant payment',   bodyFallback: 'M-Pesa, Wave, or Orange Money paid on consensus.' },
+    { color: '#E07A5F', titleKey: 'involved.feature_ownership_title', bodyKey: 'involved.feature_ownership_body', titleFallback: 'Cultural ownership', bodyFallback: 'You retain moral rights over your linguistic contribution.' },
+  ];
+
+  const STATS = [
+    { value: 4700, suffix: '+', labelKey: 'involved.stat_contributors', labelFallback: 'Contributors active' },
+    { value: 200,  suffix: '+', labelKey: 'involved.stat_languages',    labelFallback: 'Languages supported' },
+    { value: 47,   suffix: '',  labelKey: 'involved.stat_countries',    labelFallback: 'Countries reached' },
+  ];
+
   return (
     <>
       <Navigation />
@@ -74,40 +89,34 @@ export default function GetInvolvedPage() {
 
           <div className="container-wide section-padding relative z-10">
             <div className="max-w-3xl">
-              <MonoLabel label="GET INVOLVED" number="00" className="mb-6" />
+              <MonoLabel label={t('involved.contact_label', 'GET INVOLVED')} number="00" className="mb-6" />
 
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-[1.08]">
-                Own your language.{' '}
-                <span className="text-accent-ochre">Earn for your expertise.</span>
+                {t('involved.h1', 'Own your language.')}{' '}
+                <span className="text-accent-ochre">{t('involved.h1_accent', 'Earn for your expertise.')}</span>
               </h1>
 
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-                Lughatna connects native speakers across Africa with researchers and institutions
-                who need their knowledge. Contribute voice data, translations, and annotations —
-                and get paid instantly via mobile money, while preserving your language for generations.
+                {t('involved.subtitle', 'Lughatna connects native speakers across Africa with researchers and institutions who need their knowledge. Contribute voice data, translations, and annotations — and get paid instantly via mobile money, while preserving your language for generations.')}
               </p>
 
               <div className="flex flex-wrap gap-4 mb-16">
                 <GlowButton href="#micro-form" variant="primary">
-                  Join the Lughatna Network
+                  {t('involved.cta_join', 'Join the Lughatna Network')}
                 </GlowButton>
                 <GlowButton href="#pathways" variant="ghost" showArrow={false}>
-                  See all pathways
+                  {t('involved.cta_pathways', 'See all pathways')}
                 </GlowButton>
               </div>
 
               <div className="flex flex-wrap gap-10">
-                {[
-                  { value: 4700, suffix: '+', label: 'Contributors active' },
-                  { value: 200,  suffix: '+', label: 'Languages supported' },
-                  { value: 47,   suffix: '',  label: 'Countries reached' },
-                ].map(({ value, suffix, label }) => (
-                  <div key={label}>
+                {STATS.map(({ value, suffix, labelKey, labelFallback }) => (
+                  <div key={labelKey}>
                     <p className="font-display text-3xl md:text-4xl font-bold text-accent-ochre leading-none">
                       <AnimatedCounter target={value} suffix={suffix} />
                     </p>
                     <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-tertiary mt-1.5">
-                      {label}
+                      {t(labelKey, labelFallback)}
                     </p>
                   </div>
                 ))}
@@ -119,12 +128,12 @@ export default function GetInvolvedPage() {
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="mb-12">
-              <MonoLabel label="HOW IT WORKS" number="01" className="mb-5" />
+              <MonoLabel label={t('involved.how_label', 'HOW IT WORKS')} number="01" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                Three steps to your first payout
+                {t('involved.how_title', 'Three steps to your first payout')}
               </h2>
               <p className="text-text-secondary max-w-xl">
-                No technical skills required — just your voice, your language, and ten minutes.
+                {t('involved.how_body', 'No technical skills required — just your voice, your language, and ten minutes.')}
               </p>
             </div>
             <ContributorStepper />
@@ -135,27 +144,21 @@ export default function GetInvolvedPage() {
           <div className="container-wide section-padding">
             <div className="grid lg:grid-cols-2 gap-14 items-start">
               <div>
-                <MonoLabel label="JOIN THE NETWORK" number="02" className="mb-5" />
+                <MonoLabel label={t('involved.form_label', 'JOIN THE NETWORK')} number="02" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-5">
-                  Start contributing today
+                  {t('involved.form_title', 'Start contributing today')}
                 </h2>
                 <p className="text-text-secondary leading-relaxed mb-8 max-w-md">
-                  Enter your number and native language. We&apos;ll send you a prompt via SMS — no app
-                  download required. Your first session takes under 10 minutes and earns you an
-                  instant mobile money transfer upon consensus.
+                  {t('involved.form_body', "Enter your number and native language. We'll send you a prompt via SMS — no app download required. Your first session takes under 10 minutes and earns you an instant mobile money transfer upon consensus.")}
                 </p>
 
                 <div className="space-y-5">
-                  {[
-                    { color: '#F5A623', title: 'Flexible hours', body: 'Contribute whenever suits you — no shifts, no minimums.' },
-                    { color: '#00E5FF', title: 'Instant payment', body: 'M-Pesa, Wave, or Orange Money paid on consensus.' },
-                    { color: '#E07A5F', title: 'Cultural ownership', body: 'You retain moral rights over your linguistic contribution.' },
-                  ].map(({ color, title, body }) => (
-                    <div key={title} className="flex items-start gap-4">
+                  {FEATURES.map(({ color, titleKey, bodyKey, titleFallback, bodyFallback }) => (
+                    <div key={titleKey} className="flex items-start gap-4">
                       <div className="w-2 h-2 rounded-full mt-2 shrink-0" style={{ background: color }} />
                       <div>
-                        <p className="text-text-primary font-medium text-sm mb-0.5">{title}</p>
-                        <p className="text-text-secondary text-sm">{body}</p>
+                        <p className="text-text-primary font-medium text-sm mb-0.5">{t(titleKey, titleFallback)}</p>
+                        <p className="text-text-secondary text-sm">{t(bodyKey, bodyFallback)}</p>
                       </div>
                     </div>
                   ))}
@@ -164,7 +167,7 @@ export default function GetInvolvedPage() {
 
               <div className="glass-card p-8">
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-6">
-                  [ QUICK SIGN-UP — 2 FIELDS ONLY ]
+                  {t('involved.signup_label', '[ QUICK SIGN-UP — 2 FIELDS ONLY ]')}
                 </p>
                 <MicroCommitForm />
               </div>
@@ -175,13 +178,12 @@ export default function GetInvolvedPage() {
         <section id="pathways" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="mb-12">
-              <MonoLabel label="PARTICIPATION PATHWAYS" number="03" className="mb-5" />
+              <MonoLabel label={t('involved.pathways_label', 'PARTICIPATION PATHWAYS')} number="03" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                More ways to contribute
+                {t('involved.pathways_title', 'More ways to contribute')}
               </h2>
               <p className="text-text-secondary max-w-2xl">
-                From technical contributions to community data collection — select your role to
-                see how you can make an impact.
+                {t('involved.pathways_body', 'From technical contributions to community data collection — select your role to see how you can make an impact.')}
               </p>
             </div>
             <PersonaSwitcher />
@@ -192,23 +194,22 @@ export default function GetInvolvedPage() {
           <div className="container-wide section-padding">
             <div className="grid lg:grid-cols-2 gap-14">
               <div>
-                <MonoLabel label="CONTACT" number="04" className="mb-5" />
+                <MonoLabel label={t('involved.contact_label', 'CONTACT')} number="04" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
-                  Let&apos;s Talk
+                  {t('involved.contact_title', "Let's Talk")}
                 </h2>
                 <p className="text-text-secondary leading-relaxed mb-10">
-                  Ready to get involved or have questions about our programs? Our team responds
-                  within 48 hours. Fill out the form or reach us directly at the addresses below.
+                  {t('involved.contact_body', 'Ready to get involved or have questions about our programs? Our team responds within 48 hours. Fill out the form or reach us directly at the addresses below.')}
                 </p>
 
                 <div className="space-y-6">
-                  {CONTACT_CHANNELS.map(({ icon: Icon, label, email }) => (
-                    <div key={label} className="flex items-start gap-4">
+                  {CONTACT_CHANNELS.map(({ icon: Icon, labelKey, labelFallback, email }) => (
+                    <div key={labelKey} className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-lg bg-accent-ochre/10 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5 text-accent-ochre" aria-hidden="true" />
                       </div>
                       <div>
-                        <p className="font-display font-medium text-text-primary text-sm mb-0.5">{label}</p>
+                        <p className="font-display font-medium text-text-primary text-sm mb-0.5">{t(labelKey, labelFallback)}</p>
                         <a
                           href={`mailto:${email}`}
                           className="text-sm text-text-secondary hover:text-accent-ochre transition-colors"

@@ -8,42 +8,13 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { GlowButton } from '@/components/ui/glow-button';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { Download, Mic, Server, GraduationCap, MapPin } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n/TranslationContext';
 
 const TIERS = [
   { label: '$50/mo',    amount: 50  },
   { label: '$100/mo',   amount: 100 },
   { label: '$500/mo',   amount: 500 },
   { label: '$1,000/mo', amount: 1000 },
-];
-
-const ALLOCATION = [
-  { label: 'Annotators in Senegal', pct: 0.45, icon: Mic,           color: 'text-accent-ochre', spotlight: 'rgba(245,166,35,0.1)' },
-  { label: 'Server Compute',        pct: 0.30, icon: Server,         color: 'text-accent-cyan',  spotlight: 'rgba(0,229,255,0.08)' },
-  { label: 'Fellowship Program',    pct: 0.25, icon: GraduationCap,  color: 'text-accent-clay',  spotlight: 'rgba(224,122,95,0.1)' },
-];
-
-const FIELD_NOTES = [
-  {
-    country: 'Senegal',
-    dialect: 'Pulaar (Futa Toro)',
-    date: 'Mar 2026',
-    update: 'Our annotation team in Dakar finished validating 2,800 speech clips this week — the highest weekly throughput yet. Contributors are requesting expanded vocabulary domains covering agriculture and health.',
-    accentColor: '#F5A623',
-  },
-  {
-    country: 'Ethiopia',
-    dialect: 'Amharic (Addis)',
-    date: 'Feb 2026',
-    update: 'A new cohort of 14 linguists joined the fellowship after completing their university exams. Corpus annotation for the Ge\'ez script extension is now 78% complete ahead of the Q2 deadline.',
-    accentColor: '#00E5FF',
-  },
-  {
-    country: 'Mali',
-    dialect: 'Bambara (Bamako)',
-    date: 'Jan 2026',
-    update: 'Infrastructure upgrades funded last quarter enabled real-time ASR testing at 16 kHz for the first time. Model word-error rate dropped from 34% to 19% in eight weeks of fine-tuning.',
-    accentColor: '#E07A5F',
-  },
 ];
 
 const TAX_ROWS = [
@@ -90,6 +61,7 @@ function useAnimatedCounter(target: number, duration = 900) {
 export default function SupporterPage() {
   const [tierIdx, setTierIdx] = useState(1);
   const [period, setPeriod] = useState<'month' | 'ytd'>('month');
+  const { t } = useTranslation();
 
   const tier = TIERS[tierIdx];
   const hoursPerMonth = tier.amount / 10;
@@ -98,17 +70,47 @@ export default function SupporterPage() {
 
   const animatedHours = useAnimatedCounter(displayHours);
 
+  const ALLOCATION = [
+    { labelKey: 'supporter.alloc_annotators', labelFallback: 'Annotators in Senegal', pct: 0.45, icon: Mic,           color: 'text-accent-ochre', spotlight: 'rgba(245,166,35,0.1)' },
+    { labelKey: 'supporter.alloc_compute',    labelFallback: 'Server Compute',        pct: 0.30, icon: Server,         color: 'text-accent-cyan',  spotlight: 'rgba(0,229,255,0.08)' },
+    { labelKey: 'supporter.alloc_fellowship', labelFallback: 'Fellowship Program',    pct: 0.25, icon: GraduationCap,  color: 'text-accent-clay',  spotlight: 'rgba(224,122,95,0.1)' },
+  ];
+
+  const FIELD_NOTES = [
+    {
+      country: 'Senegal',
+      dialect: 'Pulaar (Futa Toro)',
+      date: 'Mar 2026',
+      update: 'Our annotation team in Dakar finished validating 2,800 speech clips this week — the highest weekly throughput yet. Contributors are requesting expanded vocabulary domains covering agriculture and health.',
+      accentColor: '#F5A623',
+    },
+    {
+      country: 'Ethiopia',
+      dialect: 'Amharic (Addis)',
+      date: 'Feb 2026',
+      update: "A new cohort of 14 linguists joined the fellowship after completing their university exams. Corpus annotation for the Ge'ez script extension is now 78% complete ahead of the Q2 deadline.",
+      accentColor: '#00E5FF',
+    },
+    {
+      country: 'Mali',
+      dialect: 'Bambara (Bamako)',
+      date: 'Jan 2026',
+      update: 'Infrastructure upgrades funded last quarter enabled real-time ASR testing at 16 kHz for the first time. Model word-error rate dropped from 34% to 19% in eight weeks of fine-tuning.',
+      accentColor: '#E07A5F',
+    },
+  ];
+
   return (
     <>
       <Navigation />
       <main id="main-content" className="pt-24 pb-32">
 
         <PageHeader
-          label="IMPACT PORTFOLIO"
+          label={t('supporter.label', 'IMPACT PORTFOLIO')}
           number="00"
-          title="Your Investment,"
-          titleGradient="Measured to the Hour"
-          subtitle="Every dollar you commit is tracked, allocated, and reported in real time."
+          title={t('supporter.title', 'Your Investment,')}
+          titleGradient={t('supporter.title_gradient', 'Measured to the Hour')}
+          subtitle={t('supporter.subtitle', 'Every dollar you commit is tracked, allocated, and reported in real time.')}
           accentColor="cyan"
         />
 
@@ -117,12 +119,12 @@ export default function SupporterPage() {
 
             <div className="max-w-2xl mx-auto mb-14">
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-center mb-3">
-                Select Your Giving Tier
+                {t('supporter.select_tier', 'Select Your Giving Tier')}
               </p>
               <div className="flex rounded-xl overflow-hidden border border-white/10 bg-brand-deep">
-                {TIERS.map((t, i) => (
+                {TIERS.map((tier, i) => (
                   <button
-                    key={t.amount}
+                    key={tier.amount}
                     type="button"
                     onClick={() => setTierIdx(i)}
                     className={[
@@ -132,7 +134,7 @@ export default function SupporterPage() {
                         : 'text-text-tertiary hover:text-text-secondary',
                     ].join(' ')}
                   >
-                    {t.label}
+                    {tier.label}
                   </button>
                 ))}
               </div>
@@ -151,14 +153,14 @@ export default function SupporterPage() {
                         period === p ? 'bg-white/10 text-text-primary' : 'text-text-tertiary hover:text-text-secondary',
                       ].join(' ')}
                     >
-                      {p === 'month' ? 'This Month' : 'Year to Date'}
+                      {p === 'month' ? t('supporter.this_month', 'This Month') : t('supporter.ytd', 'Year to Date')}
                     </button>
                   ))}
                 </div>
               </div>
 
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-tertiary mb-3">
-                Validated Speech Hours Funded
+                {t('supporter.funded_hours', 'Validated Speech Hours Funded')}
               </p>
 
               <div
@@ -171,7 +173,9 @@ export default function SupporterPage() {
               </div>
 
               <p className="font-mono text-sm text-text-tertiary">
-                hrs / {period === 'month' ? 'month' : 'year to date (×6)'}
+                {period === 'month'
+                  ? t('supporter.hrs_month', 'hrs / month')
+                  : t('supporter.hrs_ytd', 'hrs / year to date (×6)')}
               </p>
 
               <p className="mt-4 text-text-tertiary text-xs font-mono">
@@ -181,18 +185,18 @@ export default function SupporterPage() {
 
             <div className="mb-14">
               <div className="text-center mb-10">
-                <MonoLabel label="ALLOCATION LEDGER" number="01" className="mb-3" />
+                <MonoLabel label={t('supporter.section_allocation', 'ALLOCATION LEDGER')} number="01" className="mb-3" />
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary">
-                  Where Your Money Goes
+                  {t('supporter.where_money_goes', 'Where Your Money Goes')}
                 </h2>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                {ALLOCATION.map(({ label, pct, icon: Icon, color, spotlight }) => {
+                {ALLOCATION.map(({ labelKey, labelFallback, pct, icon: Icon, color, spotlight }) => {
                   const dollars = Math.round(tier.amount * pct);
                   return (
-                    <SpotlightCard key={label} spotlightColor={spotlight} className="p-6 text-center">
-                      <div className={`w-10 h-10 rounded-xl mx-auto mb-4 flex items-center justify-center bg-white/5`}>
+                    <SpotlightCard key={labelKey} spotlightColor={spotlight} className="p-6 text-center">
+                      <div className="w-10 h-10 rounded-xl mx-auto mb-4 flex items-center justify-center bg-white/5">
                         <Icon className={`w-5 h-5 ${color}`} aria-hidden="true" />
                       </div>
                       <div className={`font-display text-3xl font-bold ${color} mb-1`}>
@@ -201,7 +205,7 @@ export default function SupporterPage() {
                       <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-tertiary mb-2">
                         {Math.round(pct * 100)}%
                       </div>
-                      <p className="text-text-secondary text-sm font-medium">{label}</p>
+                      <p className="text-text-secondary text-sm font-medium">{t(labelKey, labelFallback)}</p>
                     </SpotlightCard>
                   );
                 })}
@@ -210,9 +214,9 @@ export default function SupporterPage() {
 
             <div className="mb-14 max-w-3xl mx-auto">
               <div className="text-center mb-10">
-                <MonoLabel label="FIELD NOTES FEED" number="02" className="mb-3" />
+                <MonoLabel label={t('supporter.field_notes_label', 'FIELD NOTES FEED')} number="02" className="mb-3" />
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary">
-                  From the Ground
+                  {t('supporter.from_ground', 'From the Ground')}
                 </h2>
               </div>
 
@@ -246,9 +250,9 @@ export default function SupporterPage() {
 
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
-                <MonoLabel label="TAX & COMPLIANCE" number="03" className="mb-3" />
+                <MonoLabel label={t('supporter.tax_label', 'TAX & COMPLIANCE')} number="03" className="mb-3" />
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary">
-                  501(c)(3) Statements
+                  {t('supporter.tax_title', '501(c)(3) Statements')}
                 </h2>
               </div>
 
@@ -257,19 +261,19 @@ export default function SupporterPage() {
                   <thead>
                     <tr className="border-b border-white/8 bg-brand-elevated">
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-6 py-3">
-                        Year
+                        {t('supporter.tax_col_year', 'Year')}
                       </th>
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-4 py-3 hidden sm:table-cell">
-                        Amount
+                        {t('supporter.tax_col_amount', 'Amount')}
                       </th>
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-4 py-3">
-                        501(c)(3) Statement
+                        {t('supporter.tax_col_statement', '501(c)(3) Statement')}
                       </th>
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-4 py-3 hidden md:table-cell">
-                        Status
+                        {t('supporter.tax_col_status', 'Status')}
                       </th>
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-right px-6 py-3">
-                        Download
+                        {t('supporter.tax_col_download', 'Download')}
                       </th>
                     </tr>
                   </thead>
@@ -291,7 +295,7 @@ export default function SupporterPage() {
                             ${yearAmount.toLocaleString()}
                           </td>
                           <td className="px-4 py-4 text-sm text-text-secondary">
-                            IRS Form 990-N · {row.year} Filing
+                            {t('supporter.tax_filing', 'IRS Form 990-N · {year} Filing').replace('{year}', String(row.year))}
                           </td>
                           <td className="px-4 py-4 hidden md:table-cell">
                             <span className={[
@@ -300,14 +304,16 @@ export default function SupporterPage() {
                                 ? 'bg-accent-cyan/10 text-accent-cyan'
                                 : 'bg-white/5 text-text-tertiary',
                             ].join(' ')}>
-                              {row.status}
+                              {row.status === 'Verified'
+                                ? t('supporter.tax_verified', 'Verified')
+                                : t('supporter.tax_archived', 'Archived')}
                             </span>
                           </td>
                           <td className="px-6 py-4 text-right">
                             <a
                               href="#"
                               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
-                              aria-label={`Download ${row.year} 501c3 statement`}
+                              aria-label={`${t('supporter.tax_col_download', 'Download')} ${row.year} 501c3 statement`}
                             >
                               <Download className="w-3.5 h-3.5" aria-hidden="true" />
                               PDF
@@ -329,11 +335,10 @@ export default function SupporterPage() {
         <div className="container-wide section-padding py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-sm text-text-secondary text-center sm:text-left">
-              <span className="font-semibold text-text-primary">This is a preview</span> of the Sustaining Supporter experience.
-              Activate your dashboard by making a recurring donation.
+              {t('supporter.preview_note', 'This is a preview of the Sustaining Supporter experience. Activate your dashboard by making a recurring donation.')}
             </p>
             <GlowButton href="/donate" variant="primary" showArrow={false} className="shrink-0 py-2 px-5 text-xs">
-              Start Giving
+              {t('supporter.start_giving', 'Start Giving')}
             </GlowButton>
           </div>
         </div>
