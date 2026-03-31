@@ -137,14 +137,14 @@ WHERE NOT EXISTS (SELECT 1 FROM team_members WHERE team_members.name = t.name);
 -- ─── PARTNERS (8) ────────────────────────────────────────────────────────────
 INSERT INTO partners (name, logo_url, website_url, partner_type, is_featured, order_index)
 SELECT name, logo_url, website_url, partner_type, is_featured, order_index FROM (VALUES
-  ('Google AI',          NULL, 'https://ai.google',               'funding',        true, 1),
-  ('Mozilla Foundation', NULL, 'https://foundation.mozilla.org',  'funding',        true, 2),
-  ('Masakhane NLP',      NULL, 'https://www.masakhane.io',        'research',       true, 3),
-  ('AI4D Africa',        NULL, 'https://ai4d.ai',                 'research',       true, 4),
-  ('African Union',      NULL, 'https://au.int',                  'governance',     true, 5),
-  ('Lacuna Fund',        NULL, 'https://lacunafund.org',          'funding',        true, 6),
-  ('DataKind',           NULL, 'https://datakind.org',            'implementation', true, 7),
-  ('Microsoft Research', NULL, 'https://microsoft.com/research',  'research',       true, 8)
+  ('Google AI',          'https://logo.clearbit.com/ai.google',               'https://ai.google',               'funding',        true, 1),
+  ('Mozilla Foundation', 'https://logo.clearbit.com/foundation.mozilla.org',  'https://foundation.mozilla.org',  'funding',        true, 2),
+  ('Masakhane NLP',      'https://logo.clearbit.com/masakhane.io',            'https://www.masakhane.io',        'research',       true, 3),
+  ('AI4D Africa',        'https://logo.clearbit.com/ai4d.ai',                 'https://ai4d.ai',                 'research',       true, 4),
+  ('African Union',      'https://logo.clearbit.com/au.int',                  'https://au.int',                  'governance',     true, 5),
+  ('Lacuna Fund',        'https://logo.clearbit.com/lacunafund.org',          'https://lacunafund.org',          'funding',        true, 6),
+  ('DataKind',           'https://logo.clearbit.com/datakind.org',            'https://datakind.org',            'implementation', true, 7),
+  ('Microsoft Research', 'https://logo.clearbit.com/microsoft.com',           'https://microsoft.com/research',  'research',       true, 8)
 ) AS t(name, logo_url, website_url, partner_type, is_featured, order_index)
 WHERE NOT EXISTS (SELECT 1 FROM partners WHERE partners.name = t.name);
 

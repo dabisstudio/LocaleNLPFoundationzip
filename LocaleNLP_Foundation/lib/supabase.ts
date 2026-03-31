@@ -41,7 +41,9 @@ export type Program = {
   solution: string | null;
   is_featured: boolean;
   order_index: number;
+  country_id: string | null;
   created_at: string;
+  countries?: Country;
 };
 
 export type ImpactMetric = {

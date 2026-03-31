@@ -15,6 +15,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: true,
     order_index: 1,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
   {
@@ -31,6 +32,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: true,
     order_index: 2,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
   {
@@ -47,6 +49,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: false,
     order_index: 3,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
   {
@@ -63,6 +66,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: true,
     order_index: 4,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
   {
@@ -79,6 +83,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: false,
     order_index: 5,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
   {
@@ -95,6 +100,7 @@ export const PLACEHOLDER_PROGRAMS: Program[] = [
     is_featured: false,
     order_index: 6,
     full_description: null,
+    country_id: null,
     created_at: '',
   },
 ];
