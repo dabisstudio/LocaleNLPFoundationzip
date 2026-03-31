@@ -10,7 +10,7 @@ import { useTranslation } from '@/lib/i18n/TranslationContext';
 const PERSONA_IDS = ['researcher', 'developer', 'community', 'partner'] as const;
 type PersonaId = typeof PERSONA_IDS[number];
 
-const PERSONA_ICONS: Record<PersonaId, React.ComponentType<{ className?: string; 'aria-hidden'?: 'true' }>> = {
+const PERSONA_ICONS: Record<PersonaId, React.ComponentType<{ className?: string }>> = {
   researcher: GraduationCap,
   developer: Code,
   community: Mic,
