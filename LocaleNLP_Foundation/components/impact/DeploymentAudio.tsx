@@ -75,6 +75,7 @@ export function DeploymentAudio({ audioUrl, transcript, sector }: DeploymentAudi
     const t = (pct / 100) * (audioUrl ? duration : totalSimDuration);
     setCurrentTime(t);
     if (audioUrl && audioRef.current) {
+      audioRef.current.pause();
       audioRef.current.currentTime = t;
     }
     const idx = [...transcript].reverse().findIndex((l) => l.ts <= t);

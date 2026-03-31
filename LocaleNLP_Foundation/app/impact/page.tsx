@@ -212,7 +212,7 @@ export default async function ImpactPage() {
                   <SpotlightCard
                     key={story.slug}
                     spotlightColor={spotColors[story.accentColor]}
-                    className="overflow-hidden group flex flex-col"
+                    className="overflow-hidden group flex flex-col hover:scale-[1.015] transition-transform duration-300"
                   >
                     <div className="h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-brand-elevated to-brand-surface transition-all duration-300 group-hover:shadow-[inset_0_0_40px_rgba(0,229,255,0.06)]">
                       <SectorIcon className={`w-10 h-10 ${textColors[story.accentColor]} opacity-20 group-hover:opacity-30 transition-opacity`} aria-hidden="true" />
@@ -304,10 +304,10 @@ export default async function ImpactPage() {
                         </p>
                       )}
                       <Link
-                        href={`/impact/${study.slug}`}
+                        href={`/insights/${study.slug}`}
                         className="inline-flex items-center gap-1.5 text-sm text-accent-ochre font-medium hover:opacity-80 transition-opacity"
                       >
-                        View Deployment
+                        Read Full Story
                         <ArrowRight
                           className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                           aria-hidden="true"
