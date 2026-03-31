@@ -144,7 +144,7 @@ export default function ManifestoPage() {
               <div className="max-w-3xl mx-auto">
                 <div className="h-px bg-white/8 mb-12" aria-hidden="true" />
 
-                <p className="font-mono text-sm italic text-text-secondary leading-relaxed mb-4">
+                <p className="font-mono text-sm text-text-secondary leading-relaxed mb-4 italic">
                   This manifesto was written by the founding team of LocaleNLP Foundation and represents
                   our collective commitment to language equity in the development of artificial intelligence.
                   It is a living document, subject to revision as we learn. It is not subject to compromise

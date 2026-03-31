@@ -16,6 +16,7 @@ export function LastChecked() {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'UTC',
   }) + ', ' + now.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',

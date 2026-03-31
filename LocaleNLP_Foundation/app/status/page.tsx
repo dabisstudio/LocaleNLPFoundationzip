@@ -10,20 +10,6 @@ export const metadata = {
     'Real-time status of the Lughatna Platform, API endpoints, and data storage clusters operated by LocaleNLP Foundation.',
 };
 
-function makeBlocks(uptimePct: number, seed: number): UptimeBlockStatus[] {
-  const blocks: UptimeBlockStatus[] = [];
-  for (let i = 0; i < 30; i++) {
-    const roll = ((seed * (i + 1) * 7919) % 10000) / 10000;
-    const threshold = uptimePct / 100;
-    if (roll > threshold + 0.002) {
-      blocks.push('degraded');
-    } else {
-      blocks.push('operational');
-    }
-  }
-  return blocks;
-}
-
 const LUGHATNA_BLOCKS: UptimeBlockStatus[] = [
   ...Array(22).fill('operational' as UptimeBlockStatus),
   'degraded',
