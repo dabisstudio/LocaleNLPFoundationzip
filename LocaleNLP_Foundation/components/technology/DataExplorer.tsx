@@ -301,7 +301,8 @@ function TextPanel({ entry }: { entry: TextEntry }) {
   const jsonStr = JSON.stringify(
     {
       id: entry.id,
-      language: entry.lang_code,
+      language: entry.language,
+      lang_code: entry.lang_code,
       text: entry.sentence,
       tokens: entry.tokens,
       num_tokens: entry.num_tokens,
