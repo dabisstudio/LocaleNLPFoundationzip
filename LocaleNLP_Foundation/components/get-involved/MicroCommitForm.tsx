@@ -77,7 +77,7 @@ export function MicroCommitForm() {
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div>
         <label htmlFor={phoneId} className="block text-sm font-medium text-text-secondary mb-1.5">
-          {t('form.phone_label', 'Phone number')} <span className="text-accent-cyan" aria-hidden="true">*</span>
+          {t('form.phone_label', 'Phone number')} <span className="text-accent-ochre" aria-hidden="true">*</span>
         </label>
         <input
           id={phoneId}
@@ -93,7 +93,7 @@ export function MicroCommitForm() {
 
       <div className="relative">
         <label htmlFor={langId} className="block text-sm font-medium text-text-secondary mb-1.5">
-          {t('form.language_label', 'Native language')} <span className="text-accent-cyan" aria-hidden="true">*</span>
+          {t('form.language_label', 'Native language')} <span className="text-accent-ochre" aria-hidden="true">*</span>
         </label>
 
         <button
@@ -124,8 +124,7 @@ export function MicroCommitForm() {
 
         {dropdownOpen && (
           <div
-            className="absolute left-0 right-0 top-full mt-1 z-50 rounded-xl border border-ink-monument/12 overflow-hidden"
-            style={{ background: '#0E0E14', boxShadow: '0 16px 48px rgba(0,0,0,0.7)' }}
+            className="absolute left-0 right-0 top-full mt-1 z-50 rounded-xl border border-ink-monument/12 overflow-hidden bg-base-pure shadow-editorial"
             role="listbox"
             aria-label={t('form.language_placeholder', 'Select your native language')}
           >
@@ -135,13 +134,13 @@ export function MicroCommitForm() {
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 placeholder={t('form.language_search', 'Search languages…')}
-                className="w-full px-3 py-2 text-sm bg-ink-monument/5 border border-ink-monument/10 rounded-lg text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-ochre/50"
+                className="w-full px-3 py-2 text-sm bg-base-stone border border-ink-monument/12 rounded-lg text-ink-monument placeholder:text-ink-muted focus:outline-none focus:border-accent-ochre/50"
                 autoFocus
               />
             </div>
             <ul className="max-h-52 overflow-y-auto py-1">
               {filtered.length === 0 && (
-                <li className="px-4 py-2.5 text-sm text-text-tertiary">{t('form.language_none', 'No results')}</li>
+                <li className="px-4 py-2.5 text-sm text-ink-muted">{t('form.language_none', 'No results')}</li>
               )}
               {filtered.map((lang) => (
                 <li key={lang}>
@@ -154,8 +153,8 @@ export function MicroCommitForm() {
                       setFilter('');
                       setDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-ink-monument/5 ${
-                      language === lang ? 'text-accent-cyan' : 'text-text-secondary'
+                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-base-stone ${
+                      language === lang ? 'text-accent-ochre font-medium' : 'text-ink-steel'
                     }`}
                   >
                     {lang}
@@ -177,9 +176,9 @@ export function MicroCommitForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl
-                   bg-accent-cyan text-brand-deep font-semibold text-sm
-                   transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(0,229,255,0.35)]
-                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60
+                   bg-accent-ochre text-white font-semibold text-sm
+                   transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-ochre/90
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre/60
                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
       >
         {isSubmitting ? (

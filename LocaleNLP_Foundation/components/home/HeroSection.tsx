@@ -44,7 +44,7 @@ export default function HeroSection() {
           <MonoLabel label={t('hero.label', 'DIGITAL SOVEREIGNTY')} status="active" />
         </motion.div>
 
-        <h1 className="mb-6 font-display font-bold leading-[0.92] tracking-[-0.04em] text-5xl md:text-7xl lg:text-8xl">
+        <h1 className="mb-6 font-display font-bold leading-[0.92] tracking-[-0.04em] text-5xl md:text-7xl lg:text-8xl xl:text-[8rem]">
           {/* Line 1 — Monument Black */}
           <span className="block">
             {line1.map((word, i) => (

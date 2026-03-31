@@ -14,35 +14,35 @@ export interface ServicePanelProps {
 const STATUS_CONFIG: Record<ServiceStatus, { label: string; dot: string; badge: string; text: string }> = {
   operational: {
     label: 'Operational',
-    dot:   'bg-green-400',
-    badge: 'bg-green-400/12 border-green-400/30 text-green-400',
-    text:  'text-green-400',
+    dot:   'bg-accent-emerald',
+    badge: 'bg-accent-emerald/10 border-accent-emerald/30 text-accent-emerald',
+    text:  'text-accent-emerald',
   },
   degraded: {
     label: 'Degraded Performance',
     dot:   'bg-accent-ochre',
-    badge: 'bg-accent-ochre/12 border-accent-ochre/30 text-accent-ochre',
+    badge: 'bg-accent-ochre/10 border-accent-ochre/30 text-accent-ochre',
     text:  'text-accent-ochre',
   },
   maintenance: {
     label: 'Under Maintenance',
-    dot:   'bg-accent-cyan',
-    badge: 'bg-accent-cyan/12 border-accent-cyan/30 text-accent-cyan',
-    text:  'text-accent-cyan',
+    dot:   'bg-accent-navy',
+    badge: 'bg-accent-navy/10 border-accent-navy/30 text-accent-navy',
+    text:  'text-accent-navy',
   },
   outage: {
     label: 'Major Outage',
-    dot:   'bg-accent-clay',
-    badge: 'bg-accent-clay/12 border-accent-clay/30 text-accent-clay',
-    text:  'text-accent-clay',
+    dot:   'bg-[#C62828]',
+    badge: 'bg-[#C62828]/10 border-[#C62828]/30 text-[#C62828]',
+    text:  'text-[#C62828]',
   },
 };
 
 const BLOCK_COLORS: Record<UptimeBlockStatus, string> = {
-  operational: 'bg-green-500',
+  operational: 'bg-accent-emerald',
   degraded:    'bg-accent-ochre',
-  maintenance: 'bg-accent-cyan',
-  outage:      'bg-accent-clay',
+  maintenance: 'bg-accent-navy',
+  outage:      'bg-[#C62828]',
 };
 
 const BLOCK_TITLES: Record<UptimeBlockStatus, string> = {

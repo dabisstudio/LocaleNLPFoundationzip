@@ -120,15 +120,16 @@ export function TerminalDemo() {
   const isDone = revealedChars >= totalChars;
 
   return (
-    <div className="glass-card overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-white/8 bg-brand-elevated">
+    <div className="rounded-2xl border border-ink-monument/10 bg-base-pure shadow-editorial overflow-hidden">
+      {/* Light bezel header */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-ink-monument/10 bg-base-stone">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-red-500/70" aria-hidden="true" />
-            <span className="w-3 h-3 rounded-full bg-yellow-500/70" aria-hidden="true" />
-            <span className="w-3 h-3 rounded-full bg-green-500/70" aria-hidden="true" />
+            <span className="w-3 h-3 rounded-full bg-red-400/80" aria-hidden="true" />
+            <span className="w-3 h-3 rounded-full bg-yellow-400/80" aria-hidden="true" />
+            <span className="w-3 h-3 rounded-full bg-accent-emerald/80" aria-hidden="true" />
           </div>
-          <span className="ml-3 font-mono text-xs text-text-tertiary">localenlp_demo.py</span>
+          <span className="ml-3 font-mono text-xs text-ink-muted">localenlp_demo.py</span>
         </div>
         {isDone && (
           <button
@@ -140,19 +141,22 @@ export function TerminalDemo() {
           </button>
         )}
       </div>
-      <pre
-        className="p-6 text-sm overflow-x-auto"
-        style={{ minHeight: '280px' }}
-        aria-label="Python code example for AfriSpeech-ASR"
-      >
-        {renderedLines}
-        {!isDone && (
-          <span
-            className="inline-block w-[0.55em] h-[1.1em] bg-accent-ochre/80 align-text-bottom animate-[blink_1s_step-end_infinite]"
-            aria-hidden="true"
-          />
-        )}
-      </pre>
+      {/* Dark terminal screen inside the light bezel */}
+      <div className="dark-panel">
+        <pre
+          className="p-6 text-sm overflow-x-auto font-mono"
+          style={{ minHeight: '280px', background: '#0A1931' }}
+          aria-label="Python code example for AfriSpeech-ASR"
+        >
+          {renderedLines}
+          {!isDone && (
+            <span
+              className="inline-block w-[0.55em] h-[1.1em] bg-accent-ochre/80 align-text-bottom animate-[blink_1s_step-end_infinite]"
+              aria-hidden="true"
+            />
+          )}
+        </pre>
+      </div>
     </div>
   );
 }
