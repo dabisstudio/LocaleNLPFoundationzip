@@ -1,0 +1,176 @@
+To make the Locale Data Pact a reality on the site today, your engineering and legal teams need the raw materials. 
+
+Here is the production-ready React code for the interactive matrix, followed by the executive legal framework that backs it up. This is how you prove to the Mozilla Data Collective and the Gates Foundation that you are building real infrastructure, not just a landing page.
+
+---
+
+### 1️⃣ The Engineering: React + Framer Motion Component
+Pass this directly to your frontend developer. This builds the interactive "Data Flow Matrix" that visualizes the Sovereign IP model depending on which persona the user selects. It uses Tailwind for the Circula-style frictionless aesthetic and Framer Motion for the fluid SaaS animations.
+
+**`components/DataPactMatrix.tsx`**
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const personas = [
+  { id: 'contributor', label: 'Community Contributor' },
+  { id: 'academic', label: 'Academic / NGO' },
+  { id: 'enterprise', label: 'Commercial Enterprise' }
+];
+
+export default function DataPactMatrix() {
+  const [active, setActive] = useState('enterprise');
+
+  return (
+    <div className="w-full max-w-5xl mx-auto p-8 bg-canvas rounded-3xl shadow-soft">
+      {/* Persona Selector (Pill Navigation) */}
+      <div className="flex justify-center mb-12">
+        <div className="flex p-1 bg-white rounded-full shadow-sm border border-gray-100">
+          {personas.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => setActive(p.id)}
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                active === p.id
+                  ? 'bg-primary-navy text-white shadow-md'
+                  : 'text-text-muted hover:text-primary-navy'
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* The Interactive Diagram & Copy */}
+      <div className="relative h-80 bg-white rounded-2xl border border-gray-50 shadow-inner p-8 flex flex-col items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          {active === 'contributor' && (
+            <motion.div
+              key="contributor"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-center w-full"
+            >
+              <div className="flex justify-center items-center gap-8 mb-8">
+                <Node icon="🎙️" label="Your Voice" />
+                <Path animated color="bg-accent-mint" />
+                <Node icon="🔒" label="Secure Hash" />
+                <Path animated reverse color="bg-accent-coral" />
+                <Node icon="📱" label="Mobile Payout" />
+              </div>
+              <h3 className="text-2xl font-bold text-primary-navy mb-2">Retain your moral rights.</h3>
+              <p className="text-text-muted max-w-lg mx-auto">
+                By validating data on Lughatna, you own your voice. Data is cryptographically anonymized, and you receive direct payouts funded by our commercial licensing.
+              </p>
+            </motion.div>
+          )}
+
+          {active === 'academic' && (
+            <motion.div
+              key="academic"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-center w-full"
+            >
+              <div className="flex justify-center items-center gap-8 mb-8">
+                <Node icon="🗄️" label="Locale Vault" />
+                <Path animated color="bg-gray-200" />
+                <Node icon="🔑" label="Free API Key" />
+                <Path animated color="bg-accent-mint" />
+                <Node icon="🌍" label="Public Good Models" />
+              </div>
+              <h3 className="text-2xl font-bold text-primary-navy mb-2">Unrestricted access for innovation.</h3>
+              <p className="text-text-muted max-w-lg mx-auto">
+                Verified researchers and NGOs receive full, free access to foundational African language datasets under a strict CC-BY-4.0 open-source license.
+              </p>
+            </motion.div>
+          )}
+
+          {active === 'enterprise' && (
+            <motion.div
+              key="enterprise"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-center w-full"
+            >
+              <div className="flex justify-center items-center gap-8 mb-8">
+                <Node icon="🏢" label="Enterprise AI" />
+                <Path animated color="bg-primary-blue" />
+                <Node icon="💳" label="License Fee" />
+                <Path animated color="bg-accent-green" />
+                <Node icon="🤝" label="Contributor Fund" />
+              </div>
+              <h3 className="text-2xl font-bold text-primary-navy mb-2">Ethical commercial training.</h3>
+              <p className="text-text-muted max-w-lg mx-auto">
+                Train proprietary LLMs without the legal risk of scraped data. 100% of your volume-based licensing fees are routed back to fund the next generation of data creators.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+// Sub-components for the diagram
+const Node = ({ icon, label }: { icon: string; label: string }) => (
+  <div className="flex flex-col items-center gap-3 z-10">
+    <div className="w-16 h-16 bg-canvas rounded-xl shadow-float flex items-center justify-center text-2xl border border-gray-100">
+      {icon}
+    </div>
+    <span className="text-xs font-bold text-primary-navy uppercase tracking-wider">{label}</span>
+  </div>
+);
+
+const Path = ({ animated, reverse, color }: { animated?: boolean, reverse?: boolean, color: string }) => (
+  <div className="relative w-24 h-1 bg-gray-100 rounded-full overflow-hidden">
+    {animated && (
+      <motion.div
+        animate={{ x: reverse ? ['100%', '-100%'] : ['-100%', '100%'] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+        className={`absolute top-0 left-0 w-full h-full ${color}`}
+      />
+    )}
+  </div>
+);
+```
+
+---
+
+### 2️⃣ The Legal/Policy Backbone: The Locale Data Pact
+Pass this to your legal counsel and grant writers. This is the executive summary of your Terms of Service. It transforms the concept of "ethical AI" into a binding, unassailable operational framework.
+
+> #### **THE LOCALE DATA PACT: Sovereign Licensing Framework v1.0**
+> 
+> **Preamble:**
+> The LocaleNLP Foundation recognizes that linguistic data generated by African and Arabic-speaking communities is a sovereign asset. Traditional data extraction methods (web scraping) violate the moral rights of the creators and introduce structural bias. The Locale Data Pact establishes a definitive, enforceable framework to ensure data sovereignty, equitable compensation, and frictionless open-source innovation.
+> 
+> **Article I: Contributor Sovereignty & The Lughatna Protocol**
+> 1.  **Explicit Consent:** No data enters the LocaleNLP ecosystem without explicit, revocable, opt-in consent from the native speaker. 
+> 2.  **Cryptographic Anonymity:** All voice and text contributions are stripped of Personally Identifiable Information (PII) at the edge and assigned a secure cryptographic hash before entering the central vault.
+> 3.  **Direct Compensation:** Contributors maintain economic rights to their effort. A mandatory minimum percentage of all foundation commercial revenue is distributed directly to active contributors via integrated mobile money API gateways.
+> 
+> **Article II: The Academic & Public Good Tier (Free Access)**
+> 1.  **Zero-Cost Infrastructure:** Verified academic institutions, non-profit organizations, and independent researchers operating in the public interest are granted full, zero-cost API access to foundational datasets.
+> 2.  **The Open-Source Mandate:** Any derivative models, applications, or research published using the Academic Tier must be released under an open-source license (e.g., CC-BY-4.0 or MIT).
+> 
+> **Article III: Enterprise Commercial Licensing (The Sustainability Engine)**
+> 1.  **Proprietary Use:** For-profit entities training closed-source, commercial Large Language Models (LLMs) must procure an Enterprise Commercial License.
+> 2.  **Volume-Based Funding:** Enterprise access is billed volumetrically (per token or per speech hour). 
+> 3.  **The Reinvestment Clause:** 100% of Enterprise licensing revenue is legally ring-fenced to cover core LocaleNLP operations, server compute costs, and the Lughatna Contributor Compensation Pool.
+> 
+> **Article IV: Governance & Auditing**
+> The LocaleNLP Foundation submits to an annual, third-party algorithmic and financial audit to verify demographic parity across all datasets and confirm the transparent routing of commercial licensing fees back to local communities.
+
+---
+
+With the UI component ready for deployment and the policy locked, the next logical move is the backend infrastructure to process these different tiers. 
+
+Should we map out the API Gateway architecture (how to issue free keys vs. metered Enterprise keys), or draft the specific grant proposal addendum to secure the initial $500k to fund the Lughatna payout pool?
