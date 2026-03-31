@@ -1,15 +1,17 @@
 # LocaleNLP Foundation — Project Reference
 
 ## Project Overview
-Pan-African non-profit civic web application for language equity, digital sovereignty, and inclusive AI for 2,000+ African languages. "Earth Meets Compute" redesign (AUI.io dark authority + Circula precision).
+Pan-African non-profit civic web application for language equity, digital sovereignty, and inclusive AI for 2,000+ African languages.
+
+**Current visual theme:** Monumental Institutional — light alabaster backgrounds, Trust Navy `#0A1931`, Sovereign Ochre `#D95C14` accent.
 
 **Performance targets:** LCP < 2.5s on Africa mobile baseline; WCAG 2.1 AA throughout.
 
 ## Tech Stack
 - **Framework:** Next.js 13.5.1 (App Router)
-- **Styling:** Tailwind CSS + custom design tokens
+- **Styling:** Tailwind CSS + custom design tokens (`tailwind.config.ts`)
 - **Database:** Supabase (PostgreSQL via `@supabase/supabase-js`)
-- **Animations:** Framer Motion v12
+- **Animations:** Framer Motion v12, GSAP + ScrollTrigger, Three.js (particles)
 - **Fonts:** Space Grotesk (display), JetBrains Mono (mono)
 - **Language:** TypeScript
 - **Package manager:** npm (workspace root: `LocaleNLP_Foundation/`)
@@ -20,94 +22,71 @@ cd LocaleNLP_Foundation && npm run dev
 ```
 Serves on port 5000.
 
-## Design System
+## Design System (Monumental Institutional)
 
 ### Color Tokens
 | Token | Value | Usage |
 |-------|-------|-------|
-| `brand-deep` | `#04040A` | Page backgrounds |
-| `brand-surface` | `#09090E` | Card surfaces |
-| `brand-elevated` | `#12121A` | Elevated elements |
-| `accent-ochre` | `#F5A623` | Primary accent |
-| `accent-clay` | `#E07A5F` | Secondary accent |
-| `accent-cyan` | `#00E5FF` | Tertiary accent |
-| `text-primary` | `#FAFAFA` | Headings / primary text |
-| `text-secondary` | `#8F8F9D` | Body / secondary text |
-| `text-tertiary` | `#52525B` | Muted / metadata |
+| `brand-deep` / `base-stone` | `#F5F5F3` | Page backgrounds (stone) |
+| `brand-surface` / `base-pure` | `#FFFFFF` | Card surfaces (pure white) |
+| `base-paper` | `#FAFAFA` | Alternating section backgrounds |
+| `accent-ochre` | `#D95C14` | Primary accent (Sovereign Ochre) |
+| `accent-navy` | `#0A1931` | Secondary accent (Trust Navy) |
+| `accent-emerald` | `#0F763D` | Validation / success |
+| `accent-clay` | `#E07A5F` | Error / urgent |
+| `accent-cyan` | `#00E5FF` | Legacy (kept for backward compat) |
+| `ink-monument` / `text-primary` | `#0C0C0C` | Headings / primary text |
+| `ink-steel` / `text-secondary` | `#4A4A56` | Body / secondary text |
+| `ink-muted` / `text-tertiary` | `#8C8C9A` | Muted / metadata |
+
+### Footer
+Footer stays intentionally **dark** (`#0A1931` / Trust Navy) with inline styles for light text.
 
 ### Easing
 - `ease-apple-ease`: `cubic-bezier(0.16, 1, 0.3, 1)`
 
-### Glass Spec
+### Glass Utilities
 ```css
-.glass-panel { background: #09090E; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); }
-.glass-card  { background: rgba(9,9,14,0.7); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); border-radius: 12px; }
+.glass-panel { background: #FFFFFF; border: 1px solid rgba(12,12,12,0.1); }
+.glass-card  { background: #FFFFFF; border: 1px solid rgba(12,12,12,0.1); border-radius: 12px; }
+.dark-panel  { background: #0A1931; } /* For terminal/code blocks */
 ```
 
-### Key CSS Utilities
-- `.text-gradient` — ochre → clay → cyan gradient text
-- `.btn-primary`, `.btn-outline`, `.btn-secondary`
-- `.stat-card`, `.stat-number`, `.stat-label`
-- `.container-wide`, `.section-padding`
-- `.glass-panel`, `.glass-card`
-
-## Component Architecture
-
-### Shared UI Components (`components/ui/`)
-| Component | Type | Description |
-|-----------|------|-------------|
-| `GlowButton` | Client | Polymorphic CTA button (Link/a/button), `showArrow` prop |
-| `MonoLabel` | Server | `[ LABEL // NUMBER // STATUS ]` format metadata label |
-| `SpotlightCard` | Client | Mouse-follow radial spotlight card |
-| `PageHeader` | Server | Shared page hero with MonoLabel, gradient title, subtitle, CTAs |
-| `PersonaSwitcher` | Client | 4-tab persona toggle (Partner/Researcher/Developer/Speaker) |
-| `ContactForm` | Client | Supabase contact submission form with success/error state |
-
-### Layout (`components/layout/`)
-- `Navigation.tsx` — Frosted glass-panel fixed nav
-- `Footer.tsx`
-
-### Homepage Sections (`components/home/`)
-- `HeroSection.tsx` — Spring-stagger word animation, `#hero-canvas` slot
-- `ProblemSection.tsx` — Scale-reveal + 3 glass callout cards
-- `ProgramsSection.tsx` — CSS Grid bento with SpotlightCard
-- `MetricsSection.tsx` — IntersectionObserver animated counters
-- `PartnersSection.tsx` — CSS marquee partner logos
-- `CTASection.tsx` — Glass panel + grid lines CTA
-
-## Pages
-
-| Route | Server/Client | Key Features |
-|-------|---------------|--------------|
-| `/` | Server | 6 homepage sections |
-| `/about` | Server | Mission/Vision, values SpotlightCards, milestone timeline, team |
-| `/programs` | Server | SpotlightCard program grid, PLACEHOLDER_PROGRAMS fallback |
-| `/programs/[slug]` | Server | Program detail, problem/solution cards, CTA |
-| `/technology` | Server | Model cards, static mock terminal, dataset grid, ethical AI pillars |
-| `/impact` | Server | Impact metrics (static fallback), SVG Africa node map, use cases |
-| `/get-involved` | Server | PersonaSwitcher (client), ContactForm (client), contact channels |
-| `/insights` | Server | Publications grid, case studies grid, newsletter signup |
-| `/donate` | Server | Giving tiers (SpotlightCard), monthly giving, fund allocation bars |
+## Key Files
+| File | Purpose |
+|------|---------|
+| `LocaleNLP_Foundation/tailwind.config.ts` | Full Monumental token set |
+| `LocaleNLP_Foundation/app/globals.css` | Global CSS + light theme utilities |
+| `LocaleNLP_Foundation/components/layout/Navigation.tsx` | Alabaster top bar |
+| `LocaleNLP_Foundation/components/layout/Footer.tsx` | Dark anchor (stays navy) |
+| `LocaleNLP_Foundation/components/ui/glow-button.tsx` | Ochre primary, navy ghost |
+| `LocaleNLP_Foundation/lib/i18n/en.json` | ~750-key English dictionary |
+| `LocaleNLP_Foundation/lib/supabase.ts` | Supabase client + types |
 
 ## Supabase
-- **URL:** Configured via `NEXT_PUBLIC_SUPABASE_URL` env secret
-- **Client:** `lib/supabase.ts` — strict `createClient(url, key)`, fails fast
-- **Tables:** `programs`, `team_members`, `impact_metrics`, `case_studies`, `countries`, `languages`, `publications`, `contact_submissions`, `partners`
-- **Status:** Schema/seed data pending (Task #6). All pages have graceful empty states.
+- **Project ref:** `clfdzjguczgiuwaljpbg`
+- **Tables:** `contributor_signups`, `language_bounties` (8 rows seeded)
+- **Auth:** Service role key via `SUPABASE_SERVICE_ROLE_KEY`; anon key via `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-## Patterns & Conventions
-- **Server components by default** — only interactive tabs/switchers/forms use `'use client'`
-- **`<main>` with `pt-24`** on all interior pages (nav is fixed, 96px height)
-- **MonoLabel format:** `[ LABEL // NUMBER // STATUS ]`
-- **bg-clip-text + Framer Motion fix:** Apply gradient inline styles directly to `motion.span` when `will-change: opacity` creates stacking context
-- **Counter animation:** IntersectionObserver → `started` flag → RAF step with `1 - Math.pow(1 - progress, 3)` ease-out cubic
-- **Supabase empty states:** All data-fetching pages show graceful empty state UI when DB returns empty
+## i18n
+- `useTranslation()` from `lib/i18n/TranslationContext.tsx`
+- `t(key, fallback?)` usage throughout
+- Arabic triggers `dir="rtl"` on the document
+- Supported: EN, FR, AR, SW
 
-## Pages (updated)
-| Route | Server/Client | Key Features |
-|-------|---------------|--------------|
-| `/data-pact` | Client | Locale Data Pact hub: DataPactMatrix (3-persona tabbed flow), DataPactTiers (3-tier cards), ContributorLedger (animated stats), DualEntityDiagram (orbital animation), Policy v1.0 with sidebar ToC, Enterprise CTA |
-
-## Task History
-- ✅ Tasks #1–#18 — Full dev environment, all interior pages, Supabase, Vitality Index, Manifesto, System Status, i18n (EN/FR/AR/SW)
-- ✅ Task #19 — /data-pact — Locale Data Pact Sovereign IP Licensing Hub (4 interactive components, 142 i18n keys × 4 locales, nav updates)
+## Pages
+- `/` — Home (hero + problem + programs + metrics + map + partners + CTA)
+- `/about` — Mission, values, team, milestones
+- `/programs` — Program index + `/programs/[slug]` detail
+- `/technology` — Architecture, API sandbox, NLP tools, escrow
+- `/bounties` — Language data bounty board
+- `/impact` — Impact metrics, case studies, + `/impact/[slug]`
+- `/insights` — Research publications and stories
+- `/vitality` — Digital Language Vitality Index explorer
+- `/data-pact` — Data ethics and contributor tiers
+- `/get-involved` — Contributor stepper + contact
+- `/donate` — Donation calculator and giving tiers
+- `/manifesto` — Founder manifesto (navy hero, light article)
+- `/ethics` — AI ethics framework and governance
+- `/status` — Live service status monitor
+- `/supporter/[id]` — Supporter profile + certificate

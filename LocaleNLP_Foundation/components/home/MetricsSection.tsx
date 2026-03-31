@@ -96,31 +96,21 @@ export default function MetricsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 relative overflow-hidden">
-      {/* Ochre glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, rgba(245,166,35,0.05) 0%, transparent 65%)',
-        }}
-        aria-hidden="true"
-      />
-
+    <section ref={sectionRef} className="py-24 relative overflow-hidden bg-base-paper border-t border-ink-monument/8">
       <div className="container-wide section-padding relative z-10">
         <div className="text-center mb-4">
           <MonoLabel label="BY THE NUMBERS" number="04" status="active" />
         </div>
-        <h2 className="text-center text-white mt-4 mb-3">Measuring Our Impact</h2>
-        <p className="text-center text-text-secondary max-w-xl mx-auto mb-14">
+        <h2 className="text-center text-ink-monument mt-4 mb-3">Measuring Our Impact</h2>
+        <p className="text-center text-ink-steel max-w-xl mx-auto mb-14">
           Real progress, transparent reporting. Every metric represents lives touched and
           communities empowered.
         </p>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {METRICS.map((metric, i) => (
-            <div key={i} className="glass-card p-6 md:p-8 text-center">
-              <div className="stat-number">
+            <div key={i} className="glass-card p-6 md:p-8 text-center shadow-editorial">
+              <div className="font-mono text-3xl md:text-4xl font-bold text-accent-ochre">
                 <Counter
                   target={metric.value}
                   suffix={metric.suffix}
@@ -128,7 +118,7 @@ export default function MetricsSection() {
                   start={started}
                 />
               </div>
-              <p className="stat-label">{metric.label}</p>
+              <p className="text-sm md:text-base text-ink-steel mt-2">{metric.label}</p>
             </div>
           ))}
         </div>

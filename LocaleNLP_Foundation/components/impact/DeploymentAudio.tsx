@@ -114,7 +114,7 @@ export function DeploymentAudio({ audioUrl, transcript, sector }: DeploymentAudi
           <p className="text-text-secondary text-sm font-medium">{sector} IVR Sample</p>
         </div>
         {!audioUrl && (
-          <span className="ml-auto font-mono text-[9px] uppercase tracking-widest text-text-tertiary border border-white/10 rounded px-2 py-0.5">
+          <span className="ml-auto font-mono text-[9px] uppercase tracking-widest text-text-tertiary border border-ink-monument/12 rounded px-2 py-0.5">
             Demo playback
           </span>
         )}

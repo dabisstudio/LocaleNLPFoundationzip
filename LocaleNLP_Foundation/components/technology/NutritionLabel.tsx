@@ -194,7 +194,7 @@ export function NutritionLabel() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="px-6 pt-6 pb-5 border-b border-white/8">
+      <div className="px-6 pt-6 pb-5 border-b border-ink-monument/10">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
@@ -206,7 +206,7 @@ export function NutritionLabel() {
             <select
               value={dataset}
               onChange={(e) => setDataset(e.target.value as Dataset)}
-              className="w-full bg-brand-deep border border-white/10 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-ochre/40 focus:ring-1 focus:ring-accent-ochre/20 transition-colors cursor-pointer appearance-none"
+              className="w-full bg-base-stone border border-ink-monument/12 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-ochre/40 focus:ring-1 focus:ring-accent-ochre/20 transition-colors cursor-pointer appearance-none"
               style={SELECT_STYLE}
               aria-label="Select dataset"
             >
@@ -295,7 +295,7 @@ export function NutritionLabel() {
               ]} />
             </div>
 
-            <div className="pt-4 border-t border-white/8">
+            <div className="pt-4 border-t border-ink-monument/10">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">Last Audited</p>

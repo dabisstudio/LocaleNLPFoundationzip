@@ -239,7 +239,7 @@ function SpeechPanel({ entry, isPlaying, triggerKey }: { entry: SpeechEntry; isP
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
-      <div className="rounded-xl bg-brand-deep border border-white/8 p-6">
+      <div className="rounded-xl bg-base-stone border border-ink-monument/10 p-6">
         <p className="font-mono text-xs tracking-[0.12em] text-accent-cyan uppercase mb-4">
           Audio Waveform
         </p>
@@ -259,7 +259,7 @@ function SpeechPanel({ entry, isPlaying, triggerKey }: { entry: SpeechEntry; isP
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3 min-h-[60px]">
+          <div className="rounded-lg bg-base-stone border border-ink-monument/10 p-3 min-h-[60px]">
             <p className="font-mono text-[10px] text-text-tertiary mb-1">EN</p>
             <p className="text-text-secondary text-sm leading-relaxed">
               {typedEn}
@@ -268,7 +268,7 @@ function SpeechPanel({ entry, isPlaying, triggerKey }: { entry: SpeechEntry; isP
               )}
             </p>
           </div>
-          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3 min-h-[60px]">
+          <div className="rounded-lg bg-base-stone border border-ink-monument/10 p-3 min-h-[60px]">
             <p className="font-mono text-[10px] text-text-tertiary mb-1">FR</p>
             <p className="text-text-secondary text-sm leading-relaxed">
               {typedFr}
@@ -280,12 +280,12 @@ function SpeechPanel({ entry, isPlaying, triggerKey }: { entry: SpeechEntry; isP
         </div>
       </div>
 
-      <div className="rounded-xl overflow-hidden border border-white/8 bg-[#07070C]">
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/8 bg-white/3">
+      <div className="rounded-xl overflow-hidden border border-ink-monument/10 dark-panel">
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-ink-monument/10 bg-ink-monument/4">
           <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
           </div>
           <span className="font-mono text-[10px] text-text-tertiary ml-1">api_response.json</span>
         </div>
@@ -314,12 +314,12 @@ function TextPanel({ entry }: { entry: TextEntry }) {
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
-      <div className="rounded-xl bg-brand-deep border border-white/8 p-6">
+      <div className="rounded-xl bg-base-stone border border-ink-monument/10 p-6">
         <p className="font-mono text-xs tracking-[0.12em] text-accent-ochre uppercase mb-4">
           Text Sample
         </p>
 
-        <div className="rounded-lg bg-brand-elevated border border-white/8 p-4 mb-4">
+        <div className="rounded-lg bg-base-stone border border-ink-monument/10 p-4 mb-4">
           <p className="text-text-primary text-base leading-relaxed mb-1" lang={entry.lang_code}>
             {entry.sentence}
           </p>
@@ -341,12 +341,12 @@ function TextPanel({ entry }: { entry: TextEntry }) {
         </div>
       </div>
 
-      <div className="rounded-xl overflow-hidden border border-white/8 bg-[#07070C]">
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/8 bg-white/3">
+      <div className="rounded-xl overflow-hidden border border-ink-monument/10 dark-panel">
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-ink-monument/10 bg-ink-monument/4">
           <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-ink-monument/10" aria-hidden="true" />
           </div>
           <span className="font-mono text-[10px] text-text-tertiary ml-1">api_response.json</span>
         </div>
@@ -432,7 +432,7 @@ export function DataExplorer() {
   }, []);
 
   return (
-    <section id="explorer" className="py-20 bg-brand-deep">
+    <section id="explorer" className="py-20 bg-base-stone">
       <div className="container-wide section-padding">
         <div className="text-center mb-12">
           <span className="font-mono text-xs tracking-[0.18em] text-text-tertiary uppercase">
@@ -457,7 +457,7 @@ export function DataExplorer() {
                 id="explorer-language"
                 value={language}
                 onChange={(e) => changeLanguage(e.target.value)}
-                className="w-full bg-brand-elevated border border-white/10 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20 transition-colors cursor-pointer appearance-none"
+                className="w-full bg-base-stone border border-ink-monument/12 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-ochre/40 focus:ring-1 focus:ring-accent-ochre/20 transition-colors cursor-pointer appearance-none"
                 style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'8\' viewBox=\'0 0 12 8\'%3E%3Cpath d=\'M1 1l5 5 5-5\' stroke=\'%2352525B\' stroke-width=\'1.5\' fill=\'none\' stroke-linecap=\'round\'/%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
               >
                 {LANGUAGES.map((lang) => (
@@ -470,7 +470,7 @@ export function DataExplorer() {
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-2">
                 Data Type
               </p>
-              <div className="flex rounded-lg overflow-hidden border border-white/10 bg-brand-elevated">
+              <div className="flex rounded-lg overflow-hidden border border-ink-monument/12 bg-base-stone">
                 {(['speech', 'text'] as Modality[]).map((mod) => (
                   <button
                     key={mod}
@@ -498,7 +498,7 @@ export function DataExplorer() {
                     'flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-all duration-200',
                     isPlaying
                       ? 'bg-accent-cyan/15 border-accent-cyan/30 text-accent-cyan'
-                      : 'bg-brand-elevated border-white/10 text-text-secondary hover:border-accent-cyan/20 hover:text-text-primary',
+                      : 'bg-base-stone border-ink-monument/12 text-text-secondary hover:border-accent-ochre/20 hover:text-text-primary',
                   ].join(' ')}
                   aria-label={isPlaying ? 'Pause sample' : 'Play sample'}
                 >

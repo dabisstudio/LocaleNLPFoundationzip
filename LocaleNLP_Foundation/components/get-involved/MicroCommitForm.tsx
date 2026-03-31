@@ -15,8 +15,8 @@ const AFRICAN_LANGUAGES = [
 
 const inputBase =
   'w-full px-4 py-3.5 rounded-xl text-text-primary placeholder:text-text-tertiary text-sm ' +
-  'bg-brand-elevated border border-white/10 ' +
-  'focus:outline-none focus:border-accent-cyan/60 focus:ring-1 focus:ring-accent-cyan/25 ' +
+  'bg-base-stone border border-ink-monument/12 ' +
+  'focus:outline-none focus:border-accent-ochre/60 focus:ring-1 focus:ring-accent-ochre/25 ' +
   'transition-colors duration-200 appearance-none';
 
 export function MicroCommitForm() {
@@ -124,18 +124,18 @@ export function MicroCommitForm() {
 
         {dropdownOpen && (
           <div
-            className="absolute left-0 right-0 top-full mt-1 z-50 rounded-xl border border-white/10 overflow-hidden"
+            className="absolute left-0 right-0 top-full mt-1 z-50 rounded-xl border border-ink-monument/12 overflow-hidden"
             style={{ background: '#0E0E14', boxShadow: '0 16px 48px rgba(0,0,0,0.7)' }}
             role="listbox"
             aria-label={t('form.language_placeholder', 'Select your native language')}
           >
-            <div className="p-2 border-b border-white/8">
+            <div className="p-2 border-b border-ink-monument/10">
               <input
                 type="text"
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 placeholder={t('form.language_search', 'Search languages…')}
-                className="w-full px-3 py-2 text-sm bg-white/5 border border-white/8 rounded-lg text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-cyan/50"
+                className="w-full px-3 py-2 text-sm bg-ink-monument/5 border border-ink-monument/10 rounded-lg text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-ochre/50"
                 autoFocus
               />
             </div>
@@ -154,7 +154,7 @@ export function MicroCommitForm() {
                       setFilter('');
                       setDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-white/5 ${
+                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-ink-monument/5 ${
                       language === lang ? 'text-accent-cyan' : 'text-text-secondary'
                     }`}
                   >

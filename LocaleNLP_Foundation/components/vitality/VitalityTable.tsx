@@ -80,7 +80,7 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
     <th
       scope="col"
       className={cn(
-        'px-3 py-2.5 text-[10px] font-semibold uppercase tracking-widest text-text-tertiary cursor-pointer select-none hover:text-white transition-colors whitespace-nowrap',
+        'px-3 py-2.5 text-[10px] font-semibold uppercase tracking-widest text-ink-muted cursor-pointer select-none hover:text-ink-monument transition-colors whitespace-nowrap',
         right ? 'text-right' : 'text-left',
         sortKey === col && 'text-accent-ochre',
       )}
@@ -98,7 +98,7 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
     <section>
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-5">
         <div>
-          <h2 className="font-display text-xl font-bold text-white">All Languages</h2>
+          <h2 className="font-display text-xl font-bold text-ink-monument">All Languages</h2>
           <p className="text-text-secondary text-sm mt-0.5">{sorted.length} of {data.length} records</p>
         </div>
         <div className="relative w-full sm:w-64">
@@ -108,14 +108,14 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
             placeholder="Filter languages…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-brand-surface border border-white/10 text-sm text-white placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-ochre/40 focus:border-accent-ochre/40 transition-colors"
+            className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-base-pure border border-ink-monument/12 text-sm text-ink-monument placeholder:text-ink-muted focus:outline-none focus:ring-2 focus:ring-accent-ochre/40 focus:border-accent-ochre/40 transition-colors"
           />
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-white/8">
+      <div className="overflow-x-auto rounded-xl border border-ink-monument/10 shadow-editorial">
         <table className="w-full text-sm" aria-label="Language vitality data table">
-          <thead className="bg-white/4 border-b border-white/8">
+          <thead className="bg-ink-monument/4 border-b border-ink-monument/10">
             <tr>
               <TH col="languageName" label="Language" />
               <TH col="region"       label="Region" />
@@ -134,12 +134,12 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
                   key={lang.isoCode}
                   onClick={() => onSelect(lang)}
                   className={cn(
-                    'border-b border-white/4 last:border-b-0 cursor-pointer transition-colors duration-150',
+                    'border-b border-ink-monument/6 last:border-b-0 cursor-pointer transition-colors duration-150',
                     isSelected
                       ? 'bg-accent-ochre/8'
                       : i % 2 === 0
-                        ? 'bg-transparent hover:bg-white/4'
-                        : 'bg-white/2 hover:bg-white/4',
+                        ? 'bg-transparent hover:bg-ink-monument/4'
+                        : 'bg-ink-monument/2 hover:bg-ink-monument/4',
                   )}
                   aria-selected={isSelected}
                   tabIndex={0}
@@ -152,7 +152,7 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
                   }}
                 >
                   <td className="px-3 py-3">
-                    <div className="font-semibold text-white">{lang.languageName}</div>
+                    <div className="font-semibold text-ink-monument">{lang.languageName}</div>
                     <div className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">{lang.isoCode}</div>
                   </td>
                   <td className="px-3 py-3 text-text-secondary whitespace-nowrap">{lang.region}</td>
@@ -160,13 +160,13 @@ export function VitalityTable({ data, onSelect, selected }: VitalityTableProps) 
                   <td className="px-3 py-3 text-right font-mono text-text-secondary">{lang.speechHoursValidated.toLocaleString()}</td>
                   <td className="px-3 py-3 text-right">
                     <div className="inline-flex items-center gap-1.5">
-                      <div className="w-14 h-1.5 rounded-full bg-white/8 overflow-hidden">
+                      <div className="w-14 h-1.5 rounded-full bg-ink-monument/10 overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{ width: `${lang.aiReadinessScore}%`, backgroundColor: statusColor }}
                         />
                       </div>
-                      <span className="font-mono font-bold text-white w-6 text-right">{lang.aiReadinessScore}</span>
+                      <span className="font-mono font-bold text-ink-monument w-6 text-right">{lang.aiReadinessScore}</span>
                     </div>
                   </td>
                   <td className="px-3 py-3">

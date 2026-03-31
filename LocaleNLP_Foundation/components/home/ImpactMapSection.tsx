@@ -46,16 +46,14 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
   };
 
   return (
-    <section className="py-24 bg-midnight-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(45,106,79,0.1),transparent_50%)]" />
-
+    <section className="py-24 bg-base-paper border-t border-ink-monument/8 relative overflow-hidden">
       <div className="container-wide section-padding relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-forest-500/10 text-forest-400 text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent-emerald/10 text-accent-emerald text-sm font-medium mb-4 font-mono tracking-wider uppercase text-xs">
             Our Reach
           </span>
-          <h2 className="text-white mb-4">Impact Across Africa</h2>
-          <p className="text-midnight-200 max-w-2xl mx-auto">
+          <h2 className="text-ink-monument mb-4">Impact Across Africa</h2>
+          <p className="text-ink-steel max-w-2xl mx-auto">
             From Lagos to Nairobi, from Cape Town to Cairo, our work touches communities across the
             continent.
           </p>
@@ -63,10 +61,10 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
 
         <div className="grid lg:grid-cols-3 gap-8 items-center">
           <div className="lg:col-span-2 relative">
-            <div className="aspect-[4/3] relative bg-midnight-800/30 rounded-2xl overflow-hidden border border-midnight-700/50">
+            <div className="aspect-[4/3] relative bg-base-stone rounded-2xl overflow-hidden border border-ink-monument/10 shadow-editorial">
               {isLoading ? (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-royal-400 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-accent-ochre border-t-transparent rounded-full animate-spin" />
                 </div>
               ) : (
                 <svg
@@ -75,15 +73,15 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
                 >
                   <defs>
                     <radialGradient id="pulseGradient">
-                      <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-                      <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#D95C14" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#D95C14" stopOpacity="0" />
                     </radialGradient>
                   </defs>
 
                   <path
                     d="M-10,-30 Q20,-35 40,-25 Q55,-15 50,10 Q48,25 35,50 Q25,60 10,55 Q-5,45 -15,20 Q-20,0 -10,-30 Z"
                     fill="none"
-                    stroke="rgba(107,31,119,0.3)"
+                    stroke="rgba(12,12,12,0.12)"
                     strokeWidth="0.5"
                   />
 
@@ -105,7 +103,6 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
                           cx={pathData.cx}
                           cy={pathData.cy}
                           r={pulseSize * 2}
-                          className="text-ochre-400 animate-pulse-glow"
                           fill="url(#pulseGradient)"
                           opacity={0.3}
                         />
@@ -114,9 +111,8 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
                           cx={pathData.cx}
                           cy={pathData.cy}
                           r={pulseSize}
-                          className={`transition-all duration-300 ${
-                            isSelected ? 'fill-ochre-400' : 'fill-royal-400'
-                          }`}
+                          fill={isSelected ? '#D95C14' : '#0A1931'}
+                          className="transition-all duration-300"
                         />
 
                         {isSelected && (
@@ -127,8 +123,8 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
                               width="25"
                               height="12"
                               rx="2"
-                              fill="rgba(10,10,20,0.9)"
-                              stroke="rgba(107,31,119,0.5)"
+                              fill="rgba(10,25,49,0.95)"
+                              stroke="rgba(217,92,20,0.4)"
                               strokeWidth="0.3"
                             />
                             <text
@@ -151,28 +147,28 @@ export default function ImpactMapSection({ initialCountries = [] }: ImpactMapSec
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-white mb-4">Active Countries</h3>
+            <h3 className="text-ink-monument mb-4">Active Countries</h3>
             {countries.slice(0, 6).map((country) => (
               <div
                 key={country.id}
                 className={`p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
                   selectedCountry?.id === country.id
-                    ? 'bg-royal-500/10 border-royal-500/50'
-                    : 'bg-midnight-800/50 border-midnight-700/50 hover:border-midnight-600'
+                    ? 'bg-accent-ochre/8 border-accent-ochre/30'
+                    : 'bg-base-pure border-ink-monument/10 hover:border-ink-monument/25 shadow-editorial'
                 }`}
                 onMouseEnter={() => setSelectedCountry(country)}
                 onMouseLeave={() => setSelectedCountry(null)}
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-medium text-white">{country.name}</h4>
-                    <p className="text-xs text-midnight-400">{country.region} Africa</p>
+                    <h4 className="font-medium text-ink-monument">{country.name}</h4>
+                    <p className="text-xs text-ink-muted">{country.region} Africa</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-sora font-bold text-ochre-400">
+                    <div className="text-lg font-mono font-bold text-accent-ochre">
                       {country.active_projects}
                     </div>
-                    <p className="text-xs text-midnight-400">projects</p>
+                    <p className="text-xs text-ink-muted">projects</p>
                   </div>
                 </div>
               </div>

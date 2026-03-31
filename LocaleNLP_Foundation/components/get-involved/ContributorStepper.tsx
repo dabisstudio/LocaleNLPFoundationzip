@@ -96,7 +96,7 @@ export function ContributorStepper() {
 
           <div className="flex items-center justify-between">
             {step.icon}
-            <span className="font-mono text-4xl font-bold text-white/[0.06] select-none leading-none">
+            <span className="font-mono text-4xl font-bold text-ink-monument/8 select-none leading-none">
               {step.number}
             </span>
           </div>
@@ -110,7 +110,7 @@ export function ContributorStepper() {
             </p>
           </div>
 
-          <div className="mt-auto pt-4 border-t border-white/8">
+          <div className="mt-auto pt-4 border-t border-ink-monument/10">
             <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
               {i === 0 ? 'PROMPT DELIVERY' : i === 1 ? 'CONTRIBUTION LAYER' : 'ESCROW RELEASE'}
             </span>

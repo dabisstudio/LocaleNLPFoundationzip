@@ -247,7 +247,7 @@ export default function EthicsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2 rounded-xl border border-white/8 bg-brand-elevated p-8">
+              <div className="md:col-span-2 rounded-xl border border-ink-monument/10 bg-base-stone p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center">
                     <Shield className="w-4 h-4 text-accent-cyan" aria-hidden="true" />
@@ -262,7 +262,7 @@ export default function EthicsPage() {
                 <ConsentRing />
               </div>
 
-              <div className="md:col-span-1 md:row-span-2 rounded-xl border border-white/8 bg-brand-elevated p-8">
+              <div className="md:col-span-1 md:row-span-2 rounded-xl border border-ink-monument/10 bg-base-stone p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center">
                     <Users className="w-4 h-4 text-accent-cyan" aria-hidden="true" />
@@ -277,7 +277,7 @@ export default function EthicsPage() {
 
                 <RadarChart />
 
-                <div className="mt-6 pt-5 border-t border-white/8">
+                <div className="mt-6 pt-5 border-t border-ink-monument/10">
                   <p className="text-text-secondary text-sm leading-relaxed">
                     We continuously audit our datasets to ensure rural and marginalized dialects
                     are weighted equally. Corpora are rebalanced quarterly.
@@ -285,7 +285,7 @@ export default function EthicsPage() {
                 </div>
               </div>
 
-              <div className="md:col-span-2 rounded-xl border border-white/8 bg-brand-elevated p-8">
+              <div className="md:col-span-2 rounded-xl border border-ink-monument/10 bg-base-stone p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-8 h-8 rounded-lg bg-accent-clay/10 flex items-center justify-center">
                     <FileText className="w-4 h-4 text-accent-clay" aria-hidden="true" />
@@ -336,10 +336,10 @@ export default function EthicsPage() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto rounded-xl border border-white/8 overflow-hidden">
+            <div className="max-w-4xl mx-auto rounded-xl border border-ink-monument/10 overflow-hidden">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-brand-elevated border-b border-white/8">
+                  <tr className="bg-base-stone border-b border-ink-monument/10">
                     <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-6 py-3">
                       Document
                     </th>
@@ -363,7 +363,7 @@ export default function EthicsPage() {
                       key={policy.name}
                       className={[
                         'group transition-colors hover:bg-accent-cyan/5',
-                        i < POLICIES.length - 1 ? 'border-b border-white/6' : '',
+                        i < POLICIES.length - 1 ? 'border-b border-ink-monument/8' : '',
                       ].join(' ')}
                     >
                       <td className="px-6 py-4">
@@ -382,7 +382,7 @@ export default function EthicsPage() {
                         </div>
                       </td>
                       <td className="px-4 py-4 hidden md:table-cell">
-                        <span className="font-mono text-[10px] text-text-tertiary bg-white/5 px-2 py-1 rounded">
+                        <span className="font-mono text-[10px] text-text-tertiary bg-ink-monument/5 px-2 py-1 rounded">
                           {policy.version}
                         </span>
                       </td>
@@ -395,7 +395,7 @@ export default function EthicsPage() {
                       <td className="px-6 py-4 text-right">
                         <a
                           href="#"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-ink-monument/12 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
                           aria-label={`Download ${policy.name} PDF`}
                         >
                           <Download className="w-3.5 h-3.5" aria-hidden="true" />

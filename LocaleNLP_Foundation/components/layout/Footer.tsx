@@ -37,14 +37,14 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer style={{ backgroundColor: '#04040A' }} className="border-t border-white/8">
+    <footer style={{ backgroundColor: '#0A1931' }} className="border-t border-white/8">
       <div className="container-wide section-padding py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="inline-flex mb-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded"
+              className="inline-flex mb-5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded"
               aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
             >
               <Image
@@ -55,7 +55,7 @@ export default function Footer() {
                 className="h-9 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
               />
             </Link>
-            <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
+            <p style={{ color: 'rgba(255,255,255,0.55)' }} className="text-sm leading-relaxed max-w-xs">
               {t('footer.tagline', 'Building open, ethical language infrastructure for Africa and the Global South.')}
             </p>
           </div>
@@ -69,7 +69,8 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded"
+                    style={{ color: 'rgba(255,255,255,0.55)' }}
+                    className="text-sm hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded"
                   >
                     {t(link.labelKey)}
                   </Link>
@@ -87,7 +88,8 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded"
+                    style={{ color: 'rgba(255,255,255,0.55)' }}
+                    className="text-sm hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded"
                   >
                     {t(link.labelKey)}
                   </Link>
@@ -107,7 +109,8 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg glass-panel flex items-center justify-center text-text-secondary hover:text-white hover:border-accent-ochre/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                  style={{ color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.05)' }}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center hover:text-white hover:border-accent-ochre/40 hover:bg-white/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" aria-hidden="true" />
@@ -116,17 +119,17 @@ export default function Footer() {
             </div>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/get-involved#contact" className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
+                <Link href="/get-involved#contact" style={{ color: 'rgba(255,255,255,0.55)' }} className="text-sm hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded">
                   {t('footer.contact_us', 'Contact Us')}
                 </Link>
               </li>
               <li>
-                <a href="#newsletter" className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
+                <a href="#newsletter" style={{ color: 'rgba(255,255,255,0.55)' }} className="text-sm hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded">
                   {t('footer.newsletter', 'Newsletter')}
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@localenlp.org" className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
+                <a href="mailto:hello@localenlp.org" style={{ color: 'rgba(255,255,255,0.55)' }} className="text-sm hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded">
                   hello@localenlp.org
                 </a>
               </li>
@@ -135,19 +138,24 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-xs text-text-tertiary tracking-wider">
+          <p style={{ color: 'rgba(255,255,255,0.35)' }} className="font-mono text-xs tracking-wider">
             {t('footer.copyright', '© 2026 LocaleNLP Foundation. All rights reserved.')}
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/status" className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
-              {t('footer.status', 'System Status')}
-            </Link>
-            <Link href="/privacy" className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
-              {t('footer.privacy', 'Privacy Policy')}
-            </Link>
-            <Link href="/terms" className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded">
-              {t('footer.terms', 'Terms of Service')}
-            </Link>
+            {[
+              { key: 'footer.status', fallback: 'System Status', href: '/status' },
+              { key: 'footer.privacy', fallback: 'Privacy Policy', href: '/privacy' },
+              { key: 'footer.terms', fallback: 'Terms of Service', href: '/terms' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                style={{ color: 'rgba(255,255,255,0.35)' }}
+                className="font-mono text-xs hover:text-white transition-colors duration-200 tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded"
+              >
+                {t(item.key, item.fallback)}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

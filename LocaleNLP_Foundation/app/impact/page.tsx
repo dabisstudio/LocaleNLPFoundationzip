@@ -163,7 +163,7 @@ export default async function ImpactPage() {
                   <p className="text-text-secondary text-sm leading-relaxed mb-5">
                     {useCase.description}
                   </p>
-                  <div className="pt-4 border-t border-white/8">
+                  <div className="pt-4 border-t border-ink-monument/10">
                     <p className={`text-sm font-mono font-medium ${useCase.accent}`}>
                       {useCase.impact}
                     </p>
@@ -231,7 +231,7 @@ export default async function ImpactPage() {
                       <p className="text-text-secondary text-sm leading-relaxed mb-5 flex-1 line-clamp-3">
                         {story.tagline}
                       </p>
-                      <div className="flex items-center gap-4 pt-4 border-t border-white/8">
+                      <div className="flex items-center gap-4 pt-4 border-t border-ink-monument/10">
                         {story.metrics.slice(0, 2).map((m) => (
                           <div key={m.label}>
                             <p className={`font-display text-lg font-bold ${textColors[m.accent]}`}>
@@ -288,7 +288,7 @@ export default async function ImpactPage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <Heart className="w-10 h-10 text-white/10" aria-hidden="true" />
+                        <Heart className="w-10 h-10 text-ink-muted/20" aria-hidden="true" />
                       )}
                     </div>
                     <div className="p-6">

@@ -11,18 +11,17 @@ interface MonoLabelProps {
 
 const dotColors: Record<Status, string> = {
   active: 'bg-accent-ochre',
-  beta: 'bg-accent-cyan',
-  legacy: 'bg-text-tertiary',
+  beta: 'bg-accent-navy',
+  legacy: 'bg-ink-muted',
 };
 
 const textColors: Record<Status, string> = {
   active: 'text-accent-ochre',
-  beta: 'text-accent-cyan',
-  legacy: 'text-text-tertiary',
+  beta: 'text-accent-navy',
+  legacy: 'text-ink-muted',
 };
 
 export function MonoLabel({ label, number, status = 'active', className }: MonoLabelProps) {
-  // Order: label // number // STATUS — e.g. [ INITIATIVE // 01 // ACTIVE ]
   const parts = [label, number, status.toUpperCase()].filter(Boolean);
   const bracketContent = parts.join(' // ');
 

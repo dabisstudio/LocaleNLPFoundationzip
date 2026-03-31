@@ -43,7 +43,7 @@ export function DonationCalculator() {
   const impact = getImpact(amount);
 
   return (
-    <section className="py-20 bg-brand-deep">
+    <section className="py-20 bg-base-stone">
       <div className="container-wide section-padding">
         <div className="text-center mb-12">
           <span className="font-mono text-xs tracking-[0.18em] text-text-tertiary uppercase">
@@ -90,7 +90,7 @@ export function DonationCalculator() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-xl bg-brand-elevated border border-white/8 p-6">
+            <div className="rounded-xl bg-base-stone border border-ink-monument/10 p-6">
               <p className="font-mono text-xs tracking-[0.14em] text-accent-ochre uppercase mb-3">
                 Your Impact
               </p>
@@ -100,7 +100,7 @@ export function DonationCalculator() {
               <p className="text-text-secondary text-sm leading-relaxed">{impact.copy}</p>
             </div>
 
-            <div className="rounded-xl bg-brand-elevated border border-white/8 p-6">
+            <div className="rounded-xl bg-base-stone border border-ink-monument/10 p-6">
               <p className="font-mono text-xs tracking-[0.14em] text-accent-ochre uppercase mb-4">
                 Where ${amount} Goes
               </p>
@@ -115,7 +115,7 @@ export function DonationCalculator() {
                           ${dollars}
                         </span>
                       </div>
-                      <div className="h-1 bg-brand-deep rounded-full overflow-hidden">
+                      <div className="h-1 bg-base-stone rounded-full overflow-hidden">
                         <div
                           className={`h-full ${alloc.color} rounded-full transition-all duration-300 ease-apple-ease`}
                           style={{ width: `${alloc.percent}%` }}
@@ -133,7 +133,7 @@ export function DonationCalculator() {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/8 text-center">
+          <div className="mt-8 pt-6 border-t border-ink-monument/10 text-center">
             <p className="font-mono text-xs text-text-tertiary">
               🔒 256-bit encrypted via Stripe · 501(c)(3) verified · No account required
             </p>

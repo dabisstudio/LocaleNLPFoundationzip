@@ -91,7 +91,7 @@ export function ContributorLedger() {
             >
               {isMounted ? <AnimatedValue value={t(stat.valueKey)} /> : t(stat.valueKey)}
             </p>
-            <p className="text-white text-sm font-semibold mt-2 mb-1">
+            <p className="text-ink-monument text-sm font-semibold mt-2 mb-1">
               {t(stat.labelKey)}
             </p>
             <p className="text-text-tertiary text-xs leading-snug">

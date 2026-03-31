@@ -167,7 +167,7 @@ export function EscrowVisualizer() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="px-6 pt-6 pb-5 border-b border-white/8">
+      <div className="px-6 pt-6 pb-5 border-b border-ink-monument/10">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
           Data Escrow & Licensing — Select your perspective
         </p>
@@ -177,7 +177,7 @@ export function EscrowVisualizer() {
       </div>
 
       <div className="p-6 md:p-8">
-        <div className="flex rounded-xl overflow-hidden border border-white/10 bg-brand-elevated mb-8 w-full max-w-md">
+        <div className="flex rounded-xl overflow-hidden border border-ink-monument/12 bg-base-stone mb-8 w-full max-w-md">
           <button
             type="button"
             onClick={() => switchPersona('contributor')}

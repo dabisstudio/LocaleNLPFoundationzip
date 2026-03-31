@@ -25,16 +25,16 @@ async function getPartners(): Promise<PartnerDisplay[]> {
 
 function PartnerItem({ partner }: { partner: PartnerDisplay }) {
   return (
-    <div className="inline-flex items-center justify-center mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 shrink-0">
+    <div className="inline-flex items-center justify-center mx-10 opacity-50 hover:opacity-90 transition-opacity duration-300 shrink-0">
       {partner.logo_url ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={partner.logo_url}
           alt={partner.name}
-          className="h-7 w-auto object-contain brightness-0 invert"
+          className="h-7 w-auto object-contain"
         />
       ) : (
-        <span className="font-display font-semibold text-white text-sm whitespace-nowrap">
+        <span className="font-display font-semibold text-ink-monument text-sm whitespace-nowrap">
           {partner.name}
         </span>
       )}
@@ -46,20 +46,20 @@ export default async function PartnersSection() {
   const partners = await getPartners();
 
   return (
-    <section className="py-16 border-y border-white/6 overflow-hidden" aria-label="Our partners">
-      <p className="text-center font-mono text-xs text-text-tertiary tracking-widest uppercase mb-10">
+    <section className="py-16 border-t border-b border-ink-monument/8 bg-base-paper overflow-hidden" aria-label="Our partners">
+      <p className="text-center font-mono text-xs text-ink-muted tracking-widest uppercase mb-10">
         Trusted by leading organizations
       </p>
 
       <div className="relative overflow-hidden motion-safe:block motion-reduce:hidden">
         <div
           className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, #04040A 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(90deg, #FAFAFA 0%, transparent 100%)' }}
           aria-hidden="true"
         />
         <div
           className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(270deg, #04040A 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(270deg, #FAFAFA 0%, transparent 100%)' }}
           aria-hidden="true"
         />
         <div className="marquee-track" aria-hidden="true">

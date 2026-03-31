@@ -32,20 +32,19 @@ export function GlowButton({
   const classes = cn(
     'group inline-flex items-center justify-center gap-2',
     'px-6 py-3 rounded-lg font-medium text-sm',
-    'transition-all duration-300 ease-apple-ease',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A]',
+    'transition-all duration-300 ease-monumental',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone',
     'disabled:pointer-events-none disabled:opacity-50',
     variant === 'primary' && [
-      'bg-white text-[#04040A]',
-      'ring-1 ring-transparent',
-      'hover:ring-accent-ochre/50 hover:animate-glow-pulse hover:-translate-y-0.5',
+      'bg-accent-ochre text-white',
+      'shadow-editorial',
+      'hover:shadow-harsh hover:-translate-y-0.5',
       'focus-visible:ring-accent-ochre',
     ],
     variant === 'ghost' && [
-      'bg-transparent text-white border border-white/15',
-      'hover:border-accent-ochre/40 hover:bg-white/5',
-      'hover:shadow-[0_0_16px_rgba(245,166,35,0.15)]',
-      'focus-visible:ring-accent-ochre',
+      'bg-transparent text-ink-monument border border-ink-monument/20',
+      'hover:bg-accent-navy hover:text-white hover:border-accent-navy',
+      'focus-visible:ring-accent-navy',
     ],
     className
   );
@@ -55,7 +54,7 @@ export function GlowButton({
       {children}
       {showArrow && (
         <ArrowRight
-          className="w-4 h-4 shrink-0 transition-transform duration-300 ease-apple-ease group-hover:translate-x-1"
+          className="w-4 h-4 shrink-0 transition-transform duration-300 ease-monumental group-hover:translate-x-1"
           aria-hidden="true"
         />
       )}

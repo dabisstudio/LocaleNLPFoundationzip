@@ -175,7 +175,7 @@ export function AfricaMap() {
 
           <Popover.Portal>
             <Popover.Content
-              className="z-50 rounded-lg bg-brand-elevated border border-white/12 p-3 shadow-xl text-left w-44"
+              className="z-50 rounded-lg bg-base-stone border border-ink-monument/12 p-3 shadow-xl text-left w-44"
               sideOffset={6}
               onOpenAutoFocus={(e) => e.preventDefault()}
             >

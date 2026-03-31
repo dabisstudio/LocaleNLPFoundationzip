@@ -76,7 +76,7 @@ export function PersonaSwitcher() {
               'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre',
               active === i
                 ? 'border-accent-ochre/40 text-accent-ochre'
-                : 'bg-transparent border-white/10 text-text-secondary hover:border-white/20 hover:text-text-primary'
+                : 'bg-transparent border-ink-monument/12 text-text-secondary hover:border-ink-monument/20 hover:text-text-primary'
             )}
           >
             {active === i && (

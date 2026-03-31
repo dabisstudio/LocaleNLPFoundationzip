@@ -192,7 +192,7 @@ export default function DataPactPage() {
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className="block text-xs text-text-tertiary hover:text-white transition-colors py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded"
+                      className="block text-xs text-ink-muted hover:text-ink-monument transition-colors py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre rounded"
                     >
                       {item.label}
                     </a>
@@ -235,7 +235,7 @@ export default function DataPactPage() {
                           <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: article.color }}>
                             {t(article.labelKey)}
                           </p>
-                          <h3 className="text-white font-semibold text-sm">{t(article.titleKey)}</h3>
+                          <h3 className="text-ink-monument font-semibold text-sm">{t(article.titleKey)}</h3>
                         </div>
                       </div>
                       <ol className="space-y-3">

@@ -10,9 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Space Grotesk for all display/heading use
         display: ['var(--font-space-grotesk)', 'sans-serif'],
-        // sora alias retained for backward compatibility with existing components
         sora: ['var(--font-space-grotesk)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
@@ -21,10 +19,10 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #04040A 0%, #09090E 50%, #04040A 100%)',
-        'glass-gradient': 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.0) 100%)',
-        'glow-ochre': 'radial-gradient(circle at center, rgba(245,166,35,0.15) 0%, transparent 70%)',
-        'glow-cyan': 'radial-gradient(circle at center, rgba(0,229,255,0.1) 0%, transparent 70%)',
+        'hero-gradient': 'linear-gradient(135deg, #F5F5F3 0%, #FAFAFA 50%, #F5F5F3 100%)',
+        'glass-gradient': 'linear-gradient(180deg, rgba(12,12,12,0.02) 0%, rgba(12,12,12,0.0) 100%)',
+        'glow-ochre': 'radial-gradient(circle at center, rgba(217,92,20,0.08) 0%, transparent 70%)',
+        'glow-navy': 'radial-gradient(circle at center, rgba(10,25,49,0.06) 0%, transparent 70%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -34,22 +32,47 @@ const config: Config = {
       transitionTimingFunction: {
         'apple-ease': 'cubic-bezier(0.16, 1, 0.3, 1)',
         'smooth': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'monumental': 'cubic-bezier(0.22, 1, 0.36, 1)',
+      },
+      letterSpacing: {
+        'tighter': '-0.04em',
+        'widest': '0.1em',
       },
       colors: {
-        // New brand tokens
-        brand: {
-          deep: '#04040A',
-          surface: '#09090E',
-          elevated: '#12121A',
+        // ── Monumental Institutional palette ──────────────────────────
+        base: {
+          stone: '#F5F5F3',
+          paper: '#FAFAFA',
+          pure: '#FFFFFF',
+          archive: '#EAEAEA',
         },
-        'accent-ochre': '#F5A623',
+        ink: {
+          monument: '#0C0C0C',
+          steel: '#4A4A56',
+          muted: '#8C8C9A',
+        },
+
+        // ── Brand tokens (updated to light theme) ─────────────────────
+        brand: {
+          deep: '#F5F5F3',
+          surface: '#FFFFFF',
+          elevated: '#F5F5F3',
+        },
+
+        // ── Heritage accents ─────────────────────────────────────────
+        'accent-ochre': '#D95C14',
+        'accent-navy': '#0A1931',
+        'accent-emerald': '#0F763D',
+        // accent-clay and accent-cyan kept for legacy components
         'accent-clay': '#E07A5F',
         'accent-cyan': '#00E5FF',
-        'text-primary': '#FAFAFA',
-        'text-secondary': '#8F8F9D',
-        'text-tertiary': '#787890',
 
-        // Legacy palette kept for backward compat; midnight-900 and midnight-800 updated
+        // ── Semantic text tokens (now light-theme values) ─────────────
+        'text-primary': '#0C0C0C',
+        'text-secondary': '#4A4A56',
+        'text-tertiary': '#8C8C9A',
+
+        // ── Legacy palettes kept for backward compat ──────────────────
         midnight: {
           DEFAULT: '#1a1a2e',
           50: '#f5f5f7',
@@ -78,33 +101,33 @@ const config: Config = {
           900: '#340f3b',
         },
         ochre: {
-          DEFAULT: '#F5A623',
-          50: '#fffbf0',
-          100: '#fef3d0',
-          200: '#fde69f',
-          300: '#fbd362',
-          400: '#F5A623',
-          500: '#e8921a',
-          600: '#c57310',
-          700: '#9d590d',
-          800: '#7a4410',
-          900: '#643810',
+          DEFAULT: '#D95C14',
+          50: '#fef5ed',
+          100: '#fde3c8',
+          200: '#fbc690',
+          300: '#f7a058',
+          400: '#D95C14',
+          500: '#c2520f',
+          600: '#a3430b',
+          700: '#7d330a',
+          800: '#5e2708',
+          900: '#491e07',
         },
         forest: {
-          DEFAULT: '#2D6A4F',
-          50: '#f4f9f7',
-          100: '#e9f3ef',
-          200: '#c8e1d6',
-          300: '#a7cfbd',
-          400: '#6aab8c',
-          500: '#2D6A4F',
-          600: '#295f47',
-          700: '#224f3b',
-          800: '#1b3f2f',
-          900: '#163427',
+          DEFAULT: '#0F763D',
+          50: '#f0faf5',
+          100: '#d9f2e6',
+          200: '#b0e5cd',
+          300: '#7fd0ae',
+          400: '#43b285',
+          500: '#0F763D',
+          600: '#0d6a36',
+          700: '#0b5a2d',
+          800: '#094826',
+          900: '#073b1f',
         },
 
-        // Shadcn CSS-var tokens
+        // ── Shadcn CSS-var tokens ─────────────────────────────────────
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -147,10 +170,14 @@ const config: Config = {
         },
       },
       boxShadow: {
-        'glow-ochre': '0 0 20px rgba(245, 166, 35, 0.35)',
-        'glow-cyan': '0 0 20px rgba(0, 229, 255, 0.25)',
-        'glass': '0 4px 30px rgba(0, 0, 0, 0.5)',
-        'float': '0 20px 40px rgba(0, 0, 0, 0.4)',
+        'editorial': '0 1px 2px rgba(12,12,12,0.05), 0 4px 12px rgba(12,12,12,0.06)',
+        'harsh': '4px 4px 0px 0px rgba(12,12,12,0.9)',
+        'card': '0 1px 3px rgba(12,12,12,0.08), 0 8px 24px rgba(12,12,12,0.05)',
+        'float': '0 20px 40px rgba(12,12,12,0.12)',
+        'glow-ochre': '0 0 20px rgba(217,92,20,0.25)',
+        'glow-navy': '0 0 20px rgba(10,25,49,0.2)',
+        // Legacy shadows kept for any dark-context components
+        'glass': '0 4px 30px rgba(0,0,0,0.5)',
       },
       keyframes: {
         'accordion-down': {
@@ -182,8 +209,8 @@ const config: Config = {
           '100%': { transform: 'translateX(-50%)' },
         },
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 8px rgba(245,166,35,0.3)' },
-          '50%': { boxShadow: '0 0 20px rgba(245,166,35,0.6)' },
+          '0%, 100%': { boxShadow: '0 0 8px rgba(217,92,20,0.2)' },
+          '50%': { boxShadow: '0 0 20px rgba(217,92,20,0.45)' },
         },
         'slide-down': {
           from: { opacity: '0', transform: 'translateY(-8px)' },
@@ -193,13 +220,13 @@ const config: Config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-up': 'fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
         'fade-in': 'fade-in 0.4s ease-out forwards',
         'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
         'float': 'float 4s ease-in-out infinite',
         'marquee': 'marquee 28s linear infinite',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-        'slide-down': 'slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down': 'slide-down 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
       },
       spacing: {
         '18': '4.5rem',

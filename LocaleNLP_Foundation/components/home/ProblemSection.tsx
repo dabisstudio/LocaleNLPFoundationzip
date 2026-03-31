@@ -30,7 +30,7 @@ export default function ProblemSection() {
   return (
     <section
       className="py-24 relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #04040A 0%, #060610 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #F5F5F3 0%, #FAFAFA 100%)' }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -46,7 +46,7 @@ export default function ProblemSection() {
           <MonoLabel label="THE CHALLENGE" number="01" status="active" />
         </div>
 
-        <h2 className="text-center text-white mt-4 mb-2">A Continent Left Behind</h2>
+        <h2 className="text-center text-ink-monument mt-4 mb-2">A Continent Left Behind</h2>
 
         {/* Large < 1% stat reveal */}
         <motion.div

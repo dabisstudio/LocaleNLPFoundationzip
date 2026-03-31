@@ -215,7 +215,7 @@ export default async function AboutPage() {
 
             <div className="relative">
               <div
-                className="hidden md:block absolute top-5 left-0 right-0 h-px bg-white/8"
+                className="hidden md:block absolute top-5 left-0 right-0 h-px bg-ink-monument/10"
                 aria-hidden="true"
               />
               <div className="grid md:grid-cols-6 gap-y-8 md:gap-y-0">
@@ -228,7 +228,7 @@ export default async function AboutPage() {
                         </span>
                       </div>
                       {i < MILESTONES.length - 1 && (
-                        <div className="w-px flex-1 bg-white/8 md:hidden" aria-hidden="true" />
+                        <div className="w-px flex-1 bg-ink-monument/10 md:hidden" aria-hidden="true" />
                       )}
                     </div>
                     <div className="md:mt-6">
@@ -358,7 +358,7 @@ export default async function AboutPage() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {advisors.map((member) => (
                       <div key={member.id} className="glass-card p-6 text-center">
-                        <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 mx-auto mb-4 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-ink-monument/5 border border-ink-monument/12 mx-auto mb-4 flex items-center justify-center">
                           <span className="font-display text-sm font-bold text-text-secondary">
                             {getInitials(member.name)}
                           </span>

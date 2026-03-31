@@ -30,7 +30,7 @@ export default function VitalityPage() {
           ]}
         />
 
-        <section className="bg-brand-surface border-b border-white/6">
+        <section className="bg-base-pure border-b border-ink-monument/8">
           <div className="container-wide section-padding py-8">
             <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
               <SummaryMetric value={VITALITY_SUMMARY.totalLanguages} label="Languages Audited" accent="cyan" />

@@ -14,15 +14,15 @@ const MODALITY_ICON: Record<LanguageBounty['modality'], React.ComponentType<{ cl
 };
 
 const MODALITY_COLOR: Record<LanguageBounty['modality'], string> = {
-  'Speech':        'text-accent-cyan  bg-accent-cyan/10',
+  'Speech':        'text-accent-navy  bg-accent-navy/10',
   'Text-Pair':     'text-accent-ochre bg-accent-ochre/10',
   'Transcription': 'text-accent-clay  bg-accent-clay/10',
 };
 
 const STATUS_DOT: Record<LanguageBounty['bounty_status'], string> = {
   'funding':           'bg-accent-ochre animate-pulse',
-  'active_collection': 'bg-accent-cyan  animate-pulse',
-  'fulfilled':         'bg-emerald-400',
+  'active_collection': 'bg-accent-emerald animate-pulse',
+  'fulfilled':         'bg-emerald-500',
 };
 
 function fmt(n: number): string {
@@ -53,17 +53,16 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
   return (
     <article
       className={cn(
-        'group relative flex flex-col gap-5 rounded-2xl border p-6',
-        'bg-brand-surface hover:bg-brand-elevated',
-        'transition-all duration-300',
+        'group relative flex flex-col gap-5 rounded-2xl border p-6 bg-base-pure',
+        'transition-all duration-300 shadow-editorial hover:shadow-lg',
         isCritical
           ? 'border-accent-clay/30 hover:border-accent-clay/60'
-          : 'border-white/8 hover:border-white/16',
+          : 'border-ink-monument/10 hover:border-ink-monument/25',
       )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-xs font-bold tracking-widest text-text-secondary uppercase px-2 py-0.5 rounded border border-white/10 bg-white/4">
+          <span className="font-mono text-xs font-bold tracking-widest text-ink-steel uppercase px-2 py-0.5 rounded border border-ink-monument/12 bg-ink-monument/4">
             {bounty.language_code.toUpperCase()}
           </span>
 
@@ -89,15 +88,15 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
       </div>
 
       <div>
-        <p className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-1">
+        <p className="font-mono text-xs text-ink-muted uppercase tracking-widest mb-1">
           {bounty.language_name}
         </p>
-        <h3 className="font-display text-lg font-bold text-white leading-snug group-hover:text-accent-ochre transition-colors duration-200">
+        <h3 className="font-display text-lg font-bold text-ink-monument leading-snug group-hover:text-accent-ochre transition-colors duration-200">
           {bounty.title}
         </h3>
       </div>
 
-      <div className="flex items-center gap-4 text-xs text-text-secondary">
+      <div className="flex items-center gap-4 text-xs text-ink-steel">
         <span className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           {t('bounty.hrs_target', '{n} hrs target').replace('{n}', String(bounty.target_hours))}
@@ -110,16 +109,16 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
 
       <div>
         <div className="flex items-baseline justify-between mb-2">
-          <span className="font-mono text-sm font-bold text-white">
+          <span className="font-mono text-sm font-bold text-ink-monument">
             {fmt(bounty.current_funding_usd)}
           </span>
-          <span className="font-mono text-xs text-text-tertiary">
+          <span className="font-mono text-xs text-ink-muted">
             of {fmt(bounty.funding_goal_usd)}
           </span>
         </div>
 
         <div
-          className="h-1.5 rounded-full bg-white/8 overflow-hidden"
+          className="h-1.5 rounded-full bg-ink-monument/8 overflow-hidden"
           role="progressbar"
           aria-valuenow={Math.round(pct)}
           aria-valuemin={0}
@@ -130,21 +129,21 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
             className={cn(
               'h-full rounded-full transition-[width] duration-700 ease-out',
               isFulfilled
-                ? 'bg-emerald-400'
+                ? 'bg-emerald-500'
                 : isCritical
                   ? 'bg-gradient-to-r from-accent-clay to-accent-ochre'
-                  : 'bg-gradient-to-r from-accent-ochre to-accent-cyan',
+                  : 'bg-gradient-to-r from-accent-ochre to-accent-navy',
             )}
             style={{ width: `${barWidth}%` }}
           />
         </div>
 
         <div className="flex items-center justify-between mt-2">
-          <span className="flex items-center gap-1.5 text-[11px] text-text-tertiary">
+          <span className="flex items-center gap-1.5 text-[11px] text-ink-muted">
             <span className={cn('w-1.5 h-1.5 rounded-full shrink-0', STATUS_DOT[bounty.bounty_status])} />
             {STATUS_LABEL[bounty.bounty_status]}
           </span>
-          <span className="font-mono text-[11px] text-text-tertiary">
+          <span className="font-mono text-[11px] text-ink-muted">
             {t('bounty.pct_funded', '{pct}% funded').replace('{pct}', String(Math.round(pct)))}
           </span>
         </div>
@@ -154,7 +153,7 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
         <GlowButton
           variant="ghost"
           disabled
-          className="mt-auto w-full justify-center text-sm border-emerald-400/30 text-emerald-400"
+          className="mt-auto w-full justify-center text-sm border-emerald-500/30 text-emerald-600"
           aria-label={`${bounty.title} is fully funded`}
           aria-disabled="true"
         >

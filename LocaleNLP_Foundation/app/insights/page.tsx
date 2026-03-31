@@ -107,7 +107,7 @@ export default async function InsightsPage() {
                           </p>
                         )}
 
-                        <div className="flex items-center gap-4 pt-4 border-t border-white/8">
+                        <div className="flex items-center gap-4 pt-4 border-t border-ink-monument/10">
                           {pub.pdf_url && (
                             <a
                               href={pub.pdf_url}
@@ -183,13 +183,13 @@ export default async function InsightsPage() {
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <BookOpen className="w-10 h-10 text-white/10" aria-hidden="true" />
+                            <BookOpen className="w-10 h-10 text-ink-muted/20" aria-hidden="true" />
                           </div>
                         )}
                       </div>
                       <div className="p-6">
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary px-2 py-0.5 rounded bg-white/5">
+                          <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary px-2 py-0.5 rounded bg-ink-monument/5">
                             Field Story
                           </span>
                           <span className="inline-flex items-center gap-1 font-mono text-xs text-text-tertiary">

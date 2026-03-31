@@ -113,7 +113,7 @@ export function DataPactTiers() {
             >
               {t(tier.badgeKey)}
             </span>
-            <h3 className="text-white font-bold text-lg mb-1">{t(tier.nameKey)}</h3>
+            <h3 className="text-ink-monument font-bold text-lg mb-1">{t(tier.nameKey)}</h3>
             <p className="text-2xl font-bold mb-0.5" style={{ color: tier.color }}>
               {t(tier.costKey)}
             </p>

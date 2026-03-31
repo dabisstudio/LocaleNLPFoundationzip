@@ -63,33 +63,37 @@ export default function ManifestoPage() {
       <Navigation />
 
       <main id="main-content">
-        <section className="relative min-h-[72vh] flex flex-col justify-end py-24 overflow-hidden" style={{ backgroundColor: '#04040A' }}>
+        <section className="relative min-h-[72vh] flex flex-col justify-end py-24 overflow-hidden bg-accent-navy">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 90% 60% at 50% 0%, rgba(0,229,255,0.055), transparent 65%)',
+                'radial-gradient(ellipse 90% 60% at 50% 0%, rgba(217,92,20,0.2), transparent 65%)',
             }}
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:80px_80px]"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)',
+              backgroundSize: '80px 80px',
+            }}
           />
 
           <div className="container-wide section-padding relative z-10">
             <div className="max-w-4xl">
-              <p className="font-mono text-xs text-accent-cyan tracking-widest uppercase mb-10">
+              <p className="font-mono text-xs tracking-widest uppercase mb-10" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 [ FOUNDER&apos;S MANIFESTO // PUBLISHED 2026 ]
               </p>
 
               <h1 className="font-display font-bold leading-[1.07] text-white mb-10"
                 style={{ fontSize: 'clamp(2.4rem, 6vw, 5rem)' }}>
                 Artificial Intelligence is writing the future of humanity.{' '}
-                <span className="text-accent-cyan">But it is writing it in only three languages.</span>
+                <span className="text-accent-ochre">But it is writing it in only three languages.</span>
               </h1>
 
-              <p className="text-text-secondary text-lg md:text-xl leading-relaxed max-w-3xl mb-12">
+              <p className="text-lg md:text-xl leading-relaxed max-w-3xl mb-12" style={{ color: 'rgba(255,255,255,0.7)' }}>
                 A founding statement on language equity, digital sovereignty, and the responsibility of those who build machines that think.
               </p>
 
@@ -100,7 +104,7 @@ export default function ManifestoPage() {
           </div>
         </section>
 
-        <div className="border-t border-white/6" aria-hidden="true" />
+        <div className="border-t border-ink-monument/8" aria-hidden="true" />
 
         <article className="bg-brand-deep">
           {SECTIONS.map((section, i) => (
@@ -111,15 +115,15 @@ export default function ManifestoPage() {
               <div className="container-wide section-padding py-20">
                 <div className="max-w-3xl mx-auto">
                   <div className="flex items-baseline gap-4 mb-8">
-                    <span className="font-mono text-xs text-accent-cyan tracking-widest shrink-0">
+                    <span className="font-mono text-xs text-accent-ochre tracking-widest shrink-0">
                       {section.number}
                     </span>
-                    <div className="flex-1 h-px bg-white/8" aria-hidden="true" />
+                    <div className="flex-1 h-px bg-ink-monument/10" aria-hidden="true" />
                   </div>
 
                   <KernHeading
                     as="h2"
-                    className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-10"
+                    className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-ink-monument leading-tight mb-10"
                   >
                     {section.title}
                   </KernHeading>
@@ -142,7 +146,7 @@ export default function ManifestoPage() {
           <section className="bg-brand-deep">
             <div className="container-wide section-padding py-20">
               <div className="max-w-3xl mx-auto">
-                <div className="h-px bg-white/8 mb-12" aria-hidden="true" />
+                <div className="h-px bg-ink-monument/10 mb-12" aria-hidden="true" />
 
                 <p className="font-mono text-sm text-text-secondary leading-relaxed mb-4 italic">
                   This manifesto was written by the founding team of LocaleNLP Foundation and represents
@@ -151,21 +155,21 @@ export default function ManifestoPage() {
                   on the principles it describes.
                 </p>
 
-                <p className="font-mono text-base text-accent-cyan">
+                <p className="font-mono text-base text-accent-ochre">
                   — The LocaleNLP Founding Team
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="bg-brand-surface border-t border-white/8">
+          <section className="bg-accent-navy border-t border-white/10">
             <div className="container-wide section-padding py-16">
               <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
                 <div>
                   <p className="font-display text-xl font-bold text-white mb-1">
                     Put your resources behind the mission.
                   </p>
-                  <p className="text-text-secondary text-sm">
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
                     Fund language data, fellowship researchers, or donate directly.
                   </p>
                 </div>

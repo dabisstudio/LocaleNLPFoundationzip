@@ -45,7 +45,7 @@ function ProgramsSkeleton() {
     <div className="py-20 bg-brand-surface">
       <div className="container-wide section-padding">
         <div className="flex items-center gap-3 mb-10">
-          <div className="w-40 h-4 rounded bg-white/5 animate-pulse" />
+          <div className="w-40 h-4 rounded bg-ink-monument/5 animate-pulse" />
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[0, 1, 2].map((i) => (
@@ -100,7 +100,7 @@ async function ProgramsGrid() {
                       {program.short_description}
                     </p>
                     {program.problem_statement && (
-                      <div className="pt-4 border-t border-white/8">
+                      <div className="pt-4 border-t border-ink-monument/10">
                         <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary mb-1">
                           Challenge
                         </p>

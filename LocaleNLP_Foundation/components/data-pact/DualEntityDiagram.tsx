@@ -105,7 +105,7 @@ export function DualEntityDiagram() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="px-6 pt-6 pb-5 border-b border-white/8">
+      <div className="px-6 pt-6 pb-5 border-b border-ink-monument/10">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
           {t('pact.dual.eyebrow', 'Dual-Entity Structure')}
         </p>

@@ -93,7 +93,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
       <div className="flex flex-col gap-1">
         <button
           onClick={() => setIsOpen((v) => !v)}
-          className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+          className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-ink-monument hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
           aria-expanded={isOpen}
           aria-controls={panelId}
           aria-label={t('a11y.lang_select', 'Select language')}
@@ -102,7 +102,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
             <GlobeWaveIcon className="w-4 h-4 text-accent-ochre" />
             <span dir={selectedLang.dir}>{selectedLang.native}</span>
           </span>
-          <span className="font-mono text-xs text-text-tertiary uppercase tracking-wider">
+          <span className="font-mono text-xs text-ink-muted uppercase tracking-wider">
             {locale}
           </span>
         </button>
@@ -121,10 +121,10 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
                 onClick={() => choose(lang.code)}
                 dir={lang.dir}
                 className={cn(
-                  'px-3 py-1.5 rounded-lg text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan',
+                  'px-3 py-1.5 rounded-lg text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre',
                   lang.code === locale
-                    ? 'bg-accent-ochre/15 text-accent-ochre border border-accent-ochre/30 font-semibold'
-                    : 'text-text-secondary hover:text-white hover:bg-white/5 border border-transparent',
+                    ? 'bg-accent-ochre/12 text-accent-ochre border border-accent-ochre/30 font-semibold'
+                    : 'text-ink-steel hover:text-ink-monument hover:bg-base-stone border border-transparent',
                 )}
               >
                 {lang.native}
@@ -151,10 +151,10 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
         aria-label={t('a11y.lang_select', 'Select language')}
         className={cn(
           'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200',
-          'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A]',
+          'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone',
           isOpen
-            ? 'border-accent-ochre/40 bg-accent-ochre/8 text-white'
-            : 'border-white/10 bg-white/4 text-text-secondary hover:text-white hover:border-white/20 hover:bg-white/8',
+            ? 'border-accent-ochre/40 bg-accent-ochre/8 text-ink-monument'
+            : 'border-ink-monument/15 bg-transparent text-ink-steel hover:text-ink-monument hover:border-ink-monument/25 hover:bg-ink-monument/5',
         )}
       >
         <GlobeWaveIcon className="w-3.5 h-3.5" />
@@ -164,7 +164,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
         >
           {selectedLang.native}
         </span>
-        <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-wider leading-none">
+        <span className="font-mono text-[10px] text-ink-muted uppercase tracking-wider leading-none">
           {locale}
         </span>
       </button>
@@ -175,14 +175,14 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
           id={panelId}
           role="listbox"
           aria-label={t('a11y.lang_select', 'Select language')}
-          className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-white/10 animate-slide-down overflow-hidden"
-          style={{ background: '#09090E', boxShadow: '0 24px 60px rgba(0,0,0,0.8)' }}
+          className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-ink-monument/10 animate-slide-down overflow-hidden"
+          style={{ background: '#FFFFFF', boxShadow: '0 24px 60px rgba(12,12,12,0.14)' }}
         >
           <div className="px-4 pt-4 pb-2">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-accent-ochre mb-0.5">
               {t('lang.switcher.label', 'Language / Langue / Lugha')}
             </p>
-            <p className="text-[10px] text-text-tertiary">
+            <p className="text-[10px] text-ink-muted">
               {t('lang.switcher.note', 'Site UI is translated — body content remains in English.')}
             </p>
           </div>
@@ -197,16 +197,16 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
                   onClick={() => choose(lang.code)}
                   dir={lang.dir}
                   className={cn(
-                    'group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan',
+                    'group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre',
                     isSelected
-                      ? 'bg-accent-ochre/12 border border-accent-ochre/30'
-                      : 'border border-transparent hover:bg-white/5',
+                      ? 'bg-accent-ochre/10 border border-accent-ochre/25'
+                      : 'border border-transparent hover:bg-base-stone',
                   )}
                 >
                   <span
                     className={cn(
                       'text-sm font-medium leading-none transition-colors',
-                      isSelected ? 'text-accent-ochre' : 'text-text-secondary group-hover:text-white',
+                      isSelected ? 'text-accent-ochre' : 'text-ink-steel group-hover:text-ink-monument',
                     )}
                   >
                     {lang.native}
@@ -214,7 +214,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
                   <span
                     className={cn(
                       'font-mono text-[9px] uppercase tracking-wider leading-none shrink-0 transition-colors',
-                      isSelected ? 'text-accent-ochre/70' : 'text-text-tertiary group-hover:text-text-secondary',
+                      isSelected ? 'text-accent-ochre/70' : 'text-ink-muted group-hover:text-ink-steel',
                     )}
                   >
                     {lang.code}

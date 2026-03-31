@@ -109,8 +109,8 @@ const API_ENDPOINTS = [
     description: 'List all supported languages with metadata and model coverage.',
     auth: 'None required',
     accent: 'text-text-secondary',
-    border: 'border-white/20',
-    methodColor: 'text-text-secondary bg-white/8',
+    border: 'border-ink-monument/20',
+    methodColor: 'text-ink-steel bg-ink-monument/6',
   },
 ];
 
@@ -221,10 +221,10 @@ export default async function TechnologyPage() {
               {MODELS.map((model) => (
                 <SpotlightCard key={model.name} spotlightColor={model.spot} className="p-6">
                   <div className="flex items-start justify-between mb-5">
-                    <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-ink-monument/5 flex items-center justify-center">
                       <Cpu className={`w-5 h-5 ${model.accent}`} aria-hidden="true" />
                     </div>
-                    <span className="font-mono text-xs text-text-tertiary bg-white/5 px-2 py-1 rounded">
+                    <span className="font-mono text-xs text-text-tertiary bg-ink-monument/5 px-2 py-1 rounded">
                       {model.version}
                     </span>
                   </div>
@@ -238,13 +238,13 @@ export default async function TechnologyPage() {
                     {model.languages.slice(0, 3).map((lang) => (
                       <span
                         key={lang}
-                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-white/5 text-text-tertiary"
+                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-ink-monument/5 text-text-tertiary"
                       >
                         {lang}
                       </span>
                     ))}
                     {model.languages.length > 3 && (
-                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-text-tertiary">
+                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-ink-monument/5 text-text-tertiary">
                         +{model.languages.length - 3}
                       </span>
                     )}
@@ -381,14 +381,14 @@ export default async function TechnologyPage() {
               </div>
 
               <div
-                className="rounded-xl overflow-hidden border border-white/8 bg-[#0A0A0F]"
+                className="rounded-xl overflow-hidden border border-ink-monument/10 dark-panel"
                 aria-label="Example curl request and JSON response"
               >
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/8 bg-white/3">
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-ink-monument/10 bg-ink-monument/4">
                   <div className="flex gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
-                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
-                    <span className="w-3 h-3 rounded-full bg-white/10" aria-hidden="true" />
+                    <span className="w-3 h-3 rounded-full bg-ink-monument/10" aria-hidden="true" />
+                    <span className="w-3 h-3 rounded-full bg-ink-monument/10" aria-hidden="true" />
+                    <span className="w-3 h-3 rounded-full bg-ink-monument/10" aria-hidden="true" />
                   </div>
                   <span className="font-mono text-[11px] text-text-tertiary ml-2">
                     example_request.sh
@@ -530,7 +530,7 @@ export default async function TechnologyPage() {
                       className={`inline-block text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded ${
                         lang.status === 'active'
                           ? 'bg-accent-ochre/10 text-accent-ochre'
-                          : 'bg-white/5 text-text-tertiary'
+                          : 'bg-ink-monument/5 text-text-tertiary'
                       }`}
                     >
                       {lang.status === 'active' ? 'Active' : 'In Progress'}
@@ -576,11 +576,11 @@ export default async function TechnologyPage() {
                   <p className="text-text-secondary text-sm leading-relaxed mb-5">
                     {paper.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/8">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-ink-monument/10">
                     {paper.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-white/5 text-text-tertiary"
+                        className="font-mono text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-ink-monument/5 text-text-tertiary"
                       >
                         {tag}
                       </span>

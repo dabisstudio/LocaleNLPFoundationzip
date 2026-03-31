@@ -70,13 +70,13 @@ export function BountyBoard({ bounties }: { bounties: LanguageBounty[] }) {
                 'border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre/60',
                 isActive
                   ? 'border-accent-ochre/60 bg-accent-ochre/15 text-accent-ochre'
-                  : 'border-white/10 bg-white/4 text-text-secondary hover:border-white/20 hover:text-white',
+                  : 'border-ink-monument/12 bg-ink-monument/4 text-ink-steel hover:border-ink-monument/25 hover:text-ink-monument',
               )}
             >
               {FILTER_LABELS[f]}
               <span className={cn(
                 'text-[11px] font-mono rounded-full px-1.5 py-0.5',
-                isActive ? 'bg-accent-ochre/20 text-accent-ochre' : 'bg-white/8 text-text-tertiary',
+                isActive ? 'bg-accent-ochre/20 text-accent-ochre' : 'bg-ink-monument/8 text-ink-muted',
               )}>
                 {count}
               </span>

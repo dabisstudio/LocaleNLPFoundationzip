@@ -12,12 +12,12 @@ const CALLOUT_CARDS = [
   {
     stat: '500M+',
     description: 'speakers excluded from digital services, healthcare, and education in their mother tongue.',
-    color: 'text-accent-clay',
+    color: 'text-accent-navy',
   },
   {
     stat: '90%',
     description: 'of voice AI systems cannot reliably understand or generate African language speech.',
-    color: 'text-accent-cyan',
+    color: 'text-accent-emerald',
   },
 ];
 
@@ -41,7 +41,6 @@ export default function ProblemSectionGSAP() {
         const bigNum = pinRef.current.querySelector<HTMLElement>('.stat-number');
         const labels = pinRef.current.querySelectorAll<HTMLElement>('.stat-label');
 
-        // ── Pinned scroll panel: stat scrubs from 0.4→1 ──────────────────
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: pinRef.current,
@@ -60,7 +59,6 @@ export default function ProblemSectionGSAP() {
           tl.fromTo(el, { opacity: 0, y: 8 }, { opacity: 1, y: 0, ease: 'none' }, '>-0.4');
         });
 
-        // ── Callout cards stagger in after pin releases ───────────────────
         if (cardsRef.current) {
           const cards = cardsRef.current.querySelectorAll('.callout-card');
           gsap.fromTo(
@@ -97,32 +95,25 @@ export default function ProblemSectionGSAP() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #04040A 0%, #060610 100%)' }}
+      className="py-24 relative overflow-hidden bg-base-stone"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle at 25% 55%, rgba(107,31,119,0.06) 0%, transparent 50%)',
-        }}
-        aria-hidden="true"
-      />
+      {/* Hairline top border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-ink-monument/8" aria-hidden="true" />
 
       <div className="container-wide section-padding relative z-10">
         <div className="text-center mb-4">
           <MonoLabel label="THE CHALLENGE" number="01" status="active" />
         </div>
 
-        <h2 className="text-center text-white mt-4 mb-2">A Continent Left Behind</h2>
+        <h2 className="text-center text-ink-monument mt-4 mb-2">A Continent Left Behind</h2>
 
-        {/* ── Pinned stat — GSAP pins this block ─────────────────────── */}
+        {/* Pinned stat — GSAP pins this block */}
         <div
           ref={pinRef}
           className="text-center my-14"
           aria-label="Less than 1 percent of global AI training data represents Africa"
         >
-          <p className="stat-label font-mono text-xs text-text-tertiary tracking-widest uppercase mb-5">
+          <p className="stat-label font-mono text-xs text-ink-muted tracking-widest uppercase mb-5">
             of global AI training data represents Africa
           </p>
           <span
@@ -132,20 +123,20 @@ export default function ProblemSectionGSAP() {
           >
             &lt;&nbsp;1%
           </span>
-          <p className="stat-label text-text-secondary text-base md:text-lg mt-6 max-w-xl mx-auto">
+          <p className="stat-label text-ink-steel text-base md:text-lg mt-6 max-w-xl mx-auto">
             While AI reshapes how the world communicates and accesses services, Africa&apos;s 2,000+
             languages remain almost entirely absent from the datasets driving the revolution.
           </p>
         </div>
 
-        {/* ── Staggered callout cards ─────────────────────────────────── */}
+        {/* Staggered callout cards */}
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-5">
           {CALLOUT_CARDS.map((card, i) => (
             <div key={i} className="callout-card glass-panel rounded-xl p-6">
               <div className={`font-mono text-3xl md:text-4xl font-bold ${card.color} mb-3`}>
                 {card.stat}
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed">{card.description}</p>
+              <p className="text-ink-steel text-sm leading-relaxed">{card.description}</p>
             </div>
           ))}
         </div>

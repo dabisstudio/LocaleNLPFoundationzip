@@ -120,7 +120,7 @@ export function ArchDiagram() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="px-6 pt-6 pb-4 border-b border-white/8">
+      <div className="px-6 pt-6 pb-4 border-b border-ink-monument/10">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
           Interactive Architecture — Hover or click a node to explore
         </p>
@@ -221,7 +221,7 @@ export function ArchDiagram() {
         </div>
 
         <div
-          className="lg:w-72 border-t lg:border-t-0 lg:border-l border-white/8 flex flex-col"
+          className="lg:w-72 border-t lg:border-t-0 lg:border-l border-ink-monument/10 flex flex-col"
           style={{ minHeight: '160px' }}
         >
           {activeNode ? (
@@ -258,7 +258,7 @@ export function ArchDiagram() {
         </div>
       </div>
 
-      <div className="px-6 py-4 border-t border-white/8 flex items-center gap-6 flex-wrap">
+      <div className="px-6 py-4 border-t border-ink-monument/10 flex items-center gap-6 flex-wrap">
         {NODES.map((node) => (
           <button
             key={node.id}

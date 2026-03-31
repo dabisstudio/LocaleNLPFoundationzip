@@ -54,26 +54,26 @@ export default async function BountiesPage() {
         ]}
       />
 
-      <section className="border-b border-white/8 bg-brand-surface">
+      <section className="border-b border-ink-monument/10 bg-base-pure">
         <div className="container-wide section-padding py-10">
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <dt className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-1">Open Bounties</dt>
-              <dd className="font-display text-3xl font-bold text-white">{openCount}</dd>
+              <dt className="font-mono text-xs text-ink-steel uppercase tracking-widest mb-1">Open Bounties</dt>
+              <dd className="font-display text-3xl font-bold text-ink-monument">{openCount}</dd>
             </div>
             <div>
-              <dt className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-1">Critical Needs</dt>
+              <dt className="font-mono text-xs text-ink-steel uppercase tracking-widest mb-1">Critical Needs</dt>
               <dd className="font-display text-3xl font-bold text-accent-clay">{criticalCount}</dd>
             </div>
             <div>
-              <dt className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-1">Raised to Date</dt>
+              <dt className="font-mono text-xs text-ink-steel uppercase tracking-widest mb-1">Raised to Date</dt>
               <dd className="font-display text-3xl font-bold text-accent-ochre">
                 ${(totalFunded / 1000).toFixed(0)}k
               </dd>
             </div>
             <div>
-              <dt className="font-mono text-xs text-text-secondary uppercase tracking-widest mb-1">Languages Covered</dt>
-              <dd className="font-display text-3xl font-bold text-accent-cyan">{bounties.length}</dd>
+              <dt className="font-mono text-xs text-ink-steel uppercase tracking-widest mb-1">Languages Covered</dt>
+              <dd className="font-display text-3xl font-bold text-accent-navy">{bounties.length}</dd>
             </div>
           </dl>
         </div>
@@ -83,12 +83,12 @@ export default async function BountiesPage() {
         <BountyBoard bounties={bounties} />
       </div>
 
-      <section className="border-t border-white/8 bg-brand-surface">
+      <section className="border-t border-ink-monument/10 bg-base-stone">
         <div className="container-wide section-padding py-20 text-center">
           <p className="font-mono text-xs text-accent-ochre uppercase tracking-widest mb-4">
             [ TRANSPARENCY ]
           </p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-ink-monument mb-4">
             100% of bounty funds reach the community
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto mb-8 leading-relaxed">

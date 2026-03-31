@@ -12,7 +12,7 @@ interface SpotlightCardProps {
 export function SpotlightCard({
   children,
   className,
-  spotlightColor = 'rgba(245,166,35,0.12)',
+  spotlightColor = 'rgba(217,92,20,0.06)',
 }: SpotlightCardProps) {
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -34,12 +34,12 @@ export function SpotlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        'relative overflow-hidden rounded-xl transition-colors duration-300',
-        'border border-white/8 bg-brand-surface hover:bg-brand-elevated',
+        'relative overflow-hidden rounded-xl transition-all duration-300',
+        'border border-ink-monument/10 bg-base-pure hover:border-accent-ochre/25',
+        'shadow-editorial hover:shadow-card',
         className
       )}
     >
-      {/* Cursor-following spotlight */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"

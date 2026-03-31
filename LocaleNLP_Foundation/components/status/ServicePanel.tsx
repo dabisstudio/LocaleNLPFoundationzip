@@ -56,10 +56,10 @@ export function ServicePanel({ name, description, status, uptimePercent, blocks 
   const cfg = STATUS_CONFIG[status];
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-brand-surface p-6">
+    <div className="rounded-2xl border border-ink-monument/10 bg-base-pure shadow-editorial p-6">
       <div className="flex items-start justify-between gap-4 mb-5">
         <div>
-          <h3 className="font-display text-base font-semibold text-white mb-1">
+          <h3 className="font-display text-base font-semibold text-ink-monument mb-1">
             {name}
           </h3>
           <p className="text-text-secondary text-sm">{description}</p>

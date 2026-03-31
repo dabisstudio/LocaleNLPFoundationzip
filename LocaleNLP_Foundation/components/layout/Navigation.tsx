@@ -37,7 +37,7 @@ type FeatureCard = {
 type NavSection = {
   labelKey: string;
   href: string;
-  accent: 'ochre' | 'cyan' | 'clay';
+  accent: 'ochre' | 'navy' | 'emerald';
   links: NavLink[];
   feature: FeatureCard;
   viewAll?: { labelKey: string; href: string };
@@ -47,7 +47,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     labelKey: 'nav.about',
     href: '/about',
-    accent: 'cyan',
+    accent: 'navy',
     links: [
       { labelKey: 'nav.about.our_story', href: '/about',        icon: Globe,        descKey: 'nav.about.our_story_desc',  descFallback: 'Mission, vision & origin' },
       { labelKey: 'nav.about.manifesto', href: '/manifesto',    icon: Feather,      descKey: 'nav.about.manifesto_desc',  descFallback: 'Our founding statement on language equity' },
@@ -82,7 +82,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     labelKey: 'nav.technology',
     href: '/technology',
-    accent: 'cyan',
+    accent: 'navy',
     links: [
       { labelKey: 'nav.technology.api',          href: '/technology#sandbox',      icon: Code2,    descKey: 'nav.technology.api_desc',          descFallback: 'Try live API calls — no signup required' },
       { labelKey: 'nav.technology.architecture', href: '/technology#architecture', icon: Layers,   descKey: 'nav.technology.architecture_desc', descFallback: 'Interactive 4-node stack diagram' },
@@ -99,7 +99,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     labelKey: 'nav.impact',
     href: '/impact',
-    accent: 'clay',
+    accent: 'emerald',
     links: [
       { labelKey: 'nav.impact.map',          href: '/impact',               icon: Map,           descKey: 'nav.impact.map_desc',          descFallback: 'Track our reach across 47 countries' },
       { labelKey: 'nav.impact.vitality',     href: '/vitality',             icon: Activity,      descKey: 'nav.impact.vitality_desc',     descFallback: 'AI readiness audit for African languages' },
@@ -133,7 +133,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     labelKey: 'nav.insights',
     href: '/insights',
-    accent: 'clay',
+    accent: 'navy',
     links: [
       { labelKey: 'nav.insights.research',    href: '/insights',          icon: FlaskConical, descKey: 'nav.insights.research_desc',    descFallback: 'Peer-reviewed NLP research' },
       { labelKey: 'nav.insights.policy',      href: '/insights',          icon: ScrollText,   descKey: 'nav.insights.policy_desc',      descFallback: 'Language equity in policy contexts' },
@@ -159,25 +159,25 @@ const ACCENT = {
     card:      'bg-accent-ochre/5',
     labelHov:  'group-hover:text-accent-ochre',
   },
-  cyan: {
-    text:      'text-accent-cyan',
-    bg:        'bg-accent-cyan/10',
-    bgHover:   'group-hover:bg-accent-cyan/20',
-    icon:      'text-accent-cyan',
-    ring:      'focus-visible:ring-accent-cyan/60',
-    border:    'border-accent-cyan/20',
-    card:      'bg-accent-cyan/5',
-    labelHov:  'group-hover:text-accent-cyan',
+  navy: {
+    text:      'text-accent-navy',
+    bg:        'bg-accent-navy/8',
+    bgHover:   'group-hover:bg-accent-navy/15',
+    icon:      'text-accent-navy',
+    ring:      'focus-visible:ring-accent-navy/50',
+    border:    'border-accent-navy/20',
+    card:      'bg-accent-navy/5',
+    labelHov:  'group-hover:text-accent-navy',
   },
-  clay: {
-    text:      'text-accent-clay',
-    bg:        'bg-accent-clay/10',
-    bgHover:   'group-hover:bg-accent-clay/20',
-    icon:      'text-accent-clay',
-    ring:      'focus-visible:ring-accent-clay/60',
-    border:    'border-accent-clay/20',
-    card:      'bg-accent-clay/5',
-    labelHov:  'group-hover:text-accent-clay',
+  emerald: {
+    text:      'text-accent-emerald',
+    bg:        'bg-accent-emerald/8',
+    bgHover:   'group-hover:bg-accent-emerald/15',
+    icon:      'text-accent-emerald',
+    ring:      'focus-visible:ring-accent-emerald/50',
+    border:    'border-accent-emerald/20',
+    card:      'bg-accent-emerald/5',
+    labelHov:  'group-hover:text-accent-emerald',
   },
 } as const;
 
@@ -198,7 +198,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
                 href={href}
                 onClick={onClose}
                 className={cn(
-                  'group flex items-start gap-3 p-3 rounded-xl transition-colors duration-150 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2',
+                  'group flex items-start gap-3 p-3 rounded-xl transition-colors duration-150 hover:bg-base-stone focus-visible:outline-none focus-visible:ring-2',
                   c.ring,
                 )}
               >
@@ -206,10 +206,10 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
                   <Icon className={cn('w-4 h-4', c.icon)} />
                 </span>
                 <span className="flex flex-col min-w-0">
-                  <span className={cn('text-sm font-semibold text-white leading-snug transition-colors', c.labelHov)}>
+                  <span className={cn('text-sm font-semibold text-ink-monument leading-snug transition-colors', c.labelHov)}>
                     {t(labelKey)}
                   </span>
-                  <span className="text-xs text-text-secondary mt-0.5 leading-snug">
+                  <span className="text-xs text-ink-steel mt-0.5 leading-snug">
                     {t(descKey, descFallback)}
                   </span>
                 </span>
@@ -233,7 +233,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
             <p className={cn('font-display text-3xl font-bold mb-1 leading-none', c.text)}>
               {t(section.feature.statKey)}
             </p>
-            <p className="text-sm text-text-secondary mt-2 mb-4 leading-snug">
+            <p className="text-sm text-ink-steel mt-2 mb-4 leading-snug">
               {t(section.feature.statLabelKey)}
             </p>
             <Link
@@ -306,12 +306,12 @@ export default function Navigation() {
   const activeSection = NAV_SECTIONS.find((s) => s.labelKey === openKey) ?? null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/8">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-base-stone/95 backdrop-blur-sm border-b border-ink-monument/10">
       <nav className="container-wide section-padding" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link
             href="/"
-            className="shrink-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A] rounded"
+            className="shrink-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone rounded"
             aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
             onClick={closeMenu}
           >
@@ -321,7 +321,7 @@ export default function Navigation() {
               width={40}
               height={40}
               priority
-              className="h-9 w-9 object-contain brightness-[1.2]"
+              className="h-9 w-9 object-contain"
             />
           </Link>
 
@@ -337,7 +337,7 @@ export default function Navigation() {
                 aria-expanded={openKey === section.labelKey}
                 aria-haspopup="true"
                 aria-controls={openKey === section.labelKey ? megaPanelId : undefined}
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200 rounded-md hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A]"
+                className="px-3 py-2 text-sm font-medium text-ink-steel hover:text-ink-monument transition-colors duration-200 rounded-md hover:bg-ink-monument/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone"
               >
                 {t(section.labelKey)}
               </button>
@@ -350,7 +350,7 @@ export default function Navigation() {
               href="https://localenlp.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-text-secondary border border-white/10 rounded-md hover:text-white hover:border-accent-clay/40 hover:bg-white/5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-accent-navy border border-accent-navy/25 rounded-md hover:bg-accent-navy hover:text-white hover:border-accent-navy transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
               aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
             >
               {t('nav.enterprise_api', 'Enterprise API')}
@@ -363,7 +363,7 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            className="lg:hidden p-2 text-ink-monument rounded-md hover:bg-ink-monument/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
             aria-label={isMobileOpen ? t('nav.close_menu', 'Close menu') : t('nav.open_menu', 'Open menu')}
             aria-expanded={isMobileOpen}
           >
@@ -375,8 +375,8 @@ export default function Navigation() {
       {activeSection && (
         <div
           id={megaPanelId}
-          className="hidden lg:block absolute left-0 right-0 top-full border-t border-white/8 animate-slide-down"
-          style={{ background: '#09090E', boxShadow: '0 20px 60px rgba(0,0,0,0.7)' }}
+          className="hidden lg:block absolute left-0 right-0 top-full border-t border-ink-monument/8 animate-slide-down"
+          style={{ background: '#FFFFFF', boxShadow: '0 20px 60px rgba(12,12,12,0.12)' }}
           onMouseEnter={cancelMegaClose}
           onMouseLeave={scheduleMegaClose}
           role="region"
@@ -387,7 +387,10 @@ export default function Navigation() {
       )}
 
       {isMobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 glass-panel border-t border-white/8 overflow-y-auto animate-slide-down">
+        <div
+          className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 border-t border-ink-monument/10 overflow-y-auto animate-slide-down"
+          style={{ background: '#FFFFFF' }}
+        >
           <nav
             className="container-wide section-padding py-6 flex flex-col gap-1"
             aria-label="Mobile navigation"
@@ -399,11 +402,11 @@ export default function Navigation() {
                 <div key={section.labelKey}>
                   <button
                     onClick={() => setMobileAccordion((v) => (v === section.labelKey ? null : section.labelKey))}
-                    className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                    className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-ink-monument hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
                     aria-expanded={isOpen}
                   >
                     {t(section.labelKey)}
-                    <span className={cn('text-text-secondary text-lg leading-none transition-transform duration-200 select-none', isOpen && 'rotate-90')} aria-hidden="true">
+                    <span className={cn('text-ink-steel text-lg leading-none transition-transform duration-200 select-none', isOpen && 'rotate-90')} aria-hidden="true">
                       ›
                     </span>
                   </button>
@@ -414,7 +417,7 @@ export default function Navigation() {
                           key={href + labelKey}
                           href={href}
                           onClick={() => setIsMobileOpen(false)}
-                          className="flex items-center gap-2.5 py-2 px-4 text-sm text-text-secondary hover:text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                          className="flex items-center gap-2.5 py-2 px-4 text-sm text-ink-steel hover:text-ink-monument hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
                         >
                           <Icon className={cn('w-4 h-4 shrink-0', c.icon)} aria-hidden="true" />
                           {t(labelKey)}
@@ -424,7 +427,7 @@ export default function Navigation() {
                         <Link
                           href={section.viewAll.href}
                           onClick={() => setIsMobileOpen(false)}
-                          className={cn('flex items-center gap-2 py-2 px-4 text-sm font-medium hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan', c.text)}
+                          className={cn('flex items-center gap-2 py-2 px-4 text-sm font-medium hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre', c.text)}
                         >
                           {t(section.viewAll.labelKey)}
                           <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -435,13 +438,13 @@ export default function Navigation() {
                 </div>
               );
             })}
-            <div className="mt-3 pt-4 border-t border-white/8 flex flex-col gap-3">
+            <div className="mt-3 pt-4 border-t border-ink-monument/10 flex flex-col gap-3">
               <LanguageSwitcher mobile />
               <a
                 href="https://localenlp.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono uppercase tracking-widest text-text-secondary border border-white/10 rounded-lg hover:text-white hover:border-accent-clay/40 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono uppercase tracking-widest text-accent-navy border border-accent-navy/25 rounded-lg hover:bg-accent-navy hover:text-white hover:border-accent-navy transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
                 aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
               >
                 {t('nav.enterprise_api', 'Enterprise API')}

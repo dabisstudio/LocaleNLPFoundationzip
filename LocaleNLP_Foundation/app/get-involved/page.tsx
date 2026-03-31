@@ -78,7 +78,7 @@ export default function GetInvolvedPage() {
         <section
           id="contributor"
           className="relative overflow-hidden py-24 md:py-32"
-          style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.07) 0%, transparent 70%), #04040A' }}
+          style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(217,92,20,0.07) 0%, transparent 70%), #F5F5F3' }}
         >
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="absolute top-[-10%] left-[60%] w-[500px] h-[500px] rounded-full opacity-[0.04]"

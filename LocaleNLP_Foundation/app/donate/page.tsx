@@ -221,7 +221,7 @@ function DonatePageContent() {
                     className={`w-full py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
                       tier.highlighted
                         ? 'bg-accent-ochre text-brand-deep hover:bg-accent-ochre/90'
-                        : 'bg-white/5 border border-white/10 text-text-primary hover:bg-white/10 hover:border-white/20'
+                        : 'bg-ink-monument/5 border border-ink-monument/12 text-text-primary hover:bg-ink-monument/10 hover:border-ink-monument/20'
                     }`}
                   >
                     {t('donate.donate_cta_prefix', 'Donate')} {tier.amount}
@@ -275,7 +275,7 @@ function DonatePageContent() {
                           {item.percent}%
                         </span>
                       </div>
-                      <div className="h-1.5 bg-brand-elevated rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-base-stone rounded-full overflow-hidden">
                         <div
                           className={`h-full ${item.color} rounded-full`}
                           style={{ width: `${item.percent}%` }}
@@ -290,7 +290,7 @@ function DonatePageContent() {
                   ))}
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/8 flex items-start gap-4">
+                <div className="mt-8 pt-6 border-t border-ink-monument/10 flex items-start gap-4">
                   <Shield className="w-7 h-7 text-accent-ochre shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <p className="font-display text-sm font-semibold text-text-primary">

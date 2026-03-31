@@ -34,7 +34,7 @@ export function VitalityExplorer({ data }: VitalityExplorerProps) {
             </div>
           </div>
 
-          <div className="w-full lg:w-72 flex flex-col justify-center items-center py-8 px-6 rounded-2xl border border-dashed border-white/12 bg-brand-surface/30 text-center gap-3 self-center">
+          <div className="w-full lg:w-72 flex flex-col justify-center items-center py-8 px-6 rounded-2xl border border-dashed border-ink-monument/15 bg-base-stone text-center gap-3 self-center">
             <span className="font-mono text-[11px] text-text-tertiary uppercase tracking-widest">
               {selected ? selected.languageName : 'Select a language'}
             </span>

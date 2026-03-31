@@ -44,7 +44,7 @@ export function MonthlyGiving() {
                 'w-full text-left p-4 rounded-xl border transition-all duration-200 ease-apple-ease cursor-pointer',
                 isActive
                   ? 'border-accent-ochre/40 bg-accent-ochre/5 ring-1 ring-accent-ochre/40 scale-[1.01]'
-                  : 'border-white/8 bg-brand-elevated hover:border-accent-ochre/20 hover:bg-accent-ochre/3',
+                  : 'border-ink-monument/10 bg-base-stone hover:border-accent-ochre/20 hover:bg-accent-ochre/3',
               ].join(' ')}
             >
               <div className="flex items-start gap-4">

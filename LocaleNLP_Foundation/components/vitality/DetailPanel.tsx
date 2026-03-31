@@ -95,7 +95,7 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
         aria-label={language ? `${language.languageName} vitality details` : 'Language vitality details'}
         className={cn(
           'fixed right-0 top-0 h-full z-40 w-full max-w-sm overflow-y-auto',
-          'bg-brand-surface border-l border-white/10',
+          'bg-base-pure border-l border-ink-monument/10 shadow-2xl',
           'flex flex-col',
           'transition-transform duration-400 ease-out',
           'outline-none',
@@ -103,13 +103,13 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
         )}
         style={{ transitionDuration: '400ms' }}
       >
-        <div className="flex items-center justify-between p-5 border-b border-white/8 shrink-0">
+        <div className="flex items-center justify-between p-5 border-b border-ink-monument/10 shrink-0">
           <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">
             [ LANGUAGE VITALITY RECORD ]
           </span>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-md flex items-center justify-center text-text-secondary hover:text-white hover:bg-white/8 transition-colors"
+            className="w-8 h-8 rounded-md flex items-center justify-center text-ink-steel hover:text-ink-monument hover:bg-ink-monument/8 transition-colors"
             aria-label="Close detail panel"
           >
             <X className="w-4 h-4" />
@@ -122,7 +122,7 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
               <p className="font-mono text-xs text-text-tertiary uppercase tracking-widest mb-1">
                 {language.countryName} · {language.region}
               </p>
-              <h2 className="font-display text-2xl font-bold text-white leading-tight">
+              <h2 className="font-display text-2xl font-bold text-ink-monument leading-tight">
                 {language.languageName}
               </h2>
               {language.nativeName !== language.languageName && (
@@ -149,31 +149,31 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
             </div>
 
             <dl className="grid grid-cols-1 gap-4">
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/4 border border-white/6">
-                <Database className="w-4 h-4 text-accent-cyan shrink-0" aria-hidden="true" />
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-ink-monument/4 border border-ink-monument/8">
+                <Database className="w-4 h-4 text-accent-navy shrink-0" aria-hidden="true" />
                 <div className="min-w-0">
-                  <dt className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">
+                  <dt className="font-mono text-[10px] text-ink-muted uppercase tracking-widest mb-0.5">
                     Total Open Tokens
                   </dt>
-                  <dd className="font-display text-xl font-bold text-white">
+                  <dd className="font-display text-xl font-bold text-ink-monument">
                     {fmtTokens(language.totalTokens)}
                   </dd>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/4 border border-white/6">
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-ink-monument/4 border border-ink-monument/8">
                 <Clock className="w-4 h-4 text-accent-ochre shrink-0" aria-hidden="true" />
                 <div className="min-w-0">
-                  <dt className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">
+                  <dt className="font-mono text-[10px] text-ink-muted uppercase tracking-widest mb-0.5">
                     Speech Hours Validated
                   </dt>
-                  <dd className="font-display text-xl font-bold text-white">
+                  <dd className="font-display text-xl font-bold text-ink-monument">
                     {language.speechHoursValidated.toLocaleString('en-US')}h
                   </dd>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/4 border border-white/6">
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-ink-monument/4 border border-ink-monument/8">
                 <Cpu className="w-4 h-4 text-accent-clay shrink-0" aria-hidden="true" />
                 <div className="min-w-0">
                   <dt className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">
@@ -188,13 +188,13 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/4 border border-white/6">
-                <Calendar className="w-4 h-4 text-text-secondary shrink-0" aria-hidden="true" />
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-ink-monument/4 border border-ink-monument/8">
+                <Calendar className="w-4 h-4 text-ink-steel shrink-0" aria-hidden="true" />
                 <div className="min-w-0">
                   <dt className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-0.5">
                     Last Audited
                   </dt>
-                  <dd className="font-display text-base font-semibold text-white">
+                  <dd className="font-display text-base font-semibold text-ink-monument">
                     {new Date(language.lastAudited).toLocaleDateString('en-US', {
                       month: 'long', day: 'numeric', year: 'numeric',
                     })}
@@ -203,7 +203,7 @@ export function DetailPanel({ language, onClose }: DetailPanelProps) {
               </div>
             </dl>
 
-            <div className="mt-auto pt-4 border-t border-white/8 text-center">
+            <div className="mt-auto pt-4 border-t border-ink-monument/10 text-center">
               <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-3">
                 Help improve this language
               </p>

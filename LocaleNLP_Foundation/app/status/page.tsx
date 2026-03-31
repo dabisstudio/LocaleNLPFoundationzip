@@ -84,7 +84,7 @@ export default function StatusPage() {
     <>
       <Navigation />
 
-      <main id="main-content" className="pt-20 min-h-screen" style={{ backgroundColor: '#04040A' }}>
+      <main id="main-content" className="pt-20 min-h-screen bg-base-stone">
         <section className="relative py-20 overflow-hidden">
           <div
             aria-hidden="true"
@@ -132,8 +132,8 @@ export default function StatusPage() {
         </section>
 
         <section className="container-wide section-padding pb-20">
-          <div className="rounded-2xl border border-white/8 bg-brand-surface p-6">
-            <h2 className="font-display text-base font-semibold text-white mb-1">Legend</h2>
+          <div className="rounded-2xl border border-ink-monument/10 bg-base-pure shadow-editorial p-6">
+            <h2 className="font-display text-base font-semibold text-ink-monument mb-1">Legend</h2>
             <p className="text-text-secondary text-sm mb-5">
               Each block in the uptime chart represents approximately 3 days of service history.
             </p>
@@ -166,7 +166,7 @@ function MetricCard({ label, value, accent }: { label: string; value: string; ac
     clay:  'text-accent-clay',
   };
   return (
-    <div className="rounded-xl border border-white/8 bg-brand-surface p-5 text-center">
+    <div className="rounded-xl border border-ink-monument/10 bg-base-pure shadow-editorial p-5 text-center">
       <p className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-2">{label}</p>
       <p className={`font-display text-3xl font-bold ${colorMap[accent]}`}>{value}</p>
     </div>

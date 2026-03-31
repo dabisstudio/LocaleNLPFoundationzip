@@ -61,7 +61,7 @@ export function TerminalTypewriter({
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="flex items-center gap-2 px-5 py-3 border-b border-white/8 bg-brand-elevated">
+      <div className="flex items-center gap-2 px-5 py-3 border-b border-ink-monument/10 bg-base-stone">
         <div className="w-3 h-3 rounded-full bg-red-500/70" aria-hidden="true" />
         <div className="w-3 h-3 rounded-full bg-yellow-500/70" aria-hidden="true" />
         <div className="w-3 h-3 rounded-full bg-green-500/70" aria-hidden="true" />

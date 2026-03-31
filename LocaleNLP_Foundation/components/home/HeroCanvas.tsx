@@ -28,7 +28,6 @@ export default function HeroCanvas({ className }: Props) {
         renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       } catch {
-        // WebGL unavailable (e.g. sandboxed preview) — canvas stays hidden
         return;
       }
 
@@ -49,13 +48,10 @@ export default function HeroCanvas({ className }: Props) {
       const velocities = new Float32Array(N * 3);
       const origins = new Float32Array(N * 3);
 
-      // Africa positional bias: cluster ~60% of particles in a
-      // rough ellipse matching the continent position on screen.
       for (let i = 0; i < N; i++) {
         let x: number, y: number, z: number;
         const bias = Math.random() < 0.6;
         if (bias) {
-          // Africa-shaped ellipse centred slightly right-of-centre
           const angle = Math.random() * Math.PI * 2;
           const rx = 18 + Math.random() * 14;
           const ry = 26 + Math.random() * 18;
@@ -83,11 +79,11 @@ export default function HeroCanvas({ className }: Props) {
       geo.setAttribute('position', posAttr);
 
       const mat = new THREE.PointsMaterial({
-        color: 0xf5a623,
+        color: 0xd95c14,
         size: 0.45,
         sizeAttenuation: true,
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.3,
       });
 
       const points = new THREE.Points(geo, mat);
@@ -125,11 +121,9 @@ export default function HeroCanvas({ className }: Props) {
             velocities[iy] += (dy / dist) * force * 0.18;
           }
 
-          // Spring back to origin
           velocities[ix] += (origins[ix] - pos[ix]) * SPRING;
           velocities[iy] += (origins[iy] - pos[iy]) * SPRING;
 
-          // Dampen
           velocities[ix] *= DAMP;
           velocities[iy] *= DAMP;
 

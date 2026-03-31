@@ -87,29 +87,27 @@ export default async function ProgramsSection() {
   const [p0, p1, p2, p3] = programs;
 
   return (
-    <section className="py-24 relative" style={{ backgroundColor: '#020205' }}>
+    <section className="py-24 relative bg-base-stone border-t border-ink-monument/8">
       <div className="container-wide section-padding">
         <div className="text-center mb-4">
           <MonoLabel label="OUR PROGRAMS" number="03" status="active" />
         </div>
-        <h2 className="text-center text-white mt-4 mb-3">How We Build the Future</h2>
-        <p className="text-center text-text-secondary max-w-2xl mx-auto mb-12">
+        <h2 className="text-center text-ink-monument mt-4 mb-3">How We Build the Future</h2>
+        <p className="text-center text-ink-steel max-w-2xl mx-auto mb-12">
           From foundational research to community deployment, each program forms one layer
           of a complete language infrastructure for Africa.
         </p>
 
-        {/* Asymmetric bento grid — GSAP stagger on scroll */}
         <ProgramsSectionStagger>
-          {/* Large card — spans 2 rows on md+ */}
           {p0 && (
             <div className="md:row-span-2">
               <SpotlightCard className="h-full p-8 flex flex-col justify-between min-h-[320px]">
                 <div>
                   <MonoLabel label={p0.initiative} number={p0.monoNumber} status="active" className="mb-5" />
-                  <h3 className="font-display text-xl md:text-2xl font-semibold text-white mb-3">
+                  <h3 className="font-display text-xl md:text-2xl font-semibold text-ink-monument mb-3">
                     {p0.title}
                   </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">
+                  <p className="text-ink-steel text-sm leading-relaxed">
                     {p0.short_description}
                   </p>
                 </div>
@@ -117,7 +115,7 @@ export default async function ProgramsSection() {
                   <div className="font-mono text-2xl font-bold text-accent-ochre">{p0.stat}</div>
                   <Link
                     href={`/programs/${p0.slug}`}
-                    className="group inline-flex items-center gap-1 text-sm text-text-secondary hover:text-white transition-colors duration-200"
+                    className="group inline-flex items-center gap-1 text-sm text-ink-steel hover:text-ink-monument transition-colors duration-200"
                     aria-label={`Learn more about ${p0.title}`}
                   >
                     Learn more
@@ -128,21 +126,20 @@ export default async function ProgramsSection() {
             </div>
           )}
 
-          {/* Small card — top right */}
           {p1 && (
             <SpotlightCard className="p-6 flex flex-col justify-between">
               <div>
                 <MonoLabel label={p1.initiative} number={p1.monoNumber} status="active" className="mb-4" />
-                <h3 className="font-display text-lg font-semibold text-white mb-2">{p1.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed line-clamp-3">
+                <h3 className="font-display text-lg font-semibold text-ink-monument mb-2">{p1.title}</h3>
+                <p className="text-ink-steel text-sm leading-relaxed line-clamp-3">
                   {p1.short_description}
                 </p>
               </div>
               <div className="mt-4 flex items-end justify-between">
-                <div className="font-mono text-xl font-bold text-accent-cyan">{p1.stat}</div>
+                <div className="font-mono text-xl font-bold text-accent-navy">{p1.stat}</div>
                 <Link
                   href={`/programs/${p1.slug}`}
-                  className="group inline-flex items-center gap-1 text-sm text-text-secondary hover:text-white transition-colors duration-200"
+                  className="group inline-flex items-center gap-1 text-sm text-ink-steel hover:text-ink-monument transition-colors duration-200"
                   aria-label={`Learn more about ${p1.title}`}
                 >
                   Learn more
@@ -152,21 +149,20 @@ export default async function ProgramsSection() {
             </SpotlightCard>
           )}
 
-          {/* Small card — bottom right */}
           {p2 && (
             <SpotlightCard className="p-6 flex flex-col justify-between">
               <div>
                 <MonoLabel label={p2.initiative} number={p2.monoNumber} status="active" className="mb-4" />
-                <h3 className="font-display text-lg font-semibold text-white mb-2">{p2.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed line-clamp-3">
+                <h3 className="font-display text-lg font-semibold text-ink-monument mb-2">{p2.title}</h3>
+                <p className="text-ink-steel text-sm leading-relaxed line-clamp-3">
                   {p2.short_description}
                 </p>
               </div>
               <div className="mt-4 flex items-end justify-between">
-                <div className="font-mono text-xl font-bold text-accent-clay">{p2.stat}</div>
+                <div className="font-mono text-xl font-bold text-accent-emerald">{p2.stat}</div>
                 <Link
                   href={`/programs/${p2.slug}`}
-                  className="group inline-flex items-center gap-1 text-sm text-text-secondary hover:text-white transition-colors duration-200"
+                  className="group inline-flex items-center gap-1 text-sm text-ink-steel hover:text-ink-monument transition-colors duration-200"
                   aria-label={`Learn more about ${p2.title}`}
                 >
                   Learn more
@@ -176,17 +172,16 @@ export default async function ProgramsSection() {
             </SpotlightCard>
           )}
 
-          {/* Wide card — spans full width */}
           {p3 && (
             <div className="md:col-span-2">
               <SpotlightCard className="p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                   <div className="flex-1">
                     <MonoLabel label={p3.initiative} number={p3.monoNumber} status="active" className="mb-3" />
-                    <h3 className="font-display text-lg md:text-xl font-semibold text-white mb-2">
+                    <h3 className="font-display text-lg md:text-xl font-semibold text-ink-monument mb-2">
                       {p3.title}
                     </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed max-w-xl">
+                    <p className="text-ink-steel text-sm leading-relaxed max-w-xl">
                       {p3.short_description}
                     </p>
                   </div>
@@ -194,7 +189,7 @@ export default async function ProgramsSection() {
                     <div className="font-mono text-2xl font-bold text-accent-ochre">{p3.stat}</div>
                     <Link
                       href={`/programs/${p3.slug}`}
-                      className="group inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-white transition-colors duration-200 whitespace-nowrap"
+                      className="group inline-flex items-center gap-1.5 text-sm text-ink-steel hover:text-ink-monument transition-colors duration-200 whitespace-nowrap"
                       aria-label={`Learn more about ${p3.title}`}
                     >
                       Learn more
@@ -210,7 +205,7 @@ export default async function ProgramsSection() {
         <div className="text-center mt-10">
           <Link
             href="/programs"
-            className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-white transition-colors duration-200 font-mono tracking-wide"
+            className="inline-flex items-center gap-2 text-sm text-ink-steel hover:text-ink-monument transition-colors duration-200 font-mono tracking-wide"
           >
             View all programs
             <ArrowRight className="w-4 h-4" />

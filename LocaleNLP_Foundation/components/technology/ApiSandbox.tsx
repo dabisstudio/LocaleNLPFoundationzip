@@ -249,7 +249,7 @@ export function ApiSandbox() {
 
   return (
     <div className="glass-card overflow-hidden">
-      <div className="flex items-center gap-3 px-5 py-3.5 border-b border-white/8 bg-brand-elevated">
+      <div className="flex items-center gap-3 px-5 py-3.5 border-b border-ink-monument/10 bg-base-stone">
         <div className="flex gap-1.5" aria-hidden="true">
           <span className="w-3 h-3 rounded-full bg-red-500/70" />
           <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -272,7 +272,7 @@ export function ApiSandbox() {
               id="sandbox-endpoint"
               value={endpoint}
               onChange={(e) => { setEndpoint(e.target.value as Endpoint); setState('idle'); setResponse(null); }}
-              className="w-full bg-brand-deep border border-white/10 text-text-primary text-sm font-mono rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20 transition-colors cursor-pointer appearance-none"
+              className="w-full bg-base-stone border border-ink-monument/12 text-text-primary text-sm font-mono rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-ochre/40 focus:ring-1 focus:ring-accent-ochre/20 transition-colors cursor-pointer appearance-none"
               style={SELECT_STYLE}
             >
               {ENDPOINTS.map((ep) => (
@@ -289,7 +289,7 @@ export function ApiSandbox() {
               id="sandbox-language"
               value={language}
               onChange={(e) => { setLanguage(e.target.value as Language); setState('idle'); setResponse(null); }}
-              className="w-full bg-brand-deep border border-white/10 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20 transition-colors cursor-pointer appearance-none"
+              className="w-full bg-base-stone border border-ink-monument/12 text-text-primary text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:border-accent-ochre/40 focus:ring-1 focus:ring-accent-ochre/20 transition-colors cursor-pointer appearance-none"
               style={SELECT_STYLE}
             >
               {LANGUAGES.map((lang) => (
@@ -314,8 +314,8 @@ export function ApiSandbox() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
-          <div className="rounded-xl overflow-hidden border border-white/8 bg-[#07070C]">
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/8 bg-white/3">
+          <div className="rounded-xl overflow-hidden border border-ink-monument/10 dark-panel">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-ink-monument/10 bg-ink-monument/4">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[10px] text-text-tertiary">request.sh</span>
               </div>
@@ -341,8 +341,8 @@ export function ApiSandbox() {
             </pre>
           </div>
 
-          <div className="rounded-xl overflow-hidden border border-white/8 bg-[#07070C]">
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/8 bg-white/3">
+          <div className="rounded-xl overflow-hidden border border-ink-monument/10 dark-panel">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-ink-monument/10 bg-ink-monument/4">
               <span className="font-mono text-[10px] text-text-tertiary">response.json</span>
               {state === 'done' && response && (
                 <button

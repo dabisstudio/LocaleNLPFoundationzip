@@ -153,7 +153,7 @@ export function DataPactMatrix() {
 
   return (
     <div className="w-full glass-card overflow-hidden">
-      <div className="px-6 pt-6 pb-5 border-b border-white/8">
+      <div className="px-6 pt-6 pb-5 border-b border-ink-monument/10">
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-1">
           {t('pact.matrix.eyebrow', 'Interactive Data Flow Matrix')}
         </p>
@@ -164,7 +164,7 @@ export function DataPactMatrix() {
 
       <div className="p-6 md:p-8">
         <div
-          className="flex rounded-xl overflow-hidden border border-white/10 bg-brand-elevated mb-8 w-full"
+          className="flex rounded-xl overflow-hidden border border-ink-monument/12 bg-base-stone mb-8 w-full"
           role="tablist"
           aria-label={t('pact.matrix.tablist_aria', 'Select persona')}
         >

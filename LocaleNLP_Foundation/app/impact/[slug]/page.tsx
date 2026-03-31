@@ -57,7 +57,7 @@ export default async function DeploymentStoryPage({
         <section
           className="relative py-16 md:py-24 overflow-hidden"
           style={{
-            background: `radial-gradient(ellipse 70% 50% at 60% 0%, ${story.accentColor === 'ochre' ? 'rgba(245,166,35,0.06)' : story.accentColor === 'cyan' ? 'rgba(0,229,255,0.05)' : 'rgba(224,122,95,0.06)'} 0%, transparent 70%), #04040A`,
+            background: `radial-gradient(ellipse 70% 50% at 60% 0%, ${story.accentColor === 'ochre' ? 'rgba(217,92,20,0.06)' : story.accentColor === 'cyan' ? 'rgba(10,25,49,0.05)' : 'rgba(224,122,95,0.06)'} 0%, transparent 70%), #F5F5F3`,
           }}
         >
           <div className="container-wide section-padding">
@@ -83,7 +83,7 @@ export default async function DeploymentStoryPage({
           </div>
         </section>
 
-        <section className="py-10 bg-brand-surface border-y border-white/8">
+        <section className="py-10 bg-brand-surface border-y border-ink-monument/10">
           <div className="container-wide section-padding">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {story.metrics.map((m) => (

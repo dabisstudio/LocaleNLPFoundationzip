@@ -121,7 +121,7 @@ export default function SupporterPage() {
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-center mb-3">
                 {t('supporter.select_tier', 'Select Your Giving Tier')}
               </p>
-              <div className="flex rounded-xl overflow-hidden border border-white/10 bg-brand-deep">
+              <div className="flex rounded-xl overflow-hidden border border-ink-monument/12 bg-base-stone">
                 {TIERS.map((tier, i) => (
                   <button
                     key={tier.amount}
@@ -131,7 +131,7 @@ export default function SupporterPage() {
                       'flex-1 py-3 text-sm font-semibold font-mono transition-all duration-200',
                       tierIdx === i
                         ? 'bg-accent-cyan/15 text-accent-cyan'
-                        : 'text-text-tertiary hover:text-text-secondary',
+                        : 'text-ink-muted hover:text-ink-steel',
                     ].join(' ')}
                   >
                     {tier.label}
@@ -142,7 +142,7 @@ export default function SupporterPage() {
 
             <div className="glass-card p-10 md:p-14 text-center max-w-2xl mx-auto mb-12">
               <div className="flex items-center justify-center gap-2 mb-6">
-                <div className="flex rounded-lg overflow-hidden border border-white/10 bg-brand-elevated">
+                <div className="flex rounded-lg overflow-hidden border border-ink-monument/12 bg-base-stone">
                   {(['month', 'ytd'] as const).map((p) => (
                     <button
                       key={p}
@@ -150,7 +150,7 @@ export default function SupporterPage() {
                       onClick={() => setPeriod(p)}
                       className={[
                         'px-4 py-1.5 text-xs font-medium font-mono transition-all duration-200',
-                        period === p ? 'bg-white/10 text-text-primary' : 'text-text-tertiary hover:text-text-secondary',
+                        period === p ? 'bg-ink-monument/10 text-text-primary' : 'text-ink-muted hover:text-ink-steel',
                       ].join(' ')}
                     >
                       {p === 'month' ? t('supporter.this_month', 'This Month') : t('supporter.ytd', 'Year to Date')}
@@ -196,7 +196,7 @@ export default function SupporterPage() {
                   const dollars = Math.round(tier.amount * pct);
                   return (
                     <SpotlightCard key={labelKey} spotlightColor={spotlight} className="p-6 text-center">
-                      <div className="w-10 h-10 rounded-xl mx-auto mb-4 flex items-center justify-center bg-white/5">
+                      <div className="w-10 h-10 rounded-xl mx-auto mb-4 flex items-center justify-center bg-ink-monument/5">
                         <Icon className={`w-5 h-5 ${color}`} aria-hidden="true" />
                       </div>
                       <div className={`font-display text-3xl font-bold ${color} mb-1`}>
@@ -259,7 +259,7 @@ export default function SupporterPage() {
               <div className="glass-card overflow-hidden">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-white/8 bg-brand-elevated">
+                    <tr className="border-b border-ink-monument/10 bg-base-stone">
                       <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-6 py-3">
                         {t('supporter.tax_col_year', 'Year')}
                       </th>
@@ -284,8 +284,8 @@ export default function SupporterPage() {
                         <tr
                           key={row.year}
                           className={[
-                            'transition-colors hover:bg-white/3',
-                            i < TAX_ROWS.length - 1 ? 'border-b border-white/6' : '',
+                            'transition-colors hover:bg-ink-monument/4',
+                            i < TAX_ROWS.length - 1 ? 'border-b border-ink-monument/8' : '',
                           ].join(' ')}
                         >
                           <td className="px-6 py-4 font-mono text-sm text-text-primary font-semibold">
@@ -302,7 +302,7 @@ export default function SupporterPage() {
                               'inline-flex items-center gap-1.5 font-mono text-[10px] px-2 py-1 rounded uppercase tracking-[0.1em]',
                               row.status === 'Verified'
                                 ? 'bg-accent-cyan/10 text-accent-cyan'
-                                : 'bg-white/5 text-text-tertiary',
+                                : 'bg-ink-monument/5 text-text-tertiary',
                             ].join(' ')}>
                               {row.status === 'Verified'
                                 ? t('supporter.tax_verified', 'Verified')
@@ -312,7 +312,7 @@ export default function SupporterPage() {
                           <td className="px-6 py-4 text-right">
                             <a
                               href="#"
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-ink-monument/12 text-text-secondary hover:border-accent-ochre/30 hover:text-accent-ochre transition-all duration-200 text-xs font-medium font-mono"
                               aria-label={`${t('supporter.tax_col_download', 'Download')} ${row.year} 501c3 statement`}
                             >
                               <Download className="w-3.5 h-3.5" aria-hidden="true" />
@@ -331,7 +331,7 @@ export default function SupporterPage() {
         </section>
       </main>
 
-      <div className="fixed bottom-0 inset-x-0 z-50 border-t border-white/10 bg-brand-deep/95 backdrop-blur-md">
+      <div className="fixed bottom-0 inset-x-0 z-50 border-t border-ink-monument/12 bg-base-stone/95 backdrop-blur-md">
         <div className="container-wide section-padding py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-sm text-text-secondary text-center sm:text-left">
