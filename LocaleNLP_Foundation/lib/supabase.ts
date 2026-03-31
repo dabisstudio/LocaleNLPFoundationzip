@@ -115,3 +115,17 @@ export type ContactSubmission = {
   message: string;
   created_at: string;
 };
+
+export type Insight = {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  category: string;
+  read_time_minutes: number;
+  published_at: string;
+  cover_image_url: string | null;
+  external_url: string | null;
+  is_featured: boolean;
+  order_index: number;
+  created_at: string;
+};
