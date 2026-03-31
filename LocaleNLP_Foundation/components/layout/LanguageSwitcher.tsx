@@ -50,6 +50,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
   const panelId = useId();
   const btnRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     try {
@@ -71,6 +72,18 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
   const close = useCallback(() => {
     setIsOpen(false);
     btnRef.current?.focus();
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    leaveTimer.current = setTimeout(() => setIsOpen(false), 150);
+  }, []);
+
+  const cancelClose = useCallback(() => {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
+  }, []);
+
+  useEffect(() => {
+    return () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); };
   }, []);
 
   useEffect(() => {
@@ -139,7 +152,11 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
   }
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={() => { cancelClose(); setIsOpen(true); }}
+      onMouseLeave={scheduleClose}
+    >
       <button
         ref={btnRef}
         onClick={() => setIsOpen((v) => !v)}
