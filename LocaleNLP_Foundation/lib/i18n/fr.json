@@ -386,5 +386,6 @@
   "donate.inst_fellow_price": "35 000 $ par boursier",
   "donate.inst_multi_title": "Engagement pluriannuel",
   "donate.inst_multi_desc": "Partenariat avec nous sur une subvention pluriannuelle pour soutenir la recherche à long terme et les programmes communautaires.",
-  "donate.inst_multi_price": "Partenariat sur mesure"
+  "donate.inst_multi_price": "Partenariat sur mesure",
+  "nav.support.label": "SOUTENIR NOTRE MISSION"
 }

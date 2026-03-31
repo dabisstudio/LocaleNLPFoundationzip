@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { PageHeader } from '@/components/ui/page-header';
@@ -13,6 +14,14 @@ import { useTranslation } from '@/lib/i18n/TranslationContext';
 import { useSearchParams } from 'next/navigation';
 
 export default function DonatePage() {
+  return (
+    <Suspense>
+      <DonatePageContent />
+    </Suspense>
+  );
+}
+
+function DonatePageContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const bountyTitle = searchParams.get('bounty');

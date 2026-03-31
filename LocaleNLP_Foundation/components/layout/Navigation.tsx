@@ -209,7 +209,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
                     {t(labelKey)}
                   </span>
                   <span className="text-xs text-text-secondary mt-0.5 leading-snug">
-                    {t(descKey) || descFallback}
+                    {t(descKey, descFallback)}
                   </span>
                 </span>
               </Link>

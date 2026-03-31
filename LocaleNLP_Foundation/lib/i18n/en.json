@@ -386,5 +386,6 @@
   "donate.inst_fellow_price": "$35,000 per fellow",
   "donate.inst_multi_title": "Multi-Year Commitment",
   "donate.inst_multi_desc": "Partner with us on a multi-year grant to support long-term research and community programs.",
-  "donate.inst_multi_price": "Custom partnership"
+  "donate.inst_multi_price": "Custom partnership",
+  "nav.support.label": "SUPPORT OUR MISSION"
 }

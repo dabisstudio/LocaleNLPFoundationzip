@@ -386,5 +386,6 @@
   "donate.inst_fellow_price": "35,000 $ لكل زميل",
   "donate.inst_multi_title": "التزام متعدد السنوات",
   "donate.inst_multi_desc": "شراكة معنا في منحة متعددة السنوات لدعم البحث والبرامج المجتمعية على المدى الطويل.",
-  "donate.inst_multi_price": "شراكة مخصصة"
+  "donate.inst_multi_price": "شراكة مخصصة",
+  "nav.support.label": "دعم مهمتنا"
 }
