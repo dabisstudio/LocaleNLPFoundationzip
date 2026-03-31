@@ -139,27 +139,26 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
         </div>
       </div>
 
-      <GlowButton
-        href={
-          !isFulfilled
-            ? `/donate?bounty=${encodeURIComponent(bounty.title)}&lang=${bounty.language_code}`
-            : '/bounties'
-        }
-        variant="ghost"
-        disabled={isFulfilled}
-        className={
-          isFulfilled
-            ? 'mt-auto w-full justify-center text-sm opacity-50 cursor-not-allowed pointer-events-none border-emerald-400/30 text-emerald-400'
-            : 'mt-auto w-full justify-center text-sm'
-        }
-        aria-label={
-          isFulfilled
-            ? `${bounty.title} is fully funded`
-            : `Fund ${bounty.title} bounty`
-        }
-      >
-        {isFulfilled ? 'Fully Funded' : 'Fund this Bounty'}
-      </GlowButton>
+      {isFulfilled ? (
+        <GlowButton
+          variant="ghost"
+          disabled
+          className="mt-auto w-full justify-center text-sm border-emerald-400/30 text-emerald-400"
+          aria-label={`${bounty.title} is fully funded`}
+          aria-disabled="true"
+        >
+          Fully Funded
+        </GlowButton>
+      ) : (
+        <GlowButton
+          href={`/donate?bounty=${encodeURIComponent(bounty.title)}&lang=${bounty.language_code}`}
+          variant="ghost"
+          className="mt-auto w-full justify-center text-sm"
+          aria-label={`Fund ${bounty.title} bounty`}
+        >
+          Fund this Bounty
+        </GlowButton>
+      )}
     </article>
   );
 }
