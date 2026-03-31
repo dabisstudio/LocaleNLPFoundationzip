@@ -437,6 +437,16 @@ export default function Navigation() {
             })}
             <div className="mt-3 pt-4 border-t border-white/8 flex flex-col gap-3">
               <LanguageSwitcher mobile />
+              <a
+                href="https://localenlp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono uppercase tracking-widest text-text-secondary border border-white/10 rounded-lg hover:text-white hover:border-accent-clay/40 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
+              >
+                {t('nav.enterprise_api', 'Enterprise API')}
+                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
               <GlowButton
                 href="/donate"
                 variant="primary"

@@ -153,12 +153,15 @@ export function DualEntityDiagram() {
             <LoopLabel entries={forProfitEntries} x={RIGHT_CX + RX * 0.82 + 14} y={CY - 22} align="start" />
 
             <circle cx={CX} cy={CY} r={28} fill="rgba(12,12,20,0.95)" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
-            <text x={CX} y={CY - 6} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.5)" fontFamily="JetBrains Mono, monospace">⚖️</text>
-            <text x={CX} y={CY + 9} textAnchor="middle" fontSize="7.5" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
+            <text x={CX} y={CY - 9} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.5)" fontFamily="JetBrains Mono, monospace">⚖️</text>
+            <text x={CX} y={CY + 5} textAnchor="middle" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
               {t('pact.dual.center.line1', 'ETHICS')}
             </text>
-            <text x={CX} y={CY + 19} textAnchor="middle" fontSize="7.5" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
+            <text x={CX} y={CY + 14} textAnchor="middle" fontSize="7" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
               {t('pact.dual.center.line2', 'FIREWALL')}
+            </text>
+            <text x={CX} y={CY + 23} textAnchor="middle" fontSize="6.5" fill="rgba(255,255,255,0.3)" fontFamily="JetBrains Mono, monospace">
+              {t('pact.dual.center.line3', '& ROYALTY')}
             </text>
 
             {isMounted && (

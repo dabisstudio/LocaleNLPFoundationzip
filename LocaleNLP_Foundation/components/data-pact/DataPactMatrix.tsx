@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { type LucideIcon, Mic, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -129,8 +129,23 @@ export function DataPactMatrix() {
   const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
   const [active, setActive] = useState<PersonaId>('enterprise');
+  const tabRefs = useRef<Record<PersonaId, HTMLButtonElement | null>>({ contributor: null, academic: null, enterprise: null });
 
   useEffect(() => { setIsMounted(true); }, []);
+
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, id: PersonaId) => {
+    const ids = PERSONAS.map((p) => p.id);
+    const idx = ids.indexOf(id);
+    if (e.key === 'ArrowRight') {
+      const next = ids[(idx + 1) % ids.length];
+      setActive(next);
+      tabRefs.current[next]?.focus();
+    } else if (e.key === 'ArrowLeft') {
+      const prev = ids[(idx - 1 + ids.length) % ids.length];
+      setActive(prev);
+      tabRefs.current[prev]?.focus();
+    }
+  };
   if (!isMounted) return null;
 
   const persona = PERSONAS.find((p) => p.id === active)!;
@@ -162,8 +177,11 @@ export function DataPactMatrix() {
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`pact-panel-${p.id}`}
+                ref={(el) => { tabRefs.current[p.id] = el; }}
                 onClick={() => setActive(p.id)}
+                onKeyDown={(e) => handleTabKeyDown(e, p.id)}
                 aria-label={t(p.labelKey)}
+                tabIndex={isActive ? 0 : -1}
                 className={cn(
                   'flex-1 flex items-center justify-center gap-2 py-3 px-3 text-xs sm:text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-cyan',
                 )}
