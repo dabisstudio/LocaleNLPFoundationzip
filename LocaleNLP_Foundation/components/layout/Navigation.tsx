@@ -25,6 +25,7 @@ type NavLink = {
   href: string;
   icon: LucideIcon;
   descKey: string;
+  descFallback: string;
 };
 
 type FeatureCard = {
@@ -48,12 +49,12 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/about',
     accent: 'cyan',
     links: [
-      { labelKey: 'nav.about.our_story', href: '/about',        icon: Globe,        descKey: 'Mission, vision & origin' },
-      { labelKey: 'nav.about.manifesto', href: '/manifesto',    icon: Feather,      descKey: 'Our founding statement on language equity' },
-      { labelKey: 'nav.about.team',      href: '/about#team',   icon: Users,        descKey: 'Language researchers & changemakers' },
-      { labelKey: 'nav.about.reports',   href: '/about',        icon: FileText,     descKey: 'Transparency & impact data' },
-      { labelKey: 'nav.about.ethics',    href: '/ethics',       icon: ShieldCheck,  descKey: 'Data sovereignty & compliance dashboard' },
-      { labelKey: 'nav.about.press',     href: '/about',        icon: Newspaper,    descKey: 'Coverage & press kit' },
+      { labelKey: 'nav.about.our_story', href: '/about',        icon: Globe,        descKey: 'nav.about.our_story_desc',  descFallback: 'Mission, vision & origin' },
+      { labelKey: 'nav.about.manifesto', href: '/manifesto',    icon: Feather,      descKey: 'nav.about.manifesto_desc',  descFallback: 'Our founding statement on language equity' },
+      { labelKey: 'nav.about.team',      href: '/about#team',   icon: Users,        descKey: 'nav.about.team_desc',       descFallback: 'Language researchers & changemakers' },
+      { labelKey: 'nav.about.reports',   href: '/about',        icon: FileText,     descKey: 'nav.about.reports_desc',    descFallback: 'Transparency & impact data' },
+      { labelKey: 'nav.about.ethics',    href: '/ethics',       icon: ShieldCheck,  descKey: 'nav.about.ethics_desc',     descFallback: 'Data sovereignty & compliance dashboard' },
+      { labelKey: 'nav.about.press',     href: '/about',        icon: Newspaper,    descKey: 'nav.about.press_desc',      descFallback: 'Coverage & press kit' },
     ],
     feature: {
       statKey: 'nav.about.feature_stat',
@@ -66,10 +67,10 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/programs',
     accent: 'ochre',
     links: [
-      { labelKey: 'nav.programs.openspeech',  href: '/programs/openspeech-initiative', icon: Mic,        descKey: 'Open speech data for 200+ African languages' },
-      { labelKey: 'nav.programs.futures_lab', href: '/programs/language-futures-lab',  icon: Microscope, descKey: 'Low-resource NLP models & benchmarks' },
-      { labelKey: 'nav.programs.lughatna',    href: '/programs/lughatna-platform',     icon: Heart,      descKey: 'Self-hosted, offline-first NLP for communities' },
-      { labelKey: 'nav.programs.policy',      href: '/programs/policy-governance',     icon: Scale,      descKey: 'Embedding language equity in AI policy' },
+      { labelKey: 'nav.programs.openspeech',  href: '/programs/openspeech-initiative', icon: Mic,        descKey: 'nav.programs.openspeech_desc',  descFallback: 'Open speech data for 200+ African languages' },
+      { labelKey: 'nav.programs.futures_lab', href: '/programs/language-futures-lab',  icon: Microscope, descKey: 'nav.programs.futures_lab_desc',  descFallback: 'Low-resource NLP models & benchmarks' },
+      { labelKey: 'nav.programs.lughatna',    href: '/programs/lughatna-platform',     icon: Heart,      descKey: 'nav.programs.lughatna_desc',    descFallback: 'Self-hosted, offline-first NLP for communities' },
+      { labelKey: 'nav.programs.policy',      href: '/programs/policy-governance',     icon: Scale,      descKey: 'nav.programs.policy_desc',      descFallback: 'Embedding language equity in AI policy' },
     ],
     feature: {
       statKey: 'nav.programs.feature_stat',
@@ -83,10 +84,10 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/technology',
     accent: 'cyan',
     links: [
-      { labelKey: 'nav.technology.api',          href: '/technology#sandbox',      icon: Code2,    descKey: 'Try live API calls — no signup required' },
-      { labelKey: 'nav.technology.architecture', href: '/technology#architecture', icon: Layers,   descKey: 'Interactive 4-node stack diagram' },
-      { labelKey: 'nav.technology.nutrition',    href: '/technology#nutrition',    icon: Database, descKey: 'Ethical compliance for every dataset' },
-      { labelKey: 'nav.technology.sovereignty',  href: '/technology#escrow',       icon: BookOpen, descKey: 'Who owns the data — visualised' },
+      { labelKey: 'nav.technology.api',          href: '/technology#sandbox',      icon: Code2,    descKey: 'nav.technology.api_desc',          descFallback: 'Try live API calls — no signup required' },
+      { labelKey: 'nav.technology.architecture', href: '/technology#architecture', icon: Layers,   descKey: 'nav.technology.architecture_desc', descFallback: 'Interactive 4-node stack diagram' },
+      { labelKey: 'nav.technology.nutrition',    href: '/technology#nutrition',    icon: Database, descKey: 'nav.technology.nutrition_desc',    descFallback: 'Ethical compliance for every dataset' },
+      { labelKey: 'nav.technology.sovereignty',  href: '/technology#escrow',       icon: BookOpen, descKey: 'nav.technology.sovereignty_desc',  descFallback: 'Who owns the data — visualised' },
     ],
     feature: {
       statKey: 'nav.technology.feature_stat',
@@ -99,11 +100,11 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/impact',
     accent: 'clay',
     links: [
-      { labelKey: 'nav.impact.map',          href: '/impact',               icon: Map,           descKey: 'Track our reach across 47 countries' },
-      { labelKey: 'nav.impact.vitality',     href: '/vitality',             icon: Activity,      descKey: 'AI readiness audit for African languages' },
-      { labelKey: 'nav.impact.stories',      href: '/impact#stories',       icon: MessageSquare, descKey: 'Voices from communities we serve' },
-      { labelKey: 'nav.impact.metrics',      href: '/impact#metrics',       icon: BarChart2,     descKey: 'Evidence-based progress reporting' },
-      { labelKey: 'nav.impact.publications', href: '/insights#publications', icon: FileText,     descKey: 'Research, policy briefs & reports' },
+      { labelKey: 'nav.impact.map',          href: '/impact',               icon: Map,           descKey: 'nav.impact.map_desc',          descFallback: 'Track our reach across 47 countries' },
+      { labelKey: 'nav.impact.vitality',     href: '/vitality',             icon: Activity,      descKey: 'nav.impact.vitality_desc',     descFallback: 'AI readiness audit for African languages' },
+      { labelKey: 'nav.impact.stories',      href: '/impact#stories',       icon: MessageSquare, descKey: 'nav.impact.stories_desc',      descFallback: 'Voices from communities we serve' },
+      { labelKey: 'nav.impact.metrics',      href: '/impact#metrics',       icon: BarChart2,     descKey: 'nav.impact.metrics_desc',      descFallback: 'Evidence-based progress reporting' },
+      { labelKey: 'nav.impact.publications', href: '/insights#publications', icon: FileText,     descKey: 'nav.impact.publications_desc', descFallback: 'Research, policy briefs & reports' },
     ],
     feature: {
       statKey: 'nav.impact.feature_stat',
@@ -116,11 +117,11 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/get-involved',
     accent: 'ochre',
     links: [
-      { labelKey: 'nav.get_involved.volunteer',   href: '/get-involved#contributor', icon: HandHeart,    descKey: 'Contribute voice data, earn via mobile money' },
-      { labelKey: 'nav.get_involved.bounties',    href: '/bounties',                 icon: Coins,        descKey: 'Fund specific language data deficits' },
-      { labelKey: 'nav.get_involved.partner',     href: '/get-involved#pathways',    icon: Handshake,    descKey: 'For institutions & organisations' },
-      { labelKey: 'nav.get_involved.fellowships', href: '/get-involved',             icon: GraduationCap, descKey: 'AI × Language research fellowships' },
-      { labelKey: 'nav.get_involved.contact',     href: '/get-involved#contact',     icon: Mail,         descKey: 'Get in touch with our team' },
+      { labelKey: 'nav.get_involved.volunteer',   href: '/get-involved#contributor', icon: HandHeart,    descKey: 'nav.get_involved.volunteer_desc',   descFallback: 'Contribute voice data, earn via mobile money' },
+      { labelKey: 'nav.get_involved.bounties',    href: '/bounties',                 icon: Coins,        descKey: 'nav.get_involved.bounties_desc',    descFallback: 'Fund specific language data deficits' },
+      { labelKey: 'nav.get_involved.partner',     href: '/get-involved#pathways',    icon: Handshake,    descKey: 'nav.get_involved.partner_desc',     descFallback: 'For institutions & organisations' },
+      { labelKey: 'nav.get_involved.fellowships', href: '/get-involved',             icon: GraduationCap, descKey: 'nav.get_involved.fellowships_desc', descFallback: 'AI × Language research fellowships' },
+      { labelKey: 'nav.get_involved.contact',     href: '/get-involved#contact',     icon: Mail,         descKey: 'nav.get_involved.contact_desc',     descFallback: 'Get in touch with our team' },
     ],
     feature: {
       statKey: 'nav.get_involved.feature_stat',
@@ -133,10 +134,10 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/insights',
     accent: 'clay',
     links: [
-      { labelKey: 'nav.insights.research',   href: '/insights',          icon: FlaskConical, descKey: 'Peer-reviewed NLP research' },
-      { labelKey: 'nav.insights.policy',     href: '/insights',          icon: ScrollText,   descKey: 'Language equity in policy contexts' },
-      { labelKey: 'nav.insights.field_notes', href: '/insights#stories', icon: PenLine,      descKey: 'Dispatches from the field' },
-      { labelKey: 'nav.insights.newsletter', href: '#newsletter',        icon: Newspaper,    descKey: 'Monthly updates from LocaleNLP' },
+      { labelKey: 'nav.insights.research',    href: '/insights',          icon: FlaskConical, descKey: 'nav.insights.research_desc',    descFallback: 'Peer-reviewed NLP research' },
+      { labelKey: 'nav.insights.policy',      href: '/insights',          icon: ScrollText,   descKey: 'nav.insights.policy_desc',      descFallback: 'Language equity in policy contexts' },
+      { labelKey: 'nav.insights.field_notes', href: '/insights#stories',  icon: PenLine,      descKey: 'nav.insights.field_notes_desc', descFallback: 'Dispatches from the field' },
+      { labelKey: 'nav.insights.newsletter',  href: '#newsletter',        icon: Newspaper,    descKey: 'nav.insights.newsletter_desc',  descFallback: 'Monthly updates from LocaleNLP' },
     ],
     feature: {
       statKey: 'nav.insights.feature_stat',
@@ -190,7 +191,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
             {t(section.labelKey)}
           </p>
           <div className="grid grid-cols-2 gap-1">
-            {section.links.map(({ labelKey, href, icon: Icon, descKey }) => (
+            {section.links.map(({ labelKey, href, icon: Icon, descKey, descFallback }) => (
               <Link
                 key={href + labelKey}
                 href={href}
@@ -208,7 +209,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
                     {t(labelKey)}
                   </span>
                   <span className="text-xs text-text-secondary mt-0.5 leading-snug">
-                    {descKey}
+                    {t(descKey) || descFallback}
                   </span>
                 </span>
               </Link>

@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { VitalityExplorer } from '@/components/vitality/VitalityExplorer';
 import { GlowButton } from '@/components/ui/glow-button';
 import { VITALITY_DATA, VITALITY_SUMMARY } from '@/lib/vitality-data';
@@ -16,15 +16,15 @@ export default function VitalityPage() {
     <>
       <Navigation />
 
-      <main>
-        <PageHeader
+      <main id="main-content">
+        <TranslatedPageHeader
           label="Digital Language Vitality Index"
           number="VI"
           status="beta"
           accentColor="cyan"
-          title="Is Your Language"
-          titleGradient="AI-Ready?"
-          subtitle="An open audit of token counts, validated speech hours, and AI deployment readiness across 24 African languages — updated quarterly."
+          titleKey="vitality.page_title"
+          titleGradientKey="vitality.page_title_gradient"
+          subtitleKey="vitality.page_subtitle"
           cta={
             <>
               <GlowButton href="/bounties" variant="primary">

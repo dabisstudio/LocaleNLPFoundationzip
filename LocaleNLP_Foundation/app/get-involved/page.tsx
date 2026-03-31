@@ -58,7 +58,7 @@ export default function GetInvolvedPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
 
         <section
           id="contributor"

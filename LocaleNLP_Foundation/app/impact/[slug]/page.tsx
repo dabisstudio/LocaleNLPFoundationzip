@@ -52,7 +52,7 @@ export default async function DeploymentStoryPage({
   return (
     <>
       <Navigation />
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
 
         <section
           className="relative py-16 md:py-24 overflow-hidden"

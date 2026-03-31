@@ -8,7 +8,6 @@
   "nav.donate": "تبرع",
   "nav.open_menu": "فتح القائمة",
   "nav.close_menu": "إغلاق القائمة",
-
   "nav.about.our_story": "قصتنا",
   "nav.about.manifesto": "البيان التأسيسي",
   "nav.about.team": "الفريق",
@@ -18,7 +17,6 @@
   "nav.about.feature_stat": "تأسست عام 2021",
   "nav.about.feature_label": "مؤسسة أفريقية لحقوق اللغة",
   "nav.about.feature_cta": "اقرأ قصتنا",
-
   "nav.programs.openspeech": "مبادرة OpenSpeech",
   "nav.programs.futures_lab": "مختبر مستقبل اللغة",
   "nav.programs.lughatna": "منصة لغتنا",
@@ -27,7 +25,6 @@
   "nav.programs.feature_label": "برامج مفتوحة عبر أفريقيا",
   "nav.programs.feature_cta": "دعم عملنا",
   "nav.programs.view_all": "عرض جميع البرامج",
-
   "nav.technology.api": "اختبار واجهة برمجة التطبيقات",
   "nav.technology.architecture": "بنية التقنية",
   "nav.technology.nutrition": "ملصقات التغذية",
@@ -35,7 +32,6 @@
   "nav.technology.feature_stat": "+2,000",
   "nav.technology.feature_label": "لغة أفريقية في خط أنابيبنا",
   "nav.technology.feature_cta": "استكشف التكنولوجيا",
-
   "nav.impact.map": "خريطة الأثر",
   "nav.impact.vitality": "مؤشر الحيوية",
   "nav.impact.stories": "قصص ميدانية",
@@ -44,7 +40,6 @@
   "nav.impact.feature_stat": "47 دولة",
   "nav.impact.feature_label": "في شبكتنا الأفريقية",
   "nav.impact.feature_cta": "عرض الخريطة",
-
   "nav.get_involved.volunteer": "تطوع",
   "nav.get_involved.bounties": "جوائز البيانات",
   "nav.get_involved.partner": "شراكة معنا",
@@ -53,7 +48,6 @@
   "nav.get_involved.feature_stat": "+300",
   "nav.get_involved.feature_label": "مساهمون وأعضاء المجتمع",
   "nav.get_involved.feature_cta": "انضم إلينا اليوم",
-
   "nav.insights.research": "الأوراق البحثية",
   "nav.insights.policy": "ملخصات السياسات",
   "nav.insights.field_notes": "ملاحظات ميدانية",
@@ -61,7 +55,6 @@
   "nav.insights.feature_stat": "+120",
   "nav.insights.feature_label": "ورقة بحثية وتقرير ميداني",
   "nav.insights.feature_cta": "استعرض المنشورات",
-
   "footer.tagline": "بناء بنية تحتية لغوية مفتوحة وأخلاقية لأفريقيا والجنوب العالمي. ضمان عدم تخلف أي مجتمع في عصر الذكاء الاصطناعي.",
   "footer.site": "الموقع",
   "footer.resources": "الموارد",
@@ -72,54 +65,39 @@
   "footer.terms": "شروط الخدمة",
   "footer.contact_us": "تواصل معنا",
   "footer.newsletter": "النشرة الإخبارية",
-
   "home.hero.eyebrow": "المؤسسة الأفريقية لحقوق اللغة",
   "home.hero.headline": "الذكاء الاصطناعي لكل لغة. سيادة البيانات. علم مفتوح.",
   "home.hero.subheadline": "بناء تكنولوجيا لغوية لأكثر من 2000 لغة أفريقية. بنية تحتية مفتوحة. بقيادة المجتمع. مجانية للأبد.",
   "home.hero.cta_primary": "استكشف عملنا",
   "home.hero.cta_secondary": "ادعمنا",
-
   "home.stats.languages": "اللغات المستهدفة",
   "home.stats.countries": "دولة",
   "home.stats.contributors": "مساهم",
   "home.stats.models": "نماذج مفتوحة",
-
-  "about.page_title": "حولنا",
-  "about.page_subtitle": "نحن منظمة أفريقية غير ربحية تعمل على ضمان أن يكون عصر الذكاء الاصطناعي شاملاً لغوياً لكل مجتمع في القارة.",
-
-  "programs.page_title": "برامجنا",
-  "programs.page_subtitle": "أربعة برامج نشطة تغطي جمع البيانات الصوتية وتطوير نماذج معالجة اللغة الطبيعية والنشر المجتمعي والمناصرة السياسية.",
-
-  "technology.page_title": "التكنولوجيا",
-  "technology.page_subtitle": "أدوات مفتوحة المصدر وواجهات برمجة التطبيقات ومجموعات البيانات لدعم المساواة اللغوية عبر أفريقيا.",
-
-  "impact.page_title": "أثرنا",
-  "impact.page_subtitle": "تتبع نشر الذكاء الاصطناعي اللغوي في 47 دولة وأكثر من 2000 لغة.",
-
-  "insights.page_title": "المنشورات",
-  "insights.page_subtitle": "أوراق بحثية وملخصات سياسات وتقارير ميدانية من الخطوط الأمامية لمعالجة اللغة الطبيعية الأفريقية.",
-
+  "about.page_title": "تكنولوجيا اللغة",
+  "about.page_subtitle": "نؤمن بأن مستقبل الذكاء الاصطناعي يجب أن يشمل كل صوت وكل لغة وكل مجتمع عبر القارة الأفريقية — ليس كملحق، بل كمبدأ تأسيسي.",
+  "programs.page_title": "من البحث",
+  "programs.page_subtitle": "تغطي برامجنا دورة حياة تكنولوجيا اللغة بأكملها — من البحث الأساسي إلى النشر المجتمعي، ومن المناصرة السياسية إلى تطوير المواهب.",
+  "technology.page_title": "مفتوح المصدر.",
+  "technology.page_subtitle": "يجب أن تكون تكنولوجيا اللغة سلعة عامة. جميع نماذجنا ومجموعات البيانات والأدوات متاحة مجانًا للباحثين والمطورين في جميع أنحاء العالم.",
+  "impact.page_title": "تكنولوجيا حقيقية.",
+  "impact.page_subtitle": "نقيس النجاح ليس في الأوراق المنشورة، بل في المجتمعات المُمكَّنة، واللغات المحفوظة، والحواجز المكسورة في 18 دولة أفريقية.",
+  "insights.page_title": "أبحاث وقصص",
+  "insights.page_subtitle": "استكشف منشوراتنا وقصص الميدان والملخصات السياسية التي تشكل مستقبل تكنولوجيا اللغة الأفريقية.",
   "get_involved.page_title": "شارك",
   "get_involved.page_subtitle": "باحثون ومطورون وأعضاء مجتمع ومنظمات — هناك مكان لك.",
-
-  "donate.page_title": "تبرع",
-  "donate.page_subtitle": "دعمك يمول بيانات اللغة المفتوحة والزمالات والنشر المجتمعي.",
-
-  "bounties.page_title": "لوحة جوائز اللغة",
-  "bounties.page_subtitle": "مول عجزًا محددًا في بيانات اللغة. 100٪ من التبرعات تذهب مباشرة إلى جمع البيانات.",
-
-  "vitality.page_title": "مؤشر الحيوية الرقمية للغات",
+  "donate.page_title": "كل مساهمة",
+  "donate.page_subtitle": "تبرعك يمول مباشرة رقمنة اللغات الأفريقية وتطوير نماذج الذكاء الاصطناعي مفتوحة المصدر.",
+  "bounties.page_title": "موّل اللغات",
+  "bounties.page_subtitle": "محدد وشفاف ومسؤول أمام المجتمع. كل جائزة هي عجز حقيقي في البيانات مع هدف تمويل. كل دولار يذهب مباشرة إلى جامعي الأصوات المحليين.",
+  "vitality.page_title": "هل لغتك",
   "vitality.page_subtitle": "تدقيق الاستعداد للذكاء الاصطناعي للغات الأفريقية. تتبع عمق المدونة وتغطية النماذج والنشر المجتمعي.",
-
   "manifesto.page_title": "بيان المؤسسين",
   "manifesto.page_subtitle": "بيان تأسيسي حول المساواة اللغوية والسيادة الرقمية ومسؤولية من يبنون آلات التفكير.",
-
   "status.page_title": "حالة النظام",
   "status.page_subtitle": "يتم مراقبة جميع خدمات مؤسسة LocaleNLP على مدار الساعة طوال أيام الأسبوع.",
-
-  "ethics.page_title": "مركز الأخلاقيات",
-  "ethics.page_subtitle": "سيادة البيانات والامتثال والحوكمة الأخلاقية للذكاء الاصطناعي اللغوي.",
-
+  "ethics.page_title": "حوكمة مبنية",
+  "ethics.page_subtitle": "نحن لا نكتب السياسات فحسب. نحن نطبق جمع البيانات الأخلاقي على مستوى واجهة برمجة التطبيقات.",
   "cta.donate": "تبرع",
   "cta.learn_more": "اعرف المزيد",
   "cta.get_involved": "شارك",
@@ -134,10 +112,8 @@
   "cta.view_open_issues": "عرض المشكلات المفتوحة",
   "cta.apply_partnership": "التقدم للشراكة",
   "cta.subscribe": "اشترك",
-
   "lang.switcher.label": "Language / Langue / Lugha",
   "lang.switcher.note": "محدد لغة مرئي — يبقى محتوى الموقع باللغة الإنجليزية.",
-
   "status.all_operational": "جميع الأنظمة تعمل",
   "status.degraded": "أداء متردٍّ",
   "status.incident": "حادث رئيسي",
@@ -147,17 +123,52 @@
   "status.degraded_status": "متردٍّ",
   "status.maintenance": "صيانة",
   "status.outage": "انقطاع",
-
   "a11y.logo_home": "الصفحة الرئيسية لمؤسسة LocaleNLP",
   "a11y.lang_select": "اختر اللغة",
   "a11y.close_panel": "إغلاق لوحة التنقل",
   "a11y.skip_nav": "الانتقال إلى المحتوى الرئيسي",
-
   "form.name": "الاسم الكامل",
   "form.email": "البريد الإلكتروني",
   "form.language": "اللغة",
   "form.message": "الرسالة",
   "form.submit": "إرسال",
   "form.subscribe": "الاشتراك في النشرة الإخبارية",
-  "form.required": "مطلوب"
+  "form.required": "مطلوب",
+  "about.page_title_gradient": "لكل أفريقيا",
+  "programs.page_title_gradient": "إلى الأثر الحقيقي",
+  "technology.page_title_gradient": "منفتح بشكل جذري.",
+  "impact.page_title_gradient": "مجتمعات حقيقية.",
+  "insights.page_title_gradient": "وتقارير ميدانية",
+  "bounties.page_title_gradient": "التي يتجاهلها العالم",
+  "vitality.page_title_gradient": "جاهزة للذكاء الاصطناعي؟",
+  "ethics.page_title_gradient": "للثقة",
+  "donate.page_title_gradient": "مهمة",
+  "nav.about.our_story_desc": "المهمة والرؤية والأصل",
+  "nav.about.manifesto_desc": "بياننا التأسيسي حول المساواة اللغوية",
+  "nav.about.team_desc": "باحثون في اللغويات وصانعو التغيير",
+  "nav.about.reports_desc": "الشفافية وبيانات الأثر",
+  "nav.about.ethics_desc": "سيادة البيانات ولوحة الامتثال",
+  "nav.about.press_desc": "التغطية وحزمة الصحافة",
+  "nav.programs.openspeech_desc": "بيانات صوتية مفتوحة لأكثر من 200 لغة أفريقية",
+  "nav.programs.futures_lab_desc": "نماذج NLP للغات قليلة الموارد",
+  "nav.programs.lughatna_desc": "NLP للمجتمعات دون اتصال",
+  "nav.programs.policy_desc": "دمج المساواة اللغوية في سياسة الذكاء الاصطناعي",
+  "nav.technology.api_desc": "جرب استدعاءات API المباشرة — دون تسجيل",
+  "nav.technology.architecture_desc": "مخطط مكدس تفاعلي بـ 4 عقد",
+  "nav.technology.nutrition_desc": "الامتثال الأخلاقي لكل مجموعة بيانات",
+  "nav.technology.sovereignty_desc": "من يملك البيانات — مُرئيًا",
+  "nav.impact.map_desc": "تتبع تأثيرنا في 47 دولة",
+  "nav.impact.vitality_desc": "تدقيق جاهزية الذكاء الاصطناعي للغات الأفريقية",
+  "nav.impact.stories_desc": "أصوات المجتمعات التي نخدمها",
+  "nav.impact.metrics_desc": "تقارير تقدم مبنية على الأدلة",
+  "nav.impact.publications_desc": "الأبحاث وملخصات السياسات والتقارير",
+  "nav.get_involved.volunteer_desc": "ساهم ببيانات صوتية",
+  "nav.get_involved.bounties_desc": "موّل عجزًا محددًا في البيانات",
+  "nav.get_involved.partner_desc": "للمؤسسات والمنظمات",
+  "nav.get_involved.fellowships_desc": "زمالات بحثية في الذكاء الاصطناعي واللغة",
+  "nav.get_involved.contact_desc": "تواصل مع فريقنا",
+  "nav.insights.research_desc": "بحث NLP مراجع من الأقران",
+  "nav.insights.policy_desc": "المساواة اللغوية في السياسات",
+  "nav.insights.field_notes_desc": "تقارير من الميدان",
+  "nav.insights.newsletter_desc": "تحديثات شهرية من LocaleNLP"
 }

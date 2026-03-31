@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -174,13 +174,13 @@ export default async function TechnologyPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="TECHNOLOGY"
           number="00"
-          title="Open Source."
-          titleGradient="Open Access. Open Future."
-          subtitle="Language technology should be a public good. All our models, datasets, and tools are freely available to researchers and developers worldwide — no paywalls, no lock-in."
+          titleKey="technology.page_title"
+          titleGradientKey="technology.page_title_gradient"
+          subtitleKey="technology.page_subtitle"
           accentColor="cyan"
         >
           <GlowButton href="https://github.com/localenlp" variant="primary">
@@ -190,7 +190,7 @@ export default async function TechnologyPage() {
           <GlowButton href="/get-involved" variant="ghost">
             Contribute
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <section id="architecture" className="py-16 bg-brand-deep">
           <div className="container-wide section-padding">

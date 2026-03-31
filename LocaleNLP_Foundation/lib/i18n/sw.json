@@ -8,7 +8,6 @@
   "nav.donate": "Changia",
   "nav.open_menu": "Fungua menyu",
   "nav.close_menu": "Funga menyu",
-
   "nav.about.our_story": "Hadithi yetu",
   "nav.about.manifesto": "Ilani ya Uanzishaji",
   "nav.about.team": "Timu",
@@ -18,7 +17,6 @@
   "nav.about.feature_stat": "Ilianzishwa 2021",
   "nav.about.feature_label": "Msingi wa usawa wa lugha wa Afrika",
   "nav.about.feature_cta": "Soma hadithi yetu",
-
   "nav.programs.openspeech": "Mpango wa OpenSpeech",
   "nav.programs.futures_lab": "Maabara ya Mustakabali wa Lugha",
   "nav.programs.lughatna": "Jukwaa la Lughatna",
@@ -27,7 +25,6 @@
   "nav.programs.feature_label": "Programu wazi Afrika nzima",
   "nav.programs.feature_cta": "Saidia kazi yetu",
   "nav.programs.view_all": "Angalia programu zote",
-
   "nav.technology.api": "Sanduku la API",
   "nav.technology.architecture": "Muundo wa Teknolojia",
   "nav.technology.nutrition": "Lebo za Lishe",
@@ -35,7 +32,6 @@
   "nav.technology.feature_stat": "2,000+",
   "nav.technology.feature_label": "Lugha za Afrika katika mfumo wetu",
   "nav.technology.feature_cta": "Chunguza teknolojia",
-
   "nav.impact.map": "Ramani ya Athari",
   "nav.impact.vitality": "Faharasa ya Usimamizi",
   "nav.impact.stories": "Hadithi za Uwanjani",
@@ -44,7 +40,6 @@
   "nav.impact.feature_stat": "Nchi 47",
   "nav.impact.feature_label": "Katika mtandao wetu wa Afrika",
   "nav.impact.feature_cta": "Angalia ramani",
-
   "nav.get_involved.volunteer": "Jitolee",
   "nav.get_involved.bounties": "Tuzo za Data",
   "nav.get_involved.partner": "Shirikiana Nasi",
@@ -53,7 +48,6 @@
   "nav.get_involved.feature_stat": "300+",
   "nav.get_involved.feature_label": "Wachangiaji na wanachama wa jamii",
   "nav.get_involved.feature_cta": "Jiunge nasi leo",
-
   "nav.insights.research": "Karatasi za Utafiti",
   "nav.insights.policy": "Muhtasari wa Sera",
   "nav.insights.field_notes": "Maelezo ya Uwanjani",
@@ -61,7 +55,6 @@
   "nav.insights.feature_stat": "120+",
   "nav.insights.feature_label": "Karatasi za utafiti na ripoti za uwanjani",
   "nav.insights.feature_cta": "Vinjari maarifa",
-
   "footer.tagline": "Kujenga miundombinu ya lugha wazi na ya kimaadili kwa Afrika na Kusini Mwa Dunia. Kuhakikisha hakuna jamii inayobaki nyuma katika enzi ya akili.",
   "footer.site": "Tovuti",
   "footer.resources": "Rasilimali",
@@ -72,54 +65,39 @@
   "footer.terms": "Masharti ya Huduma",
   "footer.contact_us": "Wasiliana Nasi",
   "footer.newsletter": "Jarida",
-
   "home.hero.eyebrow": "Msingi wa Usawa wa Lugha wa Afrika",
   "home.hero.headline": "AI kwa Kila Lugha. Uhuru wa Data. Sayansi Wazi.",
   "home.hero.subheadline": "Kujenga teknolojia ya lugha kwa lugha zaidi ya 2,000 za Afrika. Miundombinu wazi. Inayoongozwa na jamii. Bure milele.",
   "home.hero.cta_primary": "Chunguza Kazi Yetu",
   "home.hero.cta_secondary": "Tuunge mkono",
-
   "home.stats.languages": "Lugha zinazolengwa",
   "home.stats.countries": "Nchi",
   "home.stats.contributors": "Wachangiaji",
   "home.stats.models": "Mifano wazi",
-
-  "about.page_title": "Kuhusu Sisi",
-  "about.page_subtitle": "Sisi ni shirika lisilo la faida la Afrika linalojenga miundombinu ya lugha ili kuhakikisha enzi ya akili inashirikisha kila jamii barani Afrika.",
-
-  "programs.page_title": "Programu Zetu",
-  "programs.page_subtitle": "Programu nne zinazofanya kazi zinazoshughulikia ukusanyaji wa data ya sauti, utengenezaji wa mifano ya NLP, utekelezaji wa jamii na utetezi wa sera.",
-
-  "technology.page_title": "Teknolojia",
-  "technology.page_subtitle": "Zana za chanzo wazi, API na seti za data zinazokuza usawa wa lugha Afrika nzima.",
-
-  "impact.page_title": "Athari Yetu",
-  "impact.page_subtitle": "Kufuatilia utekelezaji wa AI ya lugha katika nchi 47 na lugha zaidi ya 2,000.",
-
-  "insights.page_title": "Maarifa",
-  "insights.page_subtitle": "Karatasi za utafiti, muhtasari wa sera na ripoti za uwanjani kutoka mbele za NLP ya Afrika.",
-
+  "about.page_title": "Teknolojia ya Lugha",
+  "about.page_subtitle": "Tunaamini mustakabali wa AI lazima ujumuishe kila sauti, kila lugha, na kila jamii barani Afrika — si kama jambo la ziada, bali kama kanuni ya msingi.",
+  "programs.page_title": "Kutoka Utafiti",
+  "programs.page_subtitle": "Programu zetu zinashughulikia mzunguko wote wa maisha ya teknolojia ya lugha — kutoka utafiti wa kimsingi hadi utekelezaji wa jamii, kutoka utetezi wa sera hadi ukuzaji wa vipaji.",
+  "technology.page_title": "Chanzo Wazi.",
+  "technology.page_subtitle": "Teknolojia ya lugha inapaswa kuwa mali ya umma. Mifano yetu yote, seti za data na zana zinapatikana bure kwa watafiti na waendelezaji duniani kote.",
+  "impact.page_title": "Teknolojia Halisi.",
+  "impact.page_subtitle": "Tunapima mafanikio si kwa karatasi zilizochapishwa, bali kwa jamii zilizoimarishwa, lugha zilizohifadhiwa, na vizuizi vilivyovunjwa katika nchi 18 za Afrika.",
+  "insights.page_title": "Utafiti, Hadithi &",
+  "insights.page_subtitle": "Chunguza machapisho yetu, hadithi za uwanjani, na muhtasari wa sera unaounda mustakabali wa teknolojia ya lugha ya Afrika.",
   "get_involved.page_title": "Shiriki",
   "get_involved.page_subtitle": "Watafiti, waendelezaji, wanachama wa jamii na mashirika — kuna mahali pako.",
-
-  "donate.page_title": "Changia",
-  "donate.page_subtitle": "Msaada wako unafadhili data ya lugha wazi, ufundi wa utafiti na utekelezaji wa jamii.",
-
-  "bounties.page_title": "Ubao wa Tuzo za Lugha",
-  "bounties.page_subtitle": "Fadhili upungufu maalum wa data ya lugha. Asilimia 100 ya michango inaenda moja kwa moja kwenye ukusanyaji wa data.",
-
-  "vitality.page_title": "Faharasa ya Usimamizi wa Lugha Kidijitali",
+  "donate.page_title": "Kila Mchango",
+  "donate.page_subtitle": "Mchango wako unafadhili moja kwa moja dijitali ya lugha za Afrika na ukuzaji wa mifano wazi ya AI.",
+  "bounties.page_title": "Fadhili Lugha",
+  "bounties.page_subtitle": "Maalum, ya uwazi, na inayowajibika kwa jamii. Kila tuzo ni upungufu wa kweli wa data na lengo la ufadhili.",
+  "vitality.page_title": "Je, Lugha Yako ni",
   "vitality.page_subtitle": "Ukaguzi wa utayari wa AI kwa lugha za Afrika. Fuatilia kina cha corpus, ufunikaji wa mifano na utekelezaji wa jamii.",
-
   "manifesto.page_title": "Ilani ya Waanzilishi",
   "manifesto.page_subtitle": "Tamko la uanzishaji kuhusu usawa wa lugha, uhuru wa kidijitali na wajibu wa wanaojenga mashine zinazofikiria.",
-
   "status.page_title": "Hali ya Mfumo",
   "status.page_subtitle": "Huduma zote za LocaleNLP Foundation zinafuatiliwa saa 24 kwa siku, siku 7 kwa wiki.",
-
-  "ethics.page_title": "Kituo cha Maadili",
-  "ethics.page_subtitle": "Uhuru wa data, ufuataji na utawala wa kimaadili wa AI ya lugha.",
-
+  "ethics.page_title": "Utawala Uliojengwa",
+  "ethics.page_subtitle": "Hatuweki sera tu. Tunatekeleza ukusanyaji wa data wa kimaadili katika kiwango cha API.",
   "cta.donate": "Changia",
   "cta.learn_more": "Jifunze zaidi",
   "cta.get_involved": "Shiriki",
@@ -134,10 +112,8 @@
   "cta.view_open_issues": "Angalia Masuala Wazi",
   "cta.apply_partnership": "Omba Ushirikiano",
   "cta.subscribe": "Jiandikishe",
-
   "lang.switcher.label": "Language / Langue / Lugha",
   "lang.switcher.note": "Kichaguzi cha lugha cha kuona — maudhui ya tovuti yanabaki kwa Kiingereza.",
-
   "status.all_operational": "Mifumo Yote Inafanya Kazi",
   "status.degraded": "Utendaji Uliodhibitiwa",
   "status.incident": "Tukio Kubwa",
@@ -147,17 +123,52 @@
   "status.degraded_status": "Imedhibitiwa",
   "status.maintenance": "Matengenezo",
   "status.outage": "Kukatika",
-
   "a11y.logo_home": "Kurasa kuu ya LocaleNLP Foundation",
   "a11y.lang_select": "Chagua lugha",
   "a11y.close_panel": "Funga kidirisha cha urambazaji",
   "a11y.skip_nav": "Nenda moja kwa moja kwenye maudhui",
-
   "form.name": "Jina Kamili",
   "form.email": "Anwani ya Barua Pepe",
   "form.language": "Lugha",
   "form.message": "Ujumbe",
   "form.submit": "Tuma",
   "form.subscribe": "Jiandikishe kwa Jarida",
-  "form.required": "Inahitajika"
+  "form.required": "Inahitajika",
+  "about.page_title_gradient": "kwa Afrika Yote",
+  "programs.page_title_gradient": "hadi Athari Halisi",
+  "technology.page_title_gradient": "Wazi Kabisa.",
+  "impact.page_title_gradient": "Jamii za Kweli.",
+  "insights.page_title_gradient": "Ripoti za Uwanjani",
+  "bounties.page_title_gradient": "Ulimwengu Unaozipuuza",
+  "vitality.page_title_gradient": "Tayari kwa AI?",
+  "ethics.page_title_gradient": "kwa Uaminifu",
+  "donate.page_title_gradient": "Una Umuhimu",
+  "nav.about.our_story_desc": "Dhamira, maono & asili",
+  "nav.about.manifesto_desc": "Tamko letu la msingi kuhusu usawa wa lugha",
+  "nav.about.team_desc": "Watafiti wa lugha na wahebeshi wa mabadiliko",
+  "nav.about.reports_desc": "Uwazi na data ya athari",
+  "nav.about.ethics_desc": "Uhuru wa data na dashibodi ya ufuataji",
+  "nav.about.press_desc": "Habari na pakiti ya vyombo vya habari",
+  "nav.programs.openspeech_desc": "Data ya sauti wazi kwa lugha 200+ za Afrika",
+  "nav.programs.futures_lab_desc": "Mifano ya NLP kwa lugha za rasilimali chache",
+  "nav.programs.lughatna_desc": "NLP ya nje ya mtandao kwa jamii",
+  "nav.programs.policy_desc": "Kuingiza usawa wa lugha katika sera ya AI",
+  "nav.technology.api_desc": "Jaribu miito ya API moja kwa moja — bila kujiandikisha",
+  "nav.technology.architecture_desc": "Mchoro wa mwingiliano wa nodes 4",
+  "nav.technology.nutrition_desc": "Ufuataji wa kimaadili kwa kila seti ya data",
+  "nav.technology.sovereignty_desc": "Nani anamiliki data — kwa muonekano",
+  "nav.impact.map_desc": "Fuatilia ufikio wetu katika nchi 47",
+  "nav.impact.vitality_desc": "Ukaguzi wa utayari wa AI kwa lugha za Afrika",
+  "nav.impact.stories_desc": "Sauti za jamii tunazozihudumia",
+  "nav.impact.metrics_desc": "Ripoti za maendeleo zinazotegemea ushahidi",
+  "nav.impact.publications_desc": "Utafiti, muhtasari wa sera & ripoti",
+  "nav.get_involved.volunteer_desc": "Changia data ya sauti",
+  "nav.get_involved.bounties_desc": "Fadhili upungufu maalum wa data",
+  "nav.get_involved.partner_desc": "Kwa taasisi na mashirika",
+  "nav.get_involved.fellowships_desc": "Ufundi wa utafiti wa AI × Lugha",
+  "nav.get_involved.contact_desc": "Wasiliana na timu yetu",
+  "nav.insights.research_desc": "Utafiti wa NLP uliokaguliwa na wenzao",
+  "nav.insights.policy_desc": "Usawa wa lugha katika sera",
+  "nav.insights.field_notes_desc": "Ripoti kutoka uwanjani",
+  "nav.insights.newsletter_desc": "Masasisho ya kila mwezi kutoka LocaleNLP"
 }

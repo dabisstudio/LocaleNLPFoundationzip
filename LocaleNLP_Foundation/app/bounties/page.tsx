@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { BountyBoard } from '@/components/bounties/BountyBoard';
 import { GlowButton } from '@/components/ui/glow-button';
 import type { LanguageBounty } from '@/lib/supabase';
@@ -39,14 +39,14 @@ export default async function BountiesPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-      <PageHeader
+      <main id="main-content" className="pt-24">
+      <TranslatedPageHeader
         label="Data Bounties"
         number="01"
         status="active"
-        title="Fund the Languages"
-        titleGradient="the World Ignores"
-        subtitle="Specific, transparent, and community-accountable. Each bounty is a real data deficit with a funding target. Every dollar moves directly to local voice collectors, transcribers, and annotators."
+        titleKey="bounties.page_title"
+        titleGradientKey="bounties.page_title_gradient"
+        subtitleKey="bounties.page_subtitle"
         accentColor="ochre"
         cta={
           <>

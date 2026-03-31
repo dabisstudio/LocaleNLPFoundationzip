@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { ConsentRing } from '@/components/ethics/ConsentRing';
@@ -219,13 +219,13 @@ export default function EthicsPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="ETHICS & GOVERNANCE"
           number="00"
-          title="Governance built"
-          titleGradient="into the architecture"
-          subtitle="We don't just write policies. We enforce ethical data collection at the API level. Cryptographically secure, community-owned, and globally compliant."
+          titleKey="ethics.page_title"
+          titleGradientKey="ethics.page_title_gradient"
+          subtitleKey="ethics.page_subtitle"
           accentColor="cyan"
         >
           <GlowButton href="#governance" variant="primary" showArrow={false}>
@@ -234,7 +234,7 @@ export default function EthicsPage() {
           <GlowButton href="#ledger" variant="ghost" showArrow={false}>
             Open Data Policies
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <section id="governance" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

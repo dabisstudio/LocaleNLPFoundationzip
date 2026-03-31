@@ -101,7 +101,7 @@ export default function SupporterPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24 pb-32">
+      <main id="main-content" className="pt-24 pb-32">
 
         <PageHeader
           label="IMPACT PORTFOLIO"

@@ -76,7 +76,7 @@ export default async function ProgramDetailPage({ params }: { params: { slug: st
   return (
     <>
       <Navigation />
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
         <section className="relative py-28 overflow-hidden bg-brand-deep">
           <div
             aria-hidden="true"

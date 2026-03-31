@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { GlowButton } from '@/components/ui/glow-button';
 import { MonoLabel } from '@/components/ui/mono-label';
@@ -68,14 +68,14 @@ export default async function AboutPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="ABOUT US"
           number="00"
           status="active"
-          title="Language Technology"
-          titleGradient="For All of Africa"
-          subtitle="We believe the future of AI should include every voice, every language, and every community across the African continent — not as an afterthought, but as a founding principle."
+          titleKey="about.page_title"
+          titleGradientKey="about.page_title_gradient"
+          subtitleKey="about.page_subtitle"
           accentColor="ochre"
         >
           <GlowButton href="/get-involved" variant="primary">
@@ -84,7 +84,7 @@ export default async function AboutPage() {
           <GlowButton href="/programs" variant="ghost">
             Explore Programs
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

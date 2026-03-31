@@ -8,7 +8,6 @@
   "nav.donate": "Donate",
   "nav.open_menu": "Open menu",
   "nav.close_menu": "Close menu",
-
   "nav.about.our_story": "Our Story",
   "nav.about.manifesto": "The Manifesto",
   "nav.about.team": "The Team",
@@ -18,7 +17,6 @@
   "nav.about.feature_stat": "Est. 2021",
   "nav.about.feature_label": "Pan-African language equity foundation",
   "nav.about.feature_cta": "Read our story",
-
   "nav.programs.openspeech": "OpenSpeech Initiative",
   "nav.programs.futures_lab": "Language Futures Lab",
   "nav.programs.lughatna": "Lughatna Platform",
@@ -27,7 +25,6 @@
   "nav.programs.feature_label": "Open programmes across Africa",
   "nav.programs.feature_cta": "Support our work",
   "nav.programs.view_all": "View all programmes",
-
   "nav.technology.api": "API Sandbox",
   "nav.technology.architecture": "Stack Architecture",
   "nav.technology.nutrition": "Nutrition Labels",
@@ -35,7 +32,6 @@
   "nav.technology.feature_stat": "2,000+",
   "nav.technology.feature_label": "African languages in our pipeline",
   "nav.technology.feature_cta": "Explore technology",
-
   "nav.impact.map": "Impact Map",
   "nav.impact.vitality": "Vitality Index",
   "nav.impact.stories": "Field Stories",
@@ -44,7 +40,6 @@
   "nav.impact.feature_stat": "47 countries",
   "nav.impact.feature_label": "In our Pan-African impact network",
   "nav.impact.feature_cta": "View the map",
-
   "nav.get_involved.volunteer": "Volunteer",
   "nav.get_involved.bounties": "Data Bounties",
   "nav.get_involved.partner": "Partner With Us",
@@ -53,7 +48,6 @@
   "nav.get_involved.feature_stat": "300+",
   "nav.get_involved.feature_label": "Contributors & community members",
   "nav.get_involved.feature_cta": "Join us today",
-
   "nav.insights.research": "Research Papers",
   "nav.insights.policy": "Policy Briefs",
   "nav.insights.field_notes": "Field Notes",
@@ -61,7 +55,6 @@
   "nav.insights.feature_stat": "120+",
   "nav.insights.feature_label": "Research papers & field reports",
   "nav.insights.feature_cta": "Browse insights",
-
   "footer.tagline": "Building open, ethical language infrastructure for Africa and the Global South. Ensuring no community is left behind in the intelligence era.",
   "footer.site": "Site",
   "footer.resources": "Resources",
@@ -72,54 +65,39 @@
   "footer.terms": "Terms of Service",
   "footer.contact_us": "Contact Us",
   "footer.newsletter": "Newsletter",
-
   "home.hero.eyebrow": "Pan-African Language Equity Foundation",
   "home.hero.headline": "AI for Every Language. Data Sovereignty. Open Science.",
   "home.hero.subheadline": "Building language technology for 2,000+ African languages. Open infrastructure. Community-led. Forever free.",
   "home.hero.cta_primary": "Explore Our Work",
   "home.hero.cta_secondary": "Support Us",
-
   "home.stats.languages": "Languages targeted",
   "home.stats.countries": "Countries",
   "home.stats.contributors": "Contributors",
   "home.stats.models": "Open models",
-
-  "about.page_title": "About Us",
-  "about.page_subtitle": "We are a Pan-African non-profit working to ensure that the intelligence era is linguistically inclusive for every community on the continent.",
-
-  "programs.page_title": "Our Programs",
-  "programs.page_subtitle": "Four active programmes covering speech data collection, NLP model development, community deployment, and AI policy advocacy.",
-
-  "technology.page_title": "Technology",
-  "technology.page_subtitle": "Open-source tools, APIs, and datasets powering language equity across Africa.",
-
-  "impact.page_title": "Our Impact",
-  "impact.page_subtitle": "Tracking language AI deployment across 47 countries and 2,000+ languages.",
-
-  "insights.page_title": "Insights",
-  "insights.page_subtitle": "Research papers, policy briefs, and field dispatches from the frontlines of African NLP.",
-
+  "about.page_title": "Language Technology",
+  "about.page_subtitle": "We believe the future of AI should include every voice, every language, and every community across the African continent — not as an afterthought, but as a founding principle.",
+  "programs.page_title": "From Research",
+  "programs.page_subtitle": "Our programs span the full lifecycle of language technology — from foundational research to community deployment, from policy advocacy to talent development.",
+  "technology.page_title": "Open Source.",
+  "technology.page_subtitle": "Language technology should be a public good. All our models, datasets, and tools are freely available to researchers and developers worldwide — no paywalls, no lock-in.",
+  "impact.page_title": "Real Technology.",
+  "impact.page_subtitle": "We measure success not in papers published, but in communities empowered, languages preserved, and barriers broken across 18 African countries.",
+  "insights.page_title": "Research, Stories &",
+  "insights.page_subtitle": "Explore our publications, field stories, and policy briefs shaping the future of African language technology — from lab to community.",
   "get_involved.page_title": "Get Involved",
   "get_involved.page_subtitle": "Researchers, developers, community members, and organisations — there is a place for you.",
-
-  "donate.page_title": "Donate",
-  "donate.page_subtitle": "Your support funds open language data, fellowships, and community deployments.",
-
-  "bounties.page_title": "Language Bounty Board",
-  "bounties.page_subtitle": "Fund specific language data deficits. 100% of donations go directly to data collection.",
-
-  "vitality.page_title": "Digital Language Vitality Index",
+  "donate.page_title": "Every Contribution",
+  "donate.page_subtitle": "Your donation directly funds the digitization of African languages, the development of open-source AI models, and the empowerment of communities across the continent.",
+  "bounties.page_title": "Fund the Languages",
+  "bounties.page_subtitle": "Specific, transparent, and community-accountable. Each bounty is a real data deficit with a funding target. Every dollar moves directly to local voice collectors, transcribers, and annotators.",
+  "vitality.page_title": "Is Your Language",
   "vitality.page_subtitle": "AI-readiness audit for African languages. Track corpus depth, model coverage, and community deployment.",
-
   "manifesto.page_title": "Founder's Manifesto",
   "manifesto.page_subtitle": "A founding statement on language equity, digital sovereignty, and the responsibility of those who build machines that think.",
-
   "status.page_title": "System Status",
   "status.page_subtitle": "All LocaleNLP Foundation services are monitored 24/7.",
-
-  "ethics.page_title": "Ethics Hub",
-  "ethics.page_subtitle": "Data sovereignty, compliance, and ethical governance of language AI.",
-
+  "ethics.page_title": "Governance built",
+  "ethics.page_subtitle": "We don't just write policies. We enforce ethical data collection at the API level. Cryptographically secure, community-owned, and globally compliant.",
   "cta.donate": "Donate",
   "cta.learn_more": "Learn More",
   "cta.get_involved": "Get Involved",
@@ -134,10 +112,8 @@
   "cta.view_open_issues": "View Open Issues",
   "cta.apply_partnership": "Apply for Partnership",
   "cta.subscribe": "Subscribe",
-
   "lang.switcher.label": "Language / Langue / Lugha",
   "lang.switcher.note": "Visual language selector — site content remains in English.",
-
   "status.all_operational": "All Systems Operational",
   "status.degraded": "Degraded Performance",
   "status.incident": "Major Incident",
@@ -147,17 +123,52 @@
   "status.degraded_status": "Degraded",
   "status.maintenance": "Maintenance",
   "status.outage": "Outage",
-
   "a11y.logo_home": "LocaleNLP Foundation home",
   "a11y.lang_select": "Select language",
   "a11y.close_panel": "Close navigation panel",
   "a11y.skip_nav": "Skip to main content",
-
   "form.name": "Full Name",
   "form.email": "Email Address",
   "form.language": "Language",
   "form.message": "Message",
   "form.submit": "Submit",
   "form.subscribe": "Subscribe to Newsletter",
-  "form.required": "Required"
+  "form.required": "Required",
+  "about.page_title_gradient": "For All of Africa",
+  "programs.page_title_gradient": "To Real Impact",
+  "technology.page_title_gradient": "Radically Open.",
+  "impact.page_title_gradient": "Real Communities.",
+  "insights.page_title_gradient": "Field Dispatches",
+  "bounties.page_title_gradient": "the World Ignores",
+  "vitality.page_title_gradient": "AI-Ready?",
+  "ethics.page_title_gradient": "for Trust",
+  "donate.page_title_gradient": "Matters",
+  "nav.about.our_story_desc": "Mission, vision & origin",
+  "nav.about.manifesto_desc": "Our founding statement on language equity",
+  "nav.about.team_desc": "Language researchers & changemakers",
+  "nav.about.reports_desc": "Transparency & impact data",
+  "nav.about.ethics_desc": "Data sovereignty & compliance dashboard",
+  "nav.about.press_desc": "Coverage & press kit",
+  "nav.programs.openspeech_desc": "Open speech data for 200+ African languages",
+  "nav.programs.futures_lab_desc": "Low-resource NLP models & benchmarks",
+  "nav.programs.lughatna_desc": "Self-hosted, offline-first NLP for communities",
+  "nav.programs.policy_desc": "Embedding language equity in AI policy",
+  "nav.technology.api_desc": "Try live API calls — no signup required",
+  "nav.technology.architecture_desc": "Interactive 4-node stack diagram",
+  "nav.technology.nutrition_desc": "Ethical compliance for every dataset",
+  "nav.technology.sovereignty_desc": "Who owns the data — visualised",
+  "nav.impact.map_desc": "Track our reach across 47 countries",
+  "nav.impact.vitality_desc": "AI readiness audit for African languages",
+  "nav.impact.stories_desc": "Voices from communities we serve",
+  "nav.impact.metrics_desc": "Evidence-based progress reporting",
+  "nav.impact.publications_desc": "Research, policy briefs & reports",
+  "nav.get_involved.volunteer_desc": "Contribute voice data, earn via mobile money",
+  "nav.get_involved.bounties_desc": "Fund specific language data deficits",
+  "nav.get_involved.partner_desc": "For institutions & organisations",
+  "nav.get_involved.fellowships_desc": "AI × Language research fellowships",
+  "nav.get_involved.contact_desc": "Get in touch with our team",
+  "nav.insights.research_desc": "Peer-reviewed NLP research",
+  "nav.insights.policy_desc": "Language equity in policy contexts",
+  "nav.insights.field_notes_desc": "Dispatches from the field",
+  "nav.insights.newsletter_desc": "Monthly updates from LocaleNLP"
 }

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -174,13 +174,13 @@ export default function ProgramsPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="PROGRAMS"
           number="00"
-          title="From Research"
-          titleGradient="to Real-World Impact"
-          subtitle="Our programs span the full lifecycle of language technology — from foundational research to community deployment, from policy advocacy to talent development."
+          titleKey="programs.page_title"
+          titleGradientKey="programs.page_title_gradient"
+          subtitleKey="programs.page_subtitle"
           accentColor="ochre"
         >
           <GlowButton href="#programs" variant="primary" showArrow={false}>
@@ -189,7 +189,7 @@ export default function ProgramsPage() {
           <GlowButton href="/get-involved" variant="ghost">
             Get Involved
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <Suspense fallback={<ProgramsSkeleton />}>
           <ProgramsGrid />

@@ -1,6 +1,7 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -100,7 +101,7 @@ export default function DonatePage({
   return (
     <>
       <Navigation />
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
         {bountyTitle ? (
           <PageHeader
             label="BOUNTY DONATION"
@@ -119,12 +120,12 @@ export default function DonatePage({
             </GlowButton>
           </PageHeader>
         ) : (
-          <PageHeader
+          <TranslatedPageHeader
             label="SUPPORT OUR MISSION"
             number="00"
-            title="Every Contribution"
-            titleGradient="Preserves a Voice"
-            subtitle="Your donation directly funds the digitization of African languages, the development of open-source AI models, and the empowerment of communities across the continent."
+            titleKey="donate.page_title"
+            titleGradientKey="donate.page_title_gradient"
+            subtitleKey="donate.page_subtitle"
             accentColor="ochre"
           >
             <GlowButton href="#give" variant="primary" showArrow={false}>
@@ -133,7 +134,7 @@ export default function DonatePage({
             <GlowButton href="#institutional" variant="ghost" showArrow={false}>
               Institutional Giving
             </GlowButton>
-          </PageHeader>
+          </TranslatedPageHeader>
         )}
 
         <DonationCalculator />

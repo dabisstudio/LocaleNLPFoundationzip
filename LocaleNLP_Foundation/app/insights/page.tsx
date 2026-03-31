@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -38,13 +38,13 @@ export default async function InsightsPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="INSIGHTS"
           number="00"
-          title="Research, Stories &"
-          titleGradient="Policy Perspectives"
-          subtitle="Explore our publications, field stories, and policy briefs shaping the future of African language technology — from lab to community."
+          titleKey="insights.page_title"
+          titleGradientKey="insights.page_title_gradient"
+          subtitleKey="insights.page_subtitle"
           accentColor="ochre"
         >
           <GlowButton href="#publications" variant="primary" showArrow={false}>
@@ -53,7 +53,7 @@ export default async function InsightsPage() {
           <GlowButton href="#stories" variant="ghost" showArrow={false}>
             Field Stories
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <section id="publications" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

@@ -84,7 +84,7 @@ export default function StatusPage() {
     <>
       <Navigation />
 
-      <main className="pt-20 min-h-screen" style={{ backgroundColor: '#04040A' }}>
+      <main id="main-content" className="pt-20 min-h-screen" style={{ backgroundColor: '#04040A' }}>
         <section className="relative py-20 overflow-hidden">
           <div
             aria-hidden="true"

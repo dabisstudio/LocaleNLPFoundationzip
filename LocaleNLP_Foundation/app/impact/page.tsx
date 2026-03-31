@@ -1,6 +1,6 @@
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
-import { PageHeader } from '@/components/ui/page-header';
+import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -70,13 +70,13 @@ export default async function ImpactPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <PageHeader
+      <main id="main-content" className="pt-24">
+        <TranslatedPageHeader
           label="IMPACT"
           number="00"
-          title="Real Technology."
-          titleGradient="Real Lives Changed."
-          subtitle="We measure success not in papers published, but in communities empowered, languages preserved, and barriers broken across 18 African countries."
+          titleKey="impact.page_title"
+          titleGradientKey="impact.page_title_gradient"
+          subtitleKey="impact.page_subtitle"
           accentColor="ochre"
         >
           <GlowButton href="#metrics" variant="primary" showArrow={false}>
@@ -85,7 +85,7 @@ export default async function ImpactPage() {
           <GlowButton href="/donate" variant="ghost">
             Amplify Impact
           </GlowButton>
-        </PageHeader>
+        </TranslatedPageHeader>
 
         <section id="metrics" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

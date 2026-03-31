@@ -8,7 +8,6 @@
   "nav.donate": "Faire un don",
   "nav.open_menu": "Ouvrir le menu",
   "nav.close_menu": "Fermer le menu",
-
   "nav.about.our_story": "Notre histoire",
   "nav.about.manifesto": "Le Manifeste",
   "nav.about.team": "L'équipe",
@@ -18,7 +17,6 @@
   "nav.about.feature_stat": "Fondée en 2021",
   "nav.about.feature_label": "Fondation panafricaine pour l'équité linguistique",
   "nav.about.feature_cta": "Lire notre histoire",
-
   "nav.programs.openspeech": "Initiative OpenSpeech",
   "nav.programs.futures_lab": "Language Futures Lab",
   "nav.programs.lughatna": "Plateforme Lughatna",
@@ -27,7 +25,6 @@
   "nav.programs.feature_label": "Programmes ouverts à travers l'Afrique",
   "nav.programs.feature_cta": "Soutenir notre travail",
   "nav.programs.view_all": "Voir tous les programmes",
-
   "nav.technology.api": "Bac à sable API",
   "nav.technology.architecture": "Architecture de la pile",
   "nav.technology.nutrition": "Étiquettes nutritionnelles",
@@ -35,7 +32,6 @@
   "nav.technology.feature_stat": "2 000+",
   "nav.technology.feature_label": "Langues africaines dans notre pipeline",
   "nav.technology.feature_cta": "Explorer la technologie",
-
   "nav.impact.map": "Carte d'impact",
   "nav.impact.vitality": "Indice de vitalité",
   "nav.impact.stories": "Récits de terrain",
@@ -44,7 +40,6 @@
   "nav.impact.feature_stat": "47 pays",
   "nav.impact.feature_label": "Dans notre réseau d'impact panafricain",
   "nav.impact.feature_cta": "Voir la carte",
-
   "nav.get_involved.volunteer": "Bénévolat",
   "nav.get_involved.bounties": "Primes de données",
   "nav.get_involved.partner": "Devenir partenaire",
@@ -53,7 +48,6 @@
   "nav.get_involved.feature_stat": "300+",
   "nav.get_involved.feature_label": "Contributeurs & membres de la communauté",
   "nav.get_involved.feature_cta": "Rejoignez-nous",
-
   "nav.insights.research": "Articles de recherche",
   "nav.insights.policy": "Fiches politiques",
   "nav.insights.field_notes": "Notes de terrain",
@@ -61,7 +55,6 @@
   "nav.insights.feature_stat": "120+",
   "nav.insights.feature_label": "Articles de recherche & rapports de terrain",
   "nav.insights.feature_cta": "Parcourir les publications",
-
   "footer.tagline": "Construire une infrastructure linguistique ouverte et éthique pour l'Afrique et le Sud global. Garantir qu'aucune communauté ne soit laissée pour compte à l'ère de l'intelligence.",
   "footer.site": "Site",
   "footer.resources": "Ressources",
@@ -72,54 +65,39 @@
   "footer.terms": "Conditions d'utilisation",
   "footer.contact_us": "Nous contacter",
   "footer.newsletter": "Bulletin d'information",
-
   "home.hero.eyebrow": "Fondation panafricaine pour l'équité linguistique",
   "home.hero.headline": "L'IA pour chaque langue. Souveraineté des données. Science ouverte.",
   "home.hero.subheadline": "Construire des technologies linguistiques pour plus de 2 000 langues africaines. Infrastructure ouverte. Dirigée par les communautés. Libre pour toujours.",
   "home.hero.cta_primary": "Explorer notre travail",
   "home.hero.cta_secondary": "Nous soutenir",
-
   "home.stats.languages": "Langues ciblées",
   "home.stats.countries": "Pays",
   "home.stats.contributors": "Contributeurs",
   "home.stats.models": "Modèles ouverts",
-
-  "about.page_title": "À propos de nous",
-  "about.page_subtitle": "Nous sommes une organisation panafricaine à but non lucratif qui veille à ce que l'ère de l'intelligence soit linguistiquement inclusive pour chaque communauté du continent.",
-
-  "programs.page_title": "Nos programmes",
-  "programs.page_subtitle": "Quatre programmes actifs couvrant la collecte de données vocales, le développement de modèles NLP, le déploiement communautaire et le plaidoyer politique pour l'IA.",
-
-  "technology.page_title": "Technologie",
-  "technology.page_subtitle": "Outils open source, API et ensembles de données favorisant l'équité linguistique à travers l'Afrique.",
-
-  "impact.page_title": "Notre impact",
-  "impact.page_subtitle": "Suivi du déploiement de l'IA linguistique dans 47 pays et plus de 2 000 langues.",
-
-  "insights.page_title": "Publications",
-  "insights.page_subtitle": "Articles de recherche, fiches politiques et reportages de terrain depuis les premières lignes du NLP africain.",
-
+  "about.page_title": "Technologie Linguistique",
+  "about.page_subtitle": "Nous croyons que l'avenir de l'IA doit inclure chaque voix, chaque langue et chaque communauté du continent africain — pas en tant qu'accessoire, mais comme principe fondateur.",
+  "programs.page_title": "De la Recherche",
+  "programs.page_subtitle": "Nos programmes couvrent l'ensemble du cycle de vie de la technologie linguistique — de la recherche fondamentale au déploiement communautaire, du plaidoyer politique au développement des talents.",
+  "technology.page_title": "Open Source.",
+  "technology.page_subtitle": "La technologie linguistique doit être un bien public. Tous nos modèles, ensembles de données et outils sont librement accessibles aux chercheurs et développeurs du monde entier.",
+  "impact.page_title": "Technologie Réelle.",
+  "impact.page_subtitle": "Nous mesurons le succès non pas en articles publiés, mais en communautés autonomisées, en langues préservées et en barrières brisées dans 18 pays africains.",
+  "insights.page_title": "Recherches, Récits &",
+  "insights.page_subtitle": "Explorez nos publications, récits de terrain et fiches politiques façonnant l'avenir de la technologie linguistique africaine.",
   "get_involved.page_title": "Participer",
   "get_involved.page_subtitle": "Chercheurs, développeurs, membres de la communauté et organisations — il y a une place pour vous.",
-
-  "donate.page_title": "Faire un don",
-  "donate.page_subtitle": "Votre soutien finance des données linguistiques ouvertes, des bourses et des déploiements communautaires.",
-
-  "bounties.page_title": "Tableau des primes linguistiques",
-  "bounties.page_subtitle": "Financez des déficits spécifiques de données linguistiques. 100 % des dons vont directement à la collecte de données.",
-
-  "vitality.page_title": "Indice de vitalité numérique des langues",
+  "donate.page_title": "Chaque Contribution",
+  "donate.page_subtitle": "Votre don finance directement la numérisation des langues africaines, le développement de modèles d'IA open source et l'autonomisation des communautés.",
+  "bounties.page_title": "Financez les Langues",
+  "bounties.page_subtitle": "Spécifique, transparent et responsable devant la communauté. Chaque prime est un vrai déficit de données avec un objectif de financement.",
+  "vitality.page_title": "Votre Langue est-elle",
   "vitality.page_subtitle": "Audit de préparation à l'IA pour les langues africaines. Suivez la profondeur du corpus, la couverture des modèles et le déploiement communautaire.",
-
   "manifesto.page_title": "Manifeste des fondateurs",
   "manifesto.page_subtitle": "Une déclaration fondatrice sur l'équité linguistique, la souveraineté numérique et la responsabilité de ceux qui construisent des machines qui pensent.",
-
   "status.page_title": "État du système",
   "status.page_subtitle": "Tous les services de LocaleNLP Foundation sont surveillés 24h/24 et 7j/7.",
-
-  "ethics.page_title": "Hub éthique",
-  "ethics.page_subtitle": "Souveraineté des données, conformité et gouvernance éthique de l'IA linguistique.",
-
+  "ethics.page_title": "Gouvernance construite",
+  "ethics.page_subtitle": "Nous n'écrivons pas seulement des politiques. Nous appliquons la collecte éthique des données au niveau de l'API.",
   "cta.donate": "Faire un don",
   "cta.learn_more": "En savoir plus",
   "cta.get_involved": "Participer",
@@ -134,10 +112,8 @@
   "cta.view_open_issues": "Voir les problèmes ouverts",
   "cta.apply_partnership": "Postuler au partenariat",
   "cta.subscribe": "S'abonner",
-
   "lang.switcher.label": "Language / Langue / Lugha",
   "lang.switcher.note": "Sélecteur de langue visuel — le contenu du site reste en anglais.",
-
   "status.all_operational": "Tous les systèmes opérationnels",
   "status.degraded": "Performances dégradées",
   "status.incident": "Incident majeur",
@@ -147,17 +123,52 @@
   "status.degraded_status": "Dégradé",
   "status.maintenance": "Maintenance",
   "status.outage": "Panne",
-
   "a11y.logo_home": "Accueil LocaleNLP Foundation",
   "a11y.lang_select": "Sélectionner une langue",
   "a11y.close_panel": "Fermer le panneau de navigation",
   "a11y.skip_nav": "Aller au contenu principal",
-
   "form.name": "Nom complet",
   "form.email": "Adresse e-mail",
   "form.language": "Langue",
   "form.message": "Message",
   "form.submit": "Envoyer",
   "form.subscribe": "S'abonner à la newsletter",
-  "form.required": "Obligatoire"
+  "form.required": "Obligatoire",
+  "about.page_title_gradient": "Pour Toute l'Afrique",
+  "programs.page_title_gradient": "à l'Impact Réel",
+  "technology.page_title_gradient": "Radicalement Ouvert.",
+  "impact.page_title_gradient": "Communautés Réelles.",
+  "insights.page_title_gradient": "Reportages de Terrain",
+  "bounties.page_title_gradient": "que le Monde Ignore",
+  "vitality.page_title_gradient": "Prête pour l'IA ?",
+  "ethics.page_title_gradient": "pour la Confiance",
+  "donate.page_title_gradient": "Compte",
+  "nav.about.our_story_desc": "Mission, vision & origine",
+  "nav.about.manifesto_desc": "Notre déclaration fondatrice sur l'équité linguistique",
+  "nav.about.team_desc": "Chercheurs en langues & acteurs du changement",
+  "nav.about.reports_desc": "Transparence & données d'impact",
+  "nav.about.ethics_desc": "Souveraineté des données & tableau de bord de conformité",
+  "nav.about.press_desc": "Couverture & dossier de presse",
+  "nav.programs.openspeech_desc": "Données vocales ouvertes pour 200+ langues africaines",
+  "nav.programs.futures_lab_desc": "Modèles NLP pour langues peu dotées",
+  "nav.programs.lughatna_desc": "NLP hors ligne pour les communautés",
+  "nav.programs.policy_desc": "Intégration de l'équité linguistique dans la politique IA",
+  "nav.technology.api_desc": "Testez les API en direct — sans inscription",
+  "nav.technology.architecture_desc": "Diagramme de pile interactif à 4 nœuds",
+  "nav.technology.nutrition_desc": "Conformité éthique pour chaque ensemble de données",
+  "nav.technology.sovereignty_desc": "Qui possède les données — visualisé",
+  "nav.impact.map_desc": "Suivez notre portée dans 47 pays",
+  "nav.impact.vitality_desc": "Audit de préparation IA pour les langues africaines",
+  "nav.impact.stories_desc": "Voix des communautés que nous servons",
+  "nav.impact.metrics_desc": "Rapports de progrès basés sur les preuves",
+  "nav.impact.publications_desc": "Recherches, fiches politiques & rapports",
+  "nav.get_involved.volunteer_desc": "Contribuez des données vocales",
+  "nav.get_involved.bounties_desc": "Financez des déficits spécifiques de données",
+  "nav.get_involved.partner_desc": "Pour institutions & organisations",
+  "nav.get_involved.fellowships_desc": "Bourses de recherche IA × Langue",
+  "nav.get_involved.contact_desc": "Contactez notre équipe",
+  "nav.insights.research_desc": "Recherche NLP évaluée par des pairs",
+  "nav.insights.policy_desc": "L'équité linguistique dans les politiques",
+  "nav.insights.field_notes_desc": "Reportages du terrain",
+  "nav.insights.newsletter_desc": "Mises à jour mensuelles de LocaleNLP"
 }

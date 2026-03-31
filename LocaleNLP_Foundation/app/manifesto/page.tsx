@@ -62,7 +62,7 @@ export default function ManifestoPage() {
     <>
       <Navigation />
 
-      <main>
+      <main id="main-content">
         <section className="relative min-h-[72vh] flex flex-col justify-end py-24 overflow-hidden" style={{ backgroundColor: '#04040A' }}>
           <div
             aria-hidden="true"
