@@ -1,0 +1,73 @@
+This is where we separate a standard non-profit website from a **tier-one digital infrastructure project**. To secure millions in funding from organizations like the Gates Foundation or the Mozilla Data Collective, the platform must prove its technical competence at every touchpoint. 
+
+We are going to architect the three most critical components: The **Live Data Explorer**, the **Ethics & Governance Hub**, and the **Sustaining Supporter Dashboard**.
+
+---
+
+### 1️⃣ THE LIVE DATA EXPLORER (The Homepage Showpiece)
+
+If you are asking funders to pay for datasets, you must let them "touch" the data immediately. The Live Data Explorer sits on the homepage, proving that LocaleNLP is a functioning data engine, not just an idea.
+
+**The Architecture:**
+This is built as a state-driven React component. It does not need to ping your actual live database on every load (which would be expensive); it can use a cached, rotating JSON file of "Gold Standard" examples.
+
+**The UX Flow:**
+1.  **Selection:** The user selects a language (e.g., Wolof) and a modality (Speech vs. Text).
+2.  **Visualization:** A sleek UI element renders the data (a waveform for speech, or typography for text).
+3.  **The API Proof:** Crucially, the component displays the raw JSON output exactly as an AI researcher would see it when calling the LocaleNLP API. This screams "developer-ready."
+
+Here is an interactive simulation of exactly how this component should feel to a user. Play with the inputs to see how the data and JSON adapt.
+
+```json?chameleon
+{"component":"LlmGeneratedComponent","props":{"height":"700px","prompt":"Create an interactive SaaS-style 'Live Data Explorer' simulation for an AI language platform. \n\nStrategy: Form Layout. \n\nInputs: \n1. A dropdown for 'Language' with options: Wolof, Darija, Bambara. \n2. A toggle or dropdown for 'Data Type' with options: Speech, Text. \n\nBehavior: Stack the elements vertically. At the top, place the controls. Below the controls, create a 'Data Preview' area. \n- If 'Speech' is selected, display a simulated animated audio waveform. \n- If 'Text' is selected, display a sample sentence corresponding to the selected language (e.g., Wolof: 'Na nga def', Darija: 'Labas alik', Bambara: 'I ni ce') along with a generic English translation ('Hello / How are you'). \nBelow the preview area, display a 'Raw API Response' section containing a formatted JSON block. Update the JSON dynamically based on the selections (include fields like: data_id, language_code, modality, validation_score [a random high decimal like 0.98], contributor_anonymized_id, and timestamp). Ensure the design feels highly technical, transparent, and frictionless.","id":"im_f8b343e0e70cb92e"}}
+```
+
+---
+
+### 2️⃣ THE ETHICS & GOVERNANCE HUB (The Trust Engine)
+
+Major funders will scrutinize how you handle data sovereignty. A standard "Privacy Policy" page will fail you here. We need an **interactive compliance dashboard**.
+
+**The Copywriting Strategy:**
+Abandon legal jargon. Use engineering and infrastructure language. 
+* **Headline:** *Governance built into the architecture.*
+* **Subhead:** *We don’t just write policies. We enforce ethical data collection at the API level.*
+
+**The "Bento Box" Layout Specs:**
+Organize this page into a grid of distinct, highly visual cards:
+
+* **Card 1: The Consent Ledger (Live Data)**
+    * *Visual:* A circular progress ring sitting at 100%.
+    * *Copy:* "100% Opt-In. Every voice on Lughatna is explicitly consented, heavily anonymized, and revocable by the user at any time."
+* **Card 2: Bias Mitigation Matrix**
+    * *Visual:* A radar chart showing demographic balancing (Gender, Age, Urban vs. Rural). 
+    * *Copy:* "Demographically Balanced Corpora. We continuously audit our datasets to ensure rural and marginalized dialects are weighted equally."
+* **Card 3: The Economic Flywheel**
+    * *Visual:* A subtle, looping animation showing funds moving from the API to a contributor icon.
+    * *Copy:* "Fair Compensation Protocol. Contributors are paid directly via mobile money for their linguistic expertise. Data is never extracted for free."
+
+---
+
+### 3️⃣ THE SUSTAINING SUPPORTER DASHBOARD (Retention & Upsell)
+
+Once a donor commits (e.g., $100/month), they transition from a "visitor" to an "investor." The post-donation experience must feel like logging into a premium portfolio.
+
+**The UI States & Data Visualizations:**
+
+**State 1: The Impact Portfolio (The Default View)**
+When they log in, do not just show a billing history. Show an *Impact ROI* dashboard.
+* **The Hero Metric:** A large, crisp number: *"Your funding has supported 142 hours of validated speech data."*
+* **The Allocation Graph:** A sleek, smooth-loading bar chart showing exactly where their money went this month (e.g., $45 to Lughatna annotators in Senegal, $30 to server compute, $25 to the Fellowship program).
+
+**State 2: The "Field Notes" Feed**
+Donors churn when they feel disconnected. We integrate a localized, micro-blog feed inside their dashboard.
+* *Design:* Looks like a clean, professional version of Twitter/X.
+* *Content:* Short, automated or semi-automated updates from the field. 
+* *Example:* *"Update from Banjul: Our latest community session just cleared 5,000 text-pair validations for the Mandinka dataset. Your contribution powered the venue and stipends today."*
+
+**State 3: The frictionless Tax & Compliance Center**
+High-net-worth donors and corporate CSR teams hate hunting for tax receipts.
+* *Design:* A simple table with a one-click "Download Annual 501(c)(3) Statement" button. No emails to support required.
+
+### Next Steps for Implementation
+To build this, your frontend team should map out the **GraphQL queries** needed to pull this data into the UI. For example, the Donor Dashboard will need a query to aggregate the user's total giving and map it against the foundation's total hours of data processed to generate their specific "Impact Portfolio" numbers.

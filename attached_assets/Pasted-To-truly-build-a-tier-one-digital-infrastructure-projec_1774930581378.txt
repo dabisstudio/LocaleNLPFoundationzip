@@ -1,0 +1,30 @@
+To truly build a tier-one digital infrastructure project, we must look beyond the public-facing marketing pages. The real proof of concept—the element that secures seven-figure funding from institutional donors—lies in the post-transaction experience. 
+
+When a major partner or high-net-worth individual commits to sustaining your foundation, they are making an impact investment. They expect the reporting and visibility of a premium SaaS product, not an annual PDF newsletter. 
+
+Here is the architectural deep dive into the **Sustaining Supporter Dashboard**, designed to maximize retention and drive upsells by making the user's impact undeniably concrete.
+
+---
+
+### 1️⃣ The Psychology of the Impact Portfolio
+The goal of this dashboard is to instantly answer the donor's subconscious question: *"What exactly did my money do today?"*
+
+We achieve this by abandoning abstract mission statements in favor of hard, undeniable metrics.
+
+* **The Hero Metric (The ROI):** Front and center, the user sees a single, massive number representing their direct output. For LocaleNLP, this shouldn't be "Dollars Donated." It should be "Validated Speech Hours Funded" or "Tokens Processed." This translates currency directly into infrastructure.
+* **The Allocation Ledger (The Proof):** Institutional donors demand granular transparency. A sleek, interactive visualization must break down their specific contribution into operational categories (Annotators, Compute, Fellowships), proving extreme capital efficiency.
+* **The Live Field Feed (The Connection):** To maintain emotional resonance alongside the hard data, the dashboard features a localized activity feed. This pulls in anonymized, real-time updates from the Lughatna platform (e.g., "500 Bambara audio clips validated in Bamako"). It makes the infrastructure feel alive.
+
+### 2️⃣ Architectural Requirements
+To execute this seamlessly, your engineering team will need to connect your payment processor (Stripe) with your backend database (where Lughatna activity is logged).
+
+1.  **Stripe Webhooks:** When a recurring donation clears, Stripe pings your backend.
+2.  **The Impact Algorithm:** Your backend calculates the proportional impact of that specific dollar amount based on your current operational costs (e.g., if it costs $10 to process 1 hour of speech, a $100 donation credits the user with 10 hours).
+3.  **GraphQL Delivery:** The frontend (Next.js) queries this specific user's aggregated impact data and renders the dashboard instantly upon login.
+
+### 3️⃣ Interactive Prototype: The Donor Dashboard
+To demonstrate exactly how this frictionless, high-retention experience should feel, explore the simulated dashboard below. Adjust the contribution tier to see how a premium SaaS interface visualizes impact dynamically.
+
+```json?chameleon
+{"component":"LlmGeneratedComponent","props":{"height":"750px","prompt":"Create an interactive prototype of a high-end 'Sustaining Supporter Dashboard' for a digital infrastructure non-profit. Strategy: Form Layout. Inputs: 1. A dropdown or segmented control for 'Monthly Contribution Tier' ($50, $100, $500, $1000). 2. A toggle for 'Timeframe' (This Month, Year to Date - assume YTD is 6x the monthly amount). Behavior: At the top, display the user's 'Impact Portfolio'. The primary metric is 'Validated Speech Hours Funded', calculated dynamically based on the contribution tier and timeframe (assume $50 = 8 hours). Below the primary metric, display a clean, animated allocation visualization (e.g., a stacked horizontal bar or sleek donut chart) showing where the funds went: 45% to Local Annotators, 30% to Compute Infrastructure, 15% to Researcher Fellowships, 10% to Core Operations. Display the exact dollar amounts for each category based on the selected inputs. Below the data visualization, show a 'Live Field Notes' section with 2-3 simulated updates (e.g., '10,000 Swahili tokens validated in Nairobi', 'New server node deployed for Lughatna API') that feel like a high-end SaaS activity feed. Use a frictionless, premium SaaS aesthetic with soft styling, smooth transitions, and rounded corners. Highlight active states clearly. Do not use any hard borders.","id":"im_d8ab09313806d857"}}
+```
