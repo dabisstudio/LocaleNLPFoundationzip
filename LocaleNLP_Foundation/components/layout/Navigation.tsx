@@ -11,7 +11,7 @@ import {
   Map, MessageSquare, BarChart2,
   HandHeart, Handshake, GraduationCap, Mail,
   FlaskConical, ScrollText, PenLine, ShieldCheck,
-  Coins,
+  Coins, Activity,
 } from 'lucide-react';
 import { GlowButton } from '@/components/ui/glow-button';
 import { cn } from '@/lib/utils';
@@ -97,10 +97,11 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/impact',
     accent: 'clay',
     links: [
-      { label: 'Impact Map',    href: '/impact',              icon: Map,            desc: 'Track our reach across 47 countries' },
-      { label: 'Field Stories', href: '/impact#stories',      icon: MessageSquare,  desc: 'Voices from communities we serve' },
-      { label: 'Metrics & Data', href: '/impact#metrics',    icon: BarChart2,      desc: 'Evidence-based progress reporting' },
-      { label: 'Publications',  href: '/insights#publications', icon: FileText,     desc: 'Research, policy briefs & reports' },
+      { label: 'Impact Map',        href: '/impact',              icon: Map,          desc: 'Track our reach across 47 countries' },
+      { label: 'Vitality Index',    href: '/vitality',            icon: Activity,     desc: 'AI readiness audit for African languages' },
+      { label: 'Field Stories',     href: '/impact#stories',      icon: MessageSquare, desc: 'Voices from communities we serve' },
+      { label: 'Metrics & Data',    href: '/impact#metrics',      icon: BarChart2,    desc: 'Evidence-based progress reporting' },
+      { label: 'Publications',      href: '/insights#publications', icon: FileText,   desc: 'Research, policy briefs & reports' },
     ],
     feature: {
       stat: '47 countries',

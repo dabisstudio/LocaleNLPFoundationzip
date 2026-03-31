@@ -15,6 +15,7 @@ const siteLinks = [
 const resourceLinks = [
   { label: 'Open Models & APIs', href: '/technology' },
   { label: 'Datasets', href: '/technology#datasets' },
+  { label: 'Vitality Index', href: '/vitality' },
   { label: 'Bounty Board', href: '/bounties' },
   { label: 'Publications', href: '/insights' },
   { label: 'Documentation', href: '/technology#docs' },
