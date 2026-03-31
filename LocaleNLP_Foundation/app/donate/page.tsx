@@ -89,26 +89,52 @@ const INSTITUTIONAL = [
   },
 ];
 
-export default function DonatePage() {
+export default function DonatePage({
+  searchParams,
+}: {
+  searchParams?: { bounty?: string; lang?: string };
+}) {
+  const bountyTitle = searchParams?.bounty ?? null;
+  const bountyLang  = searchParams?.lang  ?? null;
+
   return (
     <>
       <Navigation />
       <main className="pt-24">
-        <PageHeader
-          label="SUPPORT OUR MISSION"
-          number="00"
-          title="Every Contribution"
-          titleGradient="Preserves a Voice"
-          subtitle="Your donation directly funds the digitization of African languages, the development of open-source AI models, and the empowerment of communities across the continent."
-          accentColor="ochre"
-        >
-          <GlowButton href="#give" variant="primary" showArrow={false}>
-            Give Now
-          </GlowButton>
-          <GlowButton href="#institutional" variant="ghost" showArrow={false}>
-            Institutional Giving
-          </GlowButton>
-        </PageHeader>
+        {bountyTitle ? (
+          <PageHeader
+            label="BOUNTY DONATION"
+            number="00"
+            status="active"
+            title="Fund a Language Bounty"
+            titleGradient={bountyLang ? bountyLang.toUpperCase() : undefined}
+            subtitle={`You are funding: "${decodeURIComponent(bountyTitle)}". Every dollar goes directly to the community voice collectors, transcribers, and annotators working on this language.`}
+            accentColor="clay"
+          >
+            <GlowButton href="#give" variant="primary" showArrow={false}>
+              Choose an Amount
+            </GlowButton>
+            <GlowButton href="/bounties" variant="ghost" showArrow={false}>
+              ← Back to Bounties
+            </GlowButton>
+          </PageHeader>
+        ) : (
+          <PageHeader
+            label="SUPPORT OUR MISSION"
+            number="00"
+            title="Every Contribution"
+            titleGradient="Preserves a Voice"
+            subtitle="Your donation directly funds the digitization of African languages, the development of open-source AI models, and the empowerment of communities across the continent."
+            accentColor="ochre"
+          >
+            <GlowButton href="#give" variant="primary" showArrow={false}>
+              Give Now
+            </GlowButton>
+            <GlowButton href="#institutional" variant="ghost" showArrow={false}>
+              Institutional Giving
+            </GlowButton>
+          </PageHeader>
+        )}
 
         <DonationCalculator />
 

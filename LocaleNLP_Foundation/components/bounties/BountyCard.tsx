@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Mic, FileText, Headphones, Users, Clock, ArrowRight } from 'lucide-react';
+import { Mic, FileText, Headphones, Users, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { GlowButton } from '@/components/ui/glow-button';
 import type { LanguageBounty } from '@/lib/supabase';
 
 const MODALITY_ICON: Record<LanguageBounty['modality'], React.ComponentType<{ className?: string }>> = {
@@ -31,9 +31,7 @@ const STATUS_DOT: Record<LanguageBounty['bounty_status'], string> = {
 };
 
 function fmt(n: number): string {
-  return n >= 1000
-    ? `$${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}k`
-    : `$${Math.round(n).toLocaleString()}`;
+  return `$${Math.round(n).toLocaleString('en-US')}`;
 }
 
 export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
@@ -142,23 +140,16 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
       </div>
 
       {!isFulfilled ? (
-        <Link
+        <GlowButton
           href={`/donate?bounty=${encodeURIComponent(bounty.title)}&lang=${bounty.language_code}`}
-          className={cn(
-            'group/btn mt-auto inline-flex items-center justify-center gap-2',
-            'rounded-lg px-4 py-2.5 text-sm font-semibold',
-            'transition-all duration-300',
-            isCritical
-              ? 'bg-accent-clay/15 text-accent-clay hover:bg-accent-clay/25 hover:shadow-[0_0_18px_rgba(224,122,95,0.3)]'
-              : 'bg-accent-ochre/15 text-accent-ochre hover:bg-accent-ochre/25 hover:shadow-[0_0_18px_rgba(245,166,35,0.3)]',
-          )}
+          variant="ghost"
+          className="mt-auto w-full justify-center text-sm"
           aria-label={`Fund ${bounty.title} bounty`}
         >
           Fund this Bounty
-          <ArrowRight className="w-3.5 h-3.5 shrink-0 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden="true" />
-        </Link>
+        </GlowButton>
       ) : (
-        <span className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold bg-emerald-400/10 text-emerald-400 cursor-default select-none">
+        <span className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold bg-emerald-400/10 text-emerald-400 cursor-default select-none border border-emerald-400/20">
           Fully Funded
         </span>
       )}
