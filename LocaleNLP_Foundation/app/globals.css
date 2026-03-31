@@ -272,3 +272,9 @@ input[type='range']:focus-visible::-webkit-slider-thumb {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
+[data-kern] {
+  letter-spacing: var(--kern, 0.05em);
+  opacity: var(--kern-opacity, 0.8);
+  transition: letter-spacing 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
+}

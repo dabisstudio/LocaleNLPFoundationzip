@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { KernHeading } from '@/components/ui/kern-heading';
 import { TerminalDemo } from '@/components/technology/TerminalDemo';
 import { DataExplorer } from '@/components/technology/DataExplorer';
 import { supabase, Language } from '@/lib/supabase';
@@ -193,9 +194,9 @@ export default async function TechnologyPage() {
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
               <MonoLabel label="OPEN MODELS" number="01" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Production-Ready AI Models
-              </h2>
+              </KernHeading>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 State-of-the-art NLP models trained specifically for African languages, available
                 under permissive open-source licences.
@@ -258,9 +259,9 @@ export default async function TechnologyPage() {
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
               <MonoLabel label="PLATFORM ARCHITECTURE" number="02" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Three Pillars of Our Technology
-              </h2>
+              </KernHeading>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 Our stack is designed from first principles for the realities of African
                 connectivity — low bandwidth, intermittent power, and heterogeneous devices.

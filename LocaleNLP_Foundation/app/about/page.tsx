@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { GlowButton } from '@/components/ui/glow-button';
 import { MonoLabel } from '@/components/ui/mono-label';
+import { KernHeading } from '@/components/ui/kern-heading';
 import { supabase, TeamMember } from '@/lib/supabase';
 import { Target, Eye, Globe, Shield, BookOpen, Users, Linkedin, Twitter } from 'lucide-react';
 
@@ -142,9 +143,9 @@ export default async function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <MonoLabel label="WHY IT MATTERS" number="01" className="mb-5" />
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
+                <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
                   The Stakes Are High
-                </h2>
+                </KernHeading>
                 <div className="space-y-4 text-text-secondary leading-relaxed">
                   <p>
                     Language is not just a tool for communication — it carries identity, knowledge,
@@ -190,9 +191,9 @@ export default async function AboutPage() {
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
               <MonoLabel label="OUR VALUES" number="02" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary">
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary">
                 What We Stand For
-              </h2>
+              </KernHeading>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {VALUES.map((val) => (

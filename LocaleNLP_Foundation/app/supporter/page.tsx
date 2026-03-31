@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
+import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { GlowButton } from '@/components/ui/glow-button';
 import { MonoLabel } from '@/components/ui/mono-label';
@@ -102,37 +103,14 @@ export default function SupporterPage() {
       <Navigation />
       <main className="pt-24 pb-32">
 
-        <section className="relative py-28 overflow-hidden bg-brand-deep">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background: 'radial-gradient(ellipse 80% 60% at 60% -10%, rgba(0,229,255,0.06), transparent 70%)',
-            }}
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:80px_80px]"
-          />
-
-          <div className="container-wide section-padding relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="mb-6">
-                <MonoLabel label="IMPACT PORTFOLIO" number="00" status="active" />
-              </div>
-
-              <h1 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-text-primary leading-tight mb-6">
-                Your Investment,
-                <br />
-                <span className="text-gradient">Measured to the Hour</span>
-              </h1>
-
-              <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-2xl mx-auto">
-                Every dollar you commit is tracked, allocated, and reported in real time.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHeader
+          label="IMPACT PORTFOLIO"
+          number="00"
+          title="Your Investment,"
+          titleGradient="Measured to the Hour"
+          subtitle="Every dollar you commit is tracked, allocated, and reported in real time."
+          accentColor="cyan"
+        />
 
         <section className="py-16 bg-brand-surface">
           <div className="container-wide section-padding">

@@ -9,15 +9,13 @@ export function useScrollKern<T extends HTMLElement = HTMLElement>() {
     const el = ref.current;
     if (!el) return;
 
-    el.style.letterSpacing = '0.05em';
-    el.style.opacity = '0.8';
-    el.style.transition = 'letter-spacing 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease';
+    el.setAttribute('data-kern', '');
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.letterSpacing = '0em';
-          el.style.opacity = '1';
+          el.style.setProperty('--kern', '0em');
+          el.style.setProperty('--kern-opacity', '1');
           observer.unobserve(el);
         }
       },
