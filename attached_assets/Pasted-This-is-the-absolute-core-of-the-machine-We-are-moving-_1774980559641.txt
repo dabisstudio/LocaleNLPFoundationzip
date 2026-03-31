@@ -1,0 +1,142 @@
+This is the absolute core of the machine. We are moving past the UI and into the central nervous system of LocaleNLP. 
+
+To run a dual-entity monopoly successfully, you cannot have two separate databases. That creates chaos, data siloes, and version control nightmares. You need **One Sovereign Data Lake** that feeds two entirely different distribution gateways: The Foundation’s **GraphQL Open Corpora Library** (Free/CC-BY-4.0) and the For-Profit’s **Enterprise API Router** (Paid/Metered).
+
+Here is the "deeper than ever" architectural blueprint for how these two entities share data, manage access, and automatically route capital.
+
+---
+
+### 1️⃣ THE ARCHITECTURE: One Lake, Two Gateways
+
+Imagine your backend (e.g., Supabase / PostgreSQL) as a massive, secure vault holding every validated token of African and Arabic data from the Lughatna app.
+
+* **Gateway A (The Foundation Site - Off-White):** Uses a read-only GraphQL endpoint. It can only query datasets that have been explicitly tagged as `is_open_source: true`. It serves ZIP file downloads and basic JSON previews.
+* **Gateway B (The For-Profit Site - Dark Mode):** Uses a high-throughput REST/gRPC API. It requires a Bearer Token (API Key) attached to a Stripe billing account. It can query the entire vault, run semantic searches, and stream data with millisecond latency.
+
+---
+
+### 2️⃣ GATEWAY A: The Foundation's "Open Corpora" GraphQL Schema
+
+On the monumental, off-white Foundation site, academics will browse the "Open Corpora" library. The GraphQL schema must be designed to pull the exact metadata needed for the **Model Nutrition Labels** we designed earlier, without exposing the raw, un-anonymized database rows.
+
+**The `schema.graphql` Definition:**
+
+```graphql
+type OpenCorpus {
+  id: ID!
+  datasetName: String!
+  languageCode: String! # e.g., "wol", "bam", "ary"
+  modality: String! # "Speech", "Text", "Instruction-Tuned"
+  tokenCount: Int!
+  audioHours: Float
+  
+  # The "Nutrition Label" Metadata
+  provenance: String! # "100% Lughatna Community Sourced"
+  license: String! # "CC-BY-4.0"
+  demographics: DemographicParity!
+  validationScore: Float! # e.g., 98.5
+  
+  # The Download Payload
+  downloadUrl: String! # Pre-signed secure AWS S3 / Cloudflare R2 link
+  checksum: String! # SHA-256 hash to prove data hasn't been tampered with
+}
+
+type DemographicParity {
+  femalePercentage: Float!
+  malePercentage: Float!
+  ruralPercentage: Float!
+  urbanPercentage: Float!
+}
+
+# The Query the Foundation Frontend runs
+query GetOpenCorpora($language: String) {
+  publishedCorpora(where: { languageCode: $language, isOpenSource: true }) {
+    nodes {
+      datasetName
+      tokenCount
+      validationScore
+      downloadUrl
+    }
+  }
+}
+```
+
+**The UX Flow:** The researcher clicks "Download Dataset." The frontend runs this query, verifies their `.edu` email address, and instantly provides the `downloadUrl` to a zipped file of the baseline model.
+
+---
+
+### 3️⃣ GATEWAY B: The Commercial API Routing Logic (The Revenue Engine)
+
+Over on the dark-mode For-Profit site, an enterprise developer is curling your API to train a proprietary fintech chatbot in Hausa. 
+
+You cannot let them hit your database directly. You need an **Edge Middleware** (running on Cloudflare Workers or Vercel Edge) that intercepts their request, checks their wallet, counts their tokens, and routes the traffic.
+
+**The Routing Middleware Logic (Node.js/Edge Concept):**
+
+```javascript
+import { verifyEnterpriseKey, meterStripeUsage } from '@/lib/auth';
+
+export default async function apiRouterMiddleware(req) {
+  const apiKey = req.headers.get('Authorization')?.split('Bearer ')[1];
+  const endpoint = new URL(req.url).pathname; // e.g., /v1/chat/completions
+
+  // STEP 1: Intercept & Verify
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: "Unauthorized. Missing API Key." }), { status: 401 });
+  }
+
+  const client = await verifyEnterpriseKey(apiKey);
+  
+  if (client.tier === "revoked" || client.billingStatus === "past_due") {
+    return new Response(JSON.stringify({ error: "Payment required. Please update billing in the LocaleNLP Console." }), { status: 402 });
+  }
+
+  // STEP 2: Route to the Secure Data Lake
+  // The middleware forwards the request to your internal, protected microservices
+  const internalResponse = await fetch(`https://internal-lake.localenlp.com${endpoint}`, {
+    method: req.method,
+    body: req.body,
+    headers: { 'X-Internal-Secret': process.env.INTERNAL_SECRET }
+  });
+
+  const responseData = await internalResponse.json();
+
+  // STEP 3: The Metering Engine (How you make money)
+  // Calculate exactly how many tokens or megabytes were just served
+  const tokensConsumed = responseData.metadata.total_tokens;
+
+  // Asynchronously ping Stripe to add this usage to their monthly invoice
+  // (e.g., $0.002 per 1k tokens)
+  ctx.waitUntil(
+    meterStripeUsage({
+      customerId: client.stripeCustomerId,
+      tokens: tokensConsumed,
+    })
+  );
+
+  // STEP 4: Return the Data to the Enterprise
+  return new Response(JSON.stringify(responseData), { status: 200 });
+}
+```
+
+---
+
+### 4️⃣ THE CROSS-ENTITY BRIDGE: Automating the "Royalty"
+
+This is the final, most crucial piece of the architecture. How do you prove to the Mozilla Data Collective that the For-Profit is actually funding the Non-Profit? 
+
+You automate the financial bridge using **Stripe Webhooks**.
+
+1.  **The Trigger:** At the end of the month, Stripe charges the Enterprise client $50,000 for their API usage.
+2.  **The Webhook:** Stripe sends a `invoice.paid` webhook to your For-Profit server.
+3.  **The Split:** Your server runs a script: Calculate 15% of $50,000 ($7,500).
+4.  **The Transfer:** The For-Profit server uses the Stripe Connect API to programmatically transfer that $7,500 directly into the Foundation's bank account.
+5.  **The Public Flex:** That transfer automatically triggers an update on the Foundation's website (the off-white site). The "Live Ledger Tracker" ticks up, showing: *"Commercial Royalties Reinvested into Contributor Pool: +$7,500."*
+
+This creates an unassailable, mathematically verifiable loop of ethical capital.
+
+---
+
+You now possess the complete DNA for both entities—from the frontend UI aesthetics and UX psychology down to the database schemas and edge routing logic. 
+
+With this comprehensive architecture fully mapped out, what is the very first piece of infrastructure you and your development team are going to build this week to set this into motion?
