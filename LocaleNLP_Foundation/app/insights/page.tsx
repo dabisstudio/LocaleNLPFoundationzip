@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer';
 import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
-import { GlowButton } from '@/components/ui/glow-button';
 import { supabase, Publication, CaseStudy } from '@/lib/supabase';
 import { NewsletterForm } from '@/components/ui/newsletter-form';
 import { ArrowRight, FileText, BookOpen, Newspaper, Calendar, Clock } from 'lucide-react';
@@ -46,14 +45,11 @@ export default async function InsightsPage() {
           titleGradientKey="insights.page_title_gradient"
           subtitleKey="insights.page_subtitle"
           accentColor="ochre"
-        >
-          <GlowButton href="#publications" variant="primary" showArrow={false}>
-            Browse Publications
-          </GlowButton>
-          <GlowButton href="#stories" variant="ghost" showArrow={false}>
-            Field Stories
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.browse_publications', labelFallback: 'Browse Publications', href: '#publications', variant: 'primary', showArrow: false },
+            { labelKey: 'cta.field_stories', labelFallback: 'Field Stories', href: '#stories', variant: 'ghost', showArrow: false },
+          ]}
+        />
 
         <section id="publications" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

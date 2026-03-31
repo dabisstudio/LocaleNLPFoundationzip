@@ -2,7 +2,6 @@ import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { VitalityExplorer } from '@/components/vitality/VitalityExplorer';
-import { GlowButton } from '@/components/ui/glow-button';
 import { VITALITY_DATA, VITALITY_SUMMARY } from '@/lib/vitality-data';
 
 export const metadata = {
@@ -25,16 +24,10 @@ export default function VitalityPage() {
           titleKey="vitality.page_title"
           titleGradientKey="vitality.page_title_gradient"
           subtitleKey="vitality.page_subtitle"
-          cta={
-            <>
-              <GlowButton href="/bounties" variant="primary">
-                Fund a Data Bounty
-              </GlowButton>
-              <GlowButton href="/get-involved" variant="ghost">
-                Contribute Data
-              </GlowButton>
-            </>
-          }
+          ctaButtons={[
+            { labelKey: 'cta.fund_bounty', labelFallback: 'Fund a Data Bounty', href: '/bounties', variant: 'primary' },
+            { labelKey: 'cta.contribute_data', labelFallback: 'Contribute Data', href: '/get-involved', variant: 'ghost' },
+          ]}
         />
 
         <section className="bg-brand-surface border-b border-white/6">

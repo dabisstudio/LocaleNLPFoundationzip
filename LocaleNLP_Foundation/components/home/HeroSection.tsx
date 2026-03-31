@@ -5,11 +5,9 @@ import dynamic from 'next/dynamic';
 import { Play } from 'lucide-react';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { useTranslation } from '@/lib/i18n/TranslationContext';
 
 const HeroCanvas = dynamic(() => import('./HeroCanvas'), { ssr: false });
-
-const LINE1 = ['Every', 'African', 'Language'];
-const LINE2 = ['Deserves', 'a', 'Digital', 'Future'];
 
 function wordSpring(delay: number) {
   return {
@@ -22,6 +20,10 @@ function wordSpring(delay: number) {
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useTranslation();
+
+  const line1 = t('hero.headline_line1', 'Every African Language').split(' ');
+  const line2 = t('hero.headline_line2', 'Deserves a Digital Future').split(' ');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -49,13 +51,13 @@ export default function HeroSection() {
           transition={{ duration: 0.4, delay: shouldReduceMotion ? 0 : 0.1 }}
           className="mb-8 flex justify-center"
         >
-          <MonoLabel label="DIGITAL SOVEREIGNTY" status="active" />
+          <MonoLabel label={t('hero.label', 'DIGITAL SOVEREIGNTY')} status="active" />
         </motion.div>
 
         <h1 className="mb-6">
           {/* Line 1 — white, word-level stagger */}
           <span className="block">
-            {LINE1.map((word, i) => (
+            {line1.map((word, i) => (
               <motion.span
                 key={word + i}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -70,7 +72,7 @@ export default function HeroSection() {
 
           {/* Line 2 — gradient per-word: inline styles bypass bg-clip-text + stacking-context conflict */}
           <span className="block">
-            {LINE2.map((word, i) => (
+            {line2.map((word, i) => (
               <motion.span
                 key={word + i}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -78,7 +80,7 @@ export default function HeroSection() {
                 transition={
                   shouldReduceMotion
                     ? { duration: 0 }
-                    : wordSpring(0.2 + (LINE1.length + i) * 0.07)
+                    : wordSpring(0.2 + (line1.length + i) * 0.07)
                 }
                 className="inline-block mr-[0.28em] last:mr-0"
                 style={{
@@ -100,8 +102,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: shouldReduceMotion ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10"
         >
-          We are building the language technology that will give over 2,000 African languages a
-          voice in the AI revolution. Because digital sovereignty starts with your mother tongue.
+          {t('hero.subheadline', 'We are building the language technology that will give over 2,000 African languages a voice in the AI revolution. Because digital sovereignty starts with your mother tongue.')}
         </motion.p>
 
         <motion.div
@@ -111,11 +112,11 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <GlowButton href="/programs" variant="primary">
-            Explore Our Work
+            {t('hero.cta_primary', 'Explore Our Work')}
           </GlowButton>
           <GlowButton href="/about" variant="ghost" showArrow={false}>
             <Play className="w-4 h-4 shrink-0" aria-hidden="true" />
-            Watch Our Story
+            {t('hero.cta_secondary', 'Watch Our Story')}
           </GlowButton>
         </motion.div>
       </div>

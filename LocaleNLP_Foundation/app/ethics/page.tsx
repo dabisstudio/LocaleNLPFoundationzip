@@ -227,14 +227,11 @@ export default function EthicsPage() {
           titleGradientKey="ethics.page_title_gradient"
           subtitleKey="ethics.page_subtitle"
           accentColor="cyan"
-        >
-          <GlowButton href="#governance" variant="primary" showArrow={false}>
-            View our framework
-          </GlowButton>
-          <GlowButton href="#ledger" variant="ghost" showArrow={false}>
-            Open Data Policies
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.view_framework', labelFallback: 'View our framework', href: '#governance', variant: 'primary', showArrow: false },
+            { labelKey: 'cta.open_data_policies', labelFallback: 'Open Data Policies', href: '#ledger', variant: 'ghost', showArrow: false },
+          ]}
+        />
 
         <section id="governance" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

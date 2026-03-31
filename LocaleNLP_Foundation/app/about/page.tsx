@@ -77,14 +77,11 @@ export default async function AboutPage() {
           titleGradientKey="about.page_title_gradient"
           subtitleKey="about.page_subtitle"
           accentColor="ochre"
-        >
-          <GlowButton href="/get-involved" variant="primary">
-            Join the Mission
-          </GlowButton>
-          <GlowButton href="/programs" variant="ghost">
-            Explore Programs
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.join_mission', labelFallback: 'Join the Mission', href: '/get-involved', variant: 'primary' },
+            { labelKey: 'cta.explore_programs', labelFallback: 'Explore Programs', href: '/programs', variant: 'ghost' },
+          ]}
+        />
 
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

@@ -48,16 +48,10 @@ export default async function BountiesPage() {
         titleGradientKey="bounties.page_title_gradient"
         subtitleKey="bounties.page_subtitle"
         accentColor="ochre"
-        cta={
-          <>
-            <GlowButton href="#bounties" variant="primary">
-              Browse Open Bounties
-            </GlowButton>
-            <GlowButton href="/get-involved" variant="ghost" showArrow={false}>
-              Become a Contributor
-            </GlowButton>
-          </>
-        }
+        ctaButtons={[
+          { labelKey: 'cta.browse_bounties', labelFallback: 'Browse Open Bounties', href: '#bounties', variant: 'primary' },
+          { labelKey: 'cta.become_contributor', labelFallback: 'Become a Contributor', href: '/get-involved', variant: 'ghost', showArrow: false },
+        ]}
       />
 
       <section className="border-b border-white/8 bg-brand-surface">

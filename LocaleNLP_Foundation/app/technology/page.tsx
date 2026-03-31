@@ -182,15 +182,11 @@ export default async function TechnologyPage() {
           titleGradientKey="technology.page_title_gradient"
           subtitleKey="technology.page_subtitle"
           accentColor="cyan"
-        >
-          <GlowButton href="https://github.com/localenlp" variant="primary">
-            <Github className="w-4 h-4" aria-hidden="true" />
-            View on GitHub
-          </GlowButton>
-          <GlowButton href="/get-involved" variant="ghost">
-            Contribute
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.view_github', labelFallback: 'View on GitHub', href: 'https://github.com/localenlp', variant: 'primary' },
+            { labelKey: 'cta.contribute', labelFallback: 'Contribute', href: '/get-involved', variant: 'ghost' },
+          ]}
+        />
 
         <section id="architecture" className="py-16 bg-brand-deep">
           <div className="container-wide section-padding">

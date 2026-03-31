@@ -182,14 +182,11 @@ export default function ProgramsPage() {
           titleGradientKey="programs.page_title_gradient"
           subtitleKey="programs.page_subtitle"
           accentColor="ochre"
-        >
-          <GlowButton href="#programs" variant="primary" showArrow={false}>
-            Explore Programs
-          </GlowButton>
-          <GlowButton href="/get-involved" variant="ghost">
-            Get Involved
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.explore_programs', labelFallback: 'Explore Programs', href: '#programs', variant: 'primary', showArrow: false },
+            { labelKey: 'cta.get_involved', labelFallback: 'Get Involved', href: '/get-involved', variant: 'ghost' },
+          ]}
+        />
 
         <Suspense fallback={<ProgramsSkeleton />}>
           <ProgramsGrid />

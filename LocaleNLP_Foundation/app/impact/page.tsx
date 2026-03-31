@@ -78,14 +78,11 @@ export default async function ImpactPage() {
           titleGradientKey="impact.page_title_gradient"
           subtitleKey="impact.page_subtitle"
           accentColor="ochre"
-        >
-          <GlowButton href="#metrics" variant="primary" showArrow={false}>
-            See the Numbers
-          </GlowButton>
-          <GlowButton href="/donate" variant="ghost">
-            Amplify Impact
-          </GlowButton>
-        </TranslatedPageHeader>
+          ctaButtons={[
+            { labelKey: 'cta.see_numbers', labelFallback: 'See the Numbers', href: '#metrics', variant: 'primary', showArrow: false },
+            { labelKey: 'cta.amplify_impact', labelFallback: 'Amplify Impact', href: '/donate', variant: 'ghost' },
+          ]}
+        />
 
         <section id="metrics" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">

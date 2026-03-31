@@ -127,14 +127,11 @@ export default function DonatePage({
             titleGradientKey="donate.page_title_gradient"
             subtitleKey="donate.page_subtitle"
             accentColor="ochre"
-          >
-            <GlowButton href="#give" variant="primary" showArrow={false}>
-              Give Now
-            </GlowButton>
-            <GlowButton href="#institutional" variant="ghost" showArrow={false}>
-              Institutional Giving
-            </GlowButton>
-          </TranslatedPageHeader>
+            ctaButtons={[
+              { labelKey: 'cta.give_now', labelFallback: 'Give Now', href: '#give', variant: 'primary', showArrow: false },
+              { labelKey: 'cta.institutional_giving', labelFallback: 'Institutional Giving', href: '#institutional', variant: 'ghost', showArrow: false },
+            ]}
+          />
         )}
 
         <DonationCalculator />

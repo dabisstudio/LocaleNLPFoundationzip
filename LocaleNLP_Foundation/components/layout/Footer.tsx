@@ -16,14 +16,14 @@ const SITE_LINKS = [
 ];
 
 const RESOURCE_LINKS = [
-  { label: 'Open Models & APIs', href: '/technology' },
-  { label: 'Datasets',           href: '/technology#datasets' },
-  { label: 'Vitality Index',     href: '/vitality' },
-  { label: 'Bounty Board',       href: '/bounties' },
-  { label: 'Publications',       href: '/insights' },
-  { label: 'Documentation',      href: '/technology#docs' },
-  { label: 'Partner With Us',    href: '/get-involved#partner' },
-  { label: 'Careers',            href: '/get-involved#careers' },
+  { labelKey: 'footer.resource.open_models', href: '/technology' },
+  { labelKey: 'footer.resource.datasets',    href: '/technology#datasets' },
+  { labelKey: 'footer.resource.vitality_index', href: '/vitality' },
+  { labelKey: 'footer.resource.bounty_board',   href: '/bounties' },
+  { labelKey: 'footer.resource.publications',   href: '/insights' },
+  { labelKey: 'footer.resource.documentation',  href: '/technology#docs' },
+  { labelKey: 'footer.resource.partner',        href: '/get-involved#partner' },
+  { labelKey: 'footer.resource.careers',        href: '/get-involved#careers' },
 ];
 
 const SOCIAL_LINKS = [
@@ -89,7 +89,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-sm text-text-secondary hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan rounded"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
