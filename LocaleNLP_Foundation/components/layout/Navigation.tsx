@@ -112,7 +112,7 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/get-involved',
     accent: 'ochre',
     links: [
-      { label: 'Volunteer',      href: '/get-involved',           icon: HandHeart,   desc: 'Contribute your time and skills' },
+      { label: 'Volunteer',      href: '/get-involved#contributor', icon: HandHeart,   desc: 'Contribute voice data, earn via mobile money' },
       { label: 'Partner With Us', href: '/get-involved#pathways', icon: Handshake,   desc: 'For institutions & organisations' },
       { label: 'Fellowships',    href: '/get-involved',           icon: GraduationCap, desc: 'AI × Language research fellowships' },
       { label: 'Contact Us',     href: '/get-involved#contact',   icon: Mail,        desc: 'Get in touch with our team' },

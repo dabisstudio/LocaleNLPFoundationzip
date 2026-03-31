@@ -118,6 +118,13 @@ export type ContactSubmission = {
   created_at: string;
 };
 
+export type ContributorSignup = {
+  id: string;
+  phone: string;
+  native_language: string;
+  created_at: string;
+};
+
 export type Insight = {
   id: string;
   title: string;
