@@ -80,6 +80,8 @@ export default function Navigation() {
     if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current);
   }, []);
 
+  const closeMega = useCallback(() => setIsMegaOpen(false), []);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setIsMobileOpen(false);
@@ -109,8 +111,6 @@ export default function Navigation() {
     return () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current); };
   }, []);
 
-  const closeMega = () => setIsMegaOpen(false);
-
   return (
     <header
       ref={headerRef}
@@ -118,7 +118,6 @@ export default function Navigation() {
     >
       <nav className="container-wide section-padding">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* ── Logo ── */}
           <Link
             href="/"
             className="shrink-0 flex items-center"
@@ -135,7 +134,6 @@ export default function Navigation() {
             />
           </Link>
 
-          {/* ── Desktop nav ── */}
           <div className="hidden lg:flex items-center gap-0.5">
             {TOP_NAV.map((item) =>
               item.hasMega ? (
@@ -177,7 +175,6 @@ export default function Navigation() {
             </GlowButton>
           </div>
 
-          {/* ── Hamburger ── */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className="lg:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors"
@@ -189,7 +186,6 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* ── Mega menu panel ── */}
       {isMegaOpen && (
         <div
           className="hidden lg:block absolute left-0 right-0 top-full border-t border-white/8 animate-slide-down"
@@ -201,8 +197,6 @@ export default function Navigation() {
         >
           <div className="container-wide section-padding py-8">
             <div className="grid grid-cols-[2fr_1fr_1fr] gap-8 lg:gap-12">
-
-              {/* Column 1 — Programs */}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-accent-ochre mb-5">
                   Our Programmes
@@ -239,7 +233,6 @@ export default function Navigation() {
                 </Link>
               </div>
 
-              {/* Column 2 — Explore */}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-accent-cyan mb-5">
                   Explore
@@ -268,7 +261,6 @@ export default function Navigation() {
                 </div>
               </div>
 
-              {/* Column 3 — Community */}
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-accent-clay mb-5">
                   Community
@@ -296,7 +288,6 @@ export default function Navigation() {
                   ))}
                 </div>
 
-                {/* Donate CTA */}
                 <div className="mt-6 p-4 rounded-xl border border-accent-ochre/20 bg-accent-ochre/5">
                   <p className="text-sm font-semibold text-white mb-1">Support our mission</p>
                   <p className="text-xs text-text-secondary mb-3">
@@ -317,7 +308,6 @@ export default function Navigation() {
         </div>
       )}
 
-      {/* ── Mobile drawer ── */}
       {isMobileOpen && (
         <div className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 glass-panel border-t border-white/8 overflow-y-auto animate-slide-down">
           <nav className="container-wide section-padding py-6 flex flex-col gap-1">
