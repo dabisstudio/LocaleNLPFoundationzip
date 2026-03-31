@@ -108,7 +108,7 @@ export default function DonatePage({
             status="active"
             title="Fund a Language Bounty"
             titleGradient={bountyLang ? bountyLang.toUpperCase() : undefined}
-            subtitle={`You are funding: "${decodeURIComponent(bountyTitle)}". Every dollar goes directly to the community voice collectors, transcribers, and annotators working on this language.`}
+            subtitle={`You are funding: "${bountyTitle}". Every dollar goes directly to the community voice collectors, transcribers, and annotators working on this language.`}
             accentColor="clay"
           >
             <GlowButton href="#give" variant="primary" showArrow={false}>

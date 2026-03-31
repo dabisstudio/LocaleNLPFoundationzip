@@ -1,4 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import { PageHeader } from '@/components/ui/page-header';
 import { BountyBoard } from '@/components/bounties/BountyBoard';
 import { GlowButton } from '@/components/ui/glow-button';
@@ -36,7 +38,9 @@ export default async function BountiesPage() {
   const criticalCount  = bounties.filter((b) => b.urgency_level === 'critical').length;
 
   return (
-    <main>
+    <>
+      <Navigation />
+      <main className="pt-24">
       <PageHeader
         label="Data Bounties"
         number="01"
@@ -107,7 +111,9 @@ export default async function BountiesPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
 
