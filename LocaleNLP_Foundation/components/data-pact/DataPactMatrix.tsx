@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, GraduationCap, Building2, ArrowRight } from 'lucide-react';
+import { type LucideIcon, Mic, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/lib/i18n/TranslationContext';
 
@@ -85,7 +85,7 @@ const PERSONAS: PersonaData[] = [
   },
 ];
 
-const TAB_ICONS: Record<PersonaId, React.ComponentType<{ className?: string }>> = {
+const TAB_ICONS: Record<PersonaId, LucideIcon> = {
   contributor: Mic,
   academic: GraduationCap,
   enterprise: Building2,
