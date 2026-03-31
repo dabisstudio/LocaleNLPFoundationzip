@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { SuccessCheck } from '@/components/ui/success-check';
 
 const INQUIRY_TYPES = [
   'Partnership Inquiry',
@@ -51,8 +52,8 @@ export function ContactForm() {
   if (isSubmitted) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="w-16 h-16 rounded-full bg-accent-ochre/10 flex items-center justify-center mb-6">
-          <CheckCircle className="w-8 h-8 text-accent-ochre" aria-hidden="true" />
+        <div className="mb-5">
+          <SuccessCheck visible={true} size={72} />
         </div>
         <h3 className="font-display text-xl font-semibold text-text-primary mb-3">
           Message Sent

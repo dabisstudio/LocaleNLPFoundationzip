@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { useMagnetic } from '@/components/hooks/useMagnetic';
 
 type GlowButtonVariant = 'primary' | 'ghost';
 
 type BaseProps = {
   variant?: GlowButtonVariant;
   showArrow?: boolean;
+  magnetic?: boolean;
 };
 
 type AsButton = BaseProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never };
@@ -19,10 +21,14 @@ type GlowButtonProps = AsButton | AsAnchor;
 export function GlowButton({
   variant = 'primary',
   showArrow = true,
+  magnetic,
   className,
   children,
   ...props
 }: GlowButtonProps) {
+  const isMagnetic = magnetic !== false && variant === 'primary';
+  const { onMouseMove, onMouseLeave, style: magneticStyle } = useMagnetic(isMagnetic);
+
   const classes = cn(
     'group inline-flex items-center justify-center gap-2',
     'px-6 py-3 rounded-lg font-medium text-sm',
@@ -62,21 +68,44 @@ export function GlowButton({
 
     if (isInternal) {
       return (
-        <Link href={href} className={classes} onClick={(anchorProps as { onClick?: React.MouseEventHandler }).onClick}>
+        <Link
+          href={href}
+          className={classes}
+          style={isMagnetic ? magneticStyle : undefined}
+          onMouseMove={isMagnetic ? (onMouseMove as React.MouseEventHandler<HTMLAnchorElement>) : undefined}
+          onMouseLeave={isMagnetic ? onMouseLeave : undefined}
+          onClick={(anchorProps as { onClick?: React.MouseEventHandler }).onClick}
+        >
           {content}
         </Link>
       );
     }
 
     return (
-      <a href={href} className={classes} target="_blank" rel="noopener noreferrer" {...anchorProps}>
+      <a
+        href={href}
+        className={classes}
+        style={isMagnetic ? magneticStyle : undefined}
+        onMouseMove={isMagnetic ? (onMouseMove as React.MouseEventHandler<HTMLAnchorElement>) : undefined}
+        onMouseLeave={isMagnetic ? onMouseLeave : undefined}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...anchorProps}
+      >
         {content}
       </a>
     );
   }
 
+  const { style: buttonStyle, ...buttonRest } = props as AsButton & { style?: React.CSSProperties };
   return (
-    <button className={classes} {...(props as AsButton)}>
+    <button
+      className={classes}
+      style={isMagnetic ? { ...magneticStyle, ...buttonStyle } : buttonStyle}
+      onMouseMove={isMagnetic ? (onMouseMove as React.MouseEventHandler<HTMLButtonElement>) : undefined}
+      onMouseLeave={isMagnetic ? onMouseLeave : undefined}
+      {...buttonRest}
+    >
       {content}
     </button>
   );

@@ -1,4 +1,5 @@
 import { MonoLabel } from '@/components/ui/mono-label';
+import { KernHeading } from '@/components/ui/kern-heading';
 import { cn } from '@/lib/utils';
 
 interface PageHeaderProps {
@@ -53,7 +54,10 @@ export function PageHeader({
             <MonoLabel label={label} number={number} status={status} />
           </div>
 
-          <h1 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-text-primary leading-tight tracking-tight mb-6">
+          <KernHeading
+            as="h1"
+            className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-text-primary leading-tight mb-6"
+          >
             {title}
             {titleGradient && (
               <>
@@ -61,7 +65,7 @@ export function PageHeader({
                 <span className="text-gradient">{titleGradient}</span>
               </>
             )}
-          </h1>
+          </KernHeading>
 
           <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-2xl mx-auto">
             {subtitle}

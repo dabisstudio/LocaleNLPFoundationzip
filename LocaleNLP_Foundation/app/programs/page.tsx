@@ -1,9 +1,11 @@
+import { Suspense } from 'react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { PageHeader } from '@/components/ui/page-header';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
+import { SkeletonCard } from '@/components/ui/skeleton-card';
 import { supabase, Program } from '@/lib/supabase';
 import { PLACEHOLDER_PROGRAMS } from '@/lib/placeholder-programs';
 import { Microscope, Mic, Heart, GraduationCap, Scale, BookOpen, ArrowRight } from 'lucide-react';
@@ -38,11 +40,137 @@ async function getPrograms(): Promise<{ programs: Program[]; isPlaceholder: bool
   return { programs: data, isPlaceholder: false };
 }
 
-export default async function ProgramsPage() {
+function ProgramsSkeleton() {
+  return (
+    <div className="py-20 bg-brand-surface">
+      <div className="container-wide section-padding">
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-40 h-4 rounded bg-white/5 animate-pulse" />
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[0, 1, 2].map((i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+async function ProgramsGrid() {
   const { programs, isPlaceholder } = await getPrograms();
   const featured = programs.filter((p) => p.is_featured);
   const rest = programs.filter((p) => !p.is_featured);
 
+  return (
+    <section id="programs" className="py-20 bg-brand-surface">
+      <div className="container-wide section-padding">
+        {isPlaceholder && (
+          <div className="mb-10 glass-card px-5 py-3 flex items-center gap-3 max-w-xl">
+            <span className="w-2 h-2 rounded-full bg-accent-ochre/60 shrink-0" aria-hidden="true" />
+            <p className="font-mono text-xs text-text-tertiary">
+              Showing sample programs — live program data will appear once the database is seeded.
+            </p>
+          </div>
+        )}
+        {featured.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-10">
+              <MonoLabel label="FLAGSHIP INITIATIVES" status="active" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featured.map((program, i) => {
+                const Icon = ICON_MAP[program.icon || 'Microscope'] || Microscope;
+                const accent = ACCENT_MAP[program.color] || 'text-accent-ochre';
+                const spotlight = SPOTLIGHT_MAP[program.color] || 'rgba(245,166,35,0.1)';
+                return (
+                  <SpotlightCard key={program.id} spotlightColor={spotlight} className="p-6">
+                    <div className="flex items-start justify-between mb-5">
+                      <Icon className={`w-7 h-7 ${accent}`} aria-hidden="true" />
+                      <MonoLabel
+                        label="INITIATIVE"
+                        number={String(i + 1).padStart(2, '0')}
+                        status="active"
+                      />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
+                      {program.title}
+                    </h3>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                      {program.short_description}
+                    </p>
+                    {program.problem_statement && (
+                      <div className="pt-4 border-t border-white/8">
+                        <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary mb-1">
+                          Challenge
+                        </p>
+                        <p className="text-text-secondary text-xs leading-relaxed line-clamp-2">
+                          {program.problem_statement}
+                        </p>
+                      </div>
+                    )}
+                    <Link
+                      href={`/programs/${program.slug}`}
+                      className={`inline-flex items-center gap-1.5 text-sm font-medium mt-5 ${accent} hover:opacity-80 transition-opacity`}
+                    >
+                      Learn more
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  </SpotlightCard>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {rest.length > 0 && (
+          <div>
+            <div className="flex items-center gap-3 mb-10">
+              <MonoLabel label="ALL PROGRAMS" status="active" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((program, i) => {
+                const Icon = ICON_MAP[program.icon || 'Microscope'] || Microscope;
+                const accent = ACCENT_MAP[program.color] || 'text-accent-ochre';
+                const spotlight = SPOTLIGHT_MAP[program.color] || 'rgba(245,166,35,0.08)';
+                return (
+                  <SpotlightCard
+                    key={program.id}
+                    spotlightColor={spotlight}
+                    className="p-6"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <Icon className={`w-6 h-6 ${accent}`} aria-hidden="true" />
+                      <MonoLabel
+                        label="INITIATIVE"
+                        number={String(i + 1).padStart(2, '0')}
+                      />
+                    </div>
+                    <h3 className="font-display text-base font-semibold text-text-primary mb-2">
+                      {program.title}
+                    </h3>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                      {program.short_description}
+                    </p>
+                    <Link
+                      href={`/programs/${program.slug}`}
+                      className={`inline-flex items-center gap-1.5 text-sm font-medium ${accent} hover:opacity-80 transition-opacity`}
+                    >
+                      Learn more
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  </SpotlightCard>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export default function ProgramsPage() {
   return (
     <>
       <Navigation />
@@ -63,110 +191,9 @@ export default async function ProgramsPage() {
           </GlowButton>
         </PageHeader>
 
-        <section id="programs" className="py-20 bg-brand-surface">
-          <div className="container-wide section-padding">
-            {isPlaceholder && (
-              <div className="mb-10 glass-card px-5 py-3 flex items-center gap-3 max-w-xl">
-                <span className="w-2 h-2 rounded-full bg-accent-ochre/60 shrink-0" aria-hidden="true" />
-                <p className="font-mono text-xs text-text-tertiary">
-                  Showing sample programs — live program data will appear once the database is seeded.
-                </p>
-              </div>
-            )}
-            {featured.length > 0 && (
-              <div className="mb-16">
-                <div className="flex items-center gap-3 mb-10">
-                  <MonoLabel label="FLAGSHIP INITIATIVES" status="active" />
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {featured.map((program, i) => {
-                    const Icon = ICON_MAP[program.icon || 'Microscope'] || Microscope;
-                    const accent = ACCENT_MAP[program.color] || 'text-accent-ochre';
-                    const spotlight = SPOTLIGHT_MAP[program.color] || 'rgba(245,166,35,0.1)';
-                    return (
-                      <SpotlightCard key={program.id} spotlightColor={spotlight} className="p-6">
-                        <div className="flex items-start justify-between mb-5">
-                          <Icon className={`w-7 h-7 ${accent}`} aria-hidden="true" />
-                          <MonoLabel
-                            label="INITIATIVE"
-                            number={String(i + 1).padStart(2, '0')}
-                            status="active"
-                          />
-                        </div>
-                        <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
-                          {program.title}
-                        </h3>
-                        <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                          {program.short_description}
-                        </p>
-                        {program.problem_statement && (
-                          <div className="pt-4 border-t border-white/8">
-                            <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary mb-1">
-                              Challenge
-                            </p>
-                            <p className="text-text-secondary text-xs leading-relaxed line-clamp-2">
-                              {program.problem_statement}
-                            </p>
-                          </div>
-                        )}
-                        <Link
-                          href={`/programs/${program.slug}`}
-                          className={`inline-flex items-center gap-1.5 text-sm font-medium mt-5 ${accent} hover:opacity-80 transition-opacity`}
-                        >
-                          Learn more
-                          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                        </Link>
-                      </SpotlightCard>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {rest.length > 0 && (
-              <div>
-                <div className="flex items-center gap-3 mb-10">
-                  <MonoLabel label="ALL PROGRAMS" status="active" />
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {rest.map((program, i) => {
-                    const Icon = ICON_MAP[program.icon || 'Microscope'] || Microscope;
-                    const accent = ACCENT_MAP[program.color] || 'text-accent-ochre';
-                    const spotlight = SPOTLIGHT_MAP[program.color] || 'rgba(245,166,35,0.08)';
-                    return (
-                      <SpotlightCard
-                        key={program.id}
-                        spotlightColor={spotlight}
-                        className="p-6"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <Icon className={`w-6 h-6 ${accent}`} aria-hidden="true" />
-                          <MonoLabel
-                            label="INITIATIVE"
-                            number={String(i + 1).padStart(2, '0')}
-                          />
-                        </div>
-                        <h3 className="font-display text-base font-semibold text-text-primary mb-2">
-                          {program.title}
-                        </h3>
-                        <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                          {program.short_description}
-                        </p>
-                        <Link
-                          href={`/programs/${program.slug}`}
-                          className={`inline-flex items-center gap-1.5 text-sm font-medium ${accent} hover:opacity-80 transition-opacity`}
-                        >
-                          Learn more
-                          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                        </Link>
-                      </SpotlightCard>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+        <Suspense fallback={<ProgramsSkeleton />}>
+          <ProgramsGrid />
+        </Suspense>
 
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
