@@ -103,10 +103,11 @@ Serves on port 5000.
 - **Counter animation:** IntersectionObserver → `started` flag → RAF step with `1 - Math.pow(1 - progress, 3)` ease-out cubic
 - **Supabase empty states:** All data-fetching pages show graceful empty state UI when DB returns empty
 
+## Pages (updated)
+| Route | Server/Client | Key Features |
+|-------|---------------|--------------|
+| `/data-pact` | Client | Locale Data Pact hub: DataPactMatrix (3-persona tabbed flow), DataPactTiers (3-tier cards), ContributorLedger (animated stats), DualEntityDiagram (orbital animation), Policy v1.0 with sidebar ToC, Enterprise CTA |
+
 ## Task History
-- ✅ Task #1 — Dev environment setup
-- ✅ Task #2 — Design system & component library overhaul
-- ✅ Task #3 — Homepage sections rebuild (6 sections)
-- ✅ Task #4 — Interior pages rebuild (8 pages + 3 shared components)
-- ⏳ Task #5 — (TBD)
-- ⏳ Task #6 — Database schema & seed data
+- ✅ Tasks #1–#18 — Full dev environment, all interior pages, Supabase, Vitality Index, Manifesto, System Status, i18n (EN/FR/AR/SW)
+- ✅ Task #19 — /data-pact — Locale Data Pact Sovereign IP Licensing Hub (4 interactive components, 142 i18n keys × 4 locales, nav updates)

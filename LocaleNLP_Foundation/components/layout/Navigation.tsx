@@ -4,10 +4,10 @@ import { useState, useEffect, useRef, useCallback, useId } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Menu, X, ArrowRight,
+  Menu, X, ArrowRight, ExternalLink,
   Mic, Microscope, Heart, Scale,
   Globe, Users, FileText, Newspaper,
-  Code2, Database, Layers, BookOpen,
+  Code2, Database, Layers, BookOpen, Lock,
   Map, MessageSquare, BarChart2,
   HandHeart, Handshake, GraduationCap, Mail,
   FlaskConical, ScrollText, PenLine, ShieldCheck,
@@ -88,6 +88,7 @@ const NAV_SECTIONS: NavSection[] = [
       { labelKey: 'nav.technology.architecture', href: '/technology#architecture', icon: Layers,   descKey: 'nav.technology.architecture_desc', descFallback: 'Interactive 4-node stack diagram' },
       { labelKey: 'nav.technology.nutrition',    href: '/technology#nutrition',    icon: Database, descKey: 'nav.technology.nutrition_desc',    descFallback: 'Ethical compliance for every dataset' },
       { labelKey: 'nav.technology.sovereignty',  href: '/technology#escrow',       icon: BookOpen, descKey: 'nav.technology.sovereignty_desc',  descFallback: 'Who owns the data — visualised' },
+      { labelKey: 'nav.technology.data_pact',    href: '/data-pact',               icon: Lock,     descKey: 'nav.technology.data_pact_desc',    descFallback: 'Sovereign IP licensing for African language data' },
     ],
     feature: {
       statKey: 'nav.technology.feature_stat',
@@ -345,6 +346,16 @@ export default function Navigation() {
 
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LanguageSwitcher />
+            <a
+              href="https://localenlp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-text-secondary border border-white/10 rounded-md hover:text-white hover:border-accent-clay/40 hover:bg-white/5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
+            >
+              {t('nav.enterprise_api', 'Enterprise API')}
+              <ExternalLink className="w-3 h-3" aria-hidden="true" />
+            </a>
             <GlowButton href="/donate" variant="primary" className="text-sm" onClick={closeMenu}>
               {t('nav.donate', 'Donate')}
             </GlowButton>
