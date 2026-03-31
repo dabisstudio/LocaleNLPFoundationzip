@@ -34,7 +34,6 @@ export default async function BountiesPage() {
 
   const openCount      = bounties.filter((b) => b.bounty_status !== 'fulfilled').length;
   const totalFunded    = bounties.reduce((s, b) => s + b.current_funding_usd, 0);
-  const totalGoal      = bounties.reduce((s, b) => s + b.funding_goal_usd, 0);
   const criticalCount  = bounties.filter((b) => b.urgency_level === 'critical').length;
 
   return (
