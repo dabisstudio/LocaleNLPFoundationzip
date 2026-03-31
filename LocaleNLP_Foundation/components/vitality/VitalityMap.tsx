@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { cn } from '@/lib/utils';
 import {
   VITALITY_DATA,
   VITALITY_STATUS_COLORS,
@@ -39,12 +38,6 @@ export function VitalityMap({ onSelect, selected }: VitalityMapProps) {
   }, []);
 
   const handleMouseLeave = useCallback(() => setTooltip(null), []);
-
-  const STATUS_RING: Record<string, string> = {
-    CRITICAL_DATA_DEBT: 'rgba(224,122,95,0.3)',
-    EMERGING_CORPUS:    'rgba(245,166,35,0.3)',
-    DEPLOYABLE:         'rgba(0,229,255,0.3)',
-  };
 
   return (
     <div className="relative">

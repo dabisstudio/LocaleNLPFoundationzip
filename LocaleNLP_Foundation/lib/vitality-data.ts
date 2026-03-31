@@ -12,6 +12,8 @@ export interface LanguageVitalityRecord {
   aiReadinessScore: number;
   vitalityStatus: VitalityStatus;
   lastAudited: string;
+  lat: number;
+  lng: number;
   mapX: number;
   mapY: number;
 }
@@ -41,7 +43,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 82,
     vitalityStatus: 'DEPLOYABLE',
     lastAudited: '2026-02-15',
-    mapX: 305, mapY: 148,
+    lat: 12.0, lng: 8.5, mapX: 305, mapY: 148,
   },
   {
     isoCode: 'sw',
@@ -55,7 +57,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 79,
     vitalityStatus: 'DEPLOYABLE',
     lastAudited: '2026-01-28',
-    mapX: 348, mapY: 235,
+    lat: -6.4, lng: 35.7, mapX: 348, mapY: 235,
   },
   {
     isoCode: 'am',
@@ -69,7 +71,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 74,
     vitalityStatus: 'DEPLOYABLE',
     lastAudited: '2026-03-05',
-    mapX: 355, mapY: 152,
+    lat: 9.1, lng: 40.5, mapX: 355, mapY: 152,
   },
   {
     isoCode: 'af',
@@ -83,7 +85,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 71,
     vitalityStatus: 'DEPLOYABLE',
     lastAudited: '2026-01-10',
-    mapX: 310, mapY: 358,
+    lat: -28.5, lng: 24.7, mapX: 310, mapY: 358,
   },
   {
     isoCode: 'zu',
@@ -97,7 +99,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 61,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2026-02-20',
-    mapX: 318, mapY: 364,
+    lat: -29.2, lng: 31.0, mapX: 318, mapY: 364,
   },
   {
     isoCode: 'rw',
@@ -111,7 +113,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 55,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-11-30',
-    mapX: 330, mapY: 210,
+    lat: -1.9, lng: 29.9, mapX: 330, mapY: 210,
   },
   {
     isoCode: 'yo',
@@ -125,7 +127,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 58,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-12-18',
-    mapX: 312, mapY: 156,
+    lat: 7.5, lng: 3.9, mapX: 312, mapY: 156,
   },
   {
     isoCode: 'ig',
@@ -139,7 +141,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 52,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-12-01',
-    mapX: 302, mapY: 157,
+    lat: 6.1, lng: 7.5, mapX: 302, mapY: 157,
   },
   {
     isoCode: 'tw',
@@ -153,7 +155,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 44,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-10-14',
-    mapX: 270, mapY: 158,
+    lat: 7.0, lng: -1.5, mapX: 270, mapY: 158,
   },
   {
     isoCode: 'wo',
@@ -167,7 +169,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 47,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-11-20',
-    mapX: 218, mapY: 120,
+    lat: 14.5, lng: -14.5, mapX: 218, mapY: 120,
   },
   {
     isoCode: 'bm',
@@ -181,7 +183,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 43,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-10-01',
-    mapX: 248, mapY: 115,
+    lat: 17.6, lng: -4.0, mapX: 248, mapY: 115,
   },
   {
     isoCode: 'lg',
@@ -195,7 +197,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 41,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-09-15',
-    mapX: 335, mapY: 188,
+    lat: 1.4, lng: 32.3, mapX: 335, mapY: 188,
   },
   {
     isoCode: 'om',
@@ -209,7 +211,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 39,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-08-22',
-    mapX: 360, mapY: 160,
+    lat: 6.8, lng: 40.8, mapX: 360, mapY: 160,
   },
   {
     isoCode: 'ln',
@@ -223,7 +225,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 36,
     vitalityStatus: 'EMERGING_CORPUS',
     lastAudited: '2025-07-30',
-    mapX: 308, mapY: 218,
+    lat: -4.3, lng: 23.6, mapX: 308, mapY: 218,
   },
   {
     isoCode: 'so',
@@ -237,7 +239,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 22,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-06-10',
-    mapX: 375, mapY: 168,
+    lat: 5.2, lng: 46.2, mapX: 375, mapY: 168,
   },
   {
     isoCode: 'sn',
@@ -251,7 +253,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 26,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-05-18',
-    mapX: 322, mapY: 298,
+    lat: -19.0, lng: 29.2, mapX: 322, mapY: 298,
   },
   {
     isoCode: 'ar-ma',
@@ -265,7 +267,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 31,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-08-05',
-    mapX: 218, mapY: 78,
+    lat: 31.8, lng: -7.1, mapX: 218, mapY: 78,
   },
   {
     isoCode: 'ny',
@@ -279,7 +281,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 20,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-04-12',
-    mapX: 338, mapY: 278,
+    lat: -13.3, lng: 34.3, mapX: 338, mapY: 278,
   },
   {
     isoCode: 'ff',
@@ -293,7 +295,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 18,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-03-20',
-    mapX: 232, mapY: 144,
+    lat: 11.0, lng: -12.3, mapX: 232, mapY: 144,
   },
   {
     isoCode: 'mg',
@@ -307,7 +309,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 19,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-06-28',
-    mapX: 382, mapY: 278,
+    lat: -18.8, lng: 46.9, mapX: 382, mapY: 278,
   },
   {
     isoCode: 'ti',
@@ -321,7 +323,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 14,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-02-14',
-    mapX: 355, mapY: 122,
+    lat: 15.3, lng: 38.9, mapX: 355, mapY: 122,
   },
   {
     isoCode: 'kab',
@@ -335,7 +337,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 12,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-01-30',
-    mapX: 252, mapY: 79,
+    lat: 36.5, lng: 4.4, mapX: 252, mapY: 79,
   },
   {
     isoCode: 'din',
@@ -349,7 +351,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 8,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2024-12-05',
-    mapX: 320, mapY: 150,
+    lat: 7.4, lng: 30.0, mapX: 320, mapY: 150,
   },
   {
     isoCode: 'fuf',
@@ -363,7 +365,7 @@ export const VITALITY_DATA: LanguageVitalityRecord[] = [
     aiReadinessScore: 15,
     vitalityStatus: 'CRITICAL_DATA_DEBT',
     lastAudited: '2025-02-28',
-    mapX: 294, mapY: 173,
+    lat: 4.9, lng: 11.5, mapX: 294, mapY: 173,
   },
 ];
 
