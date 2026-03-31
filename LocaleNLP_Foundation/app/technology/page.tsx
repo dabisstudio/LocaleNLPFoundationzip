@@ -5,6 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { TerminalDemo } from '@/components/technology/TerminalDemo';
+import { DataExplorer } from '@/components/technology/DataExplorer';
 import { supabase, Language } from '@/lib/supabase';
 import {
   Code,
@@ -250,6 +251,8 @@ export default async function TechnologyPage() {
             <TerminalDemo />
           </div>
         </section>
+
+        <DataExplorer />
 
         <section id="architecture" className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">

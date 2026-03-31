@@ -10,7 +10,7 @@ import {
   Code2, Database, Layers, BookOpen,
   Map, MessageSquare, BarChart2,
   HandHeart, Handshake, GraduationCap, Mail,
-  FlaskConical, ScrollText, PenLine,
+  FlaskConical, ScrollText, PenLine, ShieldCheck,
 } from 'lucide-react';
 import { GlowButton } from '@/components/ui/glow-button';
 import { cn } from '@/lib/utils';
@@ -46,10 +46,10 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/about',
     accent: 'cyan',
     links: [
-      { label: 'Our Story',       href: '/about',        icon: Globe,       desc: 'Mission, vision & origin' },
-      { label: 'The Team',        href: '/about#team',   icon: Users,       desc: 'Language researchers & changemakers' },
-      { label: 'Annual Reports',  href: '/about',        icon: FileText,    desc: 'Transparency & impact data' },
-      { label: 'Press & Media',   href: '/about',        icon: Newspaper,   desc: 'Coverage & press kit' },
+      { label: 'Our Story',           href: '/about',        icon: Globe,        desc: 'Mission, vision & origin' },
+      { label: 'The Team',            href: '/about#team',   icon: Users,        desc: 'Language researchers & changemakers' },
+      { label: 'Ethics & Governance', href: '/ethics',       icon: ShieldCheck,  desc: 'Data sovereignty & compliance dashboard' },
+      { label: 'Press & Media',       href: '/about',        icon: Newspaper,    desc: 'Coverage & press kit' },
     ],
     feature: {
       stat: 'Est. 2021',
