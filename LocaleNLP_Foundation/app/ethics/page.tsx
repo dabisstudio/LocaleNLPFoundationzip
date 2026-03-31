@@ -174,7 +174,8 @@ function FlywheelDiagram() {
             strokeWidth="1.5"
             strokeDasharray="4 3"
             markerEnd="url(#arrow-ochre)"
-            opacity="0.6"
+            opacity="0.7"
+            style={{ animation: 'flywheel-dash 1.6s linear infinite' }}
           />
           <path
             d="M 140 130 Q 100 148 68 130"
@@ -183,7 +184,8 @@ function FlywheelDiagram() {
             strokeWidth="1.5"
             strokeDasharray="4 3"
             markerEnd="url(#arrow-cyan)"
-            opacity="0.6"
+            opacity="0.7"
+            style={{ animation: 'flywheel-dash 1.6s linear 0.53s infinite' }}
           />
           <path
             d="M 20 118 Q 30 72 70 48"
@@ -192,7 +194,8 @@ function FlywheelDiagram() {
             strokeWidth="1.5"
             strokeDasharray="4 3"
             markerEnd="url(#arrow-clay)"
-            opacity="0.6"
+            opacity="0.7"
+            style={{ animation: 'flywheel-dash 1.6s linear 1.07s infinite' }}
           />
 
           {nodes.map((n) => (
@@ -336,45 +339,76 @@ export default function EthicsPage() {
               </p>
             </div>
 
-            <div className="space-y-3 max-w-4xl mx-auto">
-              {POLICIES.map((policy) => (
-                <div
-                  key={policy.name}
-                  className="flex items-center gap-5 p-5 rounded-xl border border-white/8 bg-brand-elevated hover:border-accent-cyan/20 transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-accent-cyan/10 flex items-center justify-center shrink-0">
-                    <FileText className="w-5 h-5 text-accent-cyan" aria-hidden="true" />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-0.5">
-                      <h3 className="font-display text-sm font-semibold text-text-primary">
-                        {policy.name}
-                      </h3>
-                      <span className="font-mono text-[10px] text-text-tertiary bg-white/5 px-2 py-0.5 rounded shrink-0">
-                        {policy.version}
-                      </span>
-                    </div>
-                    <p className="text-text-tertiary text-xs leading-relaxed">
-                      {policy.description}
-                    </p>
-                  </div>
-
-                  <div className="text-right shrink-0 hidden sm:block">
-                    <p className="font-mono text-xs text-text-tertiary">{policy.pages}pp</p>
-                    <p className="font-mono text-[10px] text-text-tertiary">{policy.updated}</p>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/10 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
-                    aria-label={`Download ${policy.name} PDF`}
-                  >
-                    <Download className="w-3.5 h-3.5" aria-hidden="true" />
-                    PDF
-                  </button>
-                </div>
-              ))}
+            <div className="max-w-4xl mx-auto rounded-xl border border-white/8 overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-brand-elevated border-b border-white/8">
+                    <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-6 py-3">
+                      Document
+                    </th>
+                    <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-4 py-3 hidden md:table-cell">
+                      Version
+                    </th>
+                    <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-left px-4 py-3 hidden sm:table-cell">
+                      Updated
+                    </th>
+                    <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-right px-4 py-3 hidden sm:table-cell">
+                      Pages
+                    </th>
+                    <th scope="col" className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary text-right px-6 py-3">
+                      Download
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {POLICIES.map((policy, i) => (
+                    <tr
+                      key={policy.name}
+                      className={[
+                        'group transition-colors hover:bg-accent-cyan/5',
+                        i < POLICIES.length - 1 ? 'border-b border-white/6' : '',
+                      ].join(' ')}
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center shrink-0">
+                            <FileText className="w-4 h-4 text-accent-cyan" aria-hidden="true" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="font-display text-sm font-semibold text-text-primary leading-tight">
+                              {policy.name}
+                            </p>
+                            <p className="text-text-tertiary text-xs leading-relaxed mt-0.5 hidden sm:block">
+                              {policy.description}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 hidden md:table-cell">
+                        <span className="font-mono text-[10px] text-text-tertiary bg-white/5 px-2 py-1 rounded">
+                          {policy.version}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 hidden sm:table-cell">
+                        <span className="font-mono text-xs text-text-tertiary">{policy.updated}</span>
+                      </td>
+                      <td className="px-4 py-4 text-right hidden sm:table-cell">
+                        <span className="font-mono text-xs text-text-tertiary">{policy.pages}pp</span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <a
+                          href="#"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-text-secondary hover:border-accent-cyan/30 hover:text-accent-cyan transition-all duration-200 text-xs font-medium font-mono"
+                          aria-label={`Download ${policy.name} PDF`}
+                        >
+                          <Download className="w-3.5 h-3.5" aria-hidden="true" />
+                          PDF
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             <div className="text-center mt-12">

@@ -48,6 +48,7 @@ const NAV_SECTIONS: NavSection[] = [
     links: [
       { label: 'Our Story',           href: '/about',        icon: Globe,        desc: 'Mission, vision & origin' },
       { label: 'The Team',            href: '/about#team',   icon: Users,        desc: 'Language researchers & changemakers' },
+      { label: 'Annual Reports',      href: '/about',        icon: FileText,     desc: 'Transparency & impact data' },
       { label: 'Ethics & Governance', href: '/ethics',       icon: ShieldCheck,  desc: 'Data sovereignty & compliance dashboard' },
       { label: 'Press & Media',       href: '/about',        icon: Newspaper,    desc: 'Coverage & press kit' },
     ],

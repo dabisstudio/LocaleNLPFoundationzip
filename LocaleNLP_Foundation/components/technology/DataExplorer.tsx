@@ -3,6 +3,21 @@
 import { useState, useEffect, useRef } from 'react';
 import { Play, Pause } from 'lucide-react';
 
+function useTypewriter(text: string, triggerKey: string | number, speed = 14): string {
+  const [displayed, setDisplayed] = useState('');
+  useEffect(() => {
+    setDisplayed('');
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) clearInterval(id);
+    }, speed);
+    return () => clearInterval(id);
+  }, [text, triggerKey, speed]);
+  return displayed;
+}
+
 type Modality = 'speech' | 'text';
 
 interface SpeechEntry {
@@ -174,8 +189,8 @@ const WAVEFORM_HEIGHTS = [
   0.5, 0.8, 0.4, 0.95, 0.6, 0.7, 0.3, 0.85, 0.5, 0.6, 0.9, 0.4, 0.7, 0.8, 0.5, 0.35,
 ];
 
-function SpeechPanel({ entry, isPlaying }: { entry: SpeechEntry; isPlaying: boolean }) {
-  const jsonStr = JSON.stringify(
+function SpeechPanel({ entry, isPlaying, triggerKey }: { entry: SpeechEntry; isPlaying: boolean; triggerKey: string | number }) {
+  const fullJson = JSON.stringify(
     {
       id: entry.id,
       dialect: entry.dialect,
@@ -187,6 +202,40 @@ function SpeechPanel({ entry, isPlaying }: { entry: SpeechEntry; isPlaying: bool
     null,
     2
   );
+
+  const typedEn = useTypewriter(entry.en, triggerKey, 22);
+  const typedFr = useTypewriter(entry.fr, triggerKey, 22);
+  const typedJson = useTypewriter(fullJson, triggerKey, 6);
+
+  function renderJson(raw: string) {
+    return raw.split('\n').map((line, i) => {
+      const keyMatch = line.match(/^(\s*)"([^"]+)":/);
+      const strValMatch = line.match(/:\s*"([^"]+)"/);
+      const numValMatch = line.match(/:\s*(\d+\.?\d*)/);
+      if (keyMatch) {
+        const indent = keyMatch[1];
+        const key = keyMatch[2];
+        const rest = line.slice(keyMatch[0].length);
+        return (
+          <span key={i} style={{ display: 'block' }}>
+            {indent}
+            <span style={{ color: '#00E5FF' }}>&quot;{key}&quot;</span>
+            <span style={{ color: '#71717A' }}>:</span>
+            {strValMatch ? (
+              <span style={{ color: '#F5A623' }}> &quot;{strValMatch[1]}&quot;{rest.endsWith(',') ? ',' : ''}</span>
+            ) : numValMatch ? (
+              <span style={{ color: '#E07A5F' }}> {numValMatch[1]}{rest.endsWith(',') ? ',' : ''}</span>
+            ) : (
+              <span style={{ color: '#8F8F9D' }}>{rest}</span>
+            )}
+          </span>
+        );
+      }
+      return (
+        <span key={i} style={{ display: 'block', color: '#52525B' }}>{line}</span>
+      );
+    });
+  }
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
@@ -210,13 +259,23 @@ function SpeechPanel({ entry, isPlaying }: { entry: SpeechEntry; isPlaying: bool
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3">
+          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3 min-h-[60px]">
             <p className="font-mono text-[10px] text-text-tertiary mb-1">EN</p>
-            <p className="text-text-secondary text-sm leading-relaxed">{entry.en}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {typedEn}
+              {typedEn.length < entry.en.length && (
+                <span className="inline-block w-0.5 h-3.5 bg-accent-cyan ml-0.5 align-middle animate-pulse" aria-hidden="true" />
+              )}
+            </p>
           </div>
-          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3">
+          <div className="rounded-lg bg-brand-elevated border border-white/8 p-3 min-h-[60px]">
             <p className="font-mono text-[10px] text-text-tertiary mb-1">FR</p>
-            <p className="text-text-secondary text-sm leading-relaxed">{entry.fr}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              {typedFr}
+              {typedFr.length < entry.fr.length && (
+                <span className="inline-block w-0.5 h-3.5 bg-accent-cyan ml-0.5 align-middle animate-pulse" aria-hidden="true" />
+              )}
+            </p>
           </div>
         </div>
       </div>
@@ -230,36 +289,8 @@ function SpeechPanel({ entry, isPlaying }: { entry: SpeechEntry; isPlaying: bool
           </div>
           <span className="font-mono text-[10px] text-text-tertiary ml-1">api_response.json</span>
         </div>
-        <pre className="p-5 text-[11px] leading-5 overflow-x-auto font-mono">
-          <code>
-            {jsonStr.split('\n').map((line, i) => {
-              const keyMatch = line.match(/^(\s*)"([^"]+)":/);
-              const strValMatch = line.match(/:\s*"([^"]+)"/);
-              const numValMatch = line.match(/:\s*(\d+\.?\d*)/);
-              if (keyMatch) {
-                const indent = keyMatch[1];
-                const key = keyMatch[2];
-                const rest = line.slice(keyMatch[0].length);
-                return (
-                  <span key={i} style={{ display: 'block' }}>
-                    {indent}
-                    <span style={{ color: '#00E5FF' }}>&quot;{key}&quot;</span>
-                    <span style={{ color: '#71717A' }}>:</span>
-                    {strValMatch ? (
-                      <span style={{ color: '#F5A623' }}> &quot;{strValMatch[1]}&quot;{rest.endsWith(',') ? ',' : ''}</span>
-                    ) : numValMatch ? (
-                      <span style={{ color: '#E07A5F' }}> {numValMatch[1]}{rest.endsWith(',') ? ',' : ''}</span>
-                    ) : (
-                      <span style={{ color: '#8F8F9D' }}>{rest}</span>
-                    )}
-                  </span>
-                );
-              }
-              return (
-                <span key={i} style={{ display: 'block', color: '#52525B' }}>{line}</span>
-              );
-            })}
-          </code>
+        <pre className="p-5 text-[11px] leading-5 overflow-x-auto font-mono min-h-[180px]">
+          <code>{renderJson(typedJson)}</code>
         </pre>
       </div>
     </div>
@@ -485,7 +516,7 @@ export function DataExplorer() {
             className="animate-fade-in"
           >
             {modality === 'speech' ? (
-              <SpeechPanel entry={data.speech} isPlaying={isPlaying} />
+              <SpeechPanel entry={data.speech} isPlaying={isPlaying} triggerKey={fadeKey} />
             ) : (
               <TextPanel entry={data.text} />
             )}

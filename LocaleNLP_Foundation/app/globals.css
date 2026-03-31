@@ -263,3 +263,7 @@ input[type='range']:focus-visible::-webkit-slider-thumb {
   from { transform: scaleY(0.3); }
   to   { transform: scaleY(1.0); }
 }
+
+@keyframes flywheel-dash {
+  to { stroke-dashoffset: -14; }
+}
