@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Globe, Twitter, Linkedin, Github, Mail } from 'lucide-react';
+import Image from 'next/image';
+import { Twitter, Linkedin, Github, Mail } from 'lucide-react';
 
 const siteLinks = [
   { label: 'About Us', href: '/about' },
@@ -33,15 +34,15 @@ export default function Footer() {
       <div className="container-wide section-padding py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
-          {/* Col 1 — Mission */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-5 group">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-ochre/80 to-accent-clay/80 flex items-center justify-center">
-                <Globe className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-display font-bold text-lg text-white group-hover:text-accent-ochre transition-colors duration-300">
-                LocaleNLP
-              </span>
+            <Link href="/" className="inline-flex mb-5 group" aria-label="LocaleNLP Foundation home">
+              <Image
+                src="/logo-white.png"
+                alt="LocaleNLP Foundation"
+                width={200}
+                height={40}
+                className="h-9 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+              />
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
               Building open, ethical language infrastructure for Africa and the Global South.
