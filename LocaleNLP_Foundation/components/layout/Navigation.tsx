@@ -11,7 +11,7 @@ import {
   Map, MessageSquare, BarChart2,
   HandHeart, Handshake, GraduationCap, Mail,
   FlaskConical, ScrollText, PenLine, ShieldCheck,
-  Coins, Activity,
+  Coins, Activity, Feather,
 } from 'lucide-react';
 import { GlowButton } from '@/components/ui/glow-button';
 import { cn } from '@/lib/utils';
@@ -48,6 +48,7 @@ const NAV_SECTIONS: NavSection[] = [
     accent: 'cyan',
     links: [
       { label: 'Our Story',           href: '/about',        icon: Globe,        desc: 'Mission, vision & origin' },
+      { label: 'The Manifesto',       href: '/manifesto',    icon: Feather,      desc: 'Our founding statement on language equity' },
       { label: 'The Team',            href: '/about#team',   icon: Users,        desc: 'Language researchers & changemakers' },
       { label: 'Annual Reports',      href: '/about',        icon: FileText,     desc: 'Transparency & impact data' },
       { label: 'Ethics & Governance', href: '/ethics',       icon: ShieldCheck,  desc: 'Data sovereignty & compliance dashboard' },

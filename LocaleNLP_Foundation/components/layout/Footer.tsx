@@ -135,6 +135,9 @@ export default function Footer() {
             © 2026 LocaleNLP Foundation. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
+            <Link href="/status" className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide">
+              System Status
+            </Link>
             <Link href="/privacy" className="font-mono text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 tracking-wide">
               Privacy Policy
             </Link>
