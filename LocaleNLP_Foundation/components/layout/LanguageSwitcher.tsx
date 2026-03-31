@@ -2,25 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback, useId } from 'react';
 import { cn } from '@/lib/utils';
+import { useTranslation, type Locale } from '@/lib/i18n/TranslationContext';
 
 const LANGUAGES = [
-  { code: 'en', native: 'English',    dir: 'ltr' },
-  { code: 'yo', native: 'Yorùbá',     dir: 'ltr' },
-  { code: 'sw', native: 'Kiswahili',  dir: 'ltr' },
-  { code: 'ha', native: 'Hausa',      dir: 'ltr' },
-  { code: 'am', native: 'አማርኛ',      dir: 'ltr' },
-  { code: 'ar', native: 'العربية',    dir: 'rtl' },
-  { code: 'zu', native: 'isiZulu',    dir: 'ltr' },
-  { code: 'ig', native: 'Igbo',       dir: 'ltr' },
-  { code: 'so', native: 'Soomaali',   dir: 'ltr' },
-  { code: 'wo', native: 'Wolof',      dir: 'ltr' },
-  { code: 'fr', native: 'Français',   dir: 'ltr' },
-  { code: 'pt', native: 'Português',  dir: 'ltr' },
-  { code: 'ti', native: 'ትግርኛ',      dir: 'ltr' },
-  { code: 'ak', native: 'Twi',        dir: 'ltr' },
+  { code: 'en' as Locale, native: 'English',    dir: 'ltr' as const },
+  { code: 'fr' as Locale, native: 'Français',   dir: 'ltr' as const },
+  { code: 'ar' as Locale, native: 'العربية',    dir: 'rtl' as const },
+  { code: 'sw' as Locale, native: 'Kiswahili',  dir: 'ltr' as const },
 ];
-
-const STORAGE_KEY = 'locale-pref';
 
 function GlobeWaveIcon({ className }: { className?: string }) {
   return (
@@ -45,29 +34,17 @@ interface LanguageSwitcherProps {
 }
 
 export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
-  const [selected, setSelected] = useState('en');
+  const { locale, setLocale, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
   const btnRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && LANGUAGES.find((l) => l.code === stored)) {
-        setSelected(stored);
-      }
-    } catch {
-      /* localStorage unavailable */
-    }
-  }, []);
-
-  const choose = useCallback((code: string) => {
-    setSelected(code);
+  const choose = useCallback((code: Locale) => {
+    setLocale(code);
     setIsOpen(false);
-    try { localStorage.setItem(STORAGE_KEY, code); } catch { /* noop */ }
-  }, []);
+  }, [setLocale]);
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -109,35 +86,43 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
     };
   }, [isOpen, close]);
 
-  const selectedLang = LANGUAGES.find((l) => l.code === selected) ?? LANGUAGES[0];
+  const selectedLang = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
 
   if (mobile) {
     return (
       <div className="flex flex-col gap-1">
         <button
           onClick={() => setIsOpen((v) => !v)}
-          className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors"
+          className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
           aria-expanded={isOpen}
           aria-controls={panelId}
+          aria-label={t('a11y.lang_select', 'Select language')}
         >
           <span className="flex items-center gap-2.5">
             <GlobeWaveIcon className="w-4 h-4 text-accent-ochre" />
-            <span>{selectedLang.native}</span>
+            <span dir={selectedLang.dir}>{selectedLang.native}</span>
           </span>
           <span className="font-mono text-xs text-text-tertiary uppercase tracking-wider">
-            {selected}
+            {locale}
           </span>
         </button>
         {isOpen && (
-          <div id={panelId} className="pl-4 flex flex-wrap gap-2 px-4 pb-3">
+          <div
+            id={panelId}
+            role="listbox"
+            aria-label={t('a11y.lang_select', 'Select language')}
+            className="pl-4 flex flex-wrap gap-2 px-4 pb-3"
+          >
             {LANGUAGES.map((lang) => (
               <button
                 key={lang.code}
+                role="option"
+                aria-selected={lang.code === locale}
                 onClick={() => choose(lang.code)}
                 dir={lang.dir}
                 className={cn(
-                  'px-3 py-1.5 rounded-lg text-sm transition-all duration-150',
-                  lang.code === selected
+                  'px-3 py-1.5 rounded-lg text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan',
+                  lang.code === locale
                     ? 'bg-accent-ochre/15 text-accent-ochre border border-accent-ochre/30 font-semibold'
                     : 'text-text-secondary hover:text-white hover:bg-white/5 border border-transparent',
                 )}
@@ -161,11 +146,12 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
         ref={btnRef}
         onClick={() => setIsOpen((v) => !v)}
         aria-expanded={isOpen}
-        aria-haspopup="true"
+        aria-haspopup="listbox"
         aria-controls={panelId}
+        aria-label={t('a11y.lang_select', 'Select language')}
         className={cn(
           'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200',
-          'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre/60',
+          'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A]',
           isOpen
             ? 'border-accent-ochre/40 bg-accent-ochre/8 text-white'
             : 'border-white/10 bg-white/4 text-text-secondary hover:text-white hover:border-white/20 hover:bg-white/8',
@@ -179,7 +165,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
           {selectedLang.native}
         </span>
         <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-wider leading-none">
-          {selected}
+          {locale}
         </span>
       </button>
 
@@ -188,21 +174,21 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
           ref={panelRef}
           id={panelId}
           role="listbox"
-          aria-label="Select language"
-          className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-white/10 animate-slide-down overflow-hidden"
+          aria-label={t('a11y.lang_select', 'Select language')}
+          className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-white/10 animate-slide-down overflow-hidden"
           style={{ background: '#09090E', boxShadow: '0 24px 60px rgba(0,0,0,0.8)' }}
         >
           <div className="px-4 pt-4 pb-2">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-accent-ochre mb-0.5">
-              Language / Langue / Lugha
+              {t('lang.switcher.label', 'Language / Langue / Lugha')}
             </p>
             <p className="text-[10px] text-text-tertiary">
-              Visual language selector — site content remains in English.
+              {t('lang.switcher.note', 'Site UI is translated — body content remains in English.')}
             </p>
           </div>
-          <div className="px-3 pb-4 pt-1 grid grid-cols-2 gap-1">
+          <div className="px-3 pb-4 pt-1 flex flex-col gap-1">
             {LANGUAGES.map((lang) => {
-              const isSelected = lang.code === selected;
+              const isSelected = lang.code === locale;
               return (
                 <button
                   key={lang.code}
@@ -211,7 +197,7 @@ export default function LanguageSwitcher({ mobile = false }: LanguageSwitcherPro
                   onClick={() => choose(lang.code)}
                   dir={lang.dir}
                   className={cn(
-                    'group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-150',
+                    'group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan',
                     isSelected
                       ? 'bg-accent-ochre/12 border border-accent-ochre/30'
                       : 'border border-transparent hover:bg-white/5',

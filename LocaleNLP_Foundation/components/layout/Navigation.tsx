@@ -16,131 +16,132 @@ import {
 import { GlowButton } from '@/components/ui/glow-button';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from '@/lib/i18n/TranslationContext';
 
 type LucideIcon = React.ComponentType<{ className?: string }>;
 
 type NavLink = {
-  label: string;
+  labelKey: string;
   href: string;
   icon: LucideIcon;
-  desc: string;
+  descKey: string;
 };
 
 type FeatureCard = {
-  stat: string;
-  statLabel: string;
-  cta: { label: string; href: string };
+  statKey: string;
+  statLabelKey: string;
+  cta: { labelKey: string; href: string };
 };
 
 type NavSection = {
-  label: string;
+  labelKey: string;
   href: string;
   accent: 'ochre' | 'cyan' | 'clay';
   links: NavLink[];
   feature: FeatureCard;
-  viewAll?: { label: string; href: string };
+  viewAll?: { labelKey: string; href: string };
 };
 
 const NAV_SECTIONS: NavSection[] = [
   {
-    label: 'About',
+    labelKey: 'nav.about',
     href: '/about',
     accent: 'cyan',
     links: [
-      { label: 'Our Story',           href: '/about',        icon: Globe,        desc: 'Mission, vision & origin' },
-      { label: 'The Manifesto',       href: '/manifesto',    icon: Feather,      desc: 'Our founding statement on language equity' },
-      { label: 'The Team',            href: '/about#team',   icon: Users,        desc: 'Language researchers & changemakers' },
-      { label: 'Annual Reports',      href: '/about',        icon: FileText,     desc: 'Transparency & impact data' },
-      { label: 'Ethics & Governance', href: '/ethics',       icon: ShieldCheck,  desc: 'Data sovereignty & compliance dashboard' },
-      { label: 'Press & Media',       href: '/about',        icon: Newspaper,    desc: 'Coverage & press kit' },
+      { labelKey: 'nav.about.our_story', href: '/about',        icon: Globe,        descKey: 'Mission, vision & origin' },
+      { labelKey: 'nav.about.manifesto', href: '/manifesto',    icon: Feather,      descKey: 'Our founding statement on language equity' },
+      { labelKey: 'nav.about.team',      href: '/about#team',   icon: Users,        descKey: 'Language researchers & changemakers' },
+      { labelKey: 'nav.about.reports',   href: '/about',        icon: FileText,     descKey: 'Transparency & impact data' },
+      { labelKey: 'nav.about.ethics',    href: '/ethics',       icon: ShieldCheck,  descKey: 'Data sovereignty & compliance dashboard' },
+      { labelKey: 'nav.about.press',     href: '/about',        icon: Newspaper,    descKey: 'Coverage & press kit' },
     ],
     feature: {
-      stat: 'Est. 2021',
-      statLabel: 'Pan-African language equity foundation',
-      cta: { label: 'Read our story', href: '/about' },
+      statKey: 'nav.about.feature_stat',
+      statLabelKey: 'nav.about.feature_label',
+      cta: { labelKey: 'nav.about.feature_cta', href: '/about' },
     },
   },
   {
-    label: 'Programs',
+    labelKey: 'nav.programs',
     href: '/programs',
     accent: 'ochre',
     links: [
-      { label: 'OpenSpeech Initiative', href: '/programs/openspeech-initiative', icon: Mic,        desc: 'Open speech data for 200+ African languages' },
-      { label: 'Language Futures Lab',  href: '/programs/language-futures-lab',  icon: Microscope, desc: 'Low-resource NLP models & benchmarks' },
-      { label: 'Lughatna Platform',     href: '/programs/lughatna-platform',     icon: Heart,      desc: 'Self-hosted, offline-first NLP for communities' },
-      { label: 'Policy & Governance',  href: '/programs/policy-governance',     icon: Scale,      desc: 'Embedding language equity in AI policy' },
+      { labelKey: 'nav.programs.openspeech',  href: '/programs/openspeech-initiative', icon: Mic,        descKey: 'Open speech data for 200+ African languages' },
+      { labelKey: 'nav.programs.futures_lab', href: '/programs/language-futures-lab',  icon: Microscope, descKey: 'Low-resource NLP models & benchmarks' },
+      { labelKey: 'nav.programs.lughatna',    href: '/programs/lughatna-platform',     icon: Heart,      descKey: 'Self-hosted, offline-first NLP for communities' },
+      { labelKey: 'nav.programs.policy',      href: '/programs/policy-governance',     icon: Scale,      descKey: 'Embedding language equity in AI policy' },
     ],
     feature: {
-      stat: '4 active',
-      statLabel: 'Open programmes across Africa',
-      cta: { label: 'Support our work', href: '/donate' },
+      statKey: 'nav.programs.feature_stat',
+      statLabelKey: 'nav.programs.feature_label',
+      cta: { labelKey: 'nav.programs.feature_cta', href: '/donate' },
     },
-    viewAll: { label: 'View all programmes', href: '/programs' },
+    viewAll: { labelKey: 'nav.programs.view_all', href: '/programs' },
   },
   {
-    label: 'Technology',
+    labelKey: 'nav.technology',
     href: '/technology',
     accent: 'cyan',
     links: [
-      { label: 'API Sandbox',         href: '/technology#sandbox',      icon: Code2,    desc: 'Try live API calls — no signup required' },
-      { label: 'Stack Architecture',  href: '/technology#architecture', icon: Layers,   desc: 'Interactive 4-node stack diagram' },
-      { label: 'Nutrition Labels',    href: '/technology#nutrition',    icon: Database, desc: 'Ethical compliance for every dataset' },
-      { label: 'Data Sovereignty',    href: '/technology#escrow',       icon: BookOpen, desc: 'Who owns the data — visualised' },
+      { labelKey: 'nav.technology.api',          href: '/technology#sandbox',      icon: Code2,    descKey: 'Try live API calls — no signup required' },
+      { labelKey: 'nav.technology.architecture', href: '/technology#architecture', icon: Layers,   descKey: 'Interactive 4-node stack diagram' },
+      { labelKey: 'nav.technology.nutrition',    href: '/technology#nutrition',    icon: Database, descKey: 'Ethical compliance for every dataset' },
+      { labelKey: 'nav.technology.sovereignty',  href: '/technology#escrow',       icon: BookOpen, descKey: 'Who owns the data — visualised' },
     ],
     feature: {
-      stat: '2,000+',
-      statLabel: 'African languages in our pipeline',
-      cta: { label: 'Explore technology', href: '/technology' },
+      statKey: 'nav.technology.feature_stat',
+      statLabelKey: 'nav.technology.feature_label',
+      cta: { labelKey: 'nav.technology.feature_cta', href: '/technology' },
     },
   },
   {
-    label: 'Impact',
+    labelKey: 'nav.impact',
     href: '/impact',
     accent: 'clay',
     links: [
-      { label: 'Impact Map',        href: '/impact',              icon: Map,          desc: 'Track our reach across 47 countries' },
-      { label: 'Vitality Index',    href: '/vitality',            icon: Activity,     desc: 'AI readiness audit for African languages' },
-      { label: 'Field Stories',     href: '/impact#stories',      icon: MessageSquare, desc: 'Voices from communities we serve' },
-      { label: 'Metrics & Data',    href: '/impact#metrics',      icon: BarChart2,    desc: 'Evidence-based progress reporting' },
-      { label: 'Publications',      href: '/insights#publications', icon: FileText,   desc: 'Research, policy briefs & reports' },
+      { labelKey: 'nav.impact.map',          href: '/impact',               icon: Map,           descKey: 'Track our reach across 47 countries' },
+      { labelKey: 'nav.impact.vitality',     href: '/vitality',             icon: Activity,      descKey: 'AI readiness audit for African languages' },
+      { labelKey: 'nav.impact.stories',      href: '/impact#stories',       icon: MessageSquare, descKey: 'Voices from communities we serve' },
+      { labelKey: 'nav.impact.metrics',      href: '/impact#metrics',       icon: BarChart2,     descKey: 'Evidence-based progress reporting' },
+      { labelKey: 'nav.impact.publications', href: '/insights#publications', icon: FileText,     descKey: 'Research, policy briefs & reports' },
     ],
     feature: {
-      stat: '47 countries',
-      statLabel: 'In our Pan-African impact network',
-      cta: { label: 'View the map', href: '/impact' },
+      statKey: 'nav.impact.feature_stat',
+      statLabelKey: 'nav.impact.feature_label',
+      cta: { labelKey: 'nav.impact.feature_cta', href: '/impact' },
     },
   },
   {
-    label: 'Get Involved',
+    labelKey: 'nav.get_involved',
     href: '/get-involved',
     accent: 'ochre',
     links: [
-      { label: 'Volunteer',      href: '/get-involved#contributor', icon: HandHeart,   desc: 'Contribute voice data, earn via mobile money' },
-      { label: 'Data Bounties', href: '/bounties',                icon: Coins,       desc: 'Fund specific language data deficits' },
-      { label: 'Partner With Us', href: '/get-involved#pathways', icon: Handshake,   desc: 'For institutions & organisations' },
-      { label: 'Fellowships',    href: '/get-involved',           icon: GraduationCap, desc: 'AI × Language research fellowships' },
-      { label: 'Contact Us',     href: '/get-involved#contact',   icon: Mail,        desc: 'Get in touch with our team' },
+      { labelKey: 'nav.get_involved.volunteer',   href: '/get-involved#contributor', icon: HandHeart,    descKey: 'Contribute voice data, earn via mobile money' },
+      { labelKey: 'nav.get_involved.bounties',    href: '/bounties',                 icon: Coins,        descKey: 'Fund specific language data deficits' },
+      { labelKey: 'nav.get_involved.partner',     href: '/get-involved#pathways',    icon: Handshake,    descKey: 'For institutions & organisations' },
+      { labelKey: 'nav.get_involved.fellowships', href: '/get-involved',             icon: GraduationCap, descKey: 'AI × Language research fellowships' },
+      { labelKey: 'nav.get_involved.contact',     href: '/get-involved#contact',     icon: Mail,         descKey: 'Get in touch with our team' },
     ],
     feature: {
-      stat: '300+',
-      statLabel: 'Contributors & community members',
-      cta: { label: 'Join us today', href: '/get-involved' },
+      statKey: 'nav.get_involved.feature_stat',
+      statLabelKey: 'nav.get_involved.feature_label',
+      cta: { labelKey: 'nav.get_involved.feature_cta', href: '/get-involved' },
     },
   },
   {
-    label: 'Insights',
+    labelKey: 'nav.insights',
     href: '/insights',
     accent: 'clay',
     links: [
-      { label: 'Research Papers', href: '/insights',          icon: FlaskConical, desc: 'Peer-reviewed NLP research' },
-      { label: 'Policy Briefs',   href: '/insights',          icon: ScrollText,   desc: 'Language equity in policy contexts' },
-      { label: 'Field Notes',     href: '/insights#stories',  icon: PenLine,      desc: 'Dispatches from the field' },
-      { label: 'Newsletter',      href: '#newsletter',        icon: Newspaper,    desc: 'Monthly updates from LocaleNLP' },
+      { labelKey: 'nav.insights.research',   href: '/insights',          icon: FlaskConical, descKey: 'Peer-reviewed NLP research' },
+      { labelKey: 'nav.insights.policy',     href: '/insights',          icon: ScrollText,   descKey: 'Language equity in policy contexts' },
+      { labelKey: 'nav.insights.field_notes', href: '/insights#stories', icon: PenLine,      descKey: 'Dispatches from the field' },
+      { labelKey: 'nav.insights.newsletter', href: '#newsletter',        icon: Newspaper,    descKey: 'Monthly updates from LocaleNLP' },
     ],
     feature: {
-      stat: '120+',
-      statLabel: 'Research papers & field reports',
-      cta: { label: 'Browse insights', href: '/insights' },
+      statKey: 'nav.insights.feature_stat',
+      statLabelKey: 'nav.insights.feature_label',
+      cta: { labelKey: 'nav.insights.feature_cta', href: '/insights' },
     },
   },
 ];
@@ -179,18 +180,19 @@ const ACCENT = {
 } as const;
 
 function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => void }) {
+  const { t } = useTranslation();
   const c = ACCENT[section.accent];
   return (
     <div className="container-wide section-padding py-8">
       <div className="grid grid-cols-[1fr_260px] gap-12">
         <div>
           <p className={cn('text-[10px] font-semibold uppercase tracking-widest mb-5', c.text)}>
-            {section.label}
+            {t(section.labelKey)}
           </p>
           <div className="grid grid-cols-2 gap-1">
-            {section.links.map(({ label, href, icon: Icon, desc }) => (
+            {section.links.map(({ labelKey, href, icon: Icon, descKey }) => (
               <Link
-                key={href + label}
+                key={href + labelKey}
                 href={href}
                 onClick={onClose}
                 className={cn(
@@ -203,10 +205,10 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
                 </span>
                 <span className="flex flex-col min-w-0">
                   <span className={cn('text-sm font-semibold text-white leading-snug transition-colors', c.labelHov)}>
-                    {label}
+                    {t(labelKey)}
                   </span>
                   <span className="text-xs text-text-secondary mt-0.5 leading-snug">
-                    {desc}
+                    {descKey}
                   </span>
                 </span>
               </Link>
@@ -218,8 +220,8 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
               onClick={onClose}
               className={cn('inline-flex items-center gap-1.5 mt-5 text-xs font-medium transition-colors hover:opacity-75', c.text)}
             >
-              {section.viewAll.label}
-              <ArrowRight className="w-3.5 h-3.5" />
+              {t(section.viewAll.labelKey)}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </Link>
           )}
         </div>
@@ -227,18 +229,18 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
         <div className="flex flex-col justify-center">
           <div className={cn('p-5 rounded-2xl border', c.border, c.card)}>
             <p className={cn('font-display text-3xl font-bold mb-1 leading-none', c.text)}>
-              {section.feature.stat}
+              {t(section.feature.statKey)}
             </p>
             <p className="text-sm text-text-secondary mt-2 mb-4 leading-snug">
-              {section.feature.statLabel}
+              {t(section.feature.statLabelKey)}
             </p>
             <Link
               href={section.feature.cta.href}
               onClick={onClose}
               className={cn('inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-75', c.text)}
             >
-              {section.feature.cta.label}
-              <ArrowRight className="w-3.5 h-3.5" />
+              {t(section.feature.cta.labelKey)}
+              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -248,6 +250,7 @@ function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => v
 }
 
 export default function Navigation() {
+  const { t } = useTranslation();
   const [isMobileOpen, setIsMobileOpen]   = useState(false);
   const [openKey, setOpenKey]             = useState<string | null>(null);
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
@@ -298,21 +301,21 @@ export default function Navigation() {
     return () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); };
   }, []);
 
-  const activeSection = NAV_SECTIONS.find((s) => s.label === openKey) ?? null;
+  const activeSection = NAV_SECTIONS.find((s) => s.labelKey === openKey) ?? null;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/8">
-      <nav className="container-wide section-padding">
+      <nav className="container-wide section-padding" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link
             href="/"
-            className="shrink-0 flex items-center"
-            aria-label="LocaleNLP Foundation home"
+            className="shrink-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A] rounded"
+            aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
             onClick={closeMenu}
           >
             <Image
               src="/logo-icon.png"
-              alt="LocaleNLP Foundation"
+              alt={t('a11y.logo_home', 'LocaleNLP Foundation')}
               width={40}
               height={40}
               priority
@@ -323,18 +326,18 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center gap-0.5">
             {NAV_SECTIONS.map((section) => (
               <button
-                key={section.label}
-                ref={(el) => { if (openKey === section.label) activeTrigger.current = el; }}
-                onMouseEnter={() => openSection(section.label)}
+                key={section.labelKey}
+                ref={(el) => { if (openKey === section.labelKey) activeTrigger.current = el; }}
+                onMouseEnter={() => openSection(section.labelKey)}
                 onMouseLeave={scheduleMegaClose}
-                onFocus={() => openSection(section.label)}
-                onClick={() => setOpenKey((v) => (v === section.label ? null : section.label))}
-                aria-expanded={openKey === section.label}
+                onFocus={() => openSection(section.labelKey)}
+                onClick={() => setOpenKey((v) => (v === section.labelKey ? null : section.labelKey))}
+                aria-expanded={openKey === section.labelKey}
                 aria-haspopup="true"
-                aria-controls={openKey === section.label ? megaPanelId : undefined}
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200 rounded-md hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre/60"
+                aria-controls={openKey === section.labelKey ? megaPanelId : undefined}
+                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200 rounded-md hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#04040A]"
               >
-                {section.label}
+                {t(section.labelKey)}
               </button>
             ))}
           </div>
@@ -342,17 +345,17 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LanguageSwitcher />
             <GlowButton href="/donate" variant="primary" className="text-sm" onClick={closeMenu}>
-              Donate
+              {t('nav.donate', 'Donate')}
             </GlowButton>
           </div>
 
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors"
-            aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+            className="lg:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            aria-label={isMobileOpen ? t('nav.close_menu', 'Close menu') : t('nav.open_menu', 'Open menu')}
             aria-expanded={isMobileOpen}
           >
-            {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
           </button>
         </div>
       </nav>
@@ -365,7 +368,7 @@ export default function Navigation() {
           onMouseEnter={cancelMegaClose}
           onMouseLeave={scheduleMegaClose}
           role="region"
-          aria-label={`${activeSection.label} navigation`}
+          aria-label={`${t(activeSection.labelKey)} navigation`}
         >
           <MegaPanel section={activeSection} onClose={closeMenu} />
         </div>
@@ -373,43 +376,46 @@ export default function Navigation() {
 
       {isMobileOpen && (
         <div className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 glass-panel border-t border-white/8 overflow-y-auto animate-slide-down">
-          <nav className="container-wide section-padding py-6 flex flex-col gap-1">
+          <nav
+            className="container-wide section-padding py-6 flex flex-col gap-1"
+            aria-label="Mobile navigation"
+          >
             {NAV_SECTIONS.map((section) => {
               const c = ACCENT[section.accent];
-              const isOpen = mobileAccordion === section.label;
+              const isOpen = mobileAccordion === section.labelKey;
               return (
-                <div key={section.label}>
+                <div key={section.labelKey}>
                   <button
-                    onClick={() => setMobileAccordion((v) => (v === section.label ? null : section.label))}
-                    className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors"
+                    onClick={() => setMobileAccordion((v) => (v === section.labelKey ? null : section.labelKey))}
+                    className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
                     aria-expanded={isOpen}
                   >
-                    {section.label}
-                    <span className={cn('text-text-secondary text-lg leading-none transition-transform duration-200 select-none', isOpen && 'rotate-90')}>
+                    {t(section.labelKey)}
+                    <span className={cn('text-text-secondary text-lg leading-none transition-transform duration-200 select-none', isOpen && 'rotate-90')} aria-hidden="true">
                       ›
                     </span>
                   </button>
                   {isOpen && (
                     <div className="pl-4 flex flex-col gap-0.5 mt-1 mb-2">
-                      {section.links.map(({ label, href, icon: Icon }) => (
+                      {section.links.map(({ labelKey, href, icon: Icon }) => (
                         <Link
-                          key={href + label}
+                          key={href + labelKey}
                           href={href}
                           onClick={() => setIsMobileOpen(false)}
-                          className="flex items-center gap-2.5 py-2 px-4 text-sm text-text-secondary hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                          className="flex items-center gap-2.5 py-2 px-4 text-sm text-text-secondary hover:text-white hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
                         >
-                          <Icon className={cn('w-4 h-4 shrink-0', c.icon)} />
-                          {label}
+                          <Icon className={cn('w-4 h-4 shrink-0', c.icon)} aria-hidden="true" />
+                          {t(labelKey)}
                         </Link>
                       ))}
                       {section.viewAll && (
                         <Link
                           href={section.viewAll.href}
                           onClick={() => setIsMobileOpen(false)}
-                          className={cn('flex items-center gap-2 py-2 px-4 text-sm font-medium hover:bg-white/5 rounded-lg transition-colors', c.text)}
+                          className={cn('flex items-center gap-2 py-2 px-4 text-sm font-medium hover:bg-white/5 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan', c.text)}
                         >
-                          {section.viewAll.label}
-                          <ArrowRight className="w-3.5 h-3.5" />
+                          {t(section.viewAll.labelKey)}
+                          <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                         </Link>
                       )}
                     </div>
@@ -425,7 +431,7 @@ export default function Navigation() {
                 className="w-full justify-center"
                 onClick={() => setIsMobileOpen(false)}
               >
-                Donate
+                {t('nav.donate', 'Donate')}
               </GlowButton>
             </div>
           </nav>

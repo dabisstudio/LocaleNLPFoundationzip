@@ -47,7 +47,7 @@ const config: Config = {
         'accent-cyan': '#00E5FF',
         'text-primary': '#FAFAFA',
         'text-secondary': '#8F8F9D',
-        'text-tertiary': '#52525B',
+        'text-tertiary': '#787890',
 
         // Legacy palette kept for backward compat; midnight-900 and midnight-800 updated
         midnight: {
