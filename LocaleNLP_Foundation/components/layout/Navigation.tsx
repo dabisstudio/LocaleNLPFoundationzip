@@ -80,10 +80,10 @@ const NAV_SECTIONS: NavSection[] = [
     href: '/technology',
     accent: 'cyan',
     links: [
-      { label: 'Open Models & APIs', href: '/technology#api',          icon: Code2,    desc: 'Production-ready African language models' },
-      { label: 'Datasets',           href: '/technology#datasets',     icon: Database, desc: 'Community-sourced training corpora' },
-      { label: 'Architecture',       href: '/technology#architecture', icon: Layers,   desc: 'How our systems are built' },
-      { label: 'Documentation',      href: '/technology#docs',         icon: BookOpen, desc: 'Guides, specs & research notes' },
+      { label: 'API Sandbox',         href: '/technology#sandbox',      icon: Code2,    desc: 'Try live API calls — no signup required' },
+      { label: 'Stack Architecture',  href: '/technology#architecture', icon: Layers,   desc: 'Interactive 4-node stack diagram' },
+      { label: 'Nutrition Labels',    href: '/technology#nutrition',    icon: Database, desc: 'Ethical compliance for every dataset' },
+      { label: 'Data Sovereignty',    href: '/technology#escrow',       icon: BookOpen, desc: 'Who owns the data — visualised' },
     ],
     feature: {
       stat: '2,000+',

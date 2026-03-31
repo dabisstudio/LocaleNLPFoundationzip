@@ -7,6 +7,10 @@ import { GlowButton } from '@/components/ui/glow-button';
 import { KernHeading } from '@/components/ui/kern-heading';
 import { TerminalDemo } from '@/components/technology/TerminalDemo';
 import { DataExplorer } from '@/components/technology/DataExplorer';
+import { ArchDiagram } from '@/components/technology/ArchDiagram';
+import { ApiSandbox } from '@/components/technology/ApiSandbox';
+import { NutritionLabel } from '@/components/technology/NutritionLabel';
+import { EscrowVisualizer } from '@/components/technology/EscrowVisualizer';
 import { supabase, Language } from '@/lib/supabase';
 import {
   Code,
@@ -20,7 +24,6 @@ import {
   FileText,
   Lock,
   Zap,
-  Globe,
 } from 'lucide-react';
 
 async function getLanguages(): Promise<Language[]> {
@@ -71,7 +74,6 @@ const DATASETS = [
   { name: 'AfriDialog', size: '500K turns', languages: 6, description: 'Conversational data for dialog systems' },
   { name: 'AfriSent', size: '200K samples', languages: 10, description: 'Sentiment with cultural context' },
 ];
-
 
 const API_ENDPOINTS = [
   {
@@ -268,6 +270,10 @@ export default async function TechnologyPage() {
               </p>
             </div>
 
+            <div className="mb-12">
+              <ArchDiagram />
+            </div>
+
             <div className="grid md:grid-cols-3 gap-6">
               <SpotlightCard spotlightColor="rgba(245,166,35,0.1)" className="p-8">
                 <div className="w-12 h-12 rounded-xl bg-accent-ochre/10 flex items-center justify-center mb-5">
@@ -399,30 +405,44 @@ export default async function TechnologyPage() {
               </div>
             </div>
 
-            <div className="text-center">
+            <div className="text-center mb-16">
               <GlowButton href="https://docs.localenlp.org/api" variant="ghost">
                 <Code className="w-4 h-4" aria-hidden="true" />
                 Full API Documentation
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
               </GlowButton>
             </div>
+
+            <div id="sandbox">
+              <div className="text-center mb-10">
+                <MonoLabel label="API SANDBOX" number="03B" status="beta" className="mb-5" />
+                <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                  Try It Without Signing Up
+                </KernHeading>
+                <p className="text-text-secondary max-w-2xl mx-auto">
+                  Select an endpoint, choose a language, and run a live-simulated API call.
+                  See the exact JSON response your app would receive — no API key required for this demo.
+                </p>
+              </div>
+              <ApiSandbox />
+            </div>
           </div>
         </section>
 
-        <section id="datasets" className="py-20 bg-brand-surface">
+        <section id="nutrition" className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
               <MonoLabel label="OPEN DATASETS" number="04" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Training Data for African NLP
-              </h2>
+              </KernHeading>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                High-quality, ethically-sourced datasets created in partnership with African
-                communities under community ownership agreements.
+                High-quality, ethically-sourced datasets. Every record has a model nutrition label —
+                full transparency on lineage, consent, demographics, and contributor payouts.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
               {DATASETS.map((dataset) => (
                 <SpotlightCard
                   key={dataset.name}
@@ -443,6 +463,24 @@ export default async function TechnologyPage() {
                 </SpotlightCard>
               ))}
             </div>
+
+            <NutritionLabel />
+          </div>
+        </section>
+
+        <section id="escrow" className="py-20 bg-brand-surface">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="DATA SOVEREIGNTY" number="05" className="mb-5" />
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Who Owns the Data?
+              </KernHeading>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Most AI companies bury their data licensing in fine print. We put ours in an interactive
+                diagram — because we are proud of it.
+              </p>
+            </div>
+            <EscrowVisualizer />
           </div>
         </section>
 
@@ -450,7 +488,7 @@ export default async function TechnologyPage() {
           <section className="py-20 bg-brand-deep">
             <div className="container-wide section-padding">
               <div className="text-center mb-14">
-                <MonoLabel label="LANGUAGE COVERAGE" number="05" className="mb-5" />
+                <MonoLabel label="LANGUAGE COVERAGE" number="06" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   Languages We Support
                 </h2>
@@ -497,7 +535,7 @@ export default async function TechnologyPage() {
         <section id="research" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="RESEARCH PAPERS" number="06" className="mb-5" />
+              <MonoLabel label="RESEARCH PAPERS" number="07" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Peer-Reviewed Publications
               </h2>
@@ -554,7 +592,7 @@ export default async function TechnologyPage() {
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="ETHICAL AI" number="07" className="mb-5" />
+              <MonoLabel label="ETHICAL AI" number="08" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Building Responsibly
               </h2>
