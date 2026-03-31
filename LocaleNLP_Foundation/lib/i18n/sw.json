@@ -529,5 +529,10 @@
   "pact.enterprise_cta.title": "Unajenga AI ya kibiashara?",
   "pact.enterprise_cta.body": "Pata mifano ya lugha za Afrika na Kiarabu ya kiwango cha biashara kupitia LocaleNLP Biashara. Funza mifano ya lugha ya kibinafsi bila hatari za kisheria.",
   "pact.enterprise_cta.cta1": "LocaleNLP Biashara",
-  "pact.enterprise_cta.cta2": "Wasiliana na Mauzo ya Biashara"
+  "pact.enterprise_cta.cta2": "Wasiliana na Mauzo ya Biashara",
+  "pact.dual.diagram_aria": "Mchoro wa umbo-nane unaoonyesha miduara ya LocaleNLP Foundation na kitu cha kibiashara vilivyounganishwa kwenye nodi ya kizuizi cha maadili ya kati",
+  "pact.dual.foundation.label": "MSINGI",
+  "pact.dual.forprofit.label": "BIASHARA",
+  "pact.dual.center.line1": "MAADILI",
+  "pact.dual.center.line2": "KIZUIZI"
 }

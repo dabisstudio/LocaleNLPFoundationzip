@@ -529,5 +529,10 @@
   "pact.enterprise_cta.title": "هل تبني ذكاءً اصطناعياً تجارياً؟",
   "pact.enterprise_cta.body": "احصل على نماذج اللغات الأفريقية والعربية على مستوى المؤسسات عبر LocaleNLP التجارية. دربّ نماذج لغوية كبيرة خاصة دون مخاطر قانونية.",
   "pact.enterprise_cta.cta1": "LocaleNLP التجارية",
-  "pact.enterprise_cta.cta2": "تواصل مع مبيعات المؤسسات"
+  "pact.enterprise_cta.cta2": "تواصل مع مبيعات المؤسسات",
+  "pact.dual.diagram_aria": "مخطط على شكل رقم ثمانية يظهر حلقتي مؤسسة LocaleNLP والكيان التجاري المتصلتين عند عقدة جدار حماية أخلاقي مركزية",
+  "pact.dual.foundation.label": "المؤسسة",
+  "pact.dual.forprofit.label": "التجارية",
+  "pact.dual.center.line1": "أخلاقيات",
+  "pact.dual.center.line2": "الحماية"
 }

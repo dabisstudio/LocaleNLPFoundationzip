@@ -529,5 +529,10 @@
   "pact.enterprise_cta.title": "Vous construisez de l'IA commerciale ?",
   "pact.enterprise_cta.body": "Accédez aux modèles linguistiques africains et arabes de qualité entreprise via LocaleNLP Commercial. Entraînez des LLM propriétaires sans risque juridique.",
   "pact.enterprise_cta.cta1": "LocaleNLP Commercial",
-  "pact.enterprise_cta.cta2": "Contacter les ventes entreprise"
+  "pact.enterprise_cta.cta2": "Contacter les ventes entreprise",
+  "pact.dual.diagram_aria": "Diagramme en huit montrant les boucles de la Fondation LocaleNLP et de l entité commerciale connectées en un noeud central",
+  "pact.dual.foundation.label": "FONDATION",
+  "pact.dual.forprofit.label": "COMMERCIAL",
+  "pact.dual.center.line1": "ÉTHIQUE",
+  "pact.dual.center.line2": "PARE-FEU"
 }

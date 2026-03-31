@@ -1,64 +1,88 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useAnimationFrame } from 'framer-motion';
 import { useTranslation } from '@/lib/i18n/TranslationContext';
 
-type LoopNode = { label: string; color: string };
+const W = 600;
+const H = 280;
+const CX = W / 2;
+const CY = H / 2;
+const RX = 180;
+const RY = 90;
 
-function OrbitalDot({ color, duration, delay, radius }: { color: string; duration: number; delay: number; radius: number }) {
+function ellipsePoint(cx: number, cy: number, rx: number, ry: number, t: number) {
+  const angle = t * 2 * Math.PI;
+  return {
+    x: cx + rx * Math.cos(angle),
+    y: cy + ry * Math.sin(angle),
+  };
+}
+
+const LEFT_CX = CX - RX * 0.82;
+const RIGHT_CX = CX + RX * 0.82;
+
+function buildLoopPath(cx: number) {
+  const pts: string[] = [];
+  const steps = 64;
+  for (let i = 0; i <= steps; i++) {
+    const { x, y } = ellipsePoint(cx, CY, RX * 0.82, RY, i / steps);
+    pts.push(`${i === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`);
+  }
+  pts.push('Z');
+  return pts.join(' ');
+}
+
+const LEFT_PATH = buildLoopPath(LEFT_CX);
+const RIGHT_PATH = buildLoopPath(RIGHT_CX);
+
+function AnimatedDot({ cx, rx, ry, color, duration, offset }: {
+  cx: number; rx: number; ry: number; color: string; duration: number; offset: number;
+}) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const startRef = useRef<number>(-1);
+
+  useAnimationFrame((t) => {
+    if (startRef.current < 0) startRef.current = t;
+    const elapsed = (t - startRef.current) / 1000;
+    const raw = ((elapsed / duration) + offset) % 1;
+    const p = ellipsePoint(cx, CY, rx, ry, raw);
+    setPos(p);
+  });
+
   return (
-    <motion.div
-      className="absolute w-2.5 h-2.5 rounded-full"
-      style={{ backgroundColor: color, top: '50%', left: '50%', marginTop: -5, marginLeft: -5 }}
-      animate={{
-        x: [radius, 0, -radius, 0, radius],
-        y: [0, -radius * 0.5, 0, radius * 0.5, 0],
-      }}
-      transition={{ repeat: Infinity, duration, delay, ease: 'linear' }}
+    <motion.circle
+      cx={pos.x}
+      cy={pos.y}
+      r={5}
+      fill={color}
       aria-hidden="true"
+      style={{ filter: `drop-shadow(0 0 6px ${color})` }}
     />
   );
 }
 
-function LoopCard({
-  titleKey,
-  nodes,
-  color,
-  side,
-}: {
-  titleKey: string;
-  nodes: LoopNode[];
-  color: string;
-  side: 'left' | 'right';
-}) {
-  const { t } = useTranslation();
+type LoopEntry = { label: string; color: string };
+
+function LoopLabel({ entries, x, y, align }: { entries: LoopEntry[]; x: number; y: number; align: 'start' | 'end' }) {
   return (
-    <div
-      className="relative flex-1 rounded-2xl border p-5 flex flex-col gap-3 overflow-hidden"
-      style={{ borderColor: `${color}25`, backgroundColor: `${color}06` }}
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          background: side === 'left'
-            ? `radial-gradient(ellipse 80% 60% at 20% 50%, ${color}30, transparent 70%)`
-            : `radial-gradient(ellipse 80% 60% at 80% 50%, ${color}30, transparent 70%)`,
-        }}
-      />
-      <p className="font-mono text-[10px] uppercase tracking-widest relative z-10" style={{ color }}>
-        {t(titleKey)}
-      </p>
-      <div className="space-y-2 relative z-10">
-        {nodes.map((node, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: node.color }} aria-hidden="true" />
-            <span className="text-text-secondary text-xs">{node.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+    <g>
+      {entries.map((e, i) => (
+        <g key={i} transform={`translate(${x},${y + i * 22})`}>
+          <circle cx={align === 'start' ? -10 : 10} cy={0} r={3.5} fill={e.color} />
+          <text
+            x={align === 'start' ? 0 : 0}
+            y={4}
+            textAnchor={align}
+            fontSize="11"
+            fill="rgba(255,255,255,0.65)"
+            fontFamily="JetBrains Mono, monospace"
+          >
+            {e.label}
+          </text>
+        </g>
+      ))}
+    </g>
   );
 }
 
@@ -67,13 +91,13 @@ export function DualEntityDiagram() {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => { setIsMounted(true); }, []);
 
-  const foundationNodes: LoopNode[] = [
+  const foundationEntries: LoopEntry[] = [
     { label: t('pact.dual.foundation.n1', 'Philanthropy & Grants'), color: '#00E5FF' },
     { label: t('pact.dual.foundation.n2', 'Community Collection'), color: '#F5A623' },
     { label: t('pact.dual.foundation.n3', 'Open Data Release'), color: '#4ADE80' },
   ];
 
-  const forProfitNodes: LoopNode[] = [
+  const forProfitEntries: LoopEntry[] = [
     { label: t('pact.dual.forprofit.n1', 'API Licensing Revenue'), color: '#E07A5F' },
     { label: t('pact.dual.forprofit.n2', 'Enterprise Contracts'), color: '#A78BFA' },
     { label: t('pact.dual.forprofit.n3', 'Venture Capital'), color: '#00E5FF' },
@@ -91,50 +115,61 @@ export function DualEntityDiagram() {
       </div>
 
       <div className="p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row items-stretch gap-4">
-          <LoopCard
-            titleKey="pact.dual.foundation.title"
-            nodes={foundationNodes}
-            color="#00E5FF"
-            side="left"
-          />
+        <div
+          className="rounded-2xl overflow-hidden relative"
+          style={{ backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+          role="img"
+          aria-label={t('pact.dual.diagram_aria', 'Figure-eight diagram showing the LocaleNLP Foundation and For-Profit entity loops connected at a central ethics firewall node')}
+        >
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            width="100%"
+            preserveAspectRatio="xMidYMid meet"
+            style={{ display: 'block', maxHeight: 320 }}
+            aria-hidden="true"
+          >
+            <defs>
+              <filter id="glow-cyan">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+              <filter id="glow-clay">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
 
-          <div className="flex flex-col items-center justify-center gap-3 shrink-0 px-2 py-4 sm:py-0">
+            <path d={LEFT_PATH} fill="rgba(0,229,255,0.04)" stroke="rgba(0,229,255,0.25)" strokeWidth="1.5" />
+            <path d={RIGHT_PATH} fill="rgba(224,122,95,0.04)" stroke="rgba(224,122,95,0.25)" strokeWidth="1.5" />
+
+            <text x={LEFT_CX} y={CY - RY - 14} textAnchor="middle" fontSize="10" fill="rgba(0,229,255,0.7)" fontFamily="JetBrains Mono, monospace" letterSpacing="2">
+              {t('pact.dual.foundation.label', 'FOUNDATION')}
+            </text>
+            <text x={RIGHT_CX} y={CY - RY - 14} textAnchor="middle" fontSize="10" fill="rgba(224,122,95,0.7)" fontFamily="JetBrains Mono, monospace" letterSpacing="2">
+              {t('pact.dual.forprofit.label', 'FOR-PROFIT')}
+            </text>
+
+            <LoopLabel entries={foundationEntries} x={LEFT_CX - RX * 0.82 - 14} y={CY - 22} align="end" />
+            <LoopLabel entries={forProfitEntries} x={RIGHT_CX + RX * 0.82 + 14} y={CY - 22} align="start" />
+
+            <circle cx={CX} cy={CY} r={28} fill="rgba(12,12,20,0.95)" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
+            <text x={CX} y={CY - 6} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.5)" fontFamily="JetBrains Mono, monospace">⚖️</text>
+            <text x={CX} y={CY + 9} textAnchor="middle" fontSize="7.5" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
+              {t('pact.dual.center.line1', 'ETHICS')}
+            </text>
+            <text x={CX} y={CY + 19} textAnchor="middle" fontSize="7.5" fill="rgba(255,255,255,0.4)" fontFamily="JetBrains Mono, monospace">
+              {t('pact.dual.center.line2', 'FIREWALL')}
+            </text>
+
             {isMounted && (
-              <div className="relative w-20 h-20">
-                <div
-                  className="absolute inset-0 rounded-full border-2"
-                  style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-                  aria-hidden="true"
-                />
-                <OrbitalDot color="#00E5FF" duration={3.2} delay={0} radius={30} />
-                <OrbitalDot color="#F5A623" duration={3.2} delay={1.6} radius={30} />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="w-10 h-10 rounded-full border-2 flex items-center justify-center"
-                    style={{ borderColor: 'rgba(255,255,255,0.15)', backgroundColor: 'rgba(255,255,255,0.04)' }}
-                  >
-                    <span className="text-xs text-white/60" aria-hidden="true">⚖️</span>
-                  </div>
-                </div>
-              </div>
+              <>
+                <AnimatedDot cx={LEFT_CX} rx={RX * 0.82} ry={RY} color="#00E5FF" duration={4.2} offset={0} />
+                <AnimatedDot cx={LEFT_CX} rx={RX * 0.82} ry={RY} color="#F5A623" duration={4.2} offset={0.5} />
+                <AnimatedDot cx={RIGHT_CX} rx={RX * 0.82} ry={RY} color="#E07A5F" duration={3.8} offset={0.25} />
+                <AnimatedDot cx={RIGHT_CX} rx={RX * 0.82} ry={RY} color="#A78BFA" duration={3.8} offset={0.75} />
+              </>
             )}
-            <div className="text-center max-w-[120px]">
-              <p className="text-white text-[10px] font-bold uppercase tracking-wider leading-snug">
-                {t('pact.dual.bridge.title', 'Ethics Firewall')}
-              </p>
-              <p className="text-text-tertiary text-[9px] mt-0.5 leading-snug">
-                {t('pact.dual.bridge.sub', '& Royalty Bridge')}
-              </p>
-            </div>
-          </div>
-
-          <LoopCard
-            titleKey="pact.dual.forprofit.title"
-            nodes={forProfitNodes}
-            color="#E07A5F"
-            side="right"
-          />
+          </svg>
         </div>
 
         <div

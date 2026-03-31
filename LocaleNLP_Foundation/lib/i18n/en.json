@@ -529,5 +529,10 @@
   "pact.enterprise_cta.title": "Building commercial AI?",
   "pact.enterprise_cta.body": "Access enterprise-grade African and Arabic language models and SLAs via LocaleNLP Commercial. Train proprietary LLMs without the legal risk of scraped data.",
   "pact.enterprise_cta.cta1": "LocaleNLP Commercial",
-  "pact.enterprise_cta.cta2": "Contact Enterprise Sales"
+  "pact.enterprise_cta.cta2": "Contact Enterprise Sales",
+  "pact.dual.diagram_aria": "Figure-eight diagram showing the LocaleNLP Foundation and For-Profit entity loops connected at a central ethics firewall node",
+  "pact.dual.foundation.label": "FOUNDATION",
+  "pact.dual.forprofit.label": "FOR-PROFIT",
+  "pact.dual.center.line1": "ETHICS",
+  "pact.dual.center.line2": "FIREWALL"
 }
