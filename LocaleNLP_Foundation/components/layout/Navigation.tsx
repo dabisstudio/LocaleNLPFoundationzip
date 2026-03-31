@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useId } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -63,7 +63,7 @@ export default function Navigation() {
   const [isMegaOpen, setIsMegaOpen] = useState(false);
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
 
-  const headerRef = useRef<HTMLElement>(null);
+  const megaMenuId = useId();
   const megaTriggerRef = useRef<HTMLButtonElement>(null);
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -112,10 +112,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <header
-      ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/8"
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/8">
       <nav className="container-wide section-padding">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link
@@ -146,6 +143,7 @@ export default function Navigation() {
                   onClick={() => setIsMegaOpen((v) => !v)}
                   aria-expanded={isMegaOpen}
                   aria-haspopup="true"
+                  aria-controls={megaMenuId}
                   className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200 rounded-md hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre/60"
                 >
                   {item.label}
@@ -188,6 +186,7 @@ export default function Navigation() {
 
       {isMegaOpen && (
         <div
+          id={megaMenuId}
           className="hidden lg:block absolute left-0 right-0 top-full border-t border-white/8 animate-slide-down"
           style={{ background: '#09090E', boxShadow: '0 20px 60px rgba(0,0,0,0.7)' }}
           onMouseEnter={cancelMegaClose}
