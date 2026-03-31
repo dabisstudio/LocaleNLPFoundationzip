@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CheckCircle, Leaf, DollarSign } from 'lucide-react';
 
 const DATASETS = [
@@ -138,7 +138,12 @@ function Badge({
 }
 
 export function NutritionLabel() {
+  const [isMounted, setIsMounted] = useState(false);
   const [dataset, setDataset] = useState<Dataset>('Wolof Speech Corpus v2.1');
+
+  useEffect(() => { setIsMounted(true); }, []);
+  if (!isMounted) return null;
+
   const d = DATA[dataset];
 
   return (

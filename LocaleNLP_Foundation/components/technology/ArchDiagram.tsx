@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Node {
   id: string;
@@ -108,8 +108,12 @@ function ArrowPath({ x1, x2, y, active }: { x1: number; x2: number; y: number; a
 }
 
 export function ArchDiagram() {
+  const [isMounted, setIsMounted] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+
+  useEffect(() => { setIsMounted(true); }, []);
+  if (!isMounted) return null;
 
   const activeId = selected ?? hovered;
   const activeNode = NODES.find((n) => n.id === activeId) ?? null;

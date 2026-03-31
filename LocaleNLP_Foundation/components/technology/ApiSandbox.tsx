@@ -208,6 +208,7 @@ function SkeletonLine({ width }: { width: string }) {
 }
 
 export function ApiSandbox() {
+  const [isMounted, setIsMounted] = useState(false);
   const [endpoint, setEndpoint] = useState<Endpoint>('/v1/speech-to-text');
   const [language, setLanguage] = useState<Language>('Swahili');
   const [state, setState] = useState<'idle' | 'loading' | 'done'>('idle');
@@ -215,7 +216,10 @@ export function ApiSandbox() {
   const [copied, setCopied] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(() => { setIsMounted(true); }, []);
   useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+
+  if (!isMounted) return null;
 
   function runRequest() {
     setState('loading');

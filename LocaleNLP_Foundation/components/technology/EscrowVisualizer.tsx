@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Lock, Building2, ArrowRight } from 'lucide-react';
 
 type Persona = 'contributor' | 'enterprise';
@@ -140,8 +140,12 @@ function FlowStep({
 }
 
 export function EscrowVisualizer() {
+  const [isMounted, setIsMounted] = useState(false);
   const [persona, setPersona] = useState<Persona>('contributor');
   const [visible, setVisible] = useState(true);
+
+  useEffect(() => { setIsMounted(true); }, []);
+  if (!isMounted) return null;
 
   function switchPersona(p: Persona) {
     if (p === persona) return;

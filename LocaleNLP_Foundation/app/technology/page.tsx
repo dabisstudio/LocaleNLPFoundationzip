@@ -192,10 +192,26 @@ export default async function TechnologyPage() {
           </GlowButton>
         </PageHeader>
 
+        <section id="architecture" className="py-16 bg-brand-deep">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-10">
+              <MonoLabel label="STACK ARCHITECTURE" number="01" className="mb-5" />
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                How Our Stack Works
+              </KernHeading>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                From community contributor to production API — hover or click any node to explore
+                each layer of the LocaleNLP pipeline.
+              </p>
+            </div>
+            <ArchDiagram />
+          </div>
+        </section>
+
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="OPEN MODELS" number="01" className="mb-5" />
+              <MonoLabel label="OPEN MODELS" number="02" className="mb-5" />
               <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Production-Ready AI Models
               </KernHeading>
@@ -257,21 +273,33 @@ export default async function TechnologyPage() {
 
         <DataExplorer />
 
-        <section id="architecture" className="py-20 bg-brand-deep">
+        <section id="sandbox" className="py-20 bg-brand-surface">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-10">
+              <MonoLabel label="API SANDBOX" number="03" status="beta" className="mb-5" />
+              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Try It Without Signing Up
+              </KernHeading>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Select an endpoint, choose a language, and run a live-simulated API call.
+                See the exact JSON response your app would receive — no API key required.
+              </p>
+            </div>
+            <ApiSandbox />
+          </div>
+        </section>
+
+        <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="PLATFORM ARCHITECTURE" number="02" className="mb-5" />
-              <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              <MonoLabel label="PLATFORM OVERVIEW" number="04" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Three Pillars of Our Technology
-              </KernHeading>
+              </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 Our stack is designed from first principles for the realities of African
                 connectivity — low bandwidth, intermittent power, and heterogeneous devices.
               </p>
-            </div>
-
-            <div className="mb-12">
-              <ArchDiagram />
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -322,7 +350,7 @@ export default async function TechnologyPage() {
         <section id="api" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="REST API" number="03" className="mb-5" />
+              <MonoLabel label="REST API" number="05" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 API Endpoint Reference
               </h2>
@@ -405,26 +433,12 @@ export default async function TechnologyPage() {
               </div>
             </div>
 
-            <div className="text-center mb-16">
+            <div className="text-center">
               <GlowButton href="https://docs.localenlp.org/api" variant="ghost">
                 <Code className="w-4 h-4" aria-hidden="true" />
                 Full API Documentation
                 <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
               </GlowButton>
-            </div>
-
-            <div id="sandbox">
-              <div className="text-center mb-10">
-                <MonoLabel label="API SANDBOX" number="03B" status="beta" className="mb-5" />
-                <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                  Try It Without Signing Up
-                </KernHeading>
-                <p className="text-text-secondary max-w-2xl mx-auto">
-                  Select an endpoint, choose a language, and run a live-simulated API call.
-                  See the exact JSON response your app would receive — no API key required for this demo.
-                </p>
-              </div>
-              <ApiSandbox />
             </div>
           </div>
         </section>
