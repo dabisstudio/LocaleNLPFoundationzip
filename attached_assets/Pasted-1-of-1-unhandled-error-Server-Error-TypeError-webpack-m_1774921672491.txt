@@ -1,0 +1,48 @@
+1 of 1 unhandled error
+Server Error
+TypeError: __webpack_modules__[moduleId] is not a function
+
+This error happened while generating the page. Any console logs will be displayed in the terminal window.
+Call Stack
+__webpack_require__
+file:///home/runner/workspace/LocaleNLP_Foundation/.next/server/webpack-runtime.js (33:42)
+<unknown>
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:294302)
+oe
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:294490)
+<unknown>
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:296297)
+Object.<anonymous>
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:296692)
+JSON.parse
+<anonymous>
+de
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:299872)
+re
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:294049)
+J
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:293102)
+as
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:261313)
+os
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:260774)
+ts
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:249948)
+<unknown>
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:255098)
+rs
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:255122)
+as
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:261055)
+os
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:260774)
+ps
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:266112)
+fs
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:267033)
+Timeout._onTimeout
+file:///home/runner/workspace/LocaleNLP_Foundation/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js (1:246872)
+listOnTimeout
+node:internal/timers (581:17)
+process.processTimers
+node:internal/timers (519:7)
