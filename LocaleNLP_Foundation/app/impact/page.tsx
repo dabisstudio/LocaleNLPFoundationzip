@@ -7,7 +7,8 @@ import { GlowButton } from '@/components/ui/glow-button';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 import { AfricaMap } from '@/components/impact/AfricaMap';
 import { supabase, ImpactMetric, CaseStudy } from '@/lib/supabase';
-import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper, Download } from 'lucide-react';
+import { DEPLOYMENT_STORIES } from '@/lib/deploymentStories';
+import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper, Download, MapPin, Radio } from 'lucide-react';
 import Link from 'next/link';
 
 async function getData() {
@@ -176,11 +177,96 @@ export default async function ImpactPage() {
           </div>
         </section>
 
+        <section className="py-20 bg-brand-deep" id="stories">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="DEPLOYMENT STORIES" number="03" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Real Deployments, Real Communities
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                Behind every statistic is a community transformed. Each story includes metrics,
+                problem/solution breakdown, audio proof, and a deployment timeline.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {DEPLOYMENT_STORIES.map((story) => {
+                const spotColors = {
+                  ochre: 'rgba(245,166,35,0.1)',
+                  cyan:  'rgba(0,229,255,0.08)',
+                  clay:  'rgba(224,122,95,0.1)',
+                };
+                const textColors = {
+                  ochre: 'text-accent-ochre',
+                  cyan:  'text-accent-cyan',
+                  clay:  'text-accent-clay',
+                };
+                const sectorIcons = {
+                  Agriculture: Tractor,
+                  Healthcare:  Stethoscope,
+                  Education:   GraduationCap,
+                };
+                const SectorIcon = sectorIcons[story.sector as keyof typeof sectorIcons] || Radio;
+                return (
+                  <SpotlightCard
+                    key={story.slug}
+                    spotlightColor={spotColors[story.accentColor]}
+                    className="overflow-hidden group flex flex-col"
+                  >
+                    <div className="h-40 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-brand-elevated to-brand-surface transition-all duration-300 group-hover:shadow-[inset_0_0_40px_rgba(0,229,255,0.06)]">
+                      <SectorIcon className={`w-10 h-10 ${textColors[story.accentColor]} opacity-20 group-hover:opacity-30 transition-opacity`} aria-hidden="true" />
+                      <div className="absolute inset-0 border border-transparent group-hover:border-accent-cyan/20 transition-all duration-300 rounded-t-xl" aria-hidden="true" />
+                      <div className="absolute bottom-3 left-4 flex items-center gap-1.5">
+                        <MapPin className="w-3 h-3 text-text-tertiary" aria-hidden="true" />
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
+                          {story.country} · {story.region}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <p className={`font-mono text-[10px] uppercase tracking-[0.14em] mb-2 ${textColors[story.accentColor]}`}>
+                        {story.sector}
+                      </p>
+                      <h3 className="font-display text-lg font-semibold text-text-primary mb-2 group-hover:text-accent-cyan transition-colors duration-300">
+                        {story.headline}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-5 flex-1 line-clamp-3">
+                        {story.tagline}
+                      </p>
+                      <div className="flex items-center gap-4 pt-4 border-t border-white/8">
+                        {story.metrics.slice(0, 2).map((m) => (
+                          <div key={m.label}>
+                            <p className={`font-display text-lg font-bold ${textColors[m.accent]}`}>
+                              {m.value}
+                            </p>
+                            <p className="font-mono text-[9px] uppercase tracking-wide text-text-tertiary">
+                              {m.label}
+                            </p>
+                          </div>
+                        ))}
+                        <Link
+                          href={`/impact/${story.slug}`}
+                          className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent-cyan hover:opacity-80 transition-opacity group/link"
+                          aria-label={`View deployment story: ${story.headline}`}
+                        >
+                          View Deployment
+                          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  </SpotlightCard>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {caseStudies.length > 0 && (
-          <section className="py-20 bg-brand-deep">
+          <section className="py-20 bg-brand-surface">
             <div className="container-wide section-padding">
               <div className="text-center mb-14">
-                <MonoLabel label="CASE STUDIES" number="03" className="mb-5" />
+                <MonoLabel label="CASE STUDIES" number="04" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   Stories of Change
                 </h2>
@@ -218,10 +304,10 @@ export default async function ImpactPage() {
                         </p>
                       )}
                       <Link
-                        href={`/insights/${study.slug}`}
+                        href={`/impact/${study.slug}`}
                         className="inline-flex items-center gap-1.5 text-sm text-accent-ochre font-medium hover:opacity-80 transition-opacity"
                       >
-                        Read Full Story
+                        View Deployment
                         <ArrowRight
                           className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                           aria-hidden="true"
@@ -235,21 +321,6 @@ export default async function ImpactPage() {
           </section>
         )}
 
-        {caseStudies.length === 0 && (
-          <section className="py-20 bg-brand-deep">
-            <div className="container-wide section-padding">
-              <div className="glass-card p-12 text-center max-w-lg mx-auto">
-                <BookOpen className="w-10 h-10 text-text-tertiary mx-auto mb-4" aria-hidden="true" />
-                <h3 className="font-display text-lg font-semibold text-text-primary mb-2">
-                  Case Studies Coming Soon
-                </h3>
-                <p className="text-text-secondary text-sm">
-                  We are documenting impact stories from communities across Africa. Check back soon.
-                </p>
-              </div>
-            </div>
-          </section>
-        )}
 
         <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
