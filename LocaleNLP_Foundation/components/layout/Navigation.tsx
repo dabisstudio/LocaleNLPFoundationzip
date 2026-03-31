@@ -11,6 +11,7 @@ import {
   Map, MessageSquare, BarChart2,
   HandHeart, Handshake, GraduationCap, Mail,
   FlaskConical, ScrollText, PenLine, ShieldCheck,
+  Coins,
 } from 'lucide-react';
 import { GlowButton } from '@/components/ui/glow-button';
 import { cn } from '@/lib/utils';
@@ -113,6 +114,7 @@ const NAV_SECTIONS: NavSection[] = [
     accent: 'ochre',
     links: [
       { label: 'Volunteer',      href: '/get-involved#contributor', icon: HandHeart,   desc: 'Contribute voice data, earn via mobile money' },
+      { label: 'Data Bounties', href: '/bounties',                icon: Coins,       desc: 'Fund specific language data deficits' },
       { label: 'Partner With Us', href: '/get-involved#pathways', icon: Handshake,   desc: 'For institutions & organisations' },
       { label: 'Fellowships',    href: '/get-involved',           icon: GraduationCap, desc: 'AI × Language research fellowships' },
       { label: 'Contact Us',     href: '/get-involved#contact',   icon: Mail,        desc: 'Get in touch with our team' },

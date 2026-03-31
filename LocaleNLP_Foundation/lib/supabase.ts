@@ -138,3 +138,18 @@ export type Insight = {
   order_index: number;
   created_at: string;
 };
+
+export type LanguageBounty = {
+  id: string;
+  title: string;
+  language_code: string;
+  language_name: string;
+  modality: 'Speech' | 'Text-Pair' | 'Transcription';
+  target_hours: number;
+  funding_goal_usd: number;
+  current_funding_usd: number;
+  bounty_status: 'funding' | 'active_collection' | 'fulfilled';
+  urgency_level: 'critical' | 'standard';
+  contributors_engaged: number;
+  created_at: string;
+};
