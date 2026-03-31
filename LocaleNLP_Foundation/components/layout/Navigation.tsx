@@ -94,6 +94,7 @@ export default function Navigation() {
   }, [isMobileOpen]);
 
   useEffect(() => {
+    if (!isMegaOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsMegaOpen(false);
@@ -102,7 +103,7 @@ export default function Navigation() {
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [isMegaOpen]);
 
   useEffect(() => {
     return () => { if (leaveTimerRef.current) clearTimeout(leaveTimerRef.current); };
