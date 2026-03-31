@@ -446,7 +446,7 @@ export default async function TechnologyPage() {
         <section id="nutrition" className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="OPEN DATASETS" number="04" className="mb-5" />
+              <MonoLabel label="OPEN DATASETS" number="06" className="mb-5" />
               <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Training Data for African NLP
               </KernHeading>
@@ -485,7 +485,7 @@ export default async function TechnologyPage() {
         <section id="escrow" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="DATA SOVEREIGNTY" number="05" className="mb-5" />
+              <MonoLabel label="DATA SOVEREIGNTY" number="07" className="mb-5" />
               <KernHeading as="h2" className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Who Owns the Data?
               </KernHeading>
@@ -502,7 +502,7 @@ export default async function TechnologyPage() {
           <section className="py-20 bg-brand-deep">
             <div className="container-wide section-padding">
               <div className="text-center mb-14">
-                <MonoLabel label="LANGUAGE COVERAGE" number="06" className="mb-5" />
+                <MonoLabel label="LANGUAGE COVERAGE" number="08" className="mb-5" />
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   Languages We Support
                 </h2>
@@ -549,7 +549,7 @@ export default async function TechnologyPage() {
         <section id="research" className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="RESEARCH PAPERS" number="07" className="mb-5" />
+              <MonoLabel label="RESEARCH PAPERS" number="09" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Peer-Reviewed Publications
               </h2>
@@ -606,7 +606,7 @@ export default async function TechnologyPage() {
         <section className="py-20 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="ETHICAL AI" number="08" className="mb-5" />
+              <MonoLabel label="ETHICAL AI" number="10" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Building Responsibly
               </h2>

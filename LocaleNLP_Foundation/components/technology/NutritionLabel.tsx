@@ -80,28 +80,74 @@ const SELECT_STYLE = {
   backgroundPosition: 'right 14px center',
 };
 
-function DemographicBar({
-  label,
-  value,
-  color,
-}: {
+interface BarRow {
   label: string;
   value: number;
   color: string;
-}) {
+}
+
+function DemographicSvgChart({ rows }: { rows: BarRow[] }) {
+  const BAR_H = 10;
+  const GAP = 22;
+  const LABEL_W = 96;
+  const VALUE_W = 28;
+  const CHART_H = rows.length * (BAR_H + GAP) - GAP + 4;
+
   return (
-    <div className="mb-2">
-      <div className="flex justify-between mb-1">
-        <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-wide">{label}</span>
-        <span className="font-mono text-[10px] text-text-secondary">{value}%</span>
-      </div>
-      <div className="h-1.5 rounded-full bg-white/8 overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-700"
-          style={{ width: `${value}%`, backgroundColor: color }}
-        />
-      </div>
-    </div>
+    <svg
+      viewBox={`0 0 320 ${CHART_H}`}
+      className="w-full"
+      style={{ height: `${CHART_H}px` }}
+      role="img"
+      aria-label="Demographic distribution chart"
+    >
+      {rows.map((row, i) => {
+        const y = i * (BAR_H + GAP);
+        const barMaxW = 320 - LABEL_W - VALUE_W - 12;
+        const barW = Math.max(2, (row.value / 100) * barMaxW);
+        return (
+          <g key={row.label}>
+            <text
+              x={0}
+              y={y + BAR_H - 1}
+              fill="#71717A"
+              fontSize="9"
+              fontFamily="'JetBrains Mono', monospace"
+              letterSpacing="0.08em"
+            >
+              {row.label.toUpperCase()}
+            </text>
+            <rect
+              x={LABEL_W}
+              y={y}
+              width={barMaxW}
+              height={BAR_H}
+              rx={BAR_H / 2}
+              fill="rgba(255,255,255,0.05)"
+            />
+            <rect
+              x={LABEL_W}
+              y={y}
+              width={barW}
+              height={BAR_H}
+              rx={BAR_H / 2}
+              fill={row.color}
+              style={{ transition: 'width 0.7s ease' }}
+            />
+            <text
+              x={LABEL_W + barMaxW + 6}
+              y={y + BAR_H - 1}
+              fill="#A1A1AA"
+              fontSize="9"
+              fontFamily="'JetBrains Mono', monospace"
+              textAnchor="start"
+            >
+              {row.value}%
+            </text>
+          </g>
+        );
+      })}
+    </svg>
   );
 }
 
@@ -227,11 +273,11 @@ export function NutritionLabel() {
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-4">
                 Demographic Parity — Gender Balance
               </p>
-              <div className="space-y-1">
-                <DemographicBar label="Female" value={d.demographics.gender.female} color="#E07A5F" />
-                <DemographicBar label="Male" value={d.demographics.gender.male} color="#00E5FF" />
-                <DemographicBar label="Non-Binary / Other" value={d.demographics.gender.nonBinary} color="#8B5CF6" />
-              </div>
+              <DemographicSvgChart rows={[
+                { label: 'Female', value: d.demographics.gender.female, color: '#E07A5F' },
+                { label: 'Male', value: d.demographics.gender.male, color: '#00E5FF' },
+                { label: 'Non-Binary', value: d.demographics.gender.nonBinary, color: '#8B5CF6' },
+              ]} />
               <p className="font-mono text-[9px] text-text-tertiary mt-2">
                 Audited for variance tolerance &lt; 5% from parity target
               </p>
@@ -241,12 +287,12 @@ export function NutritionLabel() {
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary mb-4">
                 Demographic Parity — Regional Coverage
               </p>
-              <div className="space-y-1">
-                <DemographicBar label="West Africa" value={d.demographics.region.west} color="#F5A623" />
-                <DemographicBar label="North Africa" value={d.demographics.region.north} color="#00E5FF" />
-                <DemographicBar label="East Africa" value={d.demographics.region.east} color="#E07A5F" />
-                <DemographicBar label="Central Africa" value={d.demographics.region.central} color="#8B5CF6" />
-              </div>
+              <DemographicSvgChart rows={[
+                { label: 'West Africa', value: d.demographics.region.west, color: '#F5A623' },
+                { label: 'North Africa', value: d.demographics.region.north, color: '#00E5FF' },
+                { label: 'East Africa', value: d.demographics.region.east, color: '#E07A5F' },
+                { label: 'Central Africa', value: d.demographics.region.central, color: '#8B5CF6' },
+              ]} />
             </div>
 
             <div className="pt-4 border-t border-white/8">
