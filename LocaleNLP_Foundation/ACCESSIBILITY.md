@@ -56,8 +56,10 @@ All pairings verified against `#04040A` (bg) and `#09090E` (surface):
 
 - `<html lang>` updated dynamically by `TranslationProvider` to match selected locale
 - `<html dir>` set to `rtl` when Arabic is selected
-- Translation context provides `t(key)` across Navigation, Footer, and LanguageSwitcher
-- 4 locale JSON files: en, fr, ar, sw (~180 keys each)
+- Translation context provides `t(key)` across Navigation, Footer, LanguageSwitcher,
+  HeroSection, all page headers (via TranslatedPageHeader), MicroCommitForm,
+  NewsletterForm, and PersonaSwitcher (all user-facing strings translated)
+- 4 locale JSON files: en, fr, ar, sw (~320 keys each)
 
 ## Reduced Motion (WCAG 2.3.3)
 
