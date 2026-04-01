@@ -21,7 +21,7 @@ const config: Config = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'hero-gradient': 'linear-gradient(135deg, #F5F5F3 0%, #FAFAFA 50%, #F5F5F3 100%)',
         'glass-gradient': 'linear-gradient(180deg, rgba(12,12,12,0.02) 0%, rgba(12,12,12,0.0) 100%)',
-        'glow-ochre': 'radial-gradient(circle at center, rgba(217,92,20,0.08) 0%, transparent 70%)',
+        'glow-ochre': 'radial-gradient(circle at center, rgba(107,31,119,0.08) 0%, transparent 70%)',
         'glow-navy': 'radial-gradient(circle at center, rgba(10,25,49,0.06) 0%, transparent 70%)',
       },
       borderRadius: {
@@ -60,7 +60,7 @@ const config: Config = {
         },
 
         // ── Heritage accents ─────────────────────────────────────────
-        'accent-ochre': '#D95C14',
+        'accent-ochre': '#6B1F77',
         'accent-navy': '#0A1931',
         'accent-emerald': '#0F763D',
         // accent-clay and accent-cyan kept for legacy components
@@ -101,17 +101,17 @@ const config: Config = {
           900: '#340f3b',
         },
         ochre: {
-          DEFAULT: '#D95C14',
-          50: '#fef5ed',
-          100: '#fde3c8',
-          200: '#fbc690',
-          300: '#f7a058',
-          400: '#D95C14',
-          500: '#c2520f',
-          600: '#a3430b',
-          700: '#7d330a',
-          800: '#5e2708',
-          900: '#491e07',
+          DEFAULT: '#6B1F77',
+          50: '#F7E0F5',
+          100: '#E9C1E9',
+          200: '#D8A3DC',
+          300: '#C684CE',
+          400: '#B366BD',
+          500: '#9D4BA7',
+          600: '#83308F',
+          700: '#6B1F77',
+          800: '#501759',
+          900: '#340f3b',
         },
         forest: {
           DEFAULT: '#0F763D',
@@ -174,7 +174,7 @@ const config: Config = {
         'harsh': '4px 4px 0px 0px rgba(12,12,12,0.9)',
         'card': '0 1px 3px rgba(12,12,12,0.08), 0 8px 24px rgba(12,12,12,0.05)',
         'float': '0 20px 40px rgba(12,12,12,0.12)',
-        'glow-ochre': '0 0 20px rgba(217,92,20,0.25)',
+        'glow-ochre': '0 0 20px rgba(107,31,119,0.25)',
         'glow-navy': '0 0 20px rgba(10,25,49,0.2)',
         // Legacy shadows kept for any dark-context components
         'glass': '0 4px 30px rgba(0,0,0,0.5)',
@@ -209,8 +209,8 @@ const config: Config = {
           '100%': { transform: 'translateX(-50%)' },
         },
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 8px rgba(217,92,20,0.2)' },
-          '50%': { boxShadow: '0 0 20px rgba(217,92,20,0.45)' },
+          '0%, 100%': { boxShadow: '0 0 8px rgba(107,31,119,0.2)' },
+          '50%': { boxShadow: '0 0 20px rgba(107,31,119,0.45)' },
         },
         'slide-down': {
           from: { opacity: '0', transform: 'translateY(-8px)' },

@@ -48,7 +48,7 @@ export default function Footer() {
               aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
             >
               <Image
-                src="/logo-white.png"
+                src="/FOOTER Logo LF.svg"
                 alt={t('a11y.logo_home', 'LocaleNLP Foundation')}
                 width={200}
                 height={40}

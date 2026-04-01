@@ -5,7 +5,7 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
-import { AfricaMap } from '@/components/impact/AfricaMap';
+import GlobeSection from '@/components/globe/GlobeSection';
 import { supabase, ImpactMetric, CaseStudy } from '@/lib/supabase';
 import { DEPLOYMENT_STORIES } from '@/lib/deploymentStories';
 import { ArrowRight, Heart, Stethoscope, GraduationCap, Tractor, BookOpen, Newspaper, Download, MapPin, Radio } from 'lucide-react';
@@ -98,15 +98,15 @@ export default async function ImpactPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-brand-deep overflow-hidden">
+        <section className="py-20 overflow-hidden" style={{ background: '#09090E' }}>
           <div className="container-wide section-padding">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <MonoLabel label="GEOGRAPHIC REACH" number="01" className="mb-5" />
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
+                <MonoLabel label="GEOGRAPHIC REACH" number="01" className="mb-5 !text-white/40" />
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
                   Active Across the Continent
                 </h2>
-                <p className="text-text-secondary leading-relaxed mb-6">
+                <p className="text-white/60 leading-relaxed mb-6">
                   We operate in 18 African countries — from language documentation projects in West
                   Africa to healthcare deployments in East Africa and policy advocacy in Southern
                   Africa.
@@ -119,7 +119,7 @@ export default async function ImpactPage() {
                   ].map((name) => (
                     <span
                       key={name}
-                      className="font-mono text-xs uppercase tracking-wide px-2.5 py-1 rounded bg-accent-ochre/10 text-accent-ochre border border-accent-ochre/20"
+                      className="font-mono text-xs uppercase tracking-wide px-2.5 py-1 rounded bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20"
                     >
                       {name}
                     </span>
@@ -128,10 +128,14 @@ export default async function ImpactPage() {
               </div>
 
               <div
-                className="relative flex items-center justify-center"
-                aria-label="Interactive map showing active countries across Africa"
+                className="relative"
+                aria-label="3D globe showing language vitality data across Africa"
               >
-                <AfricaMap />
+                <GlobeSection
+                  interactive={false}
+                  showMetrics={false}
+                  compact={true}
+                />
               </div>
             </div>
           </div>

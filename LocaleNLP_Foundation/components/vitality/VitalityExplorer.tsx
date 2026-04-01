@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { VitalityMap } from './VitalityMap';
+import GlobeSection from '@/components/globe/GlobeSection';
 import { DetailPanel } from './DetailPanel';
 import { VitalityTable } from './VitalityTable';
 import type { LanguageVitalityRecord } from '@/lib/vitality-data';
@@ -21,40 +21,36 @@ export function VitalityExplorer({ data }: VitalityExplorerProps) {
 
   return (
     <>
-      <section className="container-wide section-padding py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">
-          <div>
-            <div className="mb-4">
-              <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">
-                [ INTERACTIVE MAP // CLICK A LANGUAGE NODE ]
-              </span>
-            </div>
-            <div className="w-full max-w-md">
-              <VitalityMap onSelect={handleSelect} selected={selected} />
-            </div>
-          </div>
-
-          <div className="w-full lg:w-72 flex flex-col justify-center items-center py-8 px-6 rounded-2xl border border-dashed border-ink-monument/15 bg-base-stone text-center gap-3 self-center">
-            <span className="font-mono text-[11px] text-text-tertiary uppercase tracking-widest">
-              {selected ? selected.languageName : 'Select a language'}
-            </span>
-            <p className="text-text-secondary text-sm">
-              {selected
-                ? `Click a row in the table or another dot on the map to switch languages.`
-                : 'Click any dot on the map or a row in the table below to explore its AI readiness details.'}
-            </p>
-            {selected && (
-              <button
-                onClick={handleClose}
-                className="mt-1 text-xs text-accent-ochre hover:opacity-75 transition-opacity font-semibold"
-              >
-                Clear selection ×
-              </button>
-            )}
-          </div>
+      {/* ── 3D Globe Section (dark island) ───────────────────────────── */}
+      <section className="container-wide section-padding py-8">
+        <div className="mb-4">
+          <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">
+            [ SOVEREIGN DATA GLOBE // CLICK A SPIKE TO EXPLORE ]
+          </span>
         </div>
+        <GlobeSection
+          onSelect={handleSelect}
+          selected={selected}
+          interactive={true}
+          showMetrics={false}
+        />
+        {selected && (
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <span className="font-mono text-sm text-accent-cyan font-semibold">
+              {selected.languageName}
+            </span>
+            <span className="text-text-tertiary text-xs">selected</span>
+            <button
+              onClick={handleClose}
+              className="text-xs text-accent-ochre hover:opacity-75 transition-opacity font-semibold"
+            >
+              Clear ×
+            </button>
+          </div>
+        )}
       </section>
 
+      {/* ── Data Table ────────────────────────────────────────────────── */}
       <section className="container-wide section-padding pb-20">
         <VitalityTable data={data} onSelect={handleSelect} selected={selected} />
       </section>

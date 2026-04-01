@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback, useId } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu, X, ArrowRight, ExternalLink,
   Mic, Microscope, Heart, Scale,
@@ -181,72 +182,111 @@ const ACCENT = {
   },
 } as const;
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.04, delayChildren: 0.05 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
+};
+
 function MegaPanel({ section, onClose }: { section: NavSection; onClose: () => void }) {
   const { t } = useTranslation();
   const c = ACCENT[section.accent];
   return (
-    <div className="container-wide section-padding py-8">
-      <div className="grid grid-cols-[1fr_260px] gap-12">
+    <div className="container-wide section-padding py-10 relative overflow-hidden">
+      {/* Decorative background glow based on section accent */}
+      <div className={cn('absolute -top-40 -left-10 w-96 h-96 rounded-full blur-[100px] opacity-10 pointer-events-none', 
+        section.accent === 'ochre' ? 'bg-[#6B1F77]' :
+        section.accent === 'navy' ? 'bg-blue-500' : 'bg-emerald-500'
+      )} />
+
+      <motion.div 
+        variants={containerVariants} 
+        initial="hidden" 
+        animate="visible"
+        className="grid grid-cols-[1fr_320px] gap-16 relative z-10"
+      >
         <div>
-          <p className={cn('text-[10px] font-semibold uppercase tracking-widest mb-5', c.text)}>
+          <motion.p variants={itemVariants} className={cn('text-[11px] font-bold uppercase tracking-widest mb-6', c.text)}>
             {t(section.labelKey)}
-          </p>
-          <div className="grid grid-cols-2 gap-1">
+          </motion.p>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-3">
             {section.links.map(({ labelKey, href, icon: Icon, descKey, descFallback }) => (
-              <Link
-                key={href + labelKey}
-                href={href}
-                onClick={onClose}
-                className={cn(
-                  'group flex items-start gap-3 p-3 rounded-xl transition-colors duration-150 hover:bg-base-stone focus-visible:outline-none focus-visible:ring-2',
-                  c.ring,
-                )}
-              >
-                <span className={cn('mt-0.5 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-colors', c.bg, c.bgHover)}>
-                  <Icon className={cn('w-4 h-4', c.icon)} />
-                </span>
-                <span className="flex flex-col min-w-0">
-                  <span className={cn('text-sm font-semibold text-ink-monument leading-snug transition-colors', c.labelHov)}>
-                    {t(labelKey)}
+              <motion.div variants={itemVariants} key={href + labelKey}>
+                <Link
+                  href={href}
+                  onClick={onClose}
+                  className={cn(
+                    'group flex items-start gap-4 p-3 -ml-3 rounded-2xl transition-all duration-300 hover:bg-base-stone/80 focus-visible:outline-none focus-visible:ring-2',
+                    c.ring,
+                  )}
+                >
+                  <span className={cn('mt-0.5 shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-sm border border-transparent group-hover:border-ink-monument/10 group-hover:scale-110', c.bg, c.text, 'bg-white')}>
+                    <Icon className={cn('w-5 h-5', c.icon)} />
                   </span>
-                  <span className="text-xs text-ink-steel mt-0.5 leading-snug">
-                    {t(descKey, descFallback)}
+                  <span className="flex flex-col min-w-0">
+                    <span className={cn('text-[15px] font-semibold text-ink-monument leading-snug transition-colors', c.labelHov)}>
+                      {t(labelKey)}
+                    </span>
+                    <span className="text-[13px] text-ink-steel mt-1 leading-relaxed">
+                      {t(descKey, descFallback)}
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
           {section.viewAll && (
-            <Link
-              href={section.viewAll.href}
-              onClick={onClose}
-              className={cn('inline-flex items-center gap-1.5 mt-5 text-xs font-medium transition-colors hover:opacity-75', c.text)}
-            >
-              {t(section.viewAll.labelKey)}
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-            </Link>
+            <motion.div variants={itemVariants} className="mt-8 pt-6 border-t border-ink-monument/5">
+              <Link
+                href={section.viewAll.href}
+                onClick={onClose}
+                className={cn('inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:opacity-75', c.text)}
+              >
+                {t(section.viewAll.labelKey)}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </motion.div>
           )}
         </div>
 
-        <div className="flex flex-col justify-center">
-          <div className={cn('p-5 rounded-2xl border', c.border, c.card)}>
-            <p className={cn('font-display text-3xl font-bold mb-1 leading-none', c.text)}>
-              {t(section.feature.statKey)}
-            </p>
-            <p className="text-sm text-ink-steel mt-2 mb-4 leading-snug">
-              {t(section.feature.statLabelKey)}
-            </p>
-            <Link
-              href={section.feature.cta.href}
-              onClick={onClose}
-              className={cn('inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-75', c.text)}
-            >
-              {t(section.feature.cta.labelKey)}
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-            </Link>
+        {/* Captivating Feature Card */}
+        <motion.div variants={itemVariants} className="flex flex-col justify-stretch">
+          <div className={cn('relative p-8 rounded-3xl border h-full flex flex-col justify-end overflow-hidden group', c.border, c.card)}>
+            {/* Inner glow pulse */}
+            <div className={cn('absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 blur-2xl', 
+              section.accent === 'ochre' ? 'bg-[#6B1F77]' :
+              section.accent === 'navy' ? 'bg-blue-500' : 'bg-emerald-500'
+            )} />
+            
+            <div className="relative z-10">
+              <p className={cn('font-display text-5xl font-bold mb-3 tracking-tight', c.text)}>
+                {t(section.feature.statKey)}
+              </p>
+              <p className="text-[15px] text-ink-steel mb-8 leading-relaxed max-w-[200px]">
+                {t(section.feature.statLabelKey)}
+              </p>
+              
+              <Link
+                href={section.feature.cta.href}
+                onClick={onClose}
+                className={cn('inline-flex items-center justify-between w-full p-4 bg-white/60 backdrop-blur-md rounded-xl text-sm font-semibold transition-all duration-300 hover:bg-white shadow-sm border border-white/40 group-hover:shadow-md group-hover:-translate-y-0.5', c.text)}
+              >
+                {t(section.feature.cta.labelKey)}
+                <span className={cn('w-8 h-8 rounded-full flex items-center justify-center bg-white shadow-sm', c.text)}>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </span>
+              </Link>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
@@ -316,32 +356,44 @@ export default function Navigation() {
             onClick={closeMenu}
           >
             <Image
-              src="/logo-icon.png"
+              src="/Logo-LF.svg"
               alt={t('a11y.logo_home', 'LocaleNLP Foundation')}
-              width={40}
+              width={160}
               height={40}
               priority
-              className="h-9 w-9 object-contain"
+              className="h-9 w-auto object-contain"
             />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-0.5">
-            {NAV_SECTIONS.map((section) => (
-              <button
-                key={section.labelKey}
-                ref={(el) => { if (openKey === section.labelKey) activeTrigger.current = el; }}
-                onMouseEnter={() => openSection(section.labelKey)}
-                onMouseLeave={scheduleMegaClose}
-                onFocus={() => openSection(section.labelKey)}
-                onClick={() => setOpenKey((v) => (v === section.labelKey ? null : section.labelKey))}
-                aria-expanded={openKey === section.labelKey}
-                aria-haspopup="true"
-                aria-controls={openKey === section.labelKey ? megaPanelId : undefined}
-                className="px-3 py-2 text-sm font-medium text-ink-steel hover:text-ink-monument transition-colors duration-200 rounded-md hover:bg-ink-monument/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone"
-              >
-                {t(section.labelKey)}
-              </button>
-            ))}
+          <div className="hidden lg:flex items-center gap-1 relative z-10" onMouseLeave={scheduleMegaClose}>
+            {NAV_SECTIONS.map((section) => {
+              const isActive = openKey === section.labelKey;
+              return (
+                <div key={section.labelKey} className="relative">
+                  <button
+                    ref={(el) => { if (isActive) activeTrigger.current = el; }}
+                    onMouseEnter={() => openSection(section.labelKey)}
+                    onFocus={() => openSection(section.labelKey)}
+                    onClick={() => setOpenKey((v) => (v === section.labelKey ? null : section.labelKey))}
+                    aria-expanded={isActive}
+                    aria-haspopup="true"
+                    aria-controls={isActive ? megaPanelId : undefined}
+                    className={cn("px-4 py-2.5 text-sm font-medium transition-colors relative z-10 rounded-md focus-visible:outline-none",
+                      isActive ? "text-ink-monument" : "text-ink-steel hover:text-ink-monument"
+                    )}
+                  >
+                    {t(section.labelKey)}
+                  </button>
+                  {isActive && (
+                    <motion.div
+                      layoutId="megaMenuPill"
+                      className="absolute inset-0 bg-ink-monument/5 rounded-md -z-10"
+                      transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="hidden lg:flex items-center gap-3 shrink-0">
@@ -372,19 +424,25 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {activeSection && (
-        <div
-          id={megaPanelId}
-          className="hidden lg:block absolute left-0 right-0 top-full border-t border-ink-monument/8 animate-slide-down"
-          style={{ background: '#FFFFFF', boxShadow: '0 20px 60px rgba(12,12,12,0.12)' }}
-          onMouseEnter={cancelMegaClose}
-          onMouseLeave={scheduleMegaClose}
-          role="region"
-          aria-label={`${t(activeSection.labelKey)} navigation`}
-        >
-          <MegaPanel section={activeSection} onClose={closeMenu} />
-        </div>
-      )}
+      <AnimatePresence>
+        {activeSection && (
+          <motion.div
+            id={megaPanelId}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }}
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="hidden lg:block absolute left-0 right-0 top-full border-t border-ink-monument/5 bg-white/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80"
+            style={{ boxShadow: '0 30px 60px rgba(12,12,12,0.1)' }}
+            onMouseEnter={cancelMegaClose}
+            onMouseLeave={scheduleMegaClose}
+            role="region"
+            aria-label={`${t(activeSection.labelKey)} navigation`}
+          >
+            <MegaPanel section={activeSection} onClose={closeMenu} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {isMobileOpen && (
         <div
