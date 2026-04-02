@@ -2,6 +2,7 @@ import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import { TranslatedPageHeader } from '@/components/ui/translated-page-header';
 import { VitalityExplorer } from '@/components/vitality/VitalityExplorer';
+import { CommunityImpactExplorer } from '@/components/vitality/CommunityImpactExplorer';
 import { VITALITY_DATA, VITALITY_SUMMARY } from '@/lib/vitality-data';
 
 export const metadata = {
@@ -52,6 +53,8 @@ export default function VitalityPage() {
         </section>
 
         <VitalityExplorer data={VITALITY_DATA} />
+
+        <CommunityImpactExplorer />
       </main>
 
       <Footer />
