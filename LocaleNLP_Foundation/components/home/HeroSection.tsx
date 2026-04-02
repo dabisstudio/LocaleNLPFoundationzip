@@ -6,6 +6,7 @@ import { Play } from 'lucide-react';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { GlowButton } from '@/components/ui/glow-button';
 import { useTranslation } from '@/lib/i18n/TranslationContext';
+import { BrandPattern } from '@/components/ui/BrandPattern';
 
 const HeroCanvas = dynamic(() => import('./HeroCanvas'), { ssr: false });
 
@@ -33,6 +34,9 @@ export default function HeroSection() {
 
       {/* Subtle grid texture */}
       <div className="absolute inset-0 grid-lines pointer-events-none opacity-50" aria-hidden="true" />
+      
+      {/* Interactive Brand Spotlight (Interactive Pattern) */}
+      <BrandPattern variant="interactive" />
 
       <div className="relative z-10 container-wide section-padding pt-28 pb-20 text-center">
         <motion.div

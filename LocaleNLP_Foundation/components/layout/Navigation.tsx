@@ -53,9 +53,9 @@ const NAV_SECTIONS: NavSection[] = [
       { labelKey: 'nav.about.our_story', href: '/about',        icon: Globe,        descKey: 'nav.about.our_story_desc',  descFallback: 'Mission, vision & origin' },
       { labelKey: 'nav.about.manifesto', href: '/manifesto',    icon: Feather,      descKey: 'nav.about.manifesto_desc',  descFallback: 'Our founding statement on language equity' },
       { labelKey: 'nav.about.team',      href: '/about#team',   icon: Users,        descKey: 'nav.about.team_desc',       descFallback: 'Language researchers & changemakers' },
-      { labelKey: 'nav.about.reports',   href: '/about',        icon: FileText,     descKey: 'nav.about.reports_desc',    descFallback: 'Transparency & impact data' },
+      { labelKey: 'nav.about.reports',   href: '/reports',      icon: FileText,     descKey: 'nav.about.reports_desc',    descFallback: 'Transparency & impact data' },
       { labelKey: 'nav.about.ethics',    href: '/ethics',       icon: ShieldCheck,  descKey: 'nav.about.ethics_desc',     descFallback: 'Data sovereignty & compliance dashboard' },
-      { labelKey: 'nav.about.press',     href: '/about',        icon: Newspaper,    descKey: 'nav.about.press_desc',      descFallback: 'Coverage & press kit' },
+      { labelKey: 'nav.about.press',     href: '/media',        icon: Newspaper,    descKey: 'nav.about.press_desc',      descFallback: 'Coverage & press kit' },
     ],
     feature: {
       statKey: 'nav.about.feature_stat',
@@ -122,7 +122,7 @@ const NAV_SECTIONS: NavSection[] = [
       { labelKey: 'nav.get_involved.volunteer',   href: '/get-involved#contributor', icon: HandHeart,    descKey: 'nav.get_involved.volunteer_desc',   descFallback: 'Contribute voice data, earn via mobile money' },
       { labelKey: 'nav.get_involved.bounties',    href: '/bounties',                 icon: Coins,        descKey: 'nav.get_involved.bounties_desc',    descFallback: 'Fund specific language data deficits' },
       { labelKey: 'nav.get_involved.partner',     href: '/get-involved#pathways',    icon: Handshake,    descKey: 'nav.get_involved.partner_desc',     descFallback: 'For institutions & organisations' },
-      { labelKey: 'nav.get_involved.fellowships', href: '/get-involved',             icon: GraduationCap, descKey: 'nav.get_involved.fellowships_desc', descFallback: 'AI × Language research fellowships' },
+      { labelKey: 'nav.get_involved.fellowships', href: '/fellowships',              icon: GraduationCap, descKey: 'nav.get_involved.fellowships_desc', descFallback: 'AI × Language research fellowships' },
       { labelKey: 'nav.get_involved.contact',     href: '/get-involved#contact',     icon: Mail,         descKey: 'nav.get_involved.contact_desc',     descFallback: 'Get in touch with our team' },
     ],
     feature: {
