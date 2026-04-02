@@ -6,7 +6,7 @@ import { GlowButton } from '@/components/ui/glow-button';
 import { MonoLabel } from '@/components/ui/mono-label';
 import { KernHeading } from '@/components/ui/kern-heading';
 import { supabase, TeamMember } from '@/lib/supabase';
-import { Target, Eye, Globe, Shield, BookOpen, Users, Linkedin, Twitter } from 'lucide-react';
+import { Target, Eye, Globe, Shield, BookOpen, Users, Linkedin, Twitter, MapPin } from 'lucide-react';
 
 async function getTeamMembers(): Promise<TeamMember[]> {
   const { data, error } = await supabase.from('team_members').select('*').order('order_index');
@@ -242,10 +242,40 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        <section id="team" className="py-20 bg-brand-surface">
+        <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="text-center mb-14">
-              <MonoLabel label="OUR PEOPLE" number="04" className="mb-5" />
+              <MonoLabel label="PHYSICAL PRESENCE" number="04" className="mb-5" />
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                Our Pan-African Footprint
+              </h2>
+              <p className="text-text-secondary max-w-2xl mx-auto">
+                We are grounded on the continent. Our governance, operations, and community outreach are physically distributed to ensure local context drives our AI development.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { city: 'Accra, Ghana', role: 'Foundation HQ & Governance', icon: Shield },
+                { city: 'Casablanca, Morocco', role: 'Operations & Engineering Infrastructure', icon: Globe },
+                { city: 'Dakar, Senegal', role: 'Francophone Linguistic Partnerships', icon: Users }
+              ].map((loc) => (
+                <div key={loc.city} className="glass-card p-8 border border-ink-monument/10 flex flex-col items-start hover:border-accent-ochre/30 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-accent-ochre/10 flex items-center justify-center mb-6">
+                    <MapPin className="w-5 h-5 text-accent-ochre" />
+                  </div>
+                  <h3 className="font-display font-bold text-xl text-ink-monument mb-2">{loc.city}</h3>
+                  <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">{loc.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="team" className="py-20 bg-brand-deep">
+          <div className="container-wide section-padding">
+            <div className="text-center mb-14">
+              <MonoLabel label="OUR PEOPLE" number="05" className="mb-5" />
               <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
                 Leadership Team
               </h2>
@@ -375,12 +405,45 @@ export default async function AboutPage() {
                   </div>
                 </div>
               )}
+              {/* Regional Advisory Councils */}
+              <div className="mt-24 pt-20 border-t border-ink-monument/10">
+                  <div className="text-center mb-12">
+                     <p className="font-mono text-xs tracking-widest uppercase text-accent-ochre mb-4">
+                       [ COMMUNITY GOVERNANCE ]
+                     </p>
+                     <h3 className="font-display font-bold text-3xl text-ink-monument mb-4">Regional Advisory Councils</h3>
+                     <p className="text-text-secondary max-w-2xl mx-auto">
+                        To guarantee our infrastructure serves the people, all foundation initiatives must be ratified by our four regional advisory councils comprised of local linguists, ethicists, and community leaders.
+                     </p>
+                  </div>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                     {['West Africa', 'North Africa', 'East Africa', 'Southern Africa'].map((region) => (
+                        <div key={region} className="glass-card p-6 border border-ink-monument/5 bg-white/50">
+                           <h4 className="font-mono text-sm font-bold text-ink-monument mb-4 border-b border-ink-monument/10 pb-4">{region} Council</h4>
+                           <ul className="space-y-3">
+                              <li className="flex items-center gap-3">
+                                <div className="w-6 h-6 rounded-full bg-ink-monument/5 flex items-center justify-center"><Users className="w-3 h-3 text-ink-muted"/></div>
+                                <span className="text-sm text-text-secondary">3 Elected Linguists</span>
+                              </li>
+                              <li className="flex items-center gap-3">
+                                <div className="w-6 h-6 rounded-full bg-ink-monument/5 flex items-center justify-center"><Shield className="w-3 h-3 text-ink-muted"/></div>
+                                <span className="text-sm text-text-secondary">1 Data Ethicist</span>
+                              </li>
+                              <li className="flex items-center gap-3">
+                                <div className="w-6 h-6 rounded-full bg-ink-monument/5 flex items-center justify-center"><Target className="w-3 h-3 text-ink-muted"/></div>
+                                <span className="text-sm text-text-secondary">2 Community Reps</span>
+                              </li>
+                           </ul>
+                        </div>
+                     ))}
+                  </div>
+              </div>
             </div>
             )}
           </div>
         </section>
 
-        <section className="py-20 bg-brand-deep">
+        <section className="py-20 bg-brand-surface">
           <div className="container-wide section-padding">
             <div className="glass-card p-10 md:p-14 text-center max-w-3xl mx-auto">
               <MonoLabel label="JOIN US" status="active" className="mb-5" />

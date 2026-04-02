@@ -92,12 +92,12 @@ export default function GetInvolvedPage() {
               <MonoLabel label={t('involved.contact_label', 'GET INVOLVED')} number="00" className="mb-6" />
 
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-[1.08]">
-                {t('involved.h1', 'Own your language.')}{' '}
-                <span className="text-accent-ochre">{t('involved.h1_accent', 'Earn for your expertise.')}</span>
+                {t('involved.h1', 'Preserve your heritage.')}{' '}
+                <span className="text-accent-ochre">{t('involved.h1_accent', 'Earn for your voice.')}</span>
               </h1>
 
               <p className="text-text-secondary text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-                {t('involved.subtitle', 'Lughatna connects native speakers across Africa with researchers and institutions who need their knowledge. Contribute voice data, translations, and annotations — and get paid instantly via mobile money, while preserving your language for generations.')}
+                {t('involved.subtitle', 'Join the Lughatna Contributor Network to digitize your native dialect, ensuring your culture thrives in the AI era while receiving instant mobile money payouts.')}
               </p>
 
               <div className="flex flex-wrap gap-4 mb-16">
@@ -120,6 +120,20 @@ export default function GetInvolvedPage() {
                     </p>
                   </div>
                 ))}
+              </div>
+
+              {/* Live Community Validation Ticker */}
+              <div className="mt-16 w-full max-w-2xl border border-ink-monument/10 bg-white/40 backdrop-blur-md rounded-xl p-4 flex items-center overflow-hidden">
+                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-4 shrink-0 shadow-[0_0_8px_rgba(34,197,94,0.6)]" title="Live Network Monitor"/>
+                 <div className="font-mono text-xs text-ink-monument font-medium flex gap-8 animate-marquee whitespace-nowrap">
+                    <span>Aisha [Dakar] validated 50 Wolof tokens</span>
+                    <span className="text-accent-ochre">/</span>
+                    <span>Olu [Lagos] submitted 120s of Yoruba speech</span>
+                    <span className="text-accent-ochre">/</span>
+                    <span>Fatima [Kano] verified Hausa corpus batch</span>
+                    <span className="text-accent-ochre">/</span>
+                    <span>Sipho [Johannesburg] translated 15 Zulu prompts</span>
+                 </div>
               </div>
             </div>
           </div>

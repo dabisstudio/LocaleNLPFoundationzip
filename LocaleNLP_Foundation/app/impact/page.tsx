@@ -35,8 +35,8 @@ const USE_CASES = [
     sector: 'Healthcare',
     title: 'Medical Hotlines in Local Languages',
     description:
-      'Our speech recognition enables health hotlines to serve patients in Yoruba, Swahili, and 10 other languages — removing the language barrier from urgent care.',
-    impact: '50,000+ calls processed monthly',
+      'Nurses and rural health workers use our voice-to-text models to log patient data instantly in Swahili and Hausa, bypassing complex electronic health record barriers.',
+    impact: '15,000+ frontline nurses equipped',
     accent: 'text-accent-ochre',
     spot: 'rgba(245,166,35,0.1)',
   },
@@ -45,8 +45,8 @@ const USE_CASES = [
     sector: 'Education',
     title: 'Mother-Tongue Learning Apps',
     description:
-      'Children learn to read using apps that understand and respond in their native language, dramatically improving early literacy outcomes.',
-    impact: '25,000+ students reached',
+      'Rural public school teachers utilize mother-tongue translation models to adapt national curriculums into localized lesson plans for early childhood education.',
+    impact: '12,000+ teachers supported',
     accent: 'text-accent-cyan',
     spot: 'rgba(0,229,255,0.08)',
   },
@@ -55,8 +55,8 @@ const USE_CASES = [
     sector: 'Agriculture',
     title: 'Farming Advisories via SMS & Voice',
     description:
-      'Farmers receive weather and crop advice through automated voice calls in local languages, improving harvests and food security.',
-    impact: '100,000+ farmers served',
+      'Smallholder farmers receive critical weather and crop advisories through automated voice calls in Bambara and Wolof, improving harvest yields directly via feature phones.',
+    impact: '250,000+ farmers served',
     accent: 'text-accent-clay',
     spot: 'rgba(224,122,95,0.1)',
   },

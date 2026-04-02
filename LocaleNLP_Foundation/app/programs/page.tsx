@@ -188,6 +188,41 @@ export default function ProgramsPage() {
           ]}
         />
 
+        <section className="py-20 bg-brand-deep border-b border-ink-monument/10">
+          <div className="container-wide section-padding">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <MonoLabel label="FLAGSHIP FELLOWSHIP" status="active" className="mb-5" />
+                <h2 className="font-display text-4xl lg:text-5xl font-bold text-text-primary mb-6">
+                  Women in <span className="text-accent-ochre">AI & Language</span> Fellowship
+                </h2>
+                <p className="text-text-secondary text-lg leading-relaxed mb-6">
+                  Gender parity in AI development isn't just an equity metric—it is a functional necessity for removing algorithmic bias. Our premier fellowship provides compute stipends, mentorship, and living grants exclusively to young African women pioneering NLP research.
+                </p>
+                <div className="flex flex-wrap gap-4 mb-8">
+                   <div className="bg-ink-monument/5 px-4 py-3 rounded-lg border border-ink-monument/10">
+                       <p className="font-display text-2xl font-bold text-accent-ochre mb-1">50+</p>
+                       <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary">Fellows Funded</p>
+                   </div>
+                   <div className="bg-ink-monument/5 px-4 py-3 rounded-lg border border-ink-monument/10">
+                       <p className="font-display text-2xl font-bold text-accent-cyan mb-1">H100</p>
+                       <p className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary">Compute Access</p>
+                   </div>
+                </div>
+                <GlowButton href="/fellowships" variant="primary">
+                  View Fellowship Details
+                </GlowButton>
+              </div>
+              <div className="relative h-[400px] rounded-2xl overflow-hidden glass-card bg-gradient-to-br from-accent-ochre/10 to-accent-cyan/10 border border-ink-monument/10 flex flex-col items-center justify-center text-center p-8">
+                 <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                 <GraduationCap className="w-16 h-16 text-accent-ochre mb-6" />
+                 <h3 className="font-display text-2xl font-bold text-text-primary mb-3 relative z-10">2026 Cohort Applications Open</h3>
+                 <p className="text-text-secondary text-sm max-w-sm relative z-10">Supporting researchers specializing in Zero-shot NLP, audio generation, and algorithmic fairness.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <Suspense fallback={<ProgramsSkeleton />}>
           <ProgramsGrid />
         </Suspense>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Mic, FileText, Headphones, Users, Clock } from 'lucide-react';
+import { Mic, FileText, Headphones, Users, Clock, ShieldCheck, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlowButton } from '@/components/ui/glow-button';
 import type { LanguageBounty } from '@/lib/supabase';
@@ -169,6 +169,20 @@ export function BountyCard({ bounty }: { bounty: LanguageBounty }) {
           {t('bounty.fund_cta', 'Fund this Bounty')}
         </GlowButton>
       )}
+
+      {/* Community Accountability & QA */}
+      <div className="pt-4 mt-1 border-t border-ink-monument/10">
+        <div className="flex items-center justify-between text-[10px] uppercase font-mono tracking-wider text-ink-muted">
+          <span className="flex items-center gap-1.5" title="Data is verified by 3 independent native speakers before payout.">
+            <ShieldCheck className="w-3.5 h-3.5 text-accent-cyan" />
+            Consensus QA
+          </span>
+          <span className="flex items-center gap-1.5" title="Data collection deployed via the Lughatna mobile platform.">
+            <Smartphone className="w-3 h-3 text-accent-ochre" />
+            Lughatna App
+          </span>
+        </div>
+      </div>
     </article>
   );
 }

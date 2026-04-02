@@ -188,6 +188,18 @@ export default async function TechnologyPage() {
           ]}
         />
 
+        <section className="py-12 bg-accent-navy text-white text-center border-y border-white/10">
+          <div className="container-wide section-padding">
+             <div className="max-w-4xl mx-auto">
+               <p className="font-mono text-xs text-accent-cyan uppercase tracking-widest mb-4">[ ORGANIZATIONAL ARCHITECTURE ]</p>
+               <h3 className="font-display text-2xl font-bold mb-4">Foundation Ethics + Enterprise Scale</h3>
+               <p className="text-white/80 leading-relaxed text-sm md:text-base">
+                 We operate a hybrid dual-entity structure. The <strong>LocaleNLP Foundation</strong> (Non-Profit) is the guardian of the open-source community, data ethics, and linguistic sovereignty. It legally licenses data to our subsidiary, <strong>LocaleNLP Labs Corporation</strong> (For-Profit), which manages enterprise SLA APIs for B2B deployment. 100% of the commercial licensing fees are routed back to the Foundation to fund language bounties and contributor payouts.
+               </p>
+             </div>
+          </div>
+        </section>
+
         <section id="architecture" className="py-16 bg-brand-deep">
           <div className="container-wide section-padding">
             <div className="text-center mb-10">
