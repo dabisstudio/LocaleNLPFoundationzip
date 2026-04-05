@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Twitter, Linkedin, Github, Mail } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n/TranslationContext';
+import { BrandPattern } from '@/components/ui/BrandPattern';
 
 const SITE_LINKS = [
   { labelKey: 'nav.about',        href: '/about' },
@@ -37,8 +38,22 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer style={{ backgroundColor: '#0A1931' }} className="border-t border-white/8">
-      <div className="container-wide section-padding py-16">
+    <footer className="relative z-10 border-t border-white/8 overflow-hidden min-h-[400px]">
+      {/* Background Color Layer */}
+      <div 
+        className="absolute inset-0 z-[-2]" 
+        style={{ backgroundColor: '#0A1931' }} 
+      />
+
+      {/* Brand Pattern Layer */}
+      <BrandPattern 
+        variant="interactive" 
+        isFixed={false} 
+        opacity={0.15} 
+        className="z-[-1]" 
+      />
+
+      <div className="relative z-10 container-wide section-padding py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           <div className="sm:col-span-2 lg:col-span-1">
