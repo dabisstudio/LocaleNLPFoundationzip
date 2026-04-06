@@ -113,24 +113,24 @@ WHERE NOT EXISTS (SELECT 1 FROM impact_metrics WHERE impact_metrics.label = t.la
 -- ─── TEAM MEMBERS (6) ────────────────────────────────────────────────────────
 INSERT INTO team_members (name, role, bio, image_url, linkedin_url, twitter_url, member_type, order_index)
 SELECT name, role, bio, image_url, linkedin_url, twitter_url, member_type, order_index FROM (VALUES
-  ('Dr. Adaeze Okonkwo',  'Executive Director',
-   'Computational linguist and AI researcher with 15 years of experience in low-resource NLP. Former faculty at University of Lagos; co-founder of Masakhane West Africa chapter.',
-   NULL, 'https://linkedin.com/in/placeholder', NULL, 'team', 1),
-  ('Kwame Acheampong',    'Chief Technology Officer',
-   'Machine learning engineer specialising in multilingual models and efficient inference. Previously led NLP infrastructure at a major African fintech. MS from Carnegie Mellon Africa.',
-   NULL, 'https://linkedin.com/in/placeholder', 'https://twitter.com/placeholder', 'team', 2),
-  ('Fatima Al-Rashidi',   'Director of Research',
-   'Linguist and NLP researcher with expertise in Afro-Asiatic and Nilo-Saharan language families. PhD from SOAS University of London. Published 30+ papers on low-resource language modelling.',
-   NULL, 'https://linkedin.com/in/placeholder', NULL, 'team', 3),
-  ('Sipho Dlamini',       'Director of Community Partnerships',
-   'Community organiser and digital-rights advocate with 12 years working across Southern Africa. Leads our participatory data-collection protocols and community consent frameworks.',
-   NULL, NULL, 'https://twitter.com/placeholder', 'team', 4),
-  ('Prof. Amara Diallo',  'Board Chair',
-   'Professor of Computer Science at Université Cheikh Anta Diop, Dakar. Pioneer in West African language digitisation. Advisor to the African Union Digital Transformation Strategy.',
-   NULL, 'https://linkedin.com/in/placeholder', NULL, 'board', 1),
-  ('Dr. Nkechi Eze',      'Board Member — Ethics & Policy',
-   'Technology policy researcher and former UN Special Rapporteur on AI and Human Rights. Author of "Digital Colonialism and the African Internet" (2022).',
-   NULL, 'https://linkedin.com/in/placeholder', NULL, 'board', 2)
+  ('Alieu Jagne', 'Founder & Executive Director',
+   'Venture architect and entrepreneur dedicated to building digital and physical infrastructure across the African continent. Leads the strategic vision for language equity.',
+   NULL, 'https://linkedin.com/in/alieu-jagne', 'https://twitter.com/alieujagne', 'team', 1),
+  ('Prince Tagoe', 'General Secretary',
+   'Oversees the Foundation''s legal, compliance, and governance architecture, ensuring all operations align with the Sovereign Data Pact and multi-jurisdictional regulations.',
+   NULL, 'https://linkedin.com/in/prince-tagoe', NULL, 'team', 2),
+  ('Khadijato Jallow', 'Treasurer',
+   'Directs the financial oversight and treasury of the Foundation, managing the capital distribution for community bounties and ensuring strict financial segregation and transparency.',
+   NULL, 'https://linkedin.com/in/khadijato-jallow', NULL, 'team', 3),
+  ('Bubacarr Barry', 'Founding Member / Technical Lead',
+   'Coordinates research, development, and infrastructure initiatives, including the OpenSpeech Initiative and the Lughatna platform architectures.',
+   NULL, 'https://linkedin.com/in/bubacarr-barry', NULL, 'team', 4),
+  ('Papa Elhadji Keba Cire Toure', 'Founding Member / Program Lead',
+   'Cultivates strategic partnerships with governments, NGOs, and tech allies while overseeing the execution of LocaleNLP''s core capacity-building programs.',
+   NULL, 'https://linkedin.com/in/papa-toure', NULL, 'team', 5),
+  ('Mouhamed Bailo Ba', 'Founding Member / Communications Lead',
+   'The principal liaison for public relations, managing community engagement and amplifying the Foundation''s mission across the global digital landscape.',
+   NULL, 'https://linkedin.com/in/mouhamed-ba', NULL, 'team', 6)
 ) AS t(name, role, bio, image_url, linkedin_url, twitter_url, member_type, order_index)
 WHERE NOT EXISTS (SELECT 1 FROM team_members WHERE team_members.name = t.name);
 
@@ -211,3 +211,33 @@ SELECT title, excerpt, category, read_time_minutes, published_at::timestamptz, i
   )
 ) AS t(title, excerpt, category, read_time_minutes, published_at, is_featured, order_index)
 WHERE NOT EXISTS (SELECT 1 FROM insights WHERE insights.title = t.title);
+
+-- ─── LANGUAGE BOUNTIES (Sample dataset for BountyBoard) ──────────────────────
+INSERT INTO language_bounties (title, language_code, language_name, modality, target_hours, funding_goal_usd, current_funding_usd, bounty_status, urgency_level, contributors_count)
+SELECT title, language_code, language_name, modality, target_hours, funding_goal_usd, current_funding_usd, bounty_status, urgency_level, contributors_count FROM (VALUES
+  ('Medical Terminology in Wolof',        'wo', 'Wolof',    'Speech',        50,  12000, 3200,  'funding',           'critical',  12),
+  ('Agricultural Advisory — Bambara',     'bm', 'Bambara',  'Speech',        80,  18000, 18000, 'fulfilled',         'standard',  47),
+  ('Legal Corpus — Hausa',                'ha', 'Hausa',    'Text-Pair',     120, 24000, 9600,  'active_collection', 'critical',  31),
+  ('Conversational NLP Dataset — Amharic','am', 'Amharic',  'Text-Pair',     150, 32000, 11000, 'active_collection', 'critical',  24)
+) AS t(title, language_code, language_name, modality, target_hours, funding_goal_usd, current_funding_usd, bounty_status, urgency_level, contributors_count)
+WHERE NOT EXISTS (SELECT 1 FROM language_bounties WHERE language_bounties.title = t.title);
+
+-- ─── PUBLICATIONS (Sample research assets) ──────────────────────────────────
+INSERT INTO publications (title, authors, abstract, publication_type, is_featured)
+SELECT title, authors, abstract, publication_type, is_featured FROM (VALUES
+  ('NLLB-200: Scaling Machine Translation', 'Meta AI, et al.', 'A breakthrough in multilingual translation covering 200 languages.', 'paper', true),
+  ('Masakhane: Machine Translation for Africa', 'Masakhane Community', 'A participatory approach to low-resource NLP.', 'paper', true),
+  ('State of African Languages 2025', 'LocaleNLP Research', 'Annual report on digitization progress across the continent.', 'report', true)
+) AS t(title, authors, abstract, publication_type, is_featured)
+WHERE NOT EXISTS (SELECT 1 FROM publications WHERE publications.title = t.title);
+
+-- ─── CASE STUDIES ────────────────────────────────────────────────────────────
+INSERT INTO case_studies (title, slug, summary, content, country_id, program_id, is_featured)
+SELECT t.title, t.slug, t.summary, t.content, c.id, p.id, t.is_featured
+FROM (VALUES
+  ('Digitizing Hausa Legal Text', 'hausa-legal', 'Building a legal corpus for Northern Nigeria.', 'Extensive work on legal terminology...', 'NG', 'openspeech-initiative', true),
+  ('Yoruba Healthcare ASR', 'yoruba-healthcare', 'Deploying ASR in primary care clinics.', 'Voice interface for patient records...', 'NG', 'lughatna-platform', true)
+) AS t(title, slug, summary, content, country_code, program_slug, is_featured)
+JOIN countries c ON c.code = t.country_code
+JOIN programs p ON p.slug = t.program_slug
+WHERE NOT EXISTS (SELECT 1 FROM case_studies WHERE case_studies.slug = t.slug);

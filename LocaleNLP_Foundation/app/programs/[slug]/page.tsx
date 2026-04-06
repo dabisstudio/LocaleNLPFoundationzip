@@ -9,6 +9,14 @@ import { PLACEHOLDER_PROGRAMS } from '@/lib/placeholder-programs';
 import { Microscope, Mic, Heart, GraduationCap, Scale, BookOpen, ArrowLeft, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
+export async function generateStaticParams() {
+  const { data } = await supabase.from('programs').select('slug');
+  if (data && data.length > 0) {
+    return data.map((p) => ({ slug: p.slug }));
+  }
+  return PLACEHOLDER_PROGRAMS.map((p) => ({ slug: p.slug }));
+}
+
 const ICON_MAP: Record<string, React.ElementType> = {
   Microscope,
   Mic,

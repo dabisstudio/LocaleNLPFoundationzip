@@ -42,12 +42,36 @@ const VALUES = [
 ];
 
 const MILESTONES = [
-  { year: '2019', event: 'Founded by African AI researchers frustrated by missing language resources.' },
-  { year: '2020', event: 'First open dataset released: 200 hours of Yoruba speech.' },
-  { year: '2021', event: 'Registered as a non-profit. First institutional partnership signed.' },
-  { year: '2022', event: 'AfriSpeech-ASR v1 released, covering 15 languages.' },
-  { year: '2023', event: 'AIxLanguage Fellowship launches; first cohort of 8 fellows.' },
-  { year: '2024', event: '30+ researchers across 18 countries. 2,400 hours of audio archived.' },
+  {
+    id: "01",
+    date: "Mid 2025",
+    title: "Foundation Established",
+    event: "LocaleNLP Foundation is incorporated in Ghana as a Company Limited by Guarantee, establishing the Sovereign Data Pact.",
+  },
+  {
+    id: "02",
+    date: "Late 2025",
+    title: "Lughatna App Deployed",
+    event: "Launch of Africa's first gamified, community-powered linguistic crowdsourcing application to begin ethical data collection.",
+  },
+  {
+    id: "03",
+    date: "Early 2026",
+    title: "OpenSpeech Milestone",
+    event: "Surpassed initial targets, collecting thousands of hours of fully-consented, demographically balanced speech data.",
+  },
+  {
+    id: "04",
+    date: "2027 - 2028",
+    title: "Pan-African Scale",
+    event: "Expanding the Regional Advisory Councils and launching Civic AI tools for healthcare and education across 50+ languages.",
+  },
+  {
+    id: "05",
+    date: "5-Year Vision",
+    title: "Global Language Justice",
+    event: "Achieving digital sovereignty for 200+ African languages and exporting our framework to Indigenous communities worldwide.",
+  },
 ];
 
 function getInitials(name: string) {
@@ -78,7 +102,7 @@ export default async function AboutPage() {
           subtitleKey="about.page_subtitle"
           accentColor="ochre"
           ctaButtons={[
-            { labelKey: 'cta.join_mission', labelFallback: 'Join the Mission', href: '/get-involved', variant: 'primary' },
+            { labelKey: 'cta.read_manifesto', labelFallback: 'Read Our Manifesto', href: '/manifesto', variant: 'primary' },
             { labelKey: 'cta.explore_programs', labelFallback: 'Explore Programs', href: '/programs', variant: 'ghost' },
           ]}
         />
@@ -94,8 +118,7 @@ export default async function AboutPage() {
                   Mission
                 </h3>
                 <p className="text-text-secondary leading-relaxed">
-                  To ensure African languages are not left behind in the AI revolution — by building
-                  open, ethical, and community-centered language technology at scale.
+                  To democratize access to artificial intelligence by enabling equitable, ethical, and inclusive language technologies for African and Indigenous communities, transforming underserved dialects into digitally alive assets.
                 </p>
               </SpotlightCard>
 
@@ -107,9 +130,7 @@ export default async function AboutPage() {
                   Vision
                 </h3>
                 <p className="text-text-secondary leading-relaxed">
-                  A world where every African accesses healthcare information, education, and civic
-                  participation in their mother tongue — and where African expertise leads global AI
-                  development.
+                  To be Africa's leading open language AI foundation, unlocking the full spectrum of human knowledge and opportunity for every African, no matter what language they speak.
                 </p>
               </SpotlightCard>
             </div>
@@ -124,10 +145,7 @@ export default async function AboutPage() {
                     Our Approach
                   </h3>
                   <p className="text-text-secondary leading-relaxed max-w-3xl">
-                    Open-source models. Ethical data collection. Community co-ownership. We measure
-                    success not in papers published, but in communities empowered and barriers broken.
-                    Every decision is guided by the principle that the people most affected by
-                    language technology should be its primary beneficiaries — and its builders.
+                    We go far beyond NLP model development. Through a hybrid structure, we build continent-wide infrastructure—from the community-powered Lughatna app to open-source public APIs—balancing grassroots cultural preservation with enterprise-grade deployment.
                   </p>
                 </div>
               </div>
@@ -204,37 +222,45 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-brand-deep">
+        <section className="py-24 bg-brand-deep">
           <div className="container-wide section-padding">
-            <div className="mb-12">
-              <MonoLabel label="OUR STORY" number="03" className="mb-5" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary">
+            <div className="mb-16">
+              <MonoLabel label="OUR STORY" number="03" className="mb-4" />
+              <h2 className="text-4xl md:text-5xl font-display font-medium text-text-primary">
                 How We Got Here
               </h2>
             </div>
 
             <div className="relative">
-              <div
-                className="hidden md:block absolute top-5 left-0 right-0 h-px bg-ink-monument/10"
-                aria-hidden="true"
-              />
-              <div className="grid md:grid-cols-6 gap-y-8 md:gap-y-0">
-                {MILESTONES.map((m, i) => (
-                  <div key={m.year} className="relative flex md:flex-col gap-5 md:gap-0 md:pr-4">
-                    <div className="flex md:flex-col items-center md:items-start gap-3 md:gap-0">
-                      <div className="w-10 h-10 rounded-full bg-accent-ochre/10 border border-accent-ochre/30 flex items-center justify-center shrink-0 relative z-10">
-                        <span className="font-mono text-xs text-accent-ochre font-bold">
-                          {m.year.slice(2)}
-                        </span>
-                      </div>
-                      {i < MILESTONES.length - 1 && (
-                        <div className="w-px flex-1 bg-ink-monument/10 md:hidden" aria-hidden="true" />
-                      )}
+              {/* Horizontal Connecting Line (Desktop) */}
+              <div className="hidden lg:block absolute top-6 left-6 right-6 h-[1px] bg-text-primary/10 z-0"></div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 relative z-10">
+                {MILESTONES.map((milestone, index) => (
+                  <div key={milestone.id} className="relative flex flex-col items-start px-1">
+                    
+                    {/* Fixed Circle Node (ID only to prevent overflow) */}
+                    <div className="w-12 h-12 rounded-full border border-text-primary/20 bg-brand-deep flex items-center justify-center font-mono text-sm text-text-primary mb-6 shadow-sm shrink-0">
+                      {milestone.id}
                     </div>
-                    <div className="md:mt-6">
-                      <p className="font-mono text-xs text-accent-ochre mb-2">{m.year}</p>
-                      <p className="text-text-secondary text-sm leading-relaxed">{m.event}</p>
+
+                    {/* Content Block */}
+                    <div className="flex flex-col pr-4">
+                      <span className="font-mono text-xs uppercase tracking-widest text-text-tertiary mb-3">
+                        {milestone.date}
+                      </span>
+                      <h3 className="text-lg font-semibold text-text-primary mb-2">
+                        {milestone.title}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed">
+                        {milestone.event}
+                      </p>
                     </div>
+                    
+                    {/* Vertical Connecting Line (Mobile) */}
+                    {index < MILESTONES.length - 1 && (
+                      <div className="md:hidden absolute top-12 left-6 w-[1px] h-10 bg-text-primary/10 -z-10" />
+                    )}
                   </div>
                 ))}
               </div>
@@ -256,16 +282,17 @@ export default async function AboutPage() {
             
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { city: 'Accra, Ghana', role: 'Foundation HQ & Governance', icon: Shield },
-                { city: 'Casablanca, Morocco', role: 'Operations & Engineering Infrastructure', icon: Globe },
-                { city: 'Dakar, Senegal', role: 'Francophone Linguistic Partnerships', icon: Users }
+                { city: 'Accra, Ghana', role: 'Foundation HQ & Governance', icon: Shield, desc: 'The legal domicile and center for governance and Pan-African policy advocacy.' },
+                { city: 'Casablanca, Morocco', role: 'Operational Headquarters', icon: Globe, desc: 'The central hub for day-to-day foundation operations, infrastructure deployment, and scaling.' },
+                { city: 'Dakar, Senegal', role: 'Linguistic Partnerships Hub', icon: Users, desc: 'The command center for community data collection, cultural preservation, and grassroots contributor onboarding.' }
               ].map((loc) => (
                 <div key={loc.city} className="glass-card p-8 border border-ink-monument/10 flex flex-col items-start hover:border-accent-ochre/30 transition-colors">
                   <div className="w-10 h-10 rounded-full bg-accent-ochre/10 flex items-center justify-center mb-6">
                     <MapPin className="w-5 h-5 text-accent-ochre" />
                   </div>
                   <h3 className="font-display font-bold text-xl text-ink-monument mb-2">{loc.city}</h3>
-                  <p className="font-mono text-xs uppercase tracking-widest text-ink-muted">{loc.role}</p>
+                  <p className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-4">{loc.role}</p>
+                  <p className="text-xs text-text-tertiary leading-relaxed">{loc.desc}</p>
                 </div>
               ))}
             </div>
@@ -413,13 +440,19 @@ export default async function AboutPage() {
                      </p>
                      <h3 className="font-display font-bold text-3xl text-ink-monument mb-4">Regional Advisory Councils</h3>
                      <p className="text-text-secondary max-w-2xl mx-auto">
-                        To guarantee our infrastructure serves the people, all foundation initiatives must be ratified by our four regional advisory councils comprised of local linguists, ethicists, and community leaders.
+                        To guarantee our infrastructure serves the people, all foundation initiatives are ratified by our Regional Advisory Councils, ensuring grassroots community leaders and local specialists guide our growth.
                      </p>
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                     {['West Africa', 'North Africa', 'East Africa', 'Southern Africa'].map((region) => (
-                        <div key={region} className="glass-card p-6 border border-ink-monument/5 bg-white/50">
-                           <h4 className="font-mono text-sm font-bold text-ink-monument mb-4 border-b border-ink-monument/10 pb-4">{region} Council</h4>
+                     { [
+                        { name: 'West Africa', countries: 'Senegal, Ghana, Nigeria, and The Gambia' },
+                        { name: 'North Africa', countries: 'Morocco and Egypt' },
+                        { name: 'East Africa', countries: 'Kenya, Uganda, and Ethiopia' },
+                        { name: 'Southern Africa', countries: 'South Africa and Zambia' }
+                      ].map((region) => (
+                        <div key={region.name} className="glass-card p-6 border border-ink-monument/5 bg-white/50">
+                           <h4 className="font-mono text-sm font-bold text-ink-monument mb-4 border-b border-ink-monument/10 pb-4">{region.name} Council</h4>
+                           <p className="text-[11px] text-text-tertiary mb-4 leading-relaxed">Representing {region.countries}.</p>
                            <ul className="space-y-3">
                               <li className="flex items-center gap-3">
                                 <div className="w-6 h-6 rounded-full bg-ink-monument/5 flex items-center justify-center"><Users className="w-3 h-3 text-ink-muted"/></div>
