@@ -346,180 +346,209 @@ export default function Navigation() {
   const activeSection = NAV_SECTIONS.find((s) => s.labelKey === openKey) ?? null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-base-stone/95 backdrop-blur-sm border-b border-ink-monument/10">
-      <nav className="container-wide section-padding" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <Link
-            href="/"
-            className="shrink-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone rounded"
-            aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
-            onClick={closeMenu}
-          >
-            <Image
-              src="/Logo-LF.svg"
-              alt={t('a11y.logo_home', 'LocaleNLP Foundation')}
-              width={160}
-              height={40}
-              priority
-              className="h-9 w-auto object-contain"
-            />
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-1 relative z-10" onMouseLeave={scheduleMegaClose}>
-            {NAV_SECTIONS.map((section) => {
-              const isActive = openKey === section.labelKey;
-              return (
-                <div key={section.labelKey} className="relative">
-                  <button
-                    ref={(el) => { if (isActive) activeTrigger.current = el; }}
-                    onMouseEnter={() => openSection(section.labelKey)}
-                    onFocus={() => openSection(section.labelKey)}
-                    onClick={() => setOpenKey((v) => (v === section.labelKey ? null : section.labelKey))}
-                    aria-expanded={isActive}
-                    aria-haspopup="true"
-                    aria-controls={isActive ? megaPanelId : undefined}
-                    className={cn("px-4 py-2.5 text-sm font-medium transition-colors relative z-10 rounded-md focus-visible:outline-none",
-                      isActive ? "text-ink-monument" : "text-ink-steel hover:text-ink-monument"
-                    )}
-                  >
-                    {t(section.labelKey)}
-                  </button>
-                  {isActive && (
-                    <motion.div
-                      layoutId="megaMenuPill"
-                      className="absolute inset-0 bg-ink-monument/5 rounded-md -z-10"
-                      transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <LanguageSwitcher />
-            <a
-              href="https://localenlp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-accent-navy border border-accent-navy/25 rounded-md hover:bg-accent-navy hover:text-white hover:border-accent-navy transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
-              aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-base-stone/95 backdrop-blur-sm border-b border-ink-monument/10">
+        <nav className="container-wide section-padding" aria-label="Main navigation">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <Link
+              href="/"
+              className="shrink-0 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-base-stone rounded"
+              aria-label={t('a11y.logo_home', 'LocaleNLP Foundation home')}
+              onClick={closeMenu}
             >
-              {t('nav.enterprise_api', 'Enterprise API')}
-              <ExternalLink className="w-3 h-3" aria-hidden="true" />
-            </a>
-            <GlowButton href="/donate" variant="primary" className="text-sm" onClick={closeMenu}>
-              {t('nav.donate', 'Donate')}
-            </GlowButton>
-          </div>
+              <Image
+                src="/Logo-LF.svg"
+                alt={t('a11y.logo_home', 'LocaleNLP Foundation')}
+                width={160}
+                height={40}
+                priority
+                className="h-9 w-auto object-contain"
+              />
+            </Link>
 
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden p-2 text-ink-monument rounded-md hover:bg-ink-monument/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
-            aria-label={isMobileOpen ? t('nav.close_menu', 'Close menu') : t('nav.open_menu', 'Open menu')}
-            aria-expanded={isMobileOpen}
-          >
-            {isMobileOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {activeSection && (
-          <motion.div
-            id={megaPanelId}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }}
-            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="hidden lg:block absolute left-0 right-0 top-full border-t border-ink-monument/5 bg-white/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80"
-            style={{ boxShadow: '0 30px 60px rgba(12,12,12,0.1)' }}
-            onMouseEnter={cancelMegaClose}
-            onMouseLeave={scheduleMegaClose}
-            role="region"
-            aria-label={`${t(activeSection.labelKey)} navigation`}
-          >
-            <MegaPanel section={activeSection} onClose={closeMenu} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {isMobileOpen && (
-        <div
-          className="lg:hidden fixed inset-0 top-16 md:top-20 z-40 border-t border-ink-monument/10 overflow-y-auto animate-slide-down"
-          style={{ background: '#FFFFFF' }}
-        >
-          <nav
-            className="container-wide section-padding py-6 flex flex-col gap-1"
-            aria-label="Mobile navigation"
-          >
-            {NAV_SECTIONS.map((section) => {
-              const c = ACCENT[section.accent];
-              const isOpen = mobileAccordion === section.labelKey;
-              return (
-                <div key={section.labelKey}>
-                  <button
-                    onClick={() => setMobileAccordion((v) => (v === section.labelKey ? null : section.labelKey))}
-                    className="w-full flex items-center justify-between py-3 px-4 text-base font-medium text-ink-monument hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
-                    aria-expanded={isOpen}
-                  >
-                    {t(section.labelKey)}
-                    <span className={cn('text-ink-steel text-lg leading-none transition-transform duration-200 select-none', isOpen && 'rotate-90')} aria-hidden="true">
-                      ›
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="pl-4 flex flex-col gap-0.5 mt-1 mb-2">
-                      {section.links.map(({ labelKey, href, icon: Icon }) => (
-                        <Link
-                          key={href + labelKey}
-                          href={href}
-                          onClick={() => setIsMobileOpen(false)}
-                          className="flex items-center gap-2.5 py-2 px-4 text-sm text-ink-steel hover:text-ink-monument hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
-                        >
-                          <Icon className={cn('w-4 h-4 shrink-0', c.icon)} aria-hidden="true" />
-                          {t(labelKey)}
-                        </Link>
-                      ))}
-                      {section.viewAll && (
-                        <Link
-                          href={section.viewAll.href}
-                          onClick={() => setIsMobileOpen(false)}
-                          className={cn('flex items-center gap-2 py-2 px-4 text-sm font-medium hover:bg-base-stone rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre', c.text)}
-                        >
-                          {t(section.viewAll.labelKey)}
-                          <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                        </Link>
+            <div className="hidden lg:flex items-center gap-1 relative z-10" onMouseLeave={scheduleMegaClose}>
+              {NAV_SECTIONS.map((section) => {
+                const isActive = openKey === section.labelKey;
+                return (
+                  <div key={section.labelKey} className="relative">
+                    <button
+                      ref={(el) => { if (isActive) activeTrigger.current = el; }}
+                      onMouseEnter={() => openSection(section.labelKey)}
+                      onFocus={() => openSection(section.labelKey)}
+                      onClick={() => setOpenKey((v) => (v === section.labelKey ? null : section.labelKey))}
+                      aria-expanded={isActive}
+                      aria-haspopup="true"
+                      aria-controls={isActive ? megaPanelId : undefined}
+                      className={cn("px-4 py-2.5 text-sm font-medium transition-colors relative z-10 rounded-md focus-visible:outline-none",
+                        isActive ? "text-ink-monument" : "text-ink-steel hover:text-ink-monument"
                       )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            <div className="mt-3 pt-4 border-t border-ink-monument/10 flex flex-col gap-3">
-              <LanguageSwitcher mobile />
+                    >
+                      {t(section.labelKey)}
+                    </button>
+                    {isActive && (
+                      <motion.div
+                        layoutId="megaMenuPill"
+                        className="absolute inset-0 bg-ink-monument/5 rounded-md -z-10"
+                        transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
+              <LanguageSwitcher />
               <a
                 href="https://localenlp.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono uppercase tracking-widest text-accent-navy border border-accent-navy/25 rounded-lg hover:bg-accent-navy hover:text-white hover:border-accent-navy transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase tracking-widest text-accent-navy border border-accent-navy/25 rounded-md hover:bg-accent-navy hover:text-white hover:border-accent-navy transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
                 aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
               >
                 {t('nav.enterprise_api', 'Enterprise API')}
-                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                <ExternalLink className="w-3 h-3" aria-hidden="true" />
               </a>
-              <GlowButton
-                href="/donate"
-                variant="primary"
-                className="w-full justify-center"
-                onClick={() => setIsMobileOpen(false)}
-              >
+              <GlowButton href="/donate" variant="primary" className="text-sm" onClick={closeMenu}>
                 {t('nav.donate', 'Donate')}
               </GlowButton>
             </div>
-          </nav>
-        </div>
-      )}
-    </header>
+
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="lg:hidden p-2 text-ink-monument rounded-md hover:bg-ink-monument/8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
+              aria-label={isMobileOpen ? t('nav.close_menu', 'Close menu') : t('nav.open_menu', 'Open menu')}
+              aria-expanded={isMobileOpen}
+            >
+              {isMobileOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
+            </button>
+          </div>
+        </nav>
+
+        <AnimatePresence>
+          {activeSection && (
+            <motion.div
+              id={megaPanelId}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="hidden lg:block absolute left-0 right-0 top-full border-t border-ink-monument/5 bg-white/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80"
+              style={{ boxShadow: '0 30px 60px rgba(12,12,12,0.1)' }}
+              onMouseEnter={cancelMegaClose}
+              onMouseLeave={scheduleMegaClose}
+              role="region"
+              aria-label={`${t(activeSection.labelKey)} navigation`}
+            >
+              <MegaPanel section={activeSection} onClose={closeMenu} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="lg:hidden fixed inset-0 top-16 md:top-20 z-50 bg-white/98 backdrop-blur-xl border-t border-ink-monument/10 overflow-y-auto"
+          >
+            <nav
+              className="container-wide section-padding py-8 flex flex-col gap-1.5"
+              aria-label="Mobile navigation"
+            >
+              {NAV_SECTIONS.map((section) => {
+                const c = ACCENT[section.accent];
+                const isOpen = mobileAccordion === section.labelKey;
+                return (
+                  <div key={section.labelKey} className="overflow-hidden">
+                    <button
+                      onClick={() => setMobileAccordion((v) => (v === section.labelKey ? null : section.labelKey))}
+                      className={cn(
+                        "w-full flex items-center justify-between py-3.5 px-4 text-base font-semibold rounded-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre",
+                        isOpen ? "bg-ink-monument text-white" : "text-ink-monument hover:bg-base-stone text-left"
+                      )}
+                      aria-expanded={isOpen}
+                    >
+                      {t(section.labelKey)}
+                      <span className={cn('text-lg leading-none transition-transform duration-300 select-none', isOpen ? 'rotate-90 text-white' : 'text-ink-steel rotate-0')} aria-hidden="true">
+                        ›
+                      </span>
+                    </button>
+                    
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div 
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="pl-4 flex flex-col gap-1 mt-1.5 mb-3"
+                        >
+                          {section.links.map(({ labelKey, href, icon: Icon }) => (
+                            <Link
+                              key={href + labelKey}
+                              href={href}
+                              onClick={() => setIsMobileOpen(false)}
+                              className="flex items-center gap-3 py-2.5 px-4 text-[15px] text-ink-steel hover:text-ink-monument hover:bg-base-stone rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre"
+                            >
+                              <Icon className={cn('w-4.5 h-4.5 shrink-0', c.icon)} aria-hidden="true" />
+                              {t(labelKey)}
+                            </Link>
+                          ))}
+                          {section.viewAll && (
+                            <Link
+                              href={section.viewAll.href}
+                              onClick={() => setIsMobileOpen(false)}
+                              className={cn('flex items-center gap-2 py-2.5 px-4 text-[15px] font-bold hover:bg-base-stone rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ochre', c.text)}
+                            >
+                              {t(section.viewAll.labelKey)}
+                              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                            </Link>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+              
+              <div className="mt-4 pt-6 border-t border-ink-monument/10 flex flex-col gap-4">
+                <LanguageSwitcher mobile />
+                
+                <a
+                  href="https://localenlp.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-5 py-4 text-sm font-mono uppercase tracking-widest text-accent-navy bg-accent-navy/5 border border-accent-navy/15 rounded-xl hover:bg-accent-navy hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-navy"
+                  aria-label={t('nav.enterprise_api_aria', 'LocaleNLP Commercial — opens in new tab')}
+                >
+                  <span className="flex items-center gap-2">
+                    {t('nav.enterprise_api', 'Enterprise API')}
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
+                  <ArrowRight className="w-4 h-4 opacity-40" aria-hidden="true" />
+                </a>
+                
+                <GlowButton
+                  href="/donate"
+                  variant="primary"
+                  className="w-full justify-center py-4 text-base"
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  {t('nav.donate', 'Donate')}
+                </GlowButton>
+                
+                <p className="text-center text-[10px] text-ink-muted uppercase tracking-[0.2em] mt-4 opacity-50">
+                  LocaleNLP Foundation © 2025
+                </p>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
